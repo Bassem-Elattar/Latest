@@ -30,7 +30,7 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
+        logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
 
     }
@@ -42,15 +42,14 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("Algerian Dinar");
+        rateOfExchange.AddFromCurrency("Saudi Riyal");
         rateOfExchange.AddToCurrency("Egyptian Pound");
-        Thread.sleep(Long.parseLong("5000"));
         rateOfExchange.AddRateOfExchange("12345.05");
         rateOfExchange.ClickSendForApprovel();
-        rateOfExchange.SelectFromCurrency("Algerian Dinar");
+        rateOfExchange.SelectFromCurrency("Saudi Riyal");
         rateOfExchange.SelectToCurrency("Egyptian Pound");
         rateOfExchange.ClickSearchButton();
-        assertEquals("Algerian Dinar",rateOfExchange.TableColumnDataExtractor(1,"Algerian Dinar"));
+        assertEquals("Saudi Riyal",rateOfExchange.TableColumnDataExtractor(1,"Saudi Riyal"));
         assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
         assertEquals("12345.05",rateOfExchange.TableColumnDataExtractor(3,"12345.05"));
 
@@ -62,18 +61,16 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("Algerian Dinar");
+        rateOfExchange.AddFromCurrency("Saudi Riyal");
         rateOfExchange.AddToCurrency("Egyptian Pound");
-        Thread.sleep(Long.parseLong("5000"));
         rateOfExchange.AddRateOfExchange("47");
         rateOfExchange.ClickSendForApprovel();
-        rateOfExchange.SelectFromCurrency("Algerian Dinar");
+        rateOfExchange.SelectFromCurrency("Saudi Riyal");
         rateOfExchange.SelectToCurrency("Egyptian Pound");
         rateOfExchange.ClickSearchButton();
-        assertEquals("Algerian Dinar",rateOfExchange.TableColumnDataExtractor(1,"Algerian Dinar"));
+        assertEquals("Saudi Riyal",rateOfExchange.TableColumnDataExtractor(1,"Saudi Riyal"));
         assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
         assertEquals("47",rateOfExchange.TableColumnDataExtractor(3,"47"));
-
     }
     //update on change of Currency
     @Test
@@ -173,9 +170,4 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
         assertEquals("Invalid Exchange Rate",Actual);
 
     }
-
-
-
-
-
 }

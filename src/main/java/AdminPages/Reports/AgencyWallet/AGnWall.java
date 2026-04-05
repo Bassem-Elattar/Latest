@@ -22,8 +22,8 @@ public class AGnWall {
     By Currency = By.xpath("//p-dropdown[.//input[@id=\"id-Currency\"]]");
     By Show = By.xpath("//p-checkbox[.//input[@id=\"id--ShowOutStandingOnly\"]]");
     By Submit = By.xpath("//button[@type=\"submit\"]");
-    By ErrorCurrency = By.xpath("(//span[@class=\"fg-error\"])[3]");
-    By ErrorBranch = By.xpath("(//span[@class=\"fg-error\"])[1]");
+    By ErrorCurrency = By.xpath("//span[@class='fg-error has-error']");
+    By ErrorBranch = By.xpath("//span[@class='fg-error has-error']");
 
 
     public void SearchValid (String branch,String agency,String currency) {

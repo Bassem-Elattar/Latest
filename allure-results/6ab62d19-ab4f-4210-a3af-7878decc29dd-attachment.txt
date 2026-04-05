@@ -1,3 +1,0 @@
-[ReportManager] Target URL: "http://192.168.1.90" @23-12-2025 16:24:52.0499 PM
-[ReportManager] Initial URL: "http://192.168.1.90/reports/reports/quotation" @23-12-2025 16:24:52.0513 PM
-[ReportManager] Navigate to url "http://192.168.1.90". @23-12-2025 16:24:52.0760 PM

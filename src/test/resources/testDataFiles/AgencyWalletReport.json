@@ -1,0 +1,13 @@
+{
+  "ValidData": {
+    "branch" : "Test",
+    "agency" : "All",
+    "currency" : "United States Dollar"
+  },
+
+  "InvalidData": {
+    "branch" : "Test",
+    "agency" : "All",
+    "currency" : "United States Dollar"
+  }
+}

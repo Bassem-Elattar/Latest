@@ -3,6 +3,8 @@ package AdminPages.Reports.Sales;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 
+import static org.openqa.selenium.By.xpath;
+
 public class SearchSalesReport_Page {
     public SearchSalesReport_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -13,13 +15,14 @@ public class SearchSalesReport_Page {
     By Btn_Sales = By.xpath("//*[@id=\"content_wrap\"]/div/div[2]/div[2]/a[3]/div/div[1]");
     By Lst_BranchName = By.xpath("//p-multiselect[.//input[@name=\"Branch Name\"]]");
     By Lst_AgencyName = By.xpath("//p-multiselect[.//input[@id=\"id-AgencyName\"]]");
-    By Dpick_Date = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c49-3 p-button p-component p-button-icon-only ng-star-inserted\"]");
-    By Dpick_EndDate = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c49-4 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Txt_InvoiceNumber = By.xpath("//input[@placeholder=\"Invoice number\"]");
     By Txt_CustomerName = By.xpath("//input[@id=\"id-CustomerName\"]");
-    By Dpick_PaymentDate = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c49-5 p-button p-component p-button-icon-only ng-star-inserted\"]");
+    By Dpick_PaymentDate = By.xpath("//input[@id='id-PaymentDate']");
     By Txt_TransactionID = By.xpath("//input[@id=\"id-TransactionID\"]");
     By Btn_Search = By.xpath("//button[@type=\"submit\"]");
+    By InvoiceFromDate = xpath("//input[@id='id-InvoiceFromDate']");
+    By InvoiceToDate = xpath("//input[@id='id-InvoiceToDate']");
+    By Year = xpath("//button[normalize-space()='2026']");
 
     public void setReports(){
         driver.element().click(Btn_Reports).click(Btn_Sales);
@@ -27,26 +30,32 @@ public class SearchSalesReport_Page {
 
     public void setBranchName(String branch){
         driver.element().select(Lst_BranchName,branch);
-        By option4 = By.xpath(String.format("//span[text()='%s']", branch));
-        driver.element().click(option4);
     }
 
     public void setAgencyName(String agency){
-        driver.element().click(Lst_AgencyName);
-        By option4 = By.xpath(String.format("//span[text()='%s']", agency));
-        driver.element().click(option4);
+        driver.element().select(Lst_AgencyName, agency);
     }
 
-    public void setDate(String date){
-        driver.element().click(Dpick_Date);
-        By option4 = By.xpath(String.format("//span[text()='%s']", date));
-        driver.element().click(option4);
+    public void setDate(String From, String year, String month){
+        driver.element().click(InvoiceFromDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
     }
 
-    public void setEndDate(String date){
-        driver.element().click(Dpick_EndDate);
-        By option4 = By.xpath(String.format("//span[text()='%s']", date));
-        driver.element().click(option4);
+    public void setEndDate(String to, String year, String month){
+        driver.element().click(InvoiceToDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
     }
 
     public void setInvoiceNumber(String invoiceNumber){
@@ -59,7 +68,7 @@ public class SearchSalesReport_Page {
 
     public void setPaymentDate(String date){
         driver.element().click(Dpick_PaymentDate);
-        By option4 = By.xpath(String.format("//span[text()='%s']", date));
+        By option4 = By.xpath(String.format("(//span[text()='%s'])[1]", date));
         driver.element().click(option4);
     }
 

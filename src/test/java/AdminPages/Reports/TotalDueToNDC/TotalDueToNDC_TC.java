@@ -3,6 +3,8 @@ package AdminPages.Reports.TotalDueToNDC;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
+import AdminPages.Reports.Statement.State;
+import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -14,93 +16,84 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class TotalDueToNDC_TC extends TestBase_TC {
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    private LogIn_Page logIn;
+    SHAFT.TestData.JSON testData;
+    TotalDueToNDC_Page Due;
 
     @BeforeTest
     public void login() {
-        new LogIn_Page(driver).ClickAdmin();
-        new LogIn_Page(driver).ClickOnLoginButton();
+        logIn = new LogIn_Page(driver);
+        logIn.ClickAdmin();
+        logIn.ClickOnLoginButton();
+        Due = new TotalDueToNDC_Page(driver);
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
+        testData = new SHAFT.TestData.JSON("TotalDue.json");
     }
 
-    @Test(groups = "group1")
-    public void validSearchForTotalDue() throws FileNotFoundException {
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-        new TotalDueToNDC_Page(driver)
+    @Test
+    public void validSearchForTotalDue() throws InterruptedException {
+                Due
                 .selectBranch()
                 .selectAgency()
-                .selectValidDate()
-                .clickSearchInGrid()
+                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
+                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
+                .Submit()
                 .verifyThatResultsIsDisplayed();
     }
 
-    @Test(groups = "group1")
-    public void validSearchForTotalDueWithMandatoryFieldsOnly10() {
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-        new TotalDueToNDC_Page(driver)
+    @Test
+    public void validSearchForTotalDueWithMandatoryFieldsOnly10() throws InterruptedException {
+                Due
                 .selectBranch()
-                .selectValidDate()
-                .clickSearchInGrid()
+                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
+                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
+                .Submit()
                 .verifyThatResultsIsDisplayed();
     }
 
-    @Test(groups = "group1")
-    public void searchForTotalDueWithNoOutputAndSelectSameDayFromDate() {
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-        new TotalDueToNDC_Page(driver)
+    @Test
+    public void searchForTotalDueWithNoOutputAndSelectSameDayFromDate() throws InterruptedException {
+                Due
                 .selectBranch()
-                .selectSameDateWithNoOutput()
-                .clickSearchInGrid()
+                .searchValidFromDate(testData.getTestData("validDataNoOutput.From_Date"), testData.getTestData("validDataNoOutput.FromYear"), testData.getTestData("validDataNoOutput.FromMonth"))
+                .searchValidToDate(testData.getTestData("validDataNoOutput.To_Date"), testData.getTestData("validDataNoOutput.ToYear"), testData.getTestData("validDataNoOutput.ToMonth"))
+                .Submit()
                 .verifyThatNoOutputMessageIsDisplayedWhenThereIsNoOutput();
     }
 
-    @Test(groups = "group1")
+    @Test
     public void validateThatPaginationWorksCorrectly() throws InterruptedException {
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-        new TotalDueToNDC_Page(driver)
+                Due
                 .selectBranch()
                 .selectAgency()
-                .selectValidDate()
-                .clickSearchInGrid()
+                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
+                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
+                .Submit()
                 .clickOnNextButton()
                 .verifyThatThePaginationIsWorkingCorrectly();
     }
 
-    @Test(groups = "group1")
-    public void validateThatUserCanSearchWithAllField() {
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-        new TotalDueToNDC_Page(driver)
+    @Test
+    public void validateThatUserCanSearchWithAllField() throws InterruptedException {
+                Due
                 .selectBranch()
-                .selectAgency()
-                .selectValidDate()
+                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
+                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
                 .sendInvoiceNumber()
                 .sendCustomerName()
                 .sendBookingRefernce()
-                .clickSearchInGrid()
+                .Submit()
                 .verifyThatResultsIsDisplayed();
     }
     @Test
-    public void validateThatUserCanExportTheFile(){
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-        new TotalDueToNDC_Page(driver)
+    public void validateThatUserCanExportTheFile() throws InterruptedException {
+                Due
                 .selectBranch()
                 .selectAgency()
-                .selectValidDate()
-                .clickSearchInGrid()
+                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
+                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
+                .Submit()
                 .VerifyThatTheExportButtonIsClickable();
     }
-    @AfterMethod
-    public void navigateBackToURL() {
-//        driver.quit();
-        driver.browser().navigateToURL("http://192.168.1.33");
-    }
-    /*@AfterMethod
-    public void quit() {
-        driver.quit();
-    }*/
+
 }

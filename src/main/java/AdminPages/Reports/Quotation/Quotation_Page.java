@@ -5,6 +5,8 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 
+import static org.openqa.selenium.By.xpath;
+
 public class Quotation_Page {
     private SHAFT.GUI.WebDriver driver;
     private SoftAssert softAssert = new SoftAssert();
@@ -28,9 +30,12 @@ public class Quotation_Page {
     private final By Rbtn_Today = By.xpath("(//p-radiobutton)[3]");
     private final By Rbtn_currentWeek = By.xpath("(//p-radiobutton)[4]");
     private final By Rbtn_dateRange = By.xpath("(//p-radiobutton)[5]");
+    private final By InvoiceFromDate = xpath("//input[@id='id-FromDate']");
+    private final By InvoiceToDate = xpath("//input[@id='id-ToDate']");
+    private final By Submit = xpath("//button[@type=\"submit\"]");
     private final By Dpick_fromDate = By.xpath("//input[@id='id-FromDate']");
     private final By Dpick_toDate = By.xpath("//input[@id='id-ToDate']");
-    private final By Btn_search = By.xpath("//button[@label='Primary']");
+    private final By Btn_search = By.xpath("//button[@type='submit']");
 
     private final By selectBranch = By.xpath("//li[@aria-label='Test']");
     private final By selectAgency = By.xpath("//div[@role='checkbox']");
@@ -38,14 +43,14 @@ public class Quotation_Page {
     private final By selectQuoteStatus= By.xpath("//div[@role='checkbox']");
 
     private final By Btn_Paginate = By.xpath("//button[@class='next']");
-    private final By Btn_ExportExcel = By.xpath("(//button[@label='Primary'  and @type = 'button'])[2]");
+    private final By Btn_ExportExcel = By.xpath("//button[@class='p-element p-ripple p-button-outlined p-button p-component upper-table-btn ng-star-inserted']");
     private final By Result = By.xpath("(//P)[2]");
 
     private final By QuotesNo_field = By.xpath("//tbody/tr[1]/td[1]");
     private final By ClientName_field = By.xpath("//tbody/tr[1]/td[2]");
     private final By Email_field = By.xpath("//tbody/tr[1]/td[5]");
     private final By noFoundMSG = By.xpath("//td[@class='message']");
-
+    By Year = xpath("//button[normalize-space()='2026']");
 
     public Quotation_Page SelectReports(){
         driver.element().click(Btn_Report);
@@ -67,6 +72,36 @@ public class Quotation_Page {
         driver.element().click(Lst_agencyName);
         driver.element().click(selectAgency);
         driver.element().click(clickX);
+        return this;
+    }
+    public Quotation_Page searchValidFromDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(InvoiceFromDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+    }
+
+    public Quotation_Page searchValidToDate(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(InvoiceToDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
+        return this;
+    }
+
+    public Quotation_Page Submit(){
+        driver.element().click(Submit);
         return this;
     }
 

@@ -5,10 +5,10 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
 import AdminPages.Reports.Statement.State;
+import com.shaft.driver.SHAFT;
+import org.junit.jupiter.api.AfterEach;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -20,52 +20,37 @@ import static org.junit.Assert.assertEquals;
 public class AGNWallTC extends TestBase_TC {
     AGnWall SearchWall;
     private LogIn_Page logIn;
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
-    @BeforeTest
+    SHAFT.TestData.JSON testData;
+
+    @BeforeClass
     public void sign() {
         logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
+        logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
-    }
-    @Test(priority = 1, dataProvider = "JsonProvider")
-    public void SearchValidData(Map<String,String> search) throws InterruptedException {
         new Reports_Common(driver).clickReports().clickAgencyWallet();
+        testData = new SHAFT.TestData.JSON("AgencyWalletReport.json");
         SearchWall = new AGnWall(driver);
-        String branch = search.get("branch");
-        String agency = search.get("agency");
-        String currency = search.get("currency");
-        SearchWall.SearchValid(branch,agency,currency);
-        Thread.sleep(3000);
+    }
+
+    @Test(priority = 1)
+    public void SearchValidData(){
+        SearchWall.SearchValid(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"), testData.getTestData("ValidData.currency"));
         assertEquals("Test",SearchWall.Table(0,"Test"));
-
     }
-    @Test(priority = 2, dataProvider = "JsonProvider")
-    public void SearchinvalidBranch(Map<String,String> search){
-        new Reports_Common(driver).clickReports().clickAgencyWallet();
-        SearchWall = new AGnWall(driver);
-        String currency = search.get("currency");
-        SearchWall.SearchInvalidBranch(currency);
+
+    @Test(priority = 2)
+    public void SearchInvalidBranch(){
+        SearchWall.SearchInvalidBranch(testData.getTestData("ValidData.currency"));
         String Actual=driver.element().getText(SearchWall.ErrorBranch);
         String Expected="Required";
         Assert.assertEquals(Actual,Expected);
-
     }
-    @Test(priority = 3, dataProvider ="JsonProvider")
-    public void SearchInvalidCurrency(Map<String,String> search) throws InterruptedException {
-        new Reports_Common(driver).clickReports().clickAgencyWallet();
-        SearchWall = new AGnWall(driver);
-        String branch = search.get("branch");
-        String agency = search.get("agency");
-        SearchWall.SearchInvalidCurrency(branch,agency);
+
+    @Test(priority = 3)
+    public void SearchInvalidCurrency(){
+        SearchWall.SearchInvalidCurrency(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"));
         String Actual=driver.element().getText(SearchWall.ErrorCurrency);
         String Expected="Required";
         Assert.assertEquals(Actual,Expected);
-
     }
 }

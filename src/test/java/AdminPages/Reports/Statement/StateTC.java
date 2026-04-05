@@ -1,0 +1,92 @@
+package AdminPages.Reports.Statement;
+
+
+import AdminPages.Login.LogIn_Page;
+import AdminPages.Login.TestBase_TC;
+import AdminPages.Master.Flight.Airport.Airport_Page;
+import AdminPages.Reports.Reports_Common;
+import com.shaft.driver.SHAFT;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import utilities.JsonDataUtil;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+
+public class StateTC extends TestBase_TC {
+
+    private LogIn_Page logIn;
+    SHAFT.TestData.JSON testData;
+    State Statement;
+
+    @BeforeTest
+    public void sign() {
+        logIn = new LogIn_Page(driver);
+        logIn.ClickAdmin();
+        logIn.ClickOnLoginButton();
+        Statement = new State(driver);
+        testData = new SHAFT.TestData.JSON("StatementReport.json");
+        new Reports_Common(driver).clickReports().clickStatement();
+    }
+
+
+    @Test(priority = 1)
+    public void SearchWithValidData() throws InterruptedException {
+        Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
+        //Statement.searchValidAgency(testData.getTestData("ValidBranch.AgencyName")); // Uncomment to search for agencies
+        Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceFromDate"), testData.getTestData("ValidBranch.FromYear"), testData.getTestData("ValidBranch.FromMonth"));
+        Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
+        Statement.Submit();
+    }
+
+    @Test(priority = 2)
+    public void SearchInvalidBranch() throws InterruptedException {
+        Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceFromDate"), testData.getTestData("ValidBranch.FromYear"), testData.getTestData("ValidBranch.FromMonth"));
+        Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
+        Statement.Submit();
+        String Actual=driver.element().getText(Statement.BranchError);
+        String Expected="Required";
+        Assert.assertEquals(Actual,Expected);
+    }
+
+    @Test(priority = 3)
+    public void SearchInvalidFromDate() throws InterruptedException {
+        Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
+        Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
+        Statement.Submit();
+        String Actual=driver.element().getText(Statement.FromError);
+        String Expected="Required";
+        Assert.assertEquals(Actual,Expected);
+    }
+
+    @Test(priority = 4)
+    public void SearchInvalidToDate() throws InterruptedException {
+        Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
+        Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
+        Statement.Submit();
+        String Actual=driver.element().getText(Statement.ToError);
+        String Expected="Required";
+        Assert.assertEquals(Actual,Expected);
+    }
+
+    @Test(priority = 5)
+    public void SearchInvalidFromAfterTo(){
+        Statement.SearchInvalidFromAfterTo(testData.getTestData("InvalidFromAfterTo.BranchName"), testData.getTestData("InvalidFromAfterTo.InvoiceFromDate"), testData.getTestData("InvalidFromAfterTo.InvoiceToDate"));
+        String Actual=driver.element().getText(Statement.ErrorFromAfterTo);
+        String Expected="'Invoice To' date must be after 'Invoice From' date.";
+        Assert.assertEquals(Actual,Expected);
+
+    }
+    @Test(priority = 6)
+    public void SearchInvalid60Days(){
+        Statement.SearchInvalid60Days(testData.getTestData("ValidBranch.BranchName"), testData.getTestData("ValidBranch.InvoiceFromDate"), testData.getTestData("ValidBranch.InvoiceToDate"));
+        String Actual=driver.element().getText(Statement.BeforeError);
+        String Expected="Date difference between 'From' and 'To' should not exceed 60 days.";
+        Assert.assertEquals(Actual,Expected);
+    }
+
+}

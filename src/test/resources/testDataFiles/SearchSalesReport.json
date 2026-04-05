@@ -1,12 +1,16 @@
 [
   {
     "BranchName": "Test",
-    "AgencyName": "All",
-    "Date": "10",
-    "EndDate": "25",
-    "InvoiceNumber": "",
-    "CustomerName": "",
-    "PaymentDate": "",
-    "TransactionID": ""
+    "AgencyName": "Omar Agency",
+    "Date": "1",
+    "EndDate": "2",
+    "InvoiceNumber": "123411",
+    "CustomerName": "bassem",
+    "PaymentDate": "1",
+    "TransactionID": "1231",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Dec"
   }
 ]

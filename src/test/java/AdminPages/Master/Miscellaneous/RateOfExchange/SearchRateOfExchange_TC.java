@@ -18,19 +18,11 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
     private LogIn_Page logIn;
     private RateOfExchange_Page rateOfExchange;
 
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
-
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
+        logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
     //Valid TestCases
     @Test
@@ -61,7 +53,6 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
                 .clickRateOfExchange();
         rateOfExchange.SelectToCurrency("Egyptian Pound");
         rateOfExchange.ClickSearchButton();
-        Thread.sleep(Long.parseLong("5000"));
         assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
     }
     @Test
@@ -73,7 +64,6 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
         rateOfExchange.SelectFromCurrency("United States Dollar");
         rateOfExchange.SelectToCurrency("Egyptian Pound");
         rateOfExchange.ClickSearchButton();
-        Thread.sleep(Long.parseLong("5000"));
         assertEquals("United States Dollar",rateOfExchange.TableColumnDataExtractor(1,"United States Dollar"));
         assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
 
@@ -85,15 +75,12 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
         new Master_Common(driver).clickMaster()
                 .clickMiscellaneous()
                 .clickRateOfExchange();
-        rateOfExchange.SelectFromCurrency("Algerian Dinar");
+        rateOfExchange.SelectFromCurrency("testCurremcy");
         rateOfExchange.SelectToCurrency("Euro");
         rateOfExchange.ClickSearchButton();
-        Thread.sleep(Long.parseLong("5000"));
         String Actual =driver.element().getText(rateOfExchange.Txt_NoDataFounded);
         assertEquals("No data has been found!",Actual);
 
     }
-
-
 }
 

@@ -1,0 +1,152 @@
+[INFO ] 2026-04-05 14:00:38.085 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                                    Powered by [1mSHAFT v.7.4.20231015[22m                                                    
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:00:38.771 [main] ReportManager - Loaded OpenCV "opencv_java470".
+[INFO ] 2026-04-05 14:00:38.772 [main] ReportManager - Initializing Allure Reporting Environment...
+[INFO ] 2026-04-05 14:00:38.887 [main] ReportManager - Initializing Summary Reporting Environment...
+[INFO ] 2026-04-05 14:00:38.908 [main] ReportManager - TestNG run detected...
+[INFO ] 2026-04-05 14:00:39.162 [main] Utils - [TestNG] Running:
+  C:\Users\bassem\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+
+[INFO ] 2026-04-05 14:00:39.191 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                             Starting execution of suite setup configuration method                                             
+                                          'com.shaft.listeners.internal.ConfigurationHelper.suiteSetup'                                          
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:00:39.313 [main] ReportManager - Initializing Important Links...
+[INFO ] 2026-04-05 14:00:39.324 [main] ReportManager - Initializing Properties...
+[INFO ] 2026-04-05 14:00:39.442 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                             Starting execution of setup browse configuration method                                             
+                                             'AdminPages.Reports.Quotation.QuotationTCs.setupBrowse'                                             
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:00:39.468 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
+[INFO ] 2026-04-05 14:00:39.487 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\bassem\NDC-Uplift-..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
+[INFO ] 2026-04-05 14:00:39.488 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
+[INFO ] 2026-04-05 14:00:39.489 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
+[WARN ] 2026-04-05 14:00:42.350 [main] ReportManager - Apr 05, 2026 2:00:42 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+[WARN ] 2026-04-05 14:00:42.350 [main] ReportManager - WARNING: Unable to find CDP implementation matching 146
+[WARN ] 2026-04-05 14:00:42.351 [main] ReportManager - Apr 05, 2026 2:00:42 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+[WARN ] 2026-04-05 14:00:42.351 [main] ReportManager - WARNING: Unable to find version of CDP to use for 146.0.7680.178. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+[INFO ] 2026-04-05 14:00:42.360 [main] ReportManager - Successfully Opened: "windows | Chrome".
+[INFO ] 2026-04-05 14:00:42.427 [main] ReportManager - Target URL: "http://192.168.1.70"
+[INFO ] 2026-04-05 14:00:42.465 [main] ReportManager - Initial URL: "about:blank"
+[INFO ] 2026-04-05 14:00:46.646 [main] ReportManager - Navigate to url "http://192.168.1.70".
+[INFO ] 2026-04-05 14:00:51.655 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                                Starting execution of login configuration method                                                
+                                                'AdminPages.Reports.Quotation.QuotationTCs.login'                                                
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:00:51.662 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "QuotationReport.json"".
+[INFO ] 2026-04-05 14:00:51.663 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:00:51.665 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:00:51.671 [main] ReportManager - Successfully created attachment 'Test Data - JSON'
+[INFO ] 2026-04-05 14:00:51.927 [main] ReportManager - Type "E.saady" into "Username *".
+[INFO ] 2026-04-05 14:00:52.069 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
+[INFO ] 2026-04-05 14:00:52.278 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:00:52.337 [main] ReportManager - Click "Login".
+[INFO ] 2026-04-05 14:00:53.072 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:00:53.137 [main] ReportManager - Click "Reports".
+[INFO ] 2026-04-05 14:00:53.567 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:00:53.641 [main] ReportManager - Click " Quotation Report".
+[INFO ] 2026-04-05 14:00:53.748 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                        Starting Execution: '1 out of 1' test cases in the current suite                                        
+                          Test Method: 'AdminPages.Reports.Quotation.QuotationTCs.VerifyThatUserCanSearchWithAllFields'                          
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:00:53.779 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "QuotationReport.json"".
+[INFO ] 2026-04-05 14:00:53.780 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:00:53.781 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[DEBUG] 2026-04-05 14:00:54.657 [main] cache - Couldn't find template in cache for "codeblock.ftl"("en_GB", UTF-8, parsed); will try to load it.
+[DEBUG] 2026-04-05 14:00:54.660 [main] cache - TemplateLoader.findTemplateSource("codeblock_en_GB.ftl"): Not found
+[DEBUG] 2026-04-05 14:00:54.665 [main] cache - TemplateLoader.findTemplateSource("codeblock_en.ftl"): Not found
+[DEBUG] 2026-04-05 14:00:54.668 [main] cache - TemplateLoader.findTemplateSource("codeblock.ftl"): Found
+[DEBUG] 2026-04-05 14:00:54.669 [main] cache - Loading template for "codeblock.ftl"("en_GB", UTF-8, parsed) from "jar:file:/C:/Users/bassem/.m2/repository/com/aventstack/extentreports/5.1.0/extentreports-5.1.0.jar!/com/aventstack/extentreports/markup/codeblock.ftl"
+[DEBUG] 2026-04-05 14:00:55.018 [main] cache - Couldn't find template in cache for "codeblock.json.ftl"("en_GB", UTF-8, parsed); will try to load it.
+[DEBUG] 2026-04-05 14:00:55.019 [main] cache - TemplateLoader.findTemplateSource("codeblock.json_en_GB.ftl"): Not found
+[DEBUG] 2026-04-05 14:00:55.020 [main] cache - TemplateLoader.findTemplateSource("codeblock.json_en.ftl"): Not found
+[DEBUG] 2026-04-05 14:00:55.021 [main] cache - TemplateLoader.findTemplateSource("codeblock.json.ftl"): Found
+[DEBUG] 2026-04-05 14:00:55.021 [main] cache - Loading template for "codeblock.json.ftl"("en_GB", UTF-8, parsed) from "jar:file:/C:/Users/bassem/.m2/repository/com/aventstack/extentreports/5.1.0/extentreports-5.1.0.jar!/com/aventstack/extentreports/markup/codeblock.json.ftl"
+[INFO ] 2026-04-05 14:00:55.095 [main] ReportManager - Successfully created attachment 'Test Data - JSON'
+[INFO ] 2026-04-05 14:00:55.304 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:00:55.369 [main] ReportManager - Click "dropdown trigger".
+[INFO ] 2026-04-05 14:01:02.909 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:02.981 [main] ReportManager - Click "Test".
+[INFO ] 2026-04-05 14:01:02.985 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:02.986 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:06.279 [main] ReportManager - Type "mohamed" into "Name".
+[INFO ] 2026-04-05 14:01:06.281 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:06.282 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:06.498 [main] ReportManager - Type "mohamed.soliman@tildetech.ae" into "Email ID".
+[INFO ] 2026-04-05 14:01:06.500 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:06.509 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:06.686 [main] ReportManager - Type "EGBRN2251015lALjm2" into "Quotes No.".
+[INFO ] 2026-04-05 14:01:06.868 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:06.924 [main] ReportManager - Click "By.xpath: (//div[@class='p-multiselect-trigger'])[2]".
+[INFO ] 2026-04-05 14:01:07.103 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:07.153 [main] ReportManager - Click "By.xpath: //div[@role='checkbox']".
+[INFO ] 2026-04-05 14:01:07.337 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:07.385 [main] ReportManager - Click "".
+[INFO ] 2026-04-05 14:01:07.553 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:07.602 [main] ReportManager - Click "By.xpath: (//p-radiobutton)[1]".
+[INFO ] 2026-04-05 14:01:07.775 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:07.827 [main] ReportManager - Click "By.xpath: (//p-radiobutton)[5]".
+[INFO ] 2026-04-05 14:01:08.833 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:08.834 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:08.875 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:08.876 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:08.912 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:08.913 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:09.114 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:09.184 [main] ReportManager - Click "From Date".
+[INFO ] 2026-04-05 14:01:09.393 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:09.444 [main] ReportManager - Click "2026".
+[INFO ] 2026-04-05 14:01:09.630 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:09.684 [main] ReportManager - Click "By.xpath: //span[normalize-space()='2025']".
+[INFO ] 2026-04-05 14:01:09.880 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:09.937 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Oct']".
+[INFO ] 2026-04-05 14:01:10.112 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:10.179 [main] ReportManager - Click "By.xpath: (//span[text()='1'])[1]".
+[INFO ] 2026-04-05 14:01:10.180 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:10.180 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:10.211 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:10.212 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:10.256 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:10.256 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:10.520 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:10.571 [main] ReportManager - Click "To Date".
+[INFO ] 2026-04-05 14:01:10.739 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:10.788 [main] ReportManager - Click "2026".
+[INFO ] 2026-04-05 14:01:10.958 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:11.004 [main] ReportManager - Click "By.xpath: //span[normalize-space()='2025']".
+[INFO ] 2026-04-05 14:01:11.174 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:11.226 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Nov']".
+[INFO ] 2026-04-05 14:01:11.407 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:11.464 [main] ReportManager - Click "By.xpath: (//span[text()='1'])[1]".
+[INFO ] 2026-04-05 14:01:11.627 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-05 14:01:11.685 [main] ReportManager - Click "Search".
+[INFO ] 2026-04-05 14:01:12.528 [main] ReportManager - Get text "mohamed" from "mohamed".
+[INFO ] 2026-04-05 14:01:12.529 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:12.529 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/QuotationReport.json"".
+[INFO ] 2026-04-05 14:01:12.581 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: VerifyThatUserCanSearchWithAllFields'
+[INFO ] 2026-04-05 14:01:12.581 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+               Finished Execution of Test Method: 'AdminPages.Reports.Quotation.QuotationTCs.VerifyThatUserCanSearchWithAllFields'               
+                                                              Test Status: 'Passed'                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:01:12.877 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                           Starting execution of engine teardown configuration method                                           
+                                        'com.shaft.listeners.internal.ConfigurationHelper.engineTeardown'                                        
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-05 14:01:12.880 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log'
+[INFO ] 2026-04-05 14:01:12.881 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "target/logs/log4j.log"".
+[INFO ] 2026-04-05 14:01:12.881 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "target/logs/log4j.log"".

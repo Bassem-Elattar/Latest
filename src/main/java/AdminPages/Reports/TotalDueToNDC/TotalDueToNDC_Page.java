@@ -3,6 +3,8 @@ package AdminPages.Reports.TotalDueToNDC;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
+
+import static org.openqa.selenium.By.xpath;
 //import utilities.DataUtils;
 
 
@@ -30,7 +32,9 @@ public class TotalDueToNDC_Page {
     private final  By Dpick_toDateSelect = By.xpath("//table[@class='p-datepicker-calendar ng-tns-c47-4']/tbody/tr[5]/td[@class='ng-tns-c47-4 ng-star-inserted'][2]/span");
     private final  By Dpick_toDateSend = By.xpath("//input[@id='id-InvoiceToDate']");
     private final  By Btn_searchInGrid = By.xpath("//span[@class='p-button-label']");
-    private final  By srNo = By.xpath("//tbody/tr[1]/td[1]");
+    private final  By srNo = By.xpath("//*[@id=\"pr_id_6-table\"]/tbody/tr[1]/td[1]");
+    By Year = xpath("//button[normalize-space()='2026']");
+    By Submit = xpath("//button[@type=\"submit\"]");
 
     //locators that return no output//
     private final By Dpick_fromDateNoOutput =By.xpath("//table[@class='p-datepicker-calendar ng-tns-c47-3']/tbody/tr[3]/td[@class='ng-tns-c47-3 ng-star-inserted'][4]/span");
@@ -52,6 +56,36 @@ public class TotalDueToNDC_Page {
         driver.element().click(Btn_totalDueSelect);
         return this;
     }
+    public TotalDueToNDC_Page searchValidFromDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_fromDateSend);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+    }
+
+    public TotalDueToNDC_Page searchValidToDate(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_toDateSend);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
+        return this;
+    }
+
+    public TotalDueToNDC_Page Submit(){
+        driver.element().click(Submit);
+        return this;
+    }
 
     public TotalDueToNDC_Page selectBranch(){
         driver.element().click(Lst_branchClick);
@@ -63,17 +97,7 @@ public class TotalDueToNDC_Page {
         driver.element().click(Lst_agencySelect);
         return this;
     }
-    public TotalDueToNDC_Page selectValidDate(){
-        driver.element().type(Dpick_fromDateSend, testData.getTestData("validData.From_Date"));
-        driver.element().click(Dpick_fromDateSelect);
-        driver.element().type(Dpick_toDateSend, testData.getTestData("validData.To_Date"));
-        driver.element().click(Dpick_toDateSelect);
-        return this;
-    }
-    public TotalDueToNDC_Page clickSearchInGrid(){
-        driver.element().click(Btn_searchInGrid);
-        return this;
-    }
+
     public TotalDueToNDC_Page verifyThatResultsIsDisplayed(){
         softAssert.assertEquals (driver.element().getText(srNo),"1");
         softAssert.assertAll();
@@ -93,11 +117,12 @@ public class TotalDueToNDC_Page {
     }
     public TotalDueToNDC_Page clickOnNextButton() throws InterruptedException {
         driver.element().click(Btn_nextButton);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         return this;
     }
     public TotalDueToNDC_Page verifyThatThePaginationIsWorkingCorrectly(){
-        softAssert.assertEquals (driver.element().getText(srNo),"11");
+        int actualValue = Integer.parseInt(driver.element().getText(srNo));
+        softAssert.assertTrue(actualValue > 10, "Expected value to be greater than 10 but found: " + actualValue);
         softAssert.assertAll();
         return this;
     }

@@ -199,8 +199,8 @@ public class RegistrationRequest_TC extends TestBase_TC {
         return false;
     }
 
-    @AfterMethod
-    public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70/master/flight/preferAirline/add");
-    }
+//    @AfterMethod
+//    public void navigateBackToURL() {
+//        driver.browser().navigateToURL("http://192.168.1.70/master/flight/preferAirline/add");
+//    }
 }

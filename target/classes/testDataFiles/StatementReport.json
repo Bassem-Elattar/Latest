@@ -1,0 +1,22 @@
+{
+  "ValidBranch": {
+    "BranchName": "kiko",
+    "AgencyName": "Uplift1_Abduallah Ramadan",
+    "InvoiceFromDate" : "12",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Dec"
+  },
+
+  "InvalidFromAfterTo": {
+    "BranchName": "kiko",
+    "InvoiceFromDate" : "2",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Sep"
+  }
+}

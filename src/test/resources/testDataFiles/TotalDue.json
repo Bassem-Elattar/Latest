@@ -1,13 +1,21 @@
 {
   "validDataNoOutput": {
-    "fromDate": "01/01/2025",
-    "toDate": "28/02/2025"
+    "To_Date": "5",
+    "From_Date": "5",
+    "FromYear" : "2026",
+    "FromMonth" : "Apr",
+    "ToYear" : "2026",
+    "ToMonth" : "Apr"
   },
   "validData": {
-    "To_Date": "01/09/2024",
-    "From_Date": "30/09/2024",
-    "invoiceNumber":"INVNDC240917mZk1Q1",
-    "customerName":"ahmed sayed",
-    "bookingReference":"NDCEG-BR-F240917Holety"
+    "To_Date": "1",
+    "From_Date": "1",
+    "invoiceNumber":"INVNDC25102839coaB",
+    "customerName":"ahmed hussieny",
+    "bookingReference":"NDCEG-BR-F251028YwG9ec",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Nov"
   }
 }

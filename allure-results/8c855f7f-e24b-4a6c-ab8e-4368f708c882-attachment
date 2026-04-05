@@ -1,8 +1,0 @@
-.\C:\Users\Ahmed : The term '.\C:\Users\Ahmed' is not recognized as the name of a cmdlet, function, script file, or 
-operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
-again.
-At line:1 char:1
-+ .\C:\Users\Ahmed Refat\.m2\repository\allure\allure-2.21.0/bin/allure ...
-+ ~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (.\C:\Users\Ahmed:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
