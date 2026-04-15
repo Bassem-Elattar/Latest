@@ -50,9 +50,9 @@ public class RateOfExchange_Page {
     final By Btn_nextPage = By.linkText("»");
     final By prevPage = By.linkText("«");
     public By Txt_NoDataFounded=By.xpath("//td[@class=\"message\"]");
-    public By Txt_ValidationErrorToCurrency=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-rate-of-exchange/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[2]/span");
-    public By Txt_ValidationErrorFromCurrency=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-rate-of-exchange/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[1]/span");
-    public By Txt_ValidationErrorForRate=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-rate-of-exchange/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/span");
+    public By Txt_ValidationErrorToCurrency=By.xpath("//span[@class='fg-error has-error']");
+    public By Txt_ValidationErrorFromCurrency=By.xpath("//span[@class='fg-error has-error']");
+    public By Txt_ValidationErrorForRate=By.xpath("//span[@class='fg-error has-error']");
     public By Txt_ValidationOnCancelButton=By.xpath("//div[@class=\"col-sm-12 col-lg-6 form-title\"]");
     public void NavigateToRateOfExchangePage(){
         driver.element().click(Btn_Master);

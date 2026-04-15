@@ -2,6 +2,10 @@ package AdminPages.Admin.Branch;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class Branch_Page1 {
     public Branch_Page1(SHAFT.GUI.WebDriver driver) {
@@ -310,4 +314,5 @@ public class Branch_Page1 {
         String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
         return S;
     }
+
 }

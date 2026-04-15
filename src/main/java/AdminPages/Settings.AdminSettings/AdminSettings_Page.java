@@ -18,22 +18,14 @@ public class AdminSettings_Page {
     public final By Username = By.id("id-Username");
     public final By Password = By.id("id-Password");
     public final By LogINButton = By.xpath("// button[@loadingicon=\"pi pi-spin pi-spinner\"]");
-    private final By Master = By.xpath("//a[@href=\"/master\"]");
-    private final By Supplier = By.xpath("(//a[@class=\"ng-star-inserted\"])[2]");
-    private final By FlightSearchLimitationButton = By.xpath("(//a[@href=\"/master/supplier/flight-search-limitation\"])[1]");
-    By Settings = By.xpath("//a[@href=\"/settings\"]");
-    By AdminSettings = By.xpath("//a[@href=\"/settings/admin-settings\"]");
+    private final By Master = By.xpath("//span[normalize-space()='Master']");
+    private final By Supplier = By.xpath("//span[normalize-space()='Supplier']");
+    private final By FlightSearchLimitationButton = By.xpath("//a[@href='/master/supplier/flight-search-limitation']");
+    By Settings = By.xpath("//span[normalize-space()='Settings']");
+    By AdminSettings = By.xpath("//a[@class='ng-star-inserted']");
 
 
-    public static By LogInNavigateToUrl() {
-        driver.browser().maximizeWindow();
-        String url = "http://192.168.1.70/auth/login";
-        driver.browser().navigateToURL(url);
-        driver.browser().maximizeWindow();  // Initialize the driver here
-
-        return null;
-    }
-    public final By EditButton = By.xpath("(//i[@class=\"pi pi-pencil\"])[1]");
+    public final By EditButton = By.xpath("//body[1]/ndc-root[1]/ndc-layout[1]/div[1]/div[3]/div[1]/div[1]/ndc-flight-search-limitation[1]/div[1]/tilde-data-table[1]/div[1]/div[1]/div[1]/div[1]/div[2]/p-table[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]/div[1]/div[1]/i[1]");
 
     public final By LimitSupplier = By.xpath("//p-dropdown[@class=\"p-element p-inputwrapper fg-input " +
             "ng-untouched ng-pristine ng-valid ng-star-inserted p-inputwrapper-filled\"]");
@@ -80,18 +72,17 @@ public class AdminSettings_Page {
         return this;
 
     }
-    By BookingMidOffice = By.xpath("//a[@href=\"/booking\"]");
-    By DropDownBookingMidOffice = By.xpath("(//a[@href=\"#\"])[2]");
-    By Booking = By.xpath("//a[@href=\"/odeysysadmin/branchSelection/\"]");
-    By BranchList = By.xpath("//select[@id=\"branchListId\"]");
-    By Up_Selling = By.xpath("//input[@id=\"onewayUpselling\"]");
+    By BookingMidOffice = By.xpath("//span[normalize-space()='Booking-Mid Office']");
+    By ExpandMenu = By.xpath("//body/ndc-root/ndc-layout[@class='ng-star-inserted']/div[@class='content']/div[@class='side-menu collapsed-sidebar']/button[1]");
+    By DropDownBookingMidOffice = By.xpath("//a[@class='ng-star-inserted']//span[contains(text(),'Booking-Mid Office')]");
+    By Booking = By.xpath("//span[normalize-space()='Booking']");
+    By BranchList = By.xpath("//span[normalize-space()='Branch*']");
+    By Up_Selling = By.xpath("//p-checkbox[@formcontrolname='isUpSelling']//div[@class='p-checkbox-box']");
     public AdminSettings_Page NavigateToBooking()
     {
         driver.element().click(BookingMidOffice);
-        driver.element().click(DropDownBookingMidOffice);
-        driver.element().click(Booking);
         driver.element().click(BranchList);
-        final By SelectIndex = By.xpath("(//option[@data-ng-repeat=\"c in branchList\"])[48]");
+        final By SelectIndex = By.xpath("//li[@aria-label='Test']");
         driver.element().click(SelectIndex);
         driver.element().click(Up_Selling);
 

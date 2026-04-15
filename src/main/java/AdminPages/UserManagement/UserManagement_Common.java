@@ -8,7 +8,7 @@ public class UserManagement_Common {
 
     SHAFT.GUI.WebDriver driver;
 
-    private final By btn_UserManagement= By.xpath("//a[@id='p-tabpanel-5-label']");
+    private final By btn_UserManagement= By.xpath("//span[normalize-space()='User Management']");
     private final By btn_UserAgencyManagement = By.xpath("//a[@class='ng-star-inserted']");
     private final By btn_AgentInformation = By.xpath("//a[@href='/management/agency/agency-info']");
     private final By btn_TravelDetails = By.xpath("//a[@href='/management/agency/travellers-details']");

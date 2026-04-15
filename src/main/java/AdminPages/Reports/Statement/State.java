@@ -12,17 +12,17 @@ public class State {
     SHAFT.GUI.WebDriver driver;
     By Branch = xpath("//p-multiselect[.//input[@id=\"id-BranchName\"]]");
     By Agency = xpath("//p-multiselect[.//input[@id=\"id-AgencyName\"]]");
-    By InvoiceFromDate = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-statement/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-date-picker-input/span/p-calendar/span/button");
-    By InvoiceToDate = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-statement/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[4]/ndc-fg-date-picker-input/span/p-calendar/span/button");
+    By InvoiceFromDate = xpath("//input[@id='id-InvoiceFromDate']");
+    By InvoiceToDate = xpath("//input[@id='id-InvoiceToDate']");
     By Submit = xpath("//button[@type=\"submit\"]");
     By Reports = xpath("//a[@href=\"/reports\"]");
     By BranchError = xpath("//span[@class='fg-error has-error']");
-    By FromError = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-statement/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/span");
-    By ToError = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-statement/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[4]/span");
+    By FromError = xpath("//span[@class='fg-error has-error']");
+    By ToError = xpath("//span[@class='fg-error has-error']");
     By ErrorFromAfterTo = xpath("//span[@class='fg-error has-error']");
-    By BeforeBTN = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-statement/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[1]");
-    By BeforeError = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-statement/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[4]/span");
-    By Year = xpath("//button[normalize-space()='2026']");
+    By BeforeBTN = xpath("(//button[@class='p-ripple p-element p-datepicker-prev p-link ng-tns-c56-10 ng-star-inserted'])[1]");
+    By BeforeError = xpath("//span[@class='fg-error has-error']");
+    By Year = By.xpath("//button[normalize-space()='2026']");
 
 
     public void searchValidBranch(String branch){

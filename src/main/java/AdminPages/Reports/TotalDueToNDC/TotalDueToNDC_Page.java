@@ -117,7 +117,7 @@ public class TotalDueToNDC_Page {
     }
     public TotalDueToNDC_Page clickOnNextButton() throws InterruptedException {
         driver.element().click(Btn_nextButton);
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         return this;
     }
     public TotalDueToNDC_Page verifyThatThePaginationIsWorkingCorrectly(){

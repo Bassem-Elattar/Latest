@@ -4,6 +4,7 @@ package AdminPages.Master.Miscellaneous.RateOfExchange;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,13 +20,6 @@ import static org.junit.Assert.assertFalse;
 public class CreateRateOfExchange_TC extends TestBase_TC {
     private LogIn_Page logIn;
     private RateOfExchange_Page rateOfExchange;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
 
     @BeforeTest
     public void sign(){
@@ -169,5 +163,9 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
         String Actual=driver.element().getText(rateOfExchange.Txt_ValidationErrorForRate);
         assertEquals("Invalid Exchange Rate",Actual);
 
+    }
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

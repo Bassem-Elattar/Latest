@@ -4,6 +4,7 @@ package AdminPages.Master.Miscellaneous.RateOfExchange;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -81,6 +82,10 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
         String Actual =driver.element().getText(rateOfExchange.Txt_NoDataFounded);
         assertEquals("No data has been found!",Actual);
 
+    }
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }
 

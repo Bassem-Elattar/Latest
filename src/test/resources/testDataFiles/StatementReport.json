@@ -18,5 +18,14 @@
     "FromMonth" : "Oct",
     "ToYear" : "2025",
     "ToMonth" : "Sep"
+  },
+
+  "InvalidMoreThan60Days": {
+    "InvoiceFromDate" : "2",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Sep",
+    "ToYear" : "2025",
+    "ToMonth" : "Dec"
   }
 }

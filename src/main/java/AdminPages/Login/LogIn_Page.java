@@ -18,8 +18,8 @@ public class LogIn_Page {
     private final By Btn_RememberMyInfoNextTime = By.xpath("//div[@class='p-checkbox-box']");
     private final By Btn_LogINButton = By.xpath("// button[@loadingicon=\"pi pi-spin pi-spinner\"]");
     private final By Btn_ForgetPasswordButton = By.xpath("//a[@href='/auth/forgot']");
-    private final By Btn_LogOutButtonLinlk = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/tilde-theme-header/div/div/div[2]/div/div[2]/div/i");
-    private final By Btn_LogOutButton=By.xpath("(//a[@role='menuitem'])[2]");
+    private final By Btn_LogOutButtonLinlk = By.xpath("//i[@class='pi pi-angle-down profile-name__icon']");
+    private final By Btn_LogOutButton=By.xpath("//span[normalize-space()='Logout']");
     private final By Txt_EmailField=By.id("id=\"id-Email\"");
     private final By Btn_ConfirmButton=By.xpath("//button[@class=\"p-element p-button-raised p-button-rounded p-button p-component\"]");
     public By Txt_ErrorOfUserName=By.xpath("/html/body/ndc-root/ndc-login-page/ndc-auth-container/div/div/div[1]/ndc-auth-form-container/div/div[2]/ndc-fg-form-generator/form/ndc-fg-input[1]/span");

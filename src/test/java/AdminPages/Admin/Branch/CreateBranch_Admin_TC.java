@@ -22,11 +22,6 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
     Faker faker = new Faker();
     private Branch_Page addNewBranch;
     private Branch_Page searchBranch;
-    String Branchcode = "";
-    String Branchname = "";
-    String Selectcountry = "";
-    String Selectstate = "";
-    String Selectcity = "";
 
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
@@ -47,7 +42,6 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
     public void CreateBranch() throws InterruptedException {
         addNewBranch = new Branch_Page(driver);
         searchBranch = new Branch_Page(driver);
-//        searchBranch.RouteBranch();
         addNewBranch.Btn_CreateBranch();
         String SupplierName = DataaUtils.getJsonData("SupplierData", "SupplierName");
         String PhoneNo = DataaUtils.getJsonData("NewBranchData", "PhoneNo");
@@ -61,40 +55,15 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
         String State = DataaUtils.getJsonData("NewBranchData","State");
         String City = DataaUtils.getJsonData("NewBranchData","City");
         String Description = DataaUtils.getJsonData("NewBranchData","Description");
-        // public  String  branchName = faker.name().firstName();
         String  branchName = DataaUtils.getJsonData("NewBranchData","EnterBranchName");
         boolean isGds = Boolean.parseBoolean(DataaUtils.getJsonData("NewBranchData", "isGds"));
-
         String CredentialName = DataaUtils.getJsonData("FlightDate", "CredentialName");
         String Email = faker.internet().emailAddress();
         String Address = faker.address().streetAddress();
         int Post = faker.number().randomDigit();
-
-
-
-//        String OperatingCountry = Branch.get("OperatingCountry");
-//        String BranchName = Branch.get("BranchName");
-//        String State = Branch.get("State");
-//        String City = Branch.get("City");
-//        String Address = Branch.get("Address");
-//        String PostOffice = Branch.get("PostOffice");
-//        String PhoneNo = Branch.get("PhoneNo");
-//        String EmailID = Branch.get("EmailID");
-//        String Password = Branch.get("Password");
-//        String Name = Branch.get("Name");
-//        String Email = Branch.get("Email");
-//        String Phone = Branch.get("Phone");
-//        String Creditlimit = Branch.get("Creditlimit");
-//        String TopupLimit = Branch.get("TopupLimit");
-//        String Creditterms = Branch.get("Creditterms");
-//        String SupplierCredential = Branch.get("SupplierCredential");
-//        String Description = Branch.get("Description");
-//        String Supplierdescription = Branch.get("Supplierdescription");
         Thread.sleep(4000);
         addNewBranch.Txt_OperatingCountry(selectOperatingCountry);
-    //    Thread.sleep(2000);
         addNewBranch.Txt_Name(branchName);
-      //  Thread.sleep(5000);
         addNewBranch.Lst_StateCreate(State,selectOperatingCountry);
         addNewBranch.Lst_CityCreate(City);
         addNewBranch.Txt_Address1(Address);
@@ -122,32 +91,14 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
             System.out.println("GDS is False");
         }
         addNewBranch.Txt_Description(Description,SupplierName);
-
-
         addNewBranch.Btn_Submit();
         String Expected = "Added Successfully";
         Assert.assertEquals(addNewBranch.Actual(),Expected);
-
-
-//        addNewBranch.Alert();
-//        Thread.sleep(Long.parseLong("1000"));
         searchBranch.Txt_BranchName(branchName);
         searchBranch.Btn_Inactive();
         searchBranch.Btn_Search();
         searchBranch.Btn_ThumbUp("Approved");
-//        DataaUtils.updateJsonValue("AddAgencyData.json","branchName",branchName);
-//        DataaUtils.updateJsonValue("DiscountData.json","BranchName",branchName);
-//        DataaUtils.updateJsonValue("ServiceChargeData.json","BranchName",branchName);
-//        DataaUtils.updateJsonValue("searchBookingBrData.json","brName",branchName);
-
-
-
-
 
     }
 
-//    @AfterMethod
-//    public void navigateBackToURL() {
-//        driver.browser().navigateToURL("http://192.168.1.92");
-//    }
 }

@@ -36,6 +36,7 @@ public class StateTC extends TestBase_TC {
 
     @Test(priority = 1)
     public void SearchWithValidData() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickStatement();
         Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
         //Statement.searchValidAgency(testData.getTestData("ValidBranch.AgencyName")); // Uncomment to search for agencies
         Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceFromDate"), testData.getTestData("ValidBranch.FromYear"), testData.getTestData("ValidBranch.FromMonth"));
@@ -45,6 +46,7 @@ public class StateTC extends TestBase_TC {
 
     @Test(priority = 2)
     public void SearchInvalidBranch() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickStatement();
         Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceFromDate"), testData.getTestData("ValidBranch.FromYear"), testData.getTestData("ValidBranch.FromMonth"));
         Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
         Statement.Submit();
@@ -55,6 +57,7 @@ public class StateTC extends TestBase_TC {
 
     @Test(priority = 3)
     public void SearchInvalidFromDate() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickStatement();
         Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
         Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
         Statement.Submit();
@@ -65,6 +68,7 @@ public class StateTC extends TestBase_TC {
 
     @Test(priority = 4)
     public void SearchInvalidToDate() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickStatement();
         Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
         Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
         Statement.Submit();
@@ -75,6 +79,7 @@ public class StateTC extends TestBase_TC {
 
     @Test(priority = 5)
     public void SearchInvalidFromAfterTo(){
+        new Reports_Common(driver).clickReports().clickStatement();
         Statement.SearchInvalidFromAfterTo(testData.getTestData("InvalidFromAfterTo.BranchName"), testData.getTestData("InvalidFromAfterTo.InvoiceFromDate"), testData.getTestData("InvalidFromAfterTo.InvoiceToDate"));
         String Actual=driver.element().getText(Statement.ErrorFromAfterTo);
         String Expected="'Invoice To' date must be after 'Invoice From' date.";
@@ -82,11 +87,18 @@ public class StateTC extends TestBase_TC {
 
     }
     @Test(priority = 6)
-    public void SearchInvalid60Days(){
-        Statement.SearchInvalid60Days(testData.getTestData("ValidBranch.BranchName"), testData.getTestData("ValidBranch.InvoiceFromDate"), testData.getTestData("ValidBranch.InvoiceToDate"));
+    public void SearchInvalid60Days() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickStatement();
+        Statement.searchValidBranch(testData.getTestData("ValidBranch.BranchName"));
+        Statement.searchValidFromDate(testData.getTestData("InvalidMoreThan60Days.InvoiceFromDate"), testData.getTestData("InvalidMoreThan60Days.FromYear"), testData.getTestData("InvalidMoreThan60Days.FromMonth"));
+        Statement.searchValidToDate(testData.getTestData("InvalidMoreThan60Days.InvoiceToDate"), testData.getTestData("InvalidMoreThan60Days.ToYear"), testData.getTestData("InvalidMoreThan60Days.ToMonth"));
+        Statement.Submit();
         String Actual=driver.element().getText(Statement.BeforeError);
         String Expected="Date difference between 'From' and 'To' should not exceed 60 days.";
         Assert.assertEquals(Actual,Expected);
     }
-
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 }

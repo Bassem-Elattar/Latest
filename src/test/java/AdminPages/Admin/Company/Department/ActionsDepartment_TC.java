@@ -7,10 +7,7 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.Browser;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.JsonDataUtil;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -34,13 +31,11 @@ public class ActionsDepartment_TC extends TestBase_TC {
     logIn = new LogIn_Page(driver);
     logIn.ClickSuperAdmin();
     logIn.ClickOnLoginButton();
-    new AdminMenu(driver).openSubAdmin().Company().Department();
-
   }
     
   @Test(priority = 1, dataProvider = "JsonProvider")
   public void CreateDepartment(Map<String, String> department) throws InterruptedException {
-
+    new AdminMenu(driver).openSubAdmin().Company().Department();
     Department = new Department_Page(driver);
     String DepartmentName = department.get("DepartmentName");
     String AssignedQueue = department.get("AssignedQueue");
@@ -51,38 +46,37 @@ public class ActionsDepartment_TC extends TestBase_TC {
     String Expected = "Added Successfully";
     String Actual = driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
     Assert.assertEquals(Actual,Expected);
-
-
     }
-
 
   @Test(priority = 2)
     public void setActionsDepartment() throws InterruptedException {
+    new AdminMenu(driver).openSubAdmin().Company().Department();
     Department = new Department_Page(driver);
 //    Department = new SearchDepartment_Page(driver);
 //    Department = new ActionsDepartment_Page(driver);
 //      createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Desk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
-    Department.ActionDepartment("Approved","Deskk");
+    Department.ActionDepartment("Approved","newww");
   }
 
   @Test(priority = 3)
   public void Search() throws InterruptedException {
+    new AdminMenu(driver).openSubAdmin().Company().Department();
     Department = new Department_Page(driver);
 //    Department = new SearchDepartment_Page(driver);
 //    Department = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
 
     ///////////////////////Check TableData///////////////////////
     String expectedHeader = "Department";
-    String expectedData = "Deskk";
+    String expectedData = "newww";
     String expectedHeader2 = "Approval Status";
     String expectedData2 = "Pending for approval";
     try {
@@ -115,12 +109,13 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 4)
   public void Active() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
-    Department.BothStatus();
+    Department.searchDepartment("neww");
+      Department.BothStatus();
     Department.Search();
     Department.ThumpUp("helelele");
 
@@ -158,11 +153,12 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 5 )
   public void inActive() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
     Department.ThumpDown("helelele");
@@ -201,11 +197,12 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 6)
   public void Active2() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
     Department.ThumpUp("helelele");
@@ -243,11 +240,12 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 7)
   public void inActiveCircle() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
     Department.InActiveCircle();
@@ -279,11 +277,12 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 8)
   public void ActiveCircle() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
     Department.ActiveCircle();
@@ -312,11 +311,12 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 9)
   public void Delete() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
 //    Department.ClickSideMDepartment();
-    Department.searchDepartment("Deskk");
+    Department.searchDepartment("neww");
     Department.BothStatus();
     Department.Search();
     Department.Trash();
@@ -336,6 +336,7 @@ public class ActionsDepartment_TC extends TestBase_TC {
   @Test(priority = 10)
   public void MaptoStaff() throws InterruptedException {
     Department = new Department_Page(driver);
+    new AdminMenu(driver).openSubAdmin().Company().Department();
 //    searchDepartment = new SearchDepartment_Page(driver);
 //    actionsDepartment = new ActionsDepartment_Page(driver);
 //    createDepartment.setCompany();
@@ -357,9 +358,7 @@ public class ActionsDepartment_TC extends TestBase_TC {
     driver.browser().navigateToURL("http://192.168.1.70");
   }
 
-
-
-  }
+}
 
 
 

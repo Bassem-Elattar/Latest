@@ -34,12 +34,14 @@ public class AGNWallTC extends TestBase_TC {
 
     @Test(priority = 1)
     public void SearchValidData(){
+        new Reports_Common(driver).clickReports().clickAgencyWallet();
         SearchWall.SearchValid(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"), testData.getTestData("ValidData.currency"));
         assertEquals("Test",SearchWall.Table(0,"Test"));
     }
 
     @Test(priority = 2)
     public void SearchInvalidBranch(){
+        new Reports_Common(driver).clickReports().clickAgencyWallet();
         SearchWall.SearchInvalidBranch(testData.getTestData("ValidData.currency"));
         String Actual=driver.element().getText(SearchWall.ErrorBranch);
         String Expected="Required";
@@ -48,9 +50,14 @@ public class AGNWallTC extends TestBase_TC {
 
     @Test(priority = 3)
     public void SearchInvalidCurrency(){
+        new Reports_Common(driver).clickReports().clickAgencyWallet();
         SearchWall.SearchInvalidCurrency(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"));
         String Actual=driver.element().getText(SearchWall.ErrorCurrency);
         String Expected="Required";
         Assert.assertEquals(Actual,Expected);
+    }
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

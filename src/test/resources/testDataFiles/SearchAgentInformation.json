@@ -1,13 +1,13 @@
 [
   {
     "DataEnterForDropDown": "Saf",
-    "AgencyName": "safya",
-    "Name" : "safy",
+    "AgencyName": "Test Egypt",
+    "Name" : "Essam Saady",
     "Phone" : "01000000000",
-    "Email" : "s.khalil@tildetech.ae",
+    "Email" : "test.user.ndc@gmail.com",
     "InvalidEmail": "fngg44567891",
     "Alert" : "Updated Successfully",
-    "Invalid Phone Number" : "Invalid Phone Number",
+    "InvalidPhoneNumber" : "111111111",
     "Please enter valid email" : "Please enter valid email",
     "AnotherName": "muh"
   }

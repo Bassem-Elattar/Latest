@@ -2,6 +2,8 @@ package AdminPages.UserManagement.AgencyUserInformation.AgentInformation;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.UserManagement.UserManagement_Common;
+import com.shaft.driver.SHAFT;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,104 +16,57 @@ import java.util.Map;
 public class ActionActiveDeactiveAgentInformation_TC extends TestBase_TC {
     AgentInformationnn_Page agentInformation;
     private LogIn_Page logIn;
-    String ExpectedResult;
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    private SHAFT.TestData.JSON testData;
 
    @BeforeTest
     public void SignIn (){
-    logIn = new LogIn_Page(driver);
-    logIn.EnterUserName("E.saady");
-    logIn.EnterPassword("qqE6)Cxp6>B8");
-    logIn.ClickOnLoginButton();
-    agentInformation = new AgentInformationnn_Page(driver);
-
+       logIn = new LogIn_Page(driver);
+       logIn.ClickAdmin();
+       logIn.ClickOnLoginButton();
+       agentInformation = new AgentInformationnn_Page(driver);
+       testData = new SHAFT.TestData.JSON("ActionAgentInformation.json");
    }
-    @Test (dataProvider = "ActionAgentInformation", priority = 1)
-      public void VerifyClickingOnActiveButtonForAgentOrAdmin(Map<String , String> ActionAgentInformation) throws InterruptedException {
-    agentInformation = new AgentInformationnn_Page(driver);
-        new UserManagement_Common(driver).UserManagement().AgencyUserManagement().AgentInformation();
-        String EnterAgency = ActionAgentInformation.get("AgencyName");
-        agentInformation.SelectAgency(EnterAgency);
-        //driver.element().click(By.xpath("//input[@id=\"id-Agency\"]"));
-        //Actions actions = new Actions(driver.getDriver());
-        //actions.sendKeys(Keys.ARROW_DOWN).perform();
-        Thread.sleep(2000);
-        String AgencyName = ActionAgentInformation.get("AgencyName");
-        driver.element().select(agentInformation.SearchAgencyName, AgencyName);
-//        driver.element().click(Selectt);
+
+    @Test ()
+      public void VerifyClickingOnActiveButtonForAgentOrAdmin() throws InterruptedException {
+        agentInformation = new AgentInformationnn_Page(driver);
+        new UserManagement_Common(driver).UserManagement();
+        agentInformation.SelectAgency(testData.getTestData("AgencyName"));
         agentInformation.ClickonSearch();
         agentInformation.ClickOnActiveButtonAdmin();
-
-
     }
-    @Test (dataProvider = "ActionAgentInformation",priority = 2)
-    public void VerifyClickingOnInActiveButtonForAgentOrAdminToActive(Map<String , String> ActionAgentInformation) throws InterruptedException {
 
-        new UserManagement_Common(driver).UserManagement().AgencyUserManagement().AgentInformation();
+    @Test ()
+    public void VerifyClickingOnInActiveButtonForAgentOrAdminToActive() throws InterruptedException {
         agentInformation = new AgentInformationnn_Page(driver);
-
-
-        String EnterAgency = ActionAgentInformation.get("AgencyName");
-        agentInformation.SelectAgency(EnterAgency);
-        //driver.element().click(By.xpath("//input[@id=\"id-Agency\"]"));
-        //Actions actions = new Actions(driver.getDriver());
-        //actions.sendKeys(Keys.ARROW_DOWN).perform();
-        Thread.sleep(2000);
-
-        String AgencyName = ActionAgentInformation.get("AgencyName");
-        driver.element().select(agentInformation.SearchAgencyName, AgencyName);
-//        driver.element().click(Selectt);
+        new UserManagement_Common(driver).UserManagement();
+        agentInformation.SelectAgency(testData.getTestData("AgencyName"));
         agentInformation.ClickonSearch();
         agentInformation.ClickOnActiveButtonAdmin2();
-
-
-
-
     }
-    @Test (dataProvider = "ActionAgentInformation",priority = 3)
-    public void VerifyClickingOnActiveButtonForAgencyOwner(Map<String , String> ActionAgentInformation) throws InterruptedException {
-        new UserManagement_Common(driver).UserManagement().AgencyUserManagement().AgentInformation();
+
+    @Test ()
+    public void VerifyClickingOnActiveButtonForAgencyOwner() throws InterruptedException {
         agentInformation = new AgentInformationnn_Page(driver);
-
-
-
-        String EnterAgency = ActionAgentInformation.get("AgencyName");
-        agentInformation.SelectAgency(EnterAgency);
-        //driver.element().click(By.xpath("//input[@id=\"id-Agency\"]"));
-        //Actions actions = new Actions(driver.getDriver());
-        //actions.sendKeys(Keys.ARROW_DOWN).perform();
-        Thread.sleep(2000);
-
-        String AgencyName = ActionAgentInformation.get("AgencyName");
-        driver.element().select(agentInformation.SearchAgencyName, AgencyName);
-//        driver.element().click(Selectt);
+        new UserManagement_Common(driver).UserManagement();
+        agentInformation.SelectAgency(testData.getTestData("AgencyName"));
         agentInformation.ClickonSearch();
         agentInformation.ClickOnActiveButtonAO();
-        //agentInformation.ClickOnActiveButtonAO2();
-
-
     }
 
-@Test (dataProvider = "ActionAgentInformation",priority = 5)
-public void VerifyThatAgencyOwnerCanLoginPortal(Map<String , String> ActionAgentInformation) throws InterruptedException {
-
-
-    agentInformation.EnterNDCPortal();
-    String Select = driver.getDriver().getCurrentUrl();
-
-    if (Select.equals(agentInformation.urlfordashboardportal)) {
+    @Test ()
+    public void VerifyThatAgencyOwnerCanLoginPortal() {
+        agentInformation.EnterNDCPortal();
+        String Select = driver.getDriver().getCurrentUrl();
+        if (Select.equals(agentInformation.urlfordashboardportal)) {
         System.out.println("Test Case VerifyThatAgencyOwnerCanLoginPortal Passed");
-
-    } else {
+        }
+        else {
         throw new RuntimeException("Test Case VerifyThatAgencyOwnerCanLoginPortal Failed");
+        }
     }
-
-
-}
-
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 }

@@ -9,10 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -37,32 +34,32 @@ public class RegistrationRequest_TC extends TestBase_TC {
     }
 
     @BeforeTest
-    public void sign(){
+    public void sign() {
         logIn = new LogIn_Page(driver);
-        logIn.EnterUserName("E.saady");
-        logIn.EnterPassword("qqE6)Cxp6>B8");
-        logIn.ClickOnLoginButton();
-        new AdminMenu(driver).openSubAdmin().RegistrationRequest();
-    }
-
-    @Test(dataProvider = "JsonProvider",priority = 1)
-    public void RegistrationRequest(Map<String,String>req) throws InterruptedException {
-        staff = new Staff_Page(driver);
+        new LogIn_Page(driver).ClickAdmin();
+        new LogIn_Page(driver).ClickOnLoginButton();
         registrationRequests = new RegistrationRequest_Page(driver);
         paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
+        staff = new Staff_Page(driver);
+
+    }
+
+    @Test(dataProvider = "JsonProvider", priority = 1)
+    public void RegistrationRequest(Map<String, String> req) throws InterruptedException {
+        new AdminMenu(driver).openSubAdmin().Agency().RegistrationRequest();
         String Agencyname = req.get("Agencyname");
         String Contactname = req.get("Contactname");
-        String RequestDate = req.get("RequestDate");
+        String RequestDay = req.get("FromDate");
+        String RequestMonth = req.get("FromMonth");
+        String RequestYear = req.get("FromYear");
         String Email = req.get("Email");
-        staff.Clickonadmin();
-        registrationRequests.setAgency();
-        registrationRequests.setRegistrationRequest(Agencyname,Contactname,Email,RequestDate);
+        registrationRequests.setRegistrationRequest(Agencyname, Contactname, Email);
+        registrationRequests.searchValidDate(RequestDay, RequestYear, RequestMonth);
         registrationRequests.setRejected();
         registrationRequests.setSearchgrid();
         Actions actions = new Actions(driver.getDriver());
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         paginationHelper.setPagination("100");
-        // Handle pagination and assertions separately
         int totalPages = paginationHelper.getTotalPages();
         for (int currentPage = 1; currentPage <= totalPages; currentPage++) {
             System.out.println("Processing page: " + currentPage);
@@ -79,18 +76,17 @@ public class RegistrationRequest_TC extends TestBase_TC {
     }
 
 
-    @Test(dataProvider = "JsonProvider",priority = 2)
-    public void RegistrationRequestInprogress(Map<String,String>req) throws InterruptedException {
-        staff = new Staff_Page(driver);
-        registrationRequests = new RegistrationRequest_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
+    @Test(dataProvider = "JsonProvider", priority = 2)
+    public void RegistrationRequestInprogress(Map<String, String> req) throws InterruptedException {
+        new AdminMenu(driver).openSubAdmin().Agency().RegistrationRequest();
         String Agencyname = req.get("Agencyname");
         String Contactname = req.get("Contactname");
-        String RequestDate = req.get("RequestDate");
+        String RequestDay = req.get("FromDate");
+        String RequestMonth = req.get("FromMonth");
+        String RequestYear = req.get("FromYear");
         String Email = req.get("Email");
-
-//        registrationRequests.setAgency();
-        registrationRequests.setRegistrationRequest(Agencyname,Contactname,Email,RequestDate);
+        registrationRequests.setRegistrationRequest(Agencyname, Contactname, Email);
+        registrationRequests.searchValidDate(RequestDay, RequestYear, RequestMonth);
         registrationRequests.setInProgress();
         registrationRequests.setSearchgrid();
         Actions actions = new Actions(driver.getDriver());
@@ -113,18 +109,17 @@ public class RegistrationRequest_TC extends TestBase_TC {
     }
 
 
-    @Test(dataProvider = "JsonProvider",priority = 3)
-    public void RegistrationRequestNew(Map<String,String>req) throws InterruptedException {
-        staff = new Staff_Page(driver);
-        registrationRequests = new RegistrationRequest_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
+    @Test(dataProvider = "JsonProvider", priority = 3)
+    public void RegistrationRequestNew(Map<String, String> req) throws InterruptedException {
+        new AdminMenu(driver).openSubAdmin().Agency().RegistrationRequest();
         String Agencyname = req.get("Agencyname");
         String Contactname = req.get("Contactname");
-        String RequestDate = req.get("RequestDate");
+        String RequestDay = req.get("FromDate");
+        String RequestMonth = req.get("FromMonth");
+        String RequestYear = req.get("FromYear");
         String Email = req.get("Email");
-        staff.Clickonadmin();
-        registrationRequests.setAgency();
-        registrationRequests.setRegistrationRequest(Agencyname,Contactname,Email,RequestDate);
+        registrationRequests.setRegistrationRequest(Agencyname, Contactname, Email);
+        registrationRequests.searchValidDate(RequestDay, RequestYear, RequestMonth);
         registrationRequests.setNew();
         registrationRequests.setSearchgrid();
         Actions actions = new Actions(driver.getDriver());
@@ -149,7 +144,7 @@ public class RegistrationRequest_TC extends TestBase_TC {
     private void performAssertions() {
         String expectedHeaderStatus = "Status";
 
-        String[] allowedApprovalValues = {"New","Rejected","In Progress"};
+        String[] allowedApprovalValues = {"New", "Rejected", "In Progress"};
 
 
         try {
@@ -161,7 +156,6 @@ public class RegistrationRequest_TC extends TestBase_TC {
             Assert.assertEquals(actualHeaderStatus, expectedHeaderStatus, "The 'Status' table header does not match the expected value.");
 
 
-
             // Get the number of rows in the table body
             List<WebElement> rows = driver.getDriver().findElements(By.xpath("//table/tbody/tr"));
             int numberOfRows = rows.size();
@@ -170,7 +164,6 @@ public class RegistrationRequest_TC extends TestBase_TC {
             for (int i = 1; i <= numberOfRows; i++) {
 
                 String actualDataApproval = driver.element().getText(By.xpath("//table/tbody/tr[" + i + "]/td[6]"));
-
 
 
                 Assert.assertTrue(isValueInArray(actualDataApproval, allowedApprovalValues),
@@ -199,8 +192,9 @@ public class RegistrationRequest_TC extends TestBase_TC {
         return false;
     }
 
-//    @AfterMethod
-//    public void navigateBackToURL() {
-//        driver.browser().navigateToURL("http://192.168.1.70/master/flight/preferAirline/add");
-//    }
+    @AfterMethod
+    public void Reload() {
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 }
+

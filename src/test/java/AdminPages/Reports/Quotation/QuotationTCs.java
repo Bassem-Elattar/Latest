@@ -23,6 +23,7 @@ public class QuotationTCs extends TestBase {
 
    @Test
     public void VerifyThatUserCanSearchWithMandatoryFieldOnly() throws InterruptedException {
+       new Reports_Common(driver).clickReports().clickQuotation();
        new Quotation_Page(driver)
                .SelectBranch()
                .SelectDate_CreationDate()
@@ -34,6 +35,7 @@ public class QuotationTCs extends TestBase {
 
    @Test
    public void VerifyThatUserCanSearchWithBranchAndAgency() {
+       new Reports_Common(driver).clickReports().clickQuotation();
        new Quotation_Page(driver)
               .SelectBranch()
               .SelectAgency()
@@ -45,6 +47,7 @@ public class QuotationTCs extends TestBase {
 
    @Test
    public void VerifyThatUserCanSearchWithBranchAndAgencyWithSpecificDate() throws InterruptedException {
+      new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SelectAgency()
@@ -57,18 +60,20 @@ public class QuotationTCs extends TestBase {
 
    @Test
    public void VerifyThatUserCanSearchWithBranchAndAgencyWithTravelDate() throws InterruptedException {
+       new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SelectAgency()
               .SelectDate_TravelDate()
-              .SelectDuration_DateRange().searchValidFromDate(testData.getTestData("validData.FromDate"),testData.getTestData("validData.FromYear"),testData.getTestData("validData.FromMonth"))
-              .searchValidToDate(testData.getTestData("validData.ToDate"),testData.getTestData("validData.ToYear"),testData.getTestData("validData.ToMonth"))
+              .SelectDuration_DateRange().searchValidFromDate(testData.getTestData("TravelDate.FromDate"),testData.getTestData("TravelDate.FromYear"),testData.getTestData("TravelDate.FromMonth"))
+              .searchValidToDate(testData.getTestData("TravelDate.ToDate"),testData.getTestData("TravelDate.ToYear"),testData.getTestData("TravelDate.ToMonth"))
               .Submit()
               .VerifyThatTheExportButtonIsClickable();
    }
 
    @Test
    public void VerifyThatUserCanSearchWithName() throws InterruptedException {
+       new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SendName(testData.getTestData("validData.Name"))
@@ -81,6 +86,7 @@ public class QuotationTCs extends TestBase {
 
    @Test
    public void VerifyThatUserCanSearchWithEmailID() throws InterruptedException {
+       new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SendEmail(testData.getTestData("validData.EmailID"))
@@ -93,6 +99,7 @@ public class QuotationTCs extends TestBase {
 
    @Test
    public void VerifyThatUserCanSearchWithQuotesNo() throws InterruptedException {
+       new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SelectDate_CreationDate()
@@ -103,7 +110,8 @@ public class QuotationTCs extends TestBase {
    }
 
    @Test
-   public void VerifyThatUserCanSearchWithTodayAndNoDataMessageShowsCorrectly() throws InterruptedException {
+   public void VerifyThatUserCanSearchWithTodayAndNoDataMessageShowsCorrectly(){
+       new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SelectAgency()
@@ -115,6 +123,7 @@ public class QuotationTCs extends TestBase {
 
    @Test
    public void VerifyThatUserCanSearchWithAllFields() throws InterruptedException {
+       new Reports_Common(driver).clickReports().clickQuotation();
       new Quotation_Page(driver)
               .SelectBranch()
               .SendName(testData.getTestData("validData.Name"))
@@ -128,6 +137,10 @@ public class QuotationTCs extends TestBase {
               .Submit()
               .VerifyThatClientNameDisplaysCorrectly();
    }
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 //
 //
 //   @Test

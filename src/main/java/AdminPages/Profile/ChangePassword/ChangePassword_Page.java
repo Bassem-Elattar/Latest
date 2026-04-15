@@ -17,21 +17,21 @@ public class ChangePassword_Page {
 //    }
 
     By Btn_changePassword = By.linkText("Change Password");
-    By Txt_yourOldPassword = By.xpath("//input[@id=\"id-Enteryourpassword\"]");
-    By Txt_enterNewPasword = By.xpath("//*[@id=\"id-Enteryournewpassword\"]");
-    By Txt_enterConfirmPassword = By.xpath("//*[@id=\"id-ConfirmPassword\"]");
-    By Btn_confirm = By.xpath(" //span[@class=\"p-button-label\"]");
-    By Btn_eyeForOldPassword =By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[1]/ndc-fg-password-input/span/i");
-    By Btn_eyeFornewPassword = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[2]/ndc-fg-password-input/span/i");
-    By Btn_eyeForConfirmNewPassword = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-password-input/span/i");
-    By Lst_Sign = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/tilde-theme-header/div/div/div[2]/div/div[2]/div/i");
+    By Txt_yourOldPassword = By.xpath("/html/body/ndc-root/ndc-layout/div/div[3]/div[1]/div/ndc-change-password-page/div/div/form/div[1]/div[1]/p-password/div/input");
+    By Txt_enterNewPasword = By.xpath("/html/body/ndc-root/ndc-layout/div/div[3]/div[1]/div/ndc-change-password-page/div/div/form/div[1]/div[2]/p-password/div/input");
+    By Txt_enterConfirmPassword = By.xpath("/html/body/ndc-root/ndc-layout/div/div[3]/div[1]/div/ndc-change-password-page/div/div/form/div[1]/div[3]/p-password/div/input");
+    By Btn_confirm = By.xpath("//button[@type='submit']");
+    By Btn_eyeForOldPassword =By.xpath("(//i[@class='ng-tns-c220-6 pi pi-eye ng-star-inserted'])[1]");
+    By Btn_eyeFornewPassword = By.xpath("(//i[@class='ng-tns-c220-7 pi pi-eye ng-star-inserted'])[1]");
+    By Btn_eyeForConfirmNewPassword = By.xpath("(//i[@class='ng-tns-c220-8 pi pi-eye ng-star-inserted'])[1]");
+    By Lst_Sign = By.xpath("//i[@class='pi pi-angle-down profile-name__icon']");
     // By ValidEmptyField=By.xpath("//span[@class=\"fg-error\"]");
-    By ValidEmptyField=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/span");
-    By ValidMisMatchField=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/span");
-    By ValidMaxField=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[2]/span");
-    By ValidMinField=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-change-password-page/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[2]/span");
+    By ValidEmptyField=By.xpath("//small[@class='p-error']");
+    By ValidMisMatchField=By.xpath("//small[@class='p-error']");
+    By ValidMaxField=By.xpath("//div[2]//ul[1]//li[2]//small[1]");
+    By ValidMinField=By.xpath("//div[2]//ul[1]//li[2]//small[1]");
     public  By InValidOldPassWord=By.xpath("//div[@aria-label=\"Password change was not successful: Old password is wrong, Please enter correct password\"]");
-    public  By  ValidationInOldPass=By.xpath("//span[contains(text(),'New password cannot be same as old Password.')]");
+    public  By  ValidationInOldPass=By.xpath("//small[normalize-space()='New password cannot be same as old Password.']");
 
     public void ChangePasswordButton()
     {

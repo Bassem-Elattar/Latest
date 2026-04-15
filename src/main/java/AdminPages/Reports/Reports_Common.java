@@ -9,20 +9,20 @@ public class Reports_Common {
     private final By btn_Reports = By.xpath("//a[@id='p-tabpanel-8-label']");
 
                  ////////////////subs////////////////
-    private final By btn_AgencyWallet = By.xpath("//a[@href='/reports/reports/agency-wallet']");
-    private final By btn_Booking = By.xpath("//a[@href='/reports/reports/booking']");
-    private final By btn_ImportPNR = By.xpath("//a[@href='/reports/reports/pnr']");
-    private final By btn_ARLedger = By.xpath("//a[@href='/reports/reports/ar-ledger']");
-    private final By btn_Quotation= By.xpath("//a[@href='/reports/reports/quotation']");
-    private final By btn_ReleasedPNR= By.xpath("//a[@href='/reports/reports/release']");
-    private final By btn_Sales = By.xpath("//a[@href='/reports/reports/sales']");
-    private final By btn_Statement = By.xpath("//a[@href='/reports/reports/statement']");
-    private final By btn_SyncPNR = By.xpath("//a[@href='/reports/reports/sync']");
-    private final By btn_TotalDueToNDC = By.xpath("//a[@href='/reports/reports/total-ndc']");
-    private final By btn_WalletHistory = By.xpath("//a[@href='/reports/reports/wallet-history']");
-    private final By btn_Finance = By.xpath("//a[@href='/reports/reports/financial']");
-    private final By btn_DailySales = By.xpath("//a[@href='/reports/reports/daily-sales']");
-    private final By btn_TransferPNR = By.xpath("//a[@href='/reports/reports/transfer-pnr']");
+    private final By btn_AgencyWallet = By.xpath("//a[@href='/reports/agency-wallet']");
+    private final By btn_Booking = By.xpath("//a[@href='/reports/booking']");
+    private final By btn_ImportPNR = By.xpath("//a[@href='/reports/pnr']");
+    private final By btn_ARLedger = By.xpath("//a[@href='/reports/ar-ledger']");
+    private final By btn_Quotation= By.xpath("//a[@href='/reports/quotation']");
+    private final By btn_ReleasedPNR= By.xpath("//a[@href='/reports/release']");
+    private final By btn_Sales = By.xpath("//a[@href='/reports/sales']");
+    private final By btn_Statement = By.xpath("//a[@href='/reports/statement']");
+    private final By btn_SyncPNR = By.xpath("//a[@href='/reports/sync']");
+    private final By btn_TotalDueToNDC = By.xpath("//a[@href='/reports/total-ndc']");
+    private final By btn_WalletHistory = By.xpath("//a[@href='/reports/wallet-history']");
+    private final By btn_Finance = By.xpath("//a[@href='/reports/financial']");
+    private final By btn_DailySales = By.xpath("//a[@href='/reports/daily-sales']");
+    private final By btn_TransferPNR = By.xpath("//a[@href='/reports/transfer-pnr']");
 
     public Reports_Common(SHAFT.GUI.WebDriver driver){
         this.driver=driver;

@@ -32,6 +32,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
 
     @Test
     public void validSearchForTotalDue() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
                 .selectBranch()
                 .selectAgency()
@@ -43,6 +44,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
 
     @Test
     public void validSearchForTotalDueWithMandatoryFieldsOnly10() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
                 .selectBranch()
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
@@ -53,6 +55,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
 
     @Test
     public void searchForTotalDueWithNoOutputAndSelectSameDayFromDate() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
                 .selectBranch()
                 .searchValidFromDate(testData.getTestData("validDataNoOutput.From_Date"), testData.getTestData("validDataNoOutput.FromYear"), testData.getTestData("validDataNoOutput.FromMonth"))
@@ -63,6 +66,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
 
     @Test
     public void validateThatPaginationWorksCorrectly() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
                 .selectBranch()
                 .selectAgency()
@@ -75,6 +79,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
 
     @Test
     public void validateThatUserCanSearchWithAllField() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
                 .selectBranch()
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
@@ -87,6 +92,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
     }
     @Test
     public void validateThatUserCanExportTheFile() throws InterruptedException {
+        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
                 .selectBranch()
                 .selectAgency()
@@ -94,6 +100,10 @@ public class TotalDueToNDC_TC extends TestBase_TC {
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
                 .Submit()
                 .VerifyThatTheExportButtonIsClickable();
+    }
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 
 }

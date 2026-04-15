@@ -1,0 +1,31 @@
+{
+  "ValidBranch": {
+    "FBBookinQrefNo": "NDCEG-BR-F260121CNzUFV",
+    "orderId": "BRN2TESORD260121NKVNAA",
+    "InvoiceFromDate" : "6",
+    "InvoiceToDate" : "17",
+    "FromYear" : "2026",
+    "FromMonth" : "Jan",
+    "ToYear" : "2026",
+    "ToMonth" : "Feb"
+  },
+
+  "NoData": {
+    "BranchName": "kiko",
+    "InvoiceFromDate" : "2",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Sep"
+  },
+
+  "InvalidMoreThan60Days": {
+    "InvoiceFromDate" : "2",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Sep",
+    "ToYear" : "2025",
+    "ToMonth" : "Dec"
+  }
+}

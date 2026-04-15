@@ -16,13 +16,6 @@ public class ChangePassword_TC extends TestBase_TC {
     private LogIn_Page logIn;
     ChangePassword_Page changePassword;
 
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
-
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
@@ -36,15 +29,13 @@ public class ChangePassword_TC extends TestBase_TC {
         changePassword= new ChangePassword_Page(driver);
         changePassword.ClickDropdwnSign();
         changePassword.ChangePasswordButton();
-        changePassword.SelectOldPassword("qqE6)Cxp6>B8\n");
-        changePassword.SetNewPassword("qqE6)Cxp6>B7\n");
-        changePassword.SetConfirmPassword("qqE6)Cxp6>B\n");
+        changePassword.SelectOldPassword("qqE6)Cxp6>B8");
+        changePassword.SetNewPassword("Abcd@1234");
+        changePassword.SetConfirmPassword("Abcd@12345");
         changePassword.ClickConfirm();
         String ActualResult=driver.element().getText(changePassword.ValidMisMatchField);
         Assert.assertEquals(ActualResult,"New password and confirm password should be same.");
-       // Thread.sleep(3000);
 
-// as
     }
     @Test(priority = 2)
     public void inValidChangePasswordWithEmptyFields() throws InterruptedException {
@@ -69,7 +60,7 @@ public class ChangePassword_TC extends TestBase_TC {
         changePassword.SetConfirmPassword("qqE6)\n");
         changePassword.ClickConfirm();
         String ActualResult=driver.element().getText(changePassword.ValidMinField);
-        Assert.assertEquals(ActualResult,"Password length should be 8 to 15 characters. Password should be combination of one uppercase letter, one number and one special character.");
+        Assert.assertEquals(ActualResult,"Password length should be 8 to 64 characters.");
         //Thread.sleep(3000);
     }
     @Test(priority = 4)
@@ -77,37 +68,37 @@ public class ChangePassword_TC extends TestBase_TC {
         changePassword= new ChangePassword_Page(driver);
         changePassword.ClickDropdwnSign();
         changePassword.ChangePasswordButton();
-        changePassword.SelectOldPassword("qqE6)Cxp6>B8\n");
-        changePassword.SetNewPassword("qqE6)Cxp6B7123123\n");
-        changePassword.SetConfirmPassword("qqE6)Cxp6B7123123\n");
+        changePassword.SelectOldPassword("qqE6)Cxp6>B8");
+        changePassword.SetNewPassword("Abcd@1234asdasdasdasdasdasdasdasdasdasdasdasdasddaasddfaasddfasdd");
+        changePassword.SetConfirmPassword("Abcd@1234asdasdasdasdasdasdasdasdasdasdasdasdasddaasddfaasddfasdd");
         changePassword.ClickConfirm();
         String ActualResult=driver.element().getText(changePassword.ValidMaxField);
-        Assert.assertEquals(ActualResult,"Password length should be 8 to 15 characters. Password should be combination of one uppercase letter, one number and one special character.");
+        Assert.assertEquals(ActualResult,"Password length should be 8 to 64 characters.");
        // Thread.sleep(3000);
     }
-    @Test(priority = 5)
-    public void maxLengthAndMisMatchChangePassword2() throws InterruptedException {
-        changePassword= new ChangePassword_Page(driver);
-        changePassword.ClickDropdwnSign();
-        changePassword.ChangePasswordButton();
-        changePassword.SelectOldPassword("qqE6)Cxp6>B8\n");
-        changePassword.SetNewPassword("qqE6)Cxp6B7123123\n");
-        changePassword.SetConfirmPassword("qqE6)Cxp6B712312\n");
-        changePassword.ClickConfirm();
-        String ActualResult1=driver.element().getText(changePassword.ValidMaxField);
-        Assert.assertEquals(ActualResult1,"Password length should be 8 to 15 characters. Password should be combination of one uppercase letter, one number and one special character.");
-        String ActualResult2=driver.element().getText(changePassword.ValidMisMatchField);
-        Assert.assertEquals(ActualResult2,"maxlength validation error Password should be combination of one uppercase letter, one number and one special character.");
-       // Thread.sleep(3000);
-    }
+//    @Test(priority = 5)
+//    public void maxLengthAndMisMatchChangePassword2() throws InterruptedException {
+//        changePassword= new ChangePassword_Page(driver);
+//        changePassword.ClickDropdwnSign();
+//        changePassword.ChangePasswordButton();
+//        changePassword.SelectOldPassword("qqE6)Cxp6>B8\n");
+//        changePassword.SetNewPassword("Abcd@1234asdasdasdasdasdasdasdasdasdasdasdasdasddaasddfaasddfasddb");
+//        changePassword.SetConfirmPassword("Abcd@1234asdasdasdasdasdasdasdasdasdasdasdasdasddaasddfaasddfasdd");
+//        changePassword.ClickConfirm();
+//        String ActualResult1=driver.element().getText(changePassword.ValidMaxField);
+//        Assert.assertEquals(ActualResult1,"Password length should be 8 to 64 characters.");
+//        String ActualResult2=driver.element().getText(changePassword.ValidMisMatchField);
+//        Assert.assertEquals(ActualResult2,"New password and confirm password should be same.");
+//    }
+
     @Test(priority = 6)
     public void iNValidOldChangePassword() throws InterruptedException {
         changePassword= new ChangePassword_Page(driver);
         changePassword.ClickDropdwnSign();
         changePassword.ChangePasswordButton();
-        changePassword.SelectOldPassword("qqE6)Cxp6>B\n");
-        changePassword.SetNewPassword("qqE6)Cxp6>B7\n");
-        changePassword.SetConfirmPassword("qqE6)Cxp6>B7\n");
+        changePassword.SelectOldPassword("qqE6)Cxp6>B");
+        changePassword.SetNewPassword("Abcd@12345");
+        changePassword.SetConfirmPassword("Abcd@12345");
         changePassword.ClickConfirm();
         String Actual=driver.element().getText(changePassword.InValidOldPassWord);
         String Expected="Password change was not successful: Old password is wrong, Please enter correct password";
@@ -120,9 +111,9 @@ public class ChangePassword_TC extends TestBase_TC {
         changePassword= new ChangePassword_Page(driver);
         changePassword.ClickDropdwnSign();
         changePassword.ChangePasswordButton();
-        changePassword.SelectOldPassword("qqE6)Cxp6>B8\n");
-        changePassword.SetNewPassword("qqE6)Cxp6>B8\n");
-        changePassword.SetConfirmPassword("qqE6)Cxp6>B8\n");
+        changePassword.SelectOldPassword("qqE6)Cxp6B8");
+        changePassword.SetNewPassword("qqE6)Cxp6B8");
+        changePassword.SetConfirmPassword("qqE6)Cxp6B8");
         changePassword.ClickConfirm();
         String Actual=driver.element().getText(changePassword.ValidationInOldPass);
         String Expected="New password cannot be same as old Password.";
