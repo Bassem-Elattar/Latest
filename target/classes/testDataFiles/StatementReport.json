@@ -17,7 +17,9 @@
     "FromYear" : "2025",
     "FromMonth" : "Oct",
     "ToYear" : "2025",
-    "ToMonth" : "Sep"
+    "ToMonth" : "Sep",
+    "ExpectedError" : "Required",
+    "FromDateAfterToDateError" : "'Invoice To' date must be after 'Invoice From' date."
   },
 
   "InvalidMoreThan60Days": {
@@ -26,6 +28,7 @@
     "FromYear" : "2025",
     "FromMonth" : "Sep",
     "ToYear" : "2025",
-    "ToMonth" : "Dec"
+    "ToMonth" : "Dec",
+    "MoreThan60DaysError" : "Date difference between 'From' and 'To' should not exceed 60 days."
   }
 }

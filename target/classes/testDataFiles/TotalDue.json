@@ -8,6 +8,8 @@
     "ToMonth" : "Apr"
   },
   "validData": {
+    "Branch" : "Test",
+    "Agency" : "All",
     "To_Date": "1",
     "From_Date": "1",
     "invoiceNumber":"INVNDC25102839coaB",

@@ -11,8 +11,6 @@ public class SearchSalesReport_Page {
     }
     SHAFT.GUI.WebDriver driver ;
 
-    By Btn_Reports = By.xpath("//a[@href=\"/reports\"]");
-    By Btn_Sales = By.xpath("//*[@id=\"content_wrap\"]/div/div[2]/div[2]/a[3]/div/div[1]");
     By Lst_BranchName = By.xpath("//p-multiselect[.//input[@name=\"Branch Name\"]]");
     By Lst_AgencyName = By.xpath("//p-multiselect[.//input[@id=\"id-AgencyName\"]]");
     By Txt_InvoiceNumber = By.xpath("//input[@placeholder=\"Invoice number\"]");
@@ -23,10 +21,6 @@ public class SearchSalesReport_Page {
     By InvoiceFromDate = xpath("//input[@id='id-InvoiceFromDate']");
     By InvoiceToDate = xpath("//input[@id='id-InvoiceToDate']");
     By Year = xpath("//button[normalize-space()='2026']");
-
-    public void setReports(){
-        driver.element().click(Btn_Reports).click(Btn_Sales);
-    }
 
     public void setBranchName(String branch){
         driver.element().select(Lst_BranchName,branch);

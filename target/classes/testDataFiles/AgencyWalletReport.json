@@ -2,7 +2,8 @@
   "ValidData": {
     "branch" : "Test",
     "agency" : "All",
-    "currency" : "United States Dollar"
+    "currency" : "United States Dollar",
+    "ExpectedMessage" : "Required"
   },
 
   "InvalidData": {

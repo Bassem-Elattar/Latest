@@ -51,7 +51,7 @@ public class StateTC extends TestBase_TC {
         Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
         Statement.Submit();
         String Actual=driver.element().getText(Statement.BranchError);
-        String Expected="Required";
+        String Expected = testData.getTestData("InvalidFromAfterTo.ExpectedError");
         Assert.assertEquals(Actual,Expected);
     }
 
@@ -62,7 +62,7 @@ public class StateTC extends TestBase_TC {
         Statement.searchValidToDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
         Statement.Submit();
         String Actual=driver.element().getText(Statement.FromError);
-        String Expected="Required";
+        String Expected = testData.getTestData("InvalidFromAfterTo.ExpectedError");
         Assert.assertEquals(Actual,Expected);
     }
 
@@ -73,7 +73,7 @@ public class StateTC extends TestBase_TC {
         Statement.searchValidFromDate(testData.getTestData("ValidBranch.InvoiceToDate"), testData.getTestData("ValidBranch.ToYear"), testData.getTestData("ValidBranch.ToMonth"));
         Statement.Submit();
         String Actual=driver.element().getText(Statement.ToError);
-        String Expected="Required";
+        String Expected = testData.getTestData("InvalidFromAfterTo.ExpectedError");
         Assert.assertEquals(Actual,Expected);
     }
 
@@ -82,7 +82,7 @@ public class StateTC extends TestBase_TC {
         new Reports_Common(driver).clickReports().clickStatement();
         Statement.SearchInvalidFromAfterTo(testData.getTestData("InvalidFromAfterTo.BranchName"), testData.getTestData("InvalidFromAfterTo.InvoiceFromDate"), testData.getTestData("InvalidFromAfterTo.InvoiceToDate"));
         String Actual=driver.element().getText(Statement.ErrorFromAfterTo);
-        String Expected="'Invoice To' date must be after 'Invoice From' date.";
+        String Expected = testData.getTestData("InvalidFromAfterTo.FromDateAfterToDateError");
         Assert.assertEquals(Actual,Expected);
 
     }
@@ -94,7 +94,7 @@ public class StateTC extends TestBase_TC {
         Statement.searchValidToDate(testData.getTestData("InvalidMoreThan60Days.InvoiceToDate"), testData.getTestData("InvalidMoreThan60Days.ToYear"), testData.getTestData("InvalidMoreThan60Days.ToMonth"));
         Statement.Submit();
         String Actual=driver.element().getText(Statement.BeforeError);
-        String Expected="Date difference between 'From' and 'To' should not exceed 60 days.";
+        String Expected = testData.getTestData("InvalidMoreThan60Days.MoreThan60DaysError");
         Assert.assertEquals(Actual,Expected);
     }
     @AfterMethod

@@ -36,16 +36,13 @@ public class Quotation_Page {
     private final By Dpick_fromDate = By.xpath("//input[@id='id-FromDate']");
     private final By Dpick_toDate = By.xpath("//input[@id='id-ToDate']");
     private final By Btn_search = By.xpath("//button[@type='submit']");
-
     private final By selectBranch = By.xpath("//li[@aria-label='Test']");
     private final By selectAgency = By.xpath("//div[@role='checkbox']");
     private final By clickX = By.xpath("//button[@class='p-ripple p-element p-multiselect-close p-link ng-star-inserted']");
     private final By selectQuoteStatus= By.xpath("//div[@role='checkbox']");
-
     private final By Btn_Paginate = By.xpath("//button[@class='next']");
     private final By Btn_ExportExcel = By.xpath("//button[@class='p-element p-ripple p-button-outlined p-button p-component upper-table-btn ng-star-inserted']");
     private final By Result = By.xpath("(//P)[2]");
-
     private final By QuotesNo_field = By.xpath("//tbody/tr[1]/td[1]");
     private final By ClientName_field = By.xpath("//tbody/tr[1]/td[2]");
     private final By Email_field = By.xpath("//tbody/tr[1]/td[5]");

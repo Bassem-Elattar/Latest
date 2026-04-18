@@ -35,8 +35,8 @@ public class AGNWallTC extends TestBase_TC {
     @Test(priority = 1)
     public void SearchValidData(){
         new Reports_Common(driver).clickReports().clickAgencyWallet();
-        SearchWall.SearchValid(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"), testData.getTestData("ValidData.currency"));
-        assertEquals("Test",SearchWall.Table(0,"Test"));
+        SearchWall.SearchValidData(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"), testData.getTestData("ValidData.currency"));
+        assertEquals(testData.getTestData("ValidData.branch"),SearchWall.SearchInTable(0,testData.getTestData("ValidData.branch")));
     }
 
     @Test(priority = 2)
@@ -44,7 +44,7 @@ public class AGNWallTC extends TestBase_TC {
         new Reports_Common(driver).clickReports().clickAgencyWallet();
         SearchWall.SearchInvalidBranch(testData.getTestData("ValidData.currency"));
         String Actual=driver.element().getText(SearchWall.ErrorBranch);
-        String Expected="Required";
+        String Expected= testData.getTestData("ValidData.ExpectedMessage");
         Assert.assertEquals(Actual,Expected);
     }
 
@@ -53,9 +53,10 @@ public class AGNWallTC extends TestBase_TC {
         new Reports_Common(driver).clickReports().clickAgencyWallet();
         SearchWall.SearchInvalidCurrency(testData.getTestData("ValidData.branch"), testData.getTestData("ValidData.agency"));
         String Actual=driver.element().getText(SearchWall.ErrorCurrency);
-        String Expected="Required";
+        String Expected= testData.getTestData("ValidData.ExpectedMessage");
         Assert.assertEquals(Actual,Expected);
     }
+
     @AfterMethod
     public void Reload(){
         driver.browser().navigateToURL("http://192.168.1.70");

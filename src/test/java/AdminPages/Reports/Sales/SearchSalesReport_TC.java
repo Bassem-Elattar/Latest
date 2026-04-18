@@ -28,7 +28,6 @@ public class SearchSalesReport_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
 
     @Test(dataProvider = "JsonProvider")
@@ -56,6 +55,5 @@ public class SearchSalesReport_TC extends TestBase_TC {
         searchSalesReport.setPaymentDate(PaymentDate);
         searchSalesReport.setTransactionID(TransactionID);
         searchSalesReport.setSearch();
-
     }
 }

@@ -16,8 +16,6 @@ public class WalletHistoryReport_Page {
 
 
     public static final String P_DROPDOWN_INPUT_ID_ID_AGENCY_NAME = "//p-dropdown[.//input[@id=\"id-AgencyName\"]]";
-    public static final String BUTTON_CLASS_P_ELEMENT_P_RIPPLE_P_DATEPICKER_TRIGGER_NG_TNS_C_47_3_P_BUTTON_P_COMPONENT_P_BUTTON_ICON_ONLY_NG_STAR_INSERTED = "//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c51-3 p-button p-component p-button-icon-only ng-star-inserted\"]";
-    public static final String BUTTON_CLASS_P_ELEMENT_P_RIPPLE_P_DATEPICKER_TRIGGER_NG_TNS_C_47_4_P_BUTTON_P_COMPONENT_P_BUTTON_ICON_ONLY_NG_STAR_INSERTED = "//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c51-4 p-button p-component p-button-icon-only ng-star-inserted\"]";
     public static final String BUTTON_TYPE_SUBMIT = "//button[@type=\"submit\"]";
     public static final String A_HREF_REPORTS = "//a[@href=\"/reports\"]";
     public static final String IMG_SRC_STATIC_IMAGES_ICONS_ARROW_7_PNG_6 = "(//img[@src=\"../static/images/icons/arrow_7.png\"])[6]";

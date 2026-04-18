@@ -1,13 +1,21 @@
 {
   "validDataNoOutput": {
-    "fromDate": "01/01/2025",
-    "toDate": "28/02/2025"
+    "FromDate": "14",
+    "ToDate" : "14",
+    "FromYear" : "2026",
+    "FromMonth" : "Apr",
+    "ToYear" : "2026",
+    "ToMonth" : "Apr"
   },
   "validData": {
-    "fromDate": "01/03/2025",
-    "toDate": "16/03/2025",
-    "orderId": "BRN2TESORD250304DHJFTQ",
-    "FBBookinQrefNo": "NDCEG-BR-F250304ZODGiw",
+    "FromDate": "5",
+    "ToDate" : "20",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Nov",
+    "orderId": "BRN2TESORD251112QQXGQX",
+    "FBBookinQrefNo": "NDCEG-BR-F251112prQSe1",
     "errorMessage": "Required",
     "noDataMessage": "No data has been found!"
   }

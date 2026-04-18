@@ -36,12 +36,9 @@ public class BookingReport_TC extends TestBase {
 
         @Test(dataProvider = "JsonProvider")
         public void BookingReport(Map <String, String> Search) throws InterruptedException {
-
             new Reports_Common(driver).clickReports().clickBooking();
             bookingReport = new BookingReport(driver);
-            Thread.sleep(2000);
             String BranchName = Search.get("BranchName");
-            //String AgencyName = Search.get("AgencyName");
             String Email = Search.get("Email");
             String FromBookingDate = Search.get("FromBookingDate");
             String ToBookingDate = Search.get("ToBookingDate");
@@ -51,16 +48,11 @@ public class BookingReport_TC extends TestBase {
             String ToMonth = Search.get("ToMonth");
             String ClientName = Search.get("ClientName");
             String PhoneNumber = Search.get("PhoneNumber");
-            String TripsStartDate = Search.get("TripsStartDate");
-            String TripsReturnDate = Search.get("TripsReturnDate");
             String InvoiceNumber = Search.get("InvoiceNumber");
             String BookingReference = Search.get("BookingReference");
             String AirlinePNR = Search.get("AirlinePNR");
-            String TicketNumber = Search.get("TicketNumber");
             String TicketStatus = Search.get("TicketStatus");
-            Thread.sleep(2000);
-            bookingReport.searchValidBranch(BranchName);
-            //bookingReport.searchValidAgency(AgencyName);
+            bookingReport.SearchValidBranch(BranchName);
             bookingReport.FillMail(Email);
             bookingReport.searchValidFromDate(FromBookingDate,FromYear,FromMonth);
             bookingReport.searchValidToDate(ToBookingDate,ToYear,ToMonth);
@@ -77,8 +69,6 @@ public class BookingReport_TC extends TestBase {
             bookingReport.Submit();
             bookingReport.performAssertions();
             Validations.verifyThat().element(bookingReport.DataReturn).isVisible();
-            Thread.sleep(2000);
-
         }
     }
 

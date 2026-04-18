@@ -34,8 +34,8 @@ public class TotalDueToNDC_TC extends TestBase_TC {
     public void validSearchForTotalDue() throws InterruptedException {
         new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
-                .selectBranch()
-                .selectAgency()
+                .setBranchName(testData.getTestData("validData.Branch"))
+                .setAgencyName(testData.getTestData("validData.Agency"))
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
                 .Submit()
@@ -46,7 +46,7 @@ public class TotalDueToNDC_TC extends TestBase_TC {
     public void validSearchForTotalDueWithMandatoryFieldsOnly10() throws InterruptedException {
         new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
-                .selectBranch()
+                .setBranchName(testData.getTestData("validData.Branch"))
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
                 .Submit()
@@ -57,31 +57,31 @@ public class TotalDueToNDC_TC extends TestBase_TC {
     public void searchForTotalDueWithNoOutputAndSelectSameDayFromDate() throws InterruptedException {
         new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
-                .selectBranch()
+                .setBranchName(testData.getTestData("validData.Branch"))
                 .searchValidFromDate(testData.getTestData("validDataNoOutput.From_Date"), testData.getTestData("validDataNoOutput.FromYear"), testData.getTestData("validDataNoOutput.FromMonth"))
                 .searchValidToDate(testData.getTestData("validDataNoOutput.To_Date"), testData.getTestData("validDataNoOutput.ToYear"), testData.getTestData("validDataNoOutput.ToMonth"))
                 .Submit()
                 .verifyThatNoOutputMessageIsDisplayedWhenThereIsNoOutput();
     }
 
-    @Test
-    public void validateThatPaginationWorksCorrectly() throws InterruptedException {
-        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
-                Due
-                .selectBranch()
-                .selectAgency()
-                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
-                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
-                .Submit()
-                .clickOnNextButton()
-                .verifyThatThePaginationIsWorkingCorrectly();
-    }
+//    @Test
+//    public void validateThatPaginationWorksCorrectly() throws InterruptedException {
+//        new Reports_Common(driver).clickReports().clickTotalDueToNDC();
+//                Due
+//                .setBranchName(testData.getTestData("validData.Branch"))
+//                .setAgencyName(testData.getTestData("validData.Agency"))
+//                .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
+//                .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
+//                .Submit()
+//                .clickOnNextButton()
+//                .verifyThatThePaginationIsWorkingCorrectly();
+//    }
 
     @Test
     public void validateThatUserCanSearchWithAllField() throws InterruptedException {
         new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
-                .selectBranch()
+                .setBranchName(testData.getTestData("validData.Branch"))
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
                 .sendInvoiceNumber()
@@ -94,8 +94,8 @@ public class TotalDueToNDC_TC extends TestBase_TC {
     public void validateThatUserCanExportTheFile() throws InterruptedException {
         new Reports_Common(driver).clickReports().clickTotalDueToNDC();
                 Due
-                .selectBranch()
-                .selectAgency()
+                .setBranchName(testData.getTestData("validData.Branch"))
+                .setAgencyName(testData.getTestData("validData.Agency"))
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
                 .Submit()

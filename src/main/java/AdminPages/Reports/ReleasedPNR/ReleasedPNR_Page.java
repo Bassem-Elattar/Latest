@@ -10,10 +10,8 @@ import static org.openqa.selenium.By.xpath;
 
 public class ReleasedPNR_Page {
 
-                                                //Create object from needed classes
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
-
 
     //constructor
 
@@ -24,8 +22,6 @@ public class ReleasedPNR_Page {
 
                                                  //Define locators of used elements
 
-   private final By Btn_reportSelect = By.xpath("//a[@href='/reports']"); // Report module
-   private final By Btn_SelectRealesedPNRReport = By.xpath("//a[@href='../Reports/releasedPNRReport']//div[@class='row']//div[@class='col-md-4 col Statement_report']"); //Release Report
    private final By InvoiceFromDate = By.id("id-Released.PNRFromDate"); // Select date from
    private final By InvoiceToDate = By.id("id-Released.PNRToDate"); // Select date to
    private final By Txt_OrderID = By.xpath("//input[@id='id-OrderID']"); // order id ( Optional )
@@ -39,10 +35,8 @@ public class ReleasedPNR_Page {
    private final By Paginate = By.xpath("//div[@class='pager ng-star-inserted']//button[3]"); //pagination 3
    private final By OrderIDColum = By.xpath("//th[normalize-space()='Order ID']"); //pagination 3
    private final By ShowingMessage =By.xpath("//p[normalize-space()='Showing 20 results of 26 results']");
-    By Year = xpath("//button[normalize-space()='2026']");
-    By Submit = xpath("//button[@type=\"submit\"]");
-
-
+    By Year = By.xpath("//button[normalize-space()='2026']");
+    By Submit = By.xpath("//button[@type=\"submit\"]");
 
     //Actions
 
@@ -116,30 +110,4 @@ public class ReleasedPNR_Page {
         driver.element().click(Paginate);
         Assert.assertEquals(driver.element().getText(ShowingMessage), testData.getTestData("validData.ShowingMessage"));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

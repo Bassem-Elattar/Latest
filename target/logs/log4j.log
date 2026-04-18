@@ -1,60 +1,161 @@
-[INFO ] 2026-04-15 10:34:29.885 [main] ReportManager - 
+[INFO ] 2026-04-16 16:37:59.216 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                     Powered by [1mSHAFT v.7.4.20231015[22m                                                    
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-15 10:34:32.710 [main] ReportManager - Loaded OpenCV "opencv_java470".
-[INFO ] 2026-04-15 10:34:32.710 [main] ReportManager - Initializing Allure Reporting Environment...
-[INFO ] 2026-04-15 10:34:32.869 [main] ReportManager - Initializing Summary Reporting Environment...
-[INFO ] 2026-04-15 10:34:32.901 [main] ReportManager - TestNG run detected...
-[INFO ] 2026-04-15 10:34:33.121 [main] Utils - [TestNG] Running:
-  C:\Users\sheen\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+[INFO ] 2026-04-16 16:37:59.948 [main] ReportManager - Loaded OpenCV "opencv_java470".
+[INFO ] 2026-04-16 16:37:59.949 [main] ReportManager - Initializing Allure Reporting Environment...
+[INFO ] 2026-04-16 16:38:00.064 [main] ReportManager - Initializing Summary Reporting Environment...
+[INFO ] 2026-04-16 16:38:00.078 [main] ReportManager - TestNG run detected...
+[INFO ] 2026-04-16 16:38:00.293 [main] Utils - [TestNG] Running:
+  C:\Users\bassem\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
 
-[INFO ] 2026-04-15 10:34:33.139 [main] ReportManager - 
+[INFO ] 2026-04-16 16:38:00.321 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                              Starting execution of suite setup configuration method                                             
                                           'com.shaft.listeners.internal.ConfigurationHelper.suiteSetup'                                          
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-15 10:34:33.266 [main] ReportManager - Initializing Important Links...
-[INFO ] 2026-04-15 10:34:33.276 [main] ReportManager - Initializing Properties...
-[INFO ] 2026-04-15 10:34:33.361 [main] ReportManager - 
+[INFO ] 2026-04-16 16:38:00.433 [main] ReportManager - Initializing Important Links...
+[INFO ] 2026-04-16 16:38:00.443 [main] ReportManager - Initializing Properties...
+[INFO ] 2026-04-16 16:38:00.568 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                              Starting execution of setup browse configuration method                                             
-                                      'AdminPages.Admin.Company.Department.CreateDepartment_TC.setupBrowse'                                      
+                                   'AdminPages.Reports.WalletHistoryReport.WalletHistoryReport_TC.setupBrowse'                                   
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-15 10:34:33.397 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
-[INFO ] 2026-04-15 10:34:33.409 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\sheen\Latest\targe..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
-[INFO ] 2026-04-15 10:34:33.409 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
-[INFO ] 2026-04-15 10:34:33.409 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
-[WARN ] 2026-04-15 10:34:37.436 [main] ReportManager - Apr 15, 2026 10:34:37 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-[WARN ] 2026-04-15 10:34:37.436 [main] ReportManager - WARNING: Unable to find CDP implementation matching 146
-[WARN ] 2026-04-15 10:34:37.438 [main] ReportManager - Apr 15, 2026 10:34:37 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
-[WARN ] 2026-04-15 10:34:37.438 [main] ReportManager - WARNING: Unable to find version of CDP to use for 146.0.7680.180. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
-[INFO ] 2026-04-15 10:34:37.446 [main] ReportManager - Successfully Opened: "windows | Chrome".
-[INFO ] 2026-04-15 10:34:37.533 [main] ReportManager - Target URL: "http://192.168.1.70"
-[INFO ] 2026-04-15 10:34:37.604 [main] ReportManager - Initial URL: "about:blank"
-[INFO ] 2026-04-15 10:34:38.823 [main] ReportManager - Navigate to url "http://192.168.1.70".
-[INFO ] 2026-04-15 10:34:38.823 [main] ReportManager - 
+[INFO ] 2026-04-16 16:38:00.597 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
+[INFO ] 2026-04-16 16:38:00.616 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\bassem\Latest\targ..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
+[INFO ] 2026-04-16 16:38:00.617 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
+[INFO ] 2026-04-16 16:38:00.617 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
+[WARN ] 2026-04-16 16:38:04.866 [main] ReportManager - Apr 16, 2026 4:38:04 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+[WARN ] 2026-04-16 16:38:04.866 [main] ReportManager - WARNING: Unable to find CDP implementation matching 147
+[WARN ] 2026-04-16 16:38:04.867 [main] ReportManager - Apr 16, 2026 4:38:04 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+[WARN ] 2026-04-16 16:38:04.867 [main] ReportManager - WARNING: Unable to find version of CDP to use for 147.0.7727.57. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+[INFO ] 2026-04-16 16:38:04.886 [main] ReportManager - Successfully Opened: "windows | Chrome".
+[INFO ] 2026-04-16 16:38:04.962 [main] ReportManager - Target URL: "http://192.168.1.70"
+[INFO ] 2026-04-16 16:38:04.995 [main] ReportManager - Initial URL: "about:blank"
+[INFO ] 2026-04-16 16:38:10.960 [main] ReportManager - Navigate to url "http://192.168.1.70".
+[INFO ] 2026-04-16 16:38:10.963 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                  Starting execution of sign configuration method                                                 
-                                         'AdminPages.Admin.Company.Department.CreateDepartment_TC.sign'                                         
+                                      'AdminPages.Reports.WalletHistoryReport.WalletHistoryReport_TC.sign'                                      
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-15 10:34:39.281 [main] ReportManager - Type "E.saady" into "Username *".
-[INFO ] 2026-04-15 10:34:39.598 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
-[INFO ] 2026-04-15 10:34:39.929 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-15 10:34:40.029 [main] ReportManager - Click "Login".
-[INFO ] 2026-04-15 10:34:41.515 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-15 10:34:41.813 [main] ReportManager - Click "Admin".
-[INFO ] 2026-04-15 10:34:42.141 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-15 10:34:42.226 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Company']".
-[INFO ] 2026-04-15 10:34:42.550 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-15 10:34:42.647 [main] ReportManager - Click "By.xpath: (//li[@class="child ng-star-inserted"])[3]".
-[INFO ] 2026-04-15 10:34:42.823 [main] ReportManager - 
+[INFO ] 2026-04-16 16:38:11.226 [main] ReportManager - Type "E.saady" into "Username *".
+[INFO ] 2026-04-16 16:38:11.391 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
+[INFO ] 2026-04-16 16:38:11.620 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:11.686 [main] ReportManager - Click "Login".
+[INFO ] 2026-04-16 16:38:13.084 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:13.138 [main] ReportManager - Click "Reports".
+[INFO ] 2026-04-16 16:38:13.689 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:13.764 [main] ReportManager - Click " Wallet History Report".
+[INFO ] 2026-04-16 16:38:13.770 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:13.772 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:13.774 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:13.780 [main] ReportManager - Successfully created attachment 'Test Data - JSON'
+[INFO ] 2026-04-16 16:38:13.907 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                         Starting Execution: '1 out of 1' test cases in the current suite                                        
-                             Test Method: 'AdminPages.Admin.Company.Department.CreateDepartment_TC.CreateDepartment'                             
+                        Test Method: 'AdminPages.Reports.WalletHistoryReport.WalletHistoryReport_TC.WalletHistoryReport'                        
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-16 16:38:24.249 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:24.369 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Branch Name']".
+[INFO ] 2026-04-16 16:38:24.595 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:24.679 [main] ReportManager - Click "Test".
+[INFO ] 2026-04-16 16:38:24.682 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:24.683 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:28.090 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:28.091 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:28.125 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:28.126 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:28.350 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:28.428 [main] ReportManager - Click "Invoice From Date *".
+[INFO ] 2026-04-16 16:38:28.649 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:28.722 [main] ReportManager - Click "2026".
+[INFO ] 2026-04-16 16:38:28.932 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:28.986 [main] ReportManager - Click "By.xpath: //span[normalize-space()='2025']".
+[INFO ] 2026-04-16 16:38:29.167 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:29.231 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Oct']".
+[INFO ] 2026-04-16 16:38:29.435 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:29.484 [main] ReportManager - Click "By.xpath: (//span[text()='12'])[1]".
+[INFO ] 2026-04-16 16:38:29.484 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:29.485 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:29.524 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:29.525 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:29.560 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:29.561 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"".
+[INFO ] 2026-04-16 16:38:29.827 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:29.890 [main] ReportManager - Click "Invoice To Date *".
+[INFO ] 2026-04-16 16:38:30.077 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:30.132 [main] ReportManager - Click "2026".
+[INFO ] 2026-04-16 16:38:30.313 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:30.363 [main] ReportManager - Click "By.xpath: //span[normalize-space()='2025']".
+[INFO ] 2026-04-16 16:38:30.545 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:30.614 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Nov']".
+[INFO ] 2026-04-16 16:38:30.797 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:30.857 [main] ReportManager - Click "By.xpath: (//span[text()='1'])[1]".
+[INFO ] 2026-04-16 16:38:31.066 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-16 16:38:31.131 [main] ReportManager - Click "Search in grid".
+[INFO ] 2026-04-16 16:38:31.139 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: WalletHistoryReport'
+[INFO ] 2026-04-16 16:38:31.140 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+             Finished Execution of Test Method: 'AdminPages.Reports.WalletHistoryReport.WalletHistoryReport_TC.WalletHistoryReport'             
+                                                              Test Status: 'Passed'                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-16 16:38:31.423 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                           Starting execution of engine teardown configuration method                                           
+                                        'com.shaft.listeners.internal.ConfigurationHelper.engineTeardown'                                        
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-16 16:38:31.426 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log'
+[INFO ] 2026-04-16 16:38:31.428 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "target/logs/log4j.log"".
+[INFO ] 2026-04-16 16:38:31.428 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "target/logs/log4j.log"".
+[INFO ] 2026-04-16 16:38:31.431 [main] ReportManager - File Action "ReadFileAsByteArray" successfully performed. With the following test data "File Path: "C:\Users\bassem\Latest\target\logs\log4j.log"".
+[INFO ] 2026-04-16 16:38:31.433 [main] ReportManager - File Action "DeleteFile" successfully performed. With the following test data "Target File Path: "target/logs/log4j.log", file was not deleted.".
+[INFO ] 2026-04-16 16:38:31.435 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log: 20260416-163831'
+[INFO ] 2026-04-16 16:38:31.436 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "allure-results/cucumberReport.html"".
+[INFO ] 2026-04-16 16:38:31.442 [main] ReportManager - Successfully created attachment 'HTML - Checkpoints Report'
+[INFO ] 2026-04-16 16:38:32.665 [main] ReportManager - Successfully Closed Driver.
+[INFO ] 2026-04-16 16:38:32.672 [main] ReportManager - ===============================================
+[INFO ] 2026-04-16 16:38:32.673 [main] ReportManager - Default Suite
+[INFO ] 2026-04-16 16:38:32.673 [main] ReportManager - Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+[INFO ] 2026-04-16 16:38:32.673 [main] ReportManager - ===============================================
+[INFO ] 2026-04-16 16:38:32.675 [main] ReportManager - Generating Allure Report Archive...
+[INFO ] 2026-04-16 16:38:32.691 [main] ReportManager - Executing: ".\C:\Users\bassem\.m2\repository\allure\allure-2.21.0/bin/allure.bat generate 'allure-results' -o 'generatedReport/allure-report'" locally.
+[INFO ] 2026-04-16 16:38:37.882 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: "C:\Users\bassem\.m2\repository\allure\allure-2.21.0/bin/allure.bat generate 'allure-results' -o 'generatedReport/allure-report'" | Exit Status: "1"".
+[ERROR] 2026-04-16 16:38:37.883 [main] AllureLifecycle - Could not start step: no test case running
+[ERROR] 2026-04-16 16:38:37.883 [main] AllureLifecycle - Could not add attachment: no test is running
+[INFO ] 2026-04-16 16:38:37.884 [main] ReportManager - Successfully created attachment 'Terminal Action Actual Result - Command Log'
+[ERROR] 2026-04-16 16:38:37.884 [main] AllureLifecycle - Could not update step: no step running
+[ERROR] 2026-04-16 16:38:37.885 [main] AllureLifecycle - Could not stop step: no step running
+[INFO ] 2026-04-16 16:38:37.885 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "C:\Users\bassem\.m2\repository\allure\"".
+[INFO ] 2026-04-16 16:38:37.885 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "C:\Users\bassem\.m2\repository\allure\"".
+[INFO ] 2026-04-16 16:38:37.886 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "C:\Users\bassem\.m2\repository\allure\"".
+[INFO ] 2026-04-16 16:38:38.201 [main] ReportManager - File Action "CopyFolder" successfully performed. With the following test data "Source Folder: "C:\Users\bassem\.m2\repository\allure" | Destination Folder: "generatedReport\allure"".
+[INFO ] 2026-04-16 16:38:38.236 [main] ReportManager - File Action "CopyFolder" successfully performed. With the following test data "Source Folder: "allure-results" | Destination Folder: "generatedReport\allure-results"".
+[INFO ] 2026-04-16 16:38:39.113 [main] ReportManager - File Action "ZipFiles" successfully performed. With the following test data "Target Folder: "generatedReport/" | Destination Archive: "generatedReport_20260416-163838.zip"".
+[INFO ] 2026-04-16 16:38:39.180 [main] ReportManager - File Action "DeleteFile" successfully performed. With the following test data "Target File Path: "generatedReport/", file was  deleted.".
+[INFO ] 2026-04-16 16:38:39.187 [main] ReportManager - Executing: ".\generate_allure_report.bat" locally.
+[INFO ] 2026-04-16 16:38:39.237 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: "generate_allure_report.bat" | Exit Status: "asynchronous"".
+[INFO ] 2026-04-16 16:38:39.243 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative File Path: "execution-summary/ExecutionSummaryReport_16-04-2026_16-38-39-0239-pm.html"".
+[INFO ] 2026-04-16 16:38:39.247 [main] ReportManager - File Action "WriteToFile" successfully performed. With the following test data "Target File Path: "C:\Users\bassem\Latest\execution-summary\ExecutionSummaryReport_16-04-2026_16-38-39-0239-pm.html"".
+[INFO ] 2026-04-16 16:38:39.253 [main] ReportManager - Executing: ".\execution-summary/ExecutionSummaryReport_*.html" locally.
+[INFO ] 2026-04-16 16:38:41.018 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: ".\execution-summary/ExecutionSummaryReport_*.html" | Exit Status: "0"".
+[INFO ] 2026-04-16 16:38:41.019 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                                         Test Execution Summary Results                                                         
+                                              Total Cases: 1 --> Passed: 1 | Failed: 0 | Skipped: 0                                              
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-16 16:38:41.019 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                           This test run was powered by [1mSHAFT v.7.4.20231015[22m                                           
+                               SHAFT [1;4mis and will always be 100% FREE[22;24m for commercial and private use                               
+                                                   in compliance with the [1mMIT license[22m                                                   
+                                   Visit SHAFT's user guide [4mhttps://shafthq.github.io/[24m to learn more                                   
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m

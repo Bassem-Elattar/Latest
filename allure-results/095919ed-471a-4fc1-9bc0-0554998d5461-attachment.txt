@@ -1,0 +1,44 @@
+
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                        Starting Execution: '1 out of 1' test cases in the current suite                                        
+                        Test Method: 'AdminPages.Reports.WalletHistoryReport.WalletHistoryReport_TC.WalletHistoryReport'                        
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:24.0249 pm
+[ReportManager] Click "By.xpath: //span[normalize-space()='Branch Name']". @16-04-2026 16:38:24.0361 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:24.0595 pm
+[ReportManager] Click "Test". @16-04-2026 16:38:24.0679 pm
+[ReportManager] File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:24.0682 pm
+[ReportManager] File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:24.0683 pm
+[ReportManager] File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:28.0090 pm
+[ReportManager] File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:28.0091 pm
+[ReportManager] File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:28.0125 pm
+[ReportManager] File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:28.0125 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:28.0350 pm
+[ReportManager] Click "Invoice From Date *". @16-04-2026 16:38:28.0428 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:28.0648 pm
+[ReportManager] Click "2026". @16-04-2026 16:38:28.0722 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:28.0932 pm
+[ReportManager] Click "By.xpath: //span[normalize-space()='2025']". @16-04-2026 16:38:28.0986 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:29.0166 pm
+[ReportManager] Click "By.xpath: //span[normalize-space()='Oct']". @16-04-2026 16:38:29.0231 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:29.0435 pm
+[ReportManager] Click "By.xpath: (//span[text()='12'])[1]". @16-04-2026 16:38:29.0483 pm
+[ReportManager] File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:29.0484 pm
+[ReportManager] File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:29.0485 pm
+[ReportManager] File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:29.0524 pm
+[ReportManager] File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:29.0525 pm
+[ReportManager] File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:29.0560 pm
+[ReportManager] File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/WalletHistoryReport.json"". @16-04-2026 16:38:29.0560 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:29.0827 pm
+[ReportManager] Click "Invoice To Date *". @16-04-2026 16:38:29.0890 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:30.0077 pm
+[ReportManager] Click "2026". @16-04-2026 16:38:30.0132 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:30.0313 pm
+[ReportManager] Click "By.xpath: //span[normalize-space()='2025']". @16-04-2026 16:38:30.0363 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:30.0545 pm
+[ReportManager] Click "By.xpath: //span[normalize-space()='Nov']". @16-04-2026 16:38:30.0614 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:30.0797 pm
+[ReportManager] Click "By.xpath: (//span[text()='1'])[1]". @16-04-2026 16:38:30.0856 pm
+[ReportManager] Moved the mouse to the middle of the element. @16-04-2026 16:38:31.0066 pm
+[ReportManager] Click "Search in grid". @16-04-2026 16:38:31.0130 pm

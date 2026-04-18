@@ -45,20 +45,16 @@ public class LedgerReportDetails_TC extends TestBase_TC {
         ledgerReportDetailsPage.Dpick_InvoiceFromDate(InvoiceDateFrom);
         ledgerReportDetailsPage.Dpick_InvoiceToDate(InvoiceDateTo);
         ledgerReportDetailsPage.Btn_SearchGrid();
-        Thread.sleep(3000);
+
         // Handle pagination and assertions separately
         int totalPages = paginationHelper.getTotalPages();
         for (int currentPage = 1; currentPage <= totalPages; currentPage++) {
             System.out.println("Processing page: " + currentPage);
-
-            // Perform assertions
-//            ledgerReportDetailsPage.performAssertions();
 
             // Navigate to the next page if not on the last page
             if (currentPage < totalPages) {
                 paginationHelper.navigateToNextPage();
             }
         }
-
     }
 }

@@ -13,10 +13,10 @@ public class AGnWall {
         this.driver = driver;
     }
     SHAFT.GUI.WebDriver driver ;
+    SHAFT.TestData.JSON testData;
 
 
-    By Report = By.xpath("//a[@href=\"/reports\"]");
-    By AgencyWallet = By.xpath("//a[@href=\"../Reports/agencyWalletReport?menu=reports\"]");
+    ////////////////////////// LOCATORS //////////////////////////////
     By Branch = By.xpath("//p-multiselect[.//input[@id=\"id-BranchName\"]]");
     By Agency = By.xpath("//p-multiselect[.//input[@id=\"id-AgencyName\"]]");
     By Currency = By.xpath("//p-dropdown[.//input[@id=\"id-Currency\"]]");
@@ -26,7 +26,7 @@ public class AGnWall {
     By ErrorBranch = By.xpath("//span[@class='fg-error has-error']");
 
 
-    public void SearchValid (String branch,String agency,String currency) {
+    public void SearchValidData (String branch,String agency,String currency) {
 
         driver.element().click(Branch);
         By option = xpath(String.format("//span[text()='%s']", branch));
@@ -59,7 +59,9 @@ public class AGnWall {
                 .click(Submit);
 
     }
-    public String Table(int ColumnSearch, String ExpectedSearch) {
+
+    public String SearchInTable(int ColumnSearch, String ExpectedSearch) {
+        testData = new SHAFT.TestData.JSON("AgencyWalletReport.json");
         WebElement table = driver.getDriver().findElement(xpath("//div[@class=\"table-area\"]")); // Adjust the XPath to match your table
         List<WebElement> rows = table.findElements(By.tagName("tr"));
         String actualResult = ExpectedSearch;
@@ -68,12 +70,10 @@ public class AGnWall {
             if (cells.size() > ColumnSearch) {
                 String columnText = cells.get(ColumnSearch).getText();
                 if (!columnText.equals(actualResult)) {
-                    actualResult = "Test";
+                    actualResult = testData.getTestData("ValidData.branch");
                     break;
                 }
             }
-
-
         }
         return actualResult;
     }
