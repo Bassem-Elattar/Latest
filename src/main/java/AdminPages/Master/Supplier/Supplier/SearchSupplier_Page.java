@@ -28,7 +28,7 @@ public class SearchSupplier_Page {
     }
 
     public void searchsupplierdata(String suppliername  ){
-        driver.element().click(Btn_Supplier1);
+       // driver.element().click(Btn_Supplier1);
         driver.element().type(Txt_SupplierName,suppliername);
 
 

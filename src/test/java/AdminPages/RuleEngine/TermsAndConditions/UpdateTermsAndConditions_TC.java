@@ -51,7 +51,7 @@ public class UpdateTermsAndConditions_TC extends TestBase_TC {
         String Expected2 = "Required";
         String Expected3 = "Required";
         String Expected4 = "Required";
-        Assert.assertEquals(TermAndCon.ActualResult2(), Expected2);
+        Assert.assertEquals(TermAndCon.ActualResult(), Expected2);
         Thread.sleep(2000);
         TermAndCon.ChooseAllCountryEdit();
         driver.element().click(TermAndCon.Lst_CountryEdit);
@@ -63,7 +63,7 @@ public class UpdateTermsAndConditions_TC extends TestBase_TC {
         TermAndCon.ClickOnETicket();
         TermAndCon.ClickOnSendForApprovalEdit();
         Thread.sleep(2000);
-        String Expected5 = "http://192.168.1.216/rule-engine/terms";
+        String Expected5 = "http://192.168.1.70/rule-engine/terms";
         String Actual = driver.browser().getCurrentURL();
         Assert.assertEquals(Actual, Expected5);
 

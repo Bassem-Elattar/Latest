@@ -18,9 +18,13 @@ import java.util.Map;
 
 public class CreateStaff_TC extends TestBase_TC {
 
-    private Staff_Page addStaff;
-    private Staff_Page Staff;
+   // private Staff_Page addStaff;
+    private Staff_Page staff;
     private LogIn_Page logIn;
+    String UserName = "";
+    String Branch = "";
+    String Department = "";
+    String StaffName = "";
 
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
@@ -39,34 +43,55 @@ public class CreateStaff_TC extends TestBase_TC {
     }
 
     @Test(dataProvider = "JsonProvider")
-    public void CreateStaff(SHAFT.GUI.WebDriver driver, Map<String,String> st) throws InterruptedException {
-
-        addStaff = new Staff_Page(driver);
-       // addStaff.Clickonadmin();
-//        addStaff.ClickonStuff();
-        addStaff.addstuff();
+    public void CreateStaff(Map<String, String> st) throws InterruptedException {
+        staff = new Staff_Page(driver);
+        // staff.Clickonadmin();
+//        staff.ClickonStuff();
+        staff.addstuff();
         String Usertype =st.get("Usertype");
         String SearchOperatingCountry=st.get("SearchOperatingCountry");
-        String SearchBranch = st.get("SearchBranch");
-        String SearchDepartment =st.get("SearchDepartment");
+        Branch = st.get("SearchBranch");
+        Department =st.get("SearchDepartment");
         String SearchRole = st.get("SearchRole");
-        String EmployeeName = st.get("EmployeeName");
+        StaffName = st.get("EmployeeName");
         String EmployeeEmail = st.get("EmployeeEmail");
         String EmployeePhoneNo = st.get("EmployeePhoneNo");
         String EmployeeSecondaryNo = st.get("EmployeeSecondaryNo");
-        String UserName = st.get("UserName");
+        UserName = st.get("UserName");
         String ApprovalList = st.get("ApprovalList");
-        addStaff.AddStuff(Usertype,SearchOperatingCountry,SearchBranch,SearchDepartment,SearchRole
-                ,EmployeeName,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,UserName,ApprovalList);
-        addStaff.YesUndercut();
+        staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
+                ,StaffName,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,UserName,ApprovalList);
+        staff.YesUndercut();
+        Thread.sleep(3000);
         String Expected = "Added Successfully";
-        Assert.assertEquals(addStaff.ActualCreate(),Expected);
+        Assert.assertEquals(staff.ActualCreate(),Expected);
+
+//        addStaff = new Staff_Page(driver);
+//       // addStaff.Clickonadmin();
+////        addStaff.ClickonStuff();
+//        addStaff.addstuff();
+//        String Usertype =st.get("Usertype");
+//        String SearchOperatingCountry=st.get("SearchOperatingCountry");
+//        String SearchBranch = st.get("SearchBranch");
+//        String SearchDepartment =st.get("SearchDepartment");
+//        String SearchRole = st.get("SearchRole");
+//        String EmployeeName = st.get("EmployeeName");
+//        String EmployeeEmail = st.get("EmployeeEmail");
+//        String EmployeePhoneNo = st.get("EmployeePhoneNo");
+//        String EmployeeSecondaryNo = st.get("EmployeeSecondaryNo");
+//        String UserName = st.get("UserName");
+//        String ApprovalList = st.get("ApprovalList");
+//        addStaff.AddStuff(Usertype,SearchOperatingCountry,SearchBranch,SearchDepartment,SearchRole
+//                ,EmployeeName,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,UserName,ApprovalList);
+//        addStaff.YesUndercut();
+//        String Expected = "Added Successfully";
+//        Assert.assertEquals(addStaff.ActualCreate(),Expected);
     }
 
 
     @AfterMethod
     public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.90");
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 
 

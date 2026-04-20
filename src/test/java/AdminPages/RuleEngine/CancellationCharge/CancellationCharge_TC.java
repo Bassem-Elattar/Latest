@@ -3,28 +3,32 @@ package AdminPages.RuleEngine.CancellationCharge;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 
 
-public class CancellationCharge_TC extends TestBase_TC {
+public class CancellationCharge_TC  {
     private LogIn_Page logIn;
     private CancellationCharge_Page cancellationChargePage;
     public String Charge_Code;
-    private RuleEngine_Common cancel;
+//    private RuleEngine_Common cancel;
     SHAFT.TestData.JSON testData;
+    SHAFT.GUI.WebDriver driver;
 
     @BeforeTest
     public void sign() {
-        logIn = new LogIn_Page(driver);
-        cancellationChargePage = new CancellationCharge_Page(driver);
-        cancel = new RuleEngine_Common(driver);
+
         testData = new SHAFT.TestData.JSON("CancellationCharge.json");
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
-        cancel.clickRuleEngine().clickCancellationCharge();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        new LogIn_Page(driver).AdminLogin();
+       new RuleEngine_Common(driver).clickRuleEngine().clickCancellationCharge();
+
     }
 
     ////////////////////////// to run E2E scenario = Run the CancellationCharge_TC class/////////////////

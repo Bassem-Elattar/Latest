@@ -1,8 +1,11 @@
 package AdminPages.Master.Flight.PreferAirline;
 
+import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import AdminPages.Master.Master_Common;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utilities.JsonDataUtil;
@@ -14,7 +17,8 @@ import static org.junit.Assert.assertEquals;
 
 public class EditPreferAirLine_TC extends TestBase_TC {
     //INValid Cases
-    PreferAirLine_Page preferAirLine;
+    private PreferAirLine_Page preferAirLine ;
+    private LogIn_Page logIn;
 
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
@@ -22,10 +26,19 @@ public class EditPreferAirLine_TC extends TestBase_TC {
         String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
         return JsonDataUtil.readJsonData(filePath);
     }
+    @BeforeTest
+    public void sign(){
+        preferAirLine = new PreferAirLine_Page(driver);
+        logIn = new LogIn_Page(driver);
+        logIn.ClickAdmin();
+        logIn.ClickOnLoginButton();
 
+
+    }
     @Test  // Prefer Airline Already exists
     public void testUpdateForPreferAirLine1( ) throws InterruptedException {
-        preferAirLine.EnterAirlineName("40-Mile Air");
+        new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
+        preferAirLine.EnterAirlineName("40MileAir");
         preferAirLine.clickBothButton();
         preferAirLine.clickOnSearchInGrid();
         preferAirLine.clickEditPenPage2();
@@ -58,6 +71,7 @@ public class EditPreferAirLine_TC extends TestBase_TC {
 //    }
     @Test // Validation On Required Pcc  for Supplier
     public void testUpdateForPreferAirLine3() throws InterruptedException {
+        new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
         preferAirLine.EnterAirlineName("Aires");
         preferAirLine.clickBothButton();
         preferAirLine.clickOnSearchInGrid();
@@ -100,6 +114,7 @@ public class EditPreferAirLine_TC extends TestBase_TC {
 //    }
     @Test
     public void testUpdateForPreferAirLine6( ) throws InterruptedException {
+        new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
         preferAirLine.EnterAirlineName("Aereonautica militare");
         preferAirLine.SelectSupplierName("GDI");
         preferAirLine.clickBothButton();
