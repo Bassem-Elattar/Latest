@@ -12,7 +12,7 @@ public class AdminMenu {
     By Btn_Admin = By.xpath("//a[@id=\"p-tabpanel-1-label\"]");
     By Btn_Company = By.xpath("//span[normalize-space()='Company']");
     By Btn_Branch = By.xpath("(//a[@class=\"ng-star-inserted\"])[2]");
-    By Btn_Agency = By.xpath("(//a[@class=\"ng-star-inserted\"])[3]");
+    By Btn_Agency = By.xpath("//li[3]//tilde-theme-accordion[1]//header[1]//a[1]");
     By Btn_Staff = By.xpath("(//a[@class=\"ng-star-inserted\"])[4]");
     By Btn_SubAgency = By.xpath("(//i[@class=\"pi pi-briefcase\"])[2]");
     By Btn_SearchLoginDetails = By.xpath("//a[@href=\"/admin/login-details\"]");
@@ -36,7 +36,7 @@ public class AdminMenu {
     }
     public AdminMenu Agency(){
         driver.element().click(Btn_Agency);
-        driver.element().click(Btn_SubAgency);
+        //driver.element().click(Btn_SubAgency);
         return this;
     }
     public AdminMenu SerachLoginDetails(){

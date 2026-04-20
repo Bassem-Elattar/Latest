@@ -20,17 +20,6 @@ public class AgentInformationnn_Page {
     public final By Txt_Password = By.id("id-Password");
     public final By Btn_LogINButton = By.xpath("// button[@loadingicon=\"pi pi-spin pi-spinner\"]");
 
-
-
-    public static By LogInNavigateToUrl() {
-        driver.browser().maximizeWindow();
-        String url = "http://192.168.1.90/auth/login";
-        driver.browser().navigateToURL(url);
-        driver.browser().maximizeWindow();  // Initialize the driver here
-
-        return null;
-    }
-
     public AgentInformationnn_Page EnterUserName(String username) {
         driver.element().type(Txt_Username, username);
         return this;
@@ -46,21 +35,20 @@ public class AgentInformationnn_Page {
 
     //constant
 
-    public final By SearchAgencyName = By.xpath("//input[@id=\"id-Agency\"]");
-    public final By SelectTextFromTable = By.xpath("//td[contains(text(),'safy')]");
-    public final By SelectInvalidTextPhone = By.xpath("//span[contains(text(), 'Invalid Phone Number')]");
-    public final By SelectInvalidTextEmail = By.xpath("//span[contains(text(), 'Please enter valid email')]");
-    public final By STR = By.xpath("//span[@class=\"fg-error\"]");
-    public final By SelectNoDataFound = By.xpath("//td[contains(text(), 'No')]");
-    public final By SelectEditbutton = By.xpath("//i[@class=\"pi pi-pencil\"]");
-
-    private final By Fullname = By.xpath("//input[@id=\"id-Fullname\"]");
-    private final By Phone = By.xpath("//input[@id=\"phone number\"]");
-    private final By Email = By.xpath("//input[@id=\"id-Email\"]");
+    public final By SearchAgencyName = By.xpath("//input[@id='id-Agency']");
+    public final By SelectTextFromTable = By.xpath("//td[normalize-space()='Essam Saady']");
+    public final By SelectInvalidTextPhone = By.xpath("//span[normalize-space()='Please enter valid phone number']");
+    public final By SelectInvalidTextEmail = By.xpath("//span[normalize-space()='Please enter valid email']");
+    public final By STR = By.xpath("//span[@class='fg-error has-error']");
+    public final By SelectNoDataFound = By.xpath("//td[@class='message']");
+    private final By Fullname = By.xpath("//input[@id='id-Fullname']");
+    private final By Phone = By.xpath("//input[@id='phone number']");
+    private final By Email = By.xpath("//input[@id='id-Email']");
     private final By Search = By.cssSelector("button[type='submit']");
     private final By UserManagement = By.linkText("User Management");
     private final By AgencyUserInfo = By.xpath("//a[@class=\"ng-star-inserted\"]");
     private final By AGENTINFORMATION = By.xpath("//a[@class=\"active-link\"]");
+    By Select = By.xpath("//li[@role='option']");
 
 
     public AgentInformationnn_Page NavigateToAgencyInfo()
@@ -81,13 +69,10 @@ public class AgentInformationnn_Page {
         return this;
 
     }
-    public AgentInformationnn_Page SelectAgency(String Selection)
-    {
-
+    public AgentInformationnn_Page SelectAgency(String Selection) throws InterruptedException {
         driver.element().type(SearchAgencyName,Selection);
-//        By Select = By.xpath("//p-scroller//div//ul//li[1]");
-//        driver.element().click(Select);
-
+        Thread.sleep(2000);
+        driver.element().click(Select);
         return this;
     }
 
@@ -113,28 +98,25 @@ public class AgentInformationnn_Page {
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// View
-    public final By SelectTextFrompopup=By.xpath("//span[contains(text(),'safy')]");
-    public final By Viewbutton = By.xpath("//i[@class=\"pi pi-eye\"]");
-    private final By Closebutton = By.xpath("//button[@tabindex=\"-1\"]");
-    private final By Unlock = By.xpath("//span[@class=\"p-button-icon p-button-icon-left pi pi-unlock\"]");
-    private final By Yes = By.xpath("(//button[@type=\"button\"])[6]");
-    private final By No = By.xpath("(//button[@type=\"button\"])[5]");
-    public final By SuccessfullAlert = By.xpath("//div[@role=\"alert\"]");
-    public final By SelectInvalidTextEmailForView = By.xpath("//span[contains(text(), 'Please enter a valid email')]");
+    public final By SelectTextFrompopup=By.xpath("//span[normalize-space()='Essam Saady']");
+    public final By Viewbutton = By.xpath("(//i[@class='pi pi-eye'])[1]");
+    public final By Closebutton = By.xpath("/html/body/ndc-root/ndc-layout/div/div[3]/div[1]/div/ndc-agent-information/p-dialog/div/div/div[2]/div/button");
+    private final By Unlock = By.xpath("//button[@class='p-element p-button p-component']");
+    private final By Yes = By.xpath("//span[normalize-space()='Yes']");
+    private final By No = By.xpath("//span[normalize-space()='No']");
+    public final By SuccessfullAlert = By.xpath("//div[@id='toast-container']");
 
     public AgentInformationnn_Page ClickonClose() {
         driver.element().click(Closebutton);
         return this;
     }
     public AgentInformationnn_Page ClickonViewAndYes() {
-        driver.element().click(Viewbutton);
         driver.element().click(Unlock);
         driver.element().click(Yes);
-
         return this;
     }
+
     public AgentInformationnn_Page ClickonViewAndNo() {
-        driver.element().click(Viewbutton);
         driver.element().click(Unlock);
         driver.element().click(No);
 
@@ -165,35 +147,35 @@ public class AgentInformationnn_Page {
     private final By Txt_emailPortal = By.xpath("//input[@id=\"userAlias\"]");
     private final By Txt_PasswordPortal = By.xpath("//input[@id=\"password_password\"]");
     private final By Btn_LoginPortal = By.xpath("//input[@type=\"submit\"]");
-    public final By Notification = By.xpath("//img[@style=\"margin-right: 12px;top: 0px;margin-left: -6px;\"]");
-    public final By ProfileManagement = By.xpath("//img[@src=\"../static/images/icons/profile1.png\"]");
+    public final By Notification = By.xpath("//img[@src='../static/images/icons/setting-new.png']");
+    public final By ProfileManagement = By.xpath("//div[@class='pull-right npdw']//li[3]");
     public final By FullNamePortal = By.xpath("//input[@id=\"firstName\"]");
     public final By SelectTextFromMobilePortal = By.xpath("//span[contains(text(),'010')]");
     String urlforportal = "http://192.168.1.70:8080/odeysysportal/login/loginForm";
-    public String urlfordashboardportal ="http://192.168.1.70:8080/odeysysportal/dashboard/dashboardHome";
+    public String urlfordashboardportal ="http://192.168.1.70:8080/odeysysportal/dashboard/dashboardHome?isCoreSystem=true";
 
-    public AgentInformationnn_Page EnterNDCPortal() {
+    public AgentInformationnn_Page EnterNDCPortal(String Name, String Email, String Password) {
         driver.browser().navigateToURL(urlforportal);
-        driver.element().type(Txt_UsernamePortal,"AGN9668");
-        driver.element().type(Txt_emailPortal,"muhamed.gamal2017@gmail.com");
-        driver.element().type(Txt_PasswordPortal,"Dgl3+h7");
+        driver.element().type(Txt_UsernamePortal,Name);
+        driver.element().type(Txt_emailPortal,Email);
+        driver.element().type(Txt_PasswordPortal,Password);
         driver.element().click(Btn_LoginPortal);
         return this;
     }
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Edit
-    public final  By Btn_Editbutton = By.xpath("//i[@class=\"pi pi-pencil\"]");
+    public final  By Btn_Editbutton = By.xpath("(//i[@class='pi pi-pencil'])[1]");
     public final By Txt_EditAgencyOwner = By.xpath("//tr[1]//i[@class=\"pi pi-pencil\"]");
     public final By Txt_EditFullName = By.xpath("//input[@id=\"id-FullName\"]");
-    private final By Txt_EditEmail = By.xpath("//input[@id=\"id-Email\"]");
+    private final By Txt_EditEmail = By.xpath("//input[@id='id-Email']");
     private final By Txt_EditPhoneNumber = By.xpath("//input[@id=\"ContactNo\"]");
-    public final By Btn_UpdateButton = By.xpath("//button[@type=\"submit\"]");
+    public final By Btn_UpdateButton = By.xpath("//button[@type='submit']");
     private final By Btn_CancelButton =By.xpath("//button[@type=\"reset\"]");
     public final By InvalidEmail =By.xpath("//span[contains(text(), 'Please enter a valid email')]");
-    public final By InvalidPhone =By.xpath("//span[contains(text(), 'Please enter a valid Number')]");
-    public final By Btn_SearchKey = By.xpath("//div[@class=\"iti__flag iti__eg\"]");
+    public final By InvalidPhone =By.xpath("//span[@class='fg-error has-error']");
+    public final By Btn_SearchKey = By.xpath("//div[@class='iti__selected-flag dropdown-toggle']");
     public final By SelectTextFromKey = By.xpath("//span[contains(text(),'Egypt')]");
-
+    public final By EditFullName = By.xpath("(//span[@class='p-input-icon-right'])[1]");
 //    public String ActualCancelButtonIsClickable(){
 //        String S = ElementActions.getInstance().getText(By.xpath("//td[contains(text(),'safy')]"));
 //        return S;
@@ -222,7 +204,7 @@ public class AgentInformationnn_Page {
     public final By Rbtn_ActiveButtonForAgencyOwner2 = By.xpath("//i[@class=\"pi pi-circle\"]");
     //tr[2]//div[3]//i[@class="pi pi-circle"]
     public final By Rbtn_ActiveButtonForAgentOrAdmin = By.xpath("(//i[@class=\"pi pi-circle-fill\"])[2]");
-    public final By Rbtn_ActiveButtonForAgentOrAdmin2 = By.xpath("//i[@class=\"pi pi-circle\"]");
+    public final By Rbtn_ActiveButtonForAgentOrAdmin2 = By.xpath("//tbody/tr[1]/td[6]/div[1]/div[2]/i[1]");
 
     public AgentInformationnn_Page ClickOnActiveButtonAO(){
         driver.element().click(Rbtn_ActiveButtonForAgencyOwner);

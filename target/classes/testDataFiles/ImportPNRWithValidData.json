@@ -1,0 +1,12 @@
+[
+  {
+    "Branch" : "Ramadan",
+    "AGN" : "All",
+    "FromDate": "5",
+    "ToDate" : "20",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Nov"
+  }
+]

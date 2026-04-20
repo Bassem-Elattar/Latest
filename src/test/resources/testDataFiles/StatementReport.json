@@ -1,0 +1,34 @@
+{
+  "ValidBranch": {
+    "BranchName": "kiko",
+    "AgencyName": "Uplift1_Abduallah Ramadan",
+    "InvoiceFromDate" : "12",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Dec"
+  },
+
+  "InvalidFromAfterTo": {
+    "BranchName": "kiko",
+    "InvoiceFromDate" : "2",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Oct",
+    "ToYear" : "2025",
+    "ToMonth" : "Sep",
+    "ExpectedError" : "Required",
+    "FromDateAfterToDateError" : "'Invoice To' date must be after 'Invoice From' date."
+  },
+
+  "InvalidMoreThan60Days": {
+    "InvoiceFromDate" : "2",
+    "InvoiceToDate" : "1",
+    "FromYear" : "2025",
+    "FromMonth" : "Sep",
+    "ToYear" : "2025",
+    "ToMonth" : "Dec",
+    "MoreThan60DaysError" : "Date difference between 'From' and 'To' should not exceed 60 days."
+  }
+}

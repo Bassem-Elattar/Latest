@@ -3,9 +3,7 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -14,7 +12,7 @@ import java.util.Map;
 
 
 public class Import_TC extends TestBase_TC {
-    ImportPNRrep_Page Importobj;
+    ImportPNRReport_Page Importobj;
     private LogIn_Page logIn;
 
     @DataProvider(name = "JsonProvider")
@@ -24,58 +22,67 @@ public class Import_TC extends TestBase_TC {
         return JsonDataUtil.readJsonData(filePath);
     }
 
-    @BeforeTest
+    @BeforeClass
     public void sign() {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")
-    public void ImportPNR(Map<String,String> search) throws InterruptedException {
+    public void ImportPNRWithValidData(Map<String,String> search) throws InterruptedException {
         new Reports_Common(driver).clickReports().clickImportPNR();
-        Importobj = new ImportPNRrep_Page(driver);
+        Importobj = new ImportPNRReport_Page(driver);
         String Branch = search.get("Branch");
-        String AGN = search.get("AGN");
-        String FromDate = search.get("FromDate");
-        String ToDate = search.get("ToDate");
-        Importobj.SearchValidData(Branch,AGN,FromDate,ToDate);
-        Thread.sleep(3000);
-        String Expected = "Test";
-//        Assert.assertEquals(Importobj.Actual(),Expected);
-
-
+        String FromDay = search.get("FromDate");
+        String FromMonth = search.get("FromMonth");
+        String FromYear = search.get("FromYear");
+        String ToDay = search.get("ToDate");
+        String ToMonth = search.get("ToMonth");
+        String ToYear = search.get("ToYear");
+        Importobj.SearchValidBranch(Branch);
+        Importobj.searchValidFromDate(FromDay, FromYear, FromMonth);
+        Importobj.searchValidToDate(ToDay, ToYear, ToMonth);
+        Importobj.Submit();
     }
 
     @Test(priority = 2, dataProvider = "JsonProvider") //
-    public void ImportPNRValid(Map<String,String> search) throws InterruptedException {
+    public void ImportPNRInvalidToDate(Map<String,String> search) throws InterruptedException {
         new Reports_Common(driver).clickReports().clickImportPNR();
-        Importobj = new ImportPNRrep_Page(driver);
+        Importobj = new ImportPNRReport_Page(driver);
         String Branch = search.get("Branch");
-        String AGN = search.get("AGN");
-        String ToDate = search.get("ToDate");
-        Importobj.SearchInvalidFromDate(Branch,AGN,ToDate);// Select date range
-        String Actual=driver.element().getText(Importobj.Txt_FromDateError);
-        String Expected="Required";
+        String FromDay = search.get("FromDate");
+        String FromMonth = search.get("FromMonth");
+        String FromYear = search.get("FromYear");
+        String Expected = search.get("ExpectedError");
+        Importobj.SearchValidBranch(Branch);
+        Importobj.searchValidFromDate(FromDay, FromYear, FromMonth);
+        Importobj.Submit();
+        String Actual=driver.element().getText(Importobj.Txt_DateError);
         Assert.assertEquals(Actual,Expected);
-
     }
+
     @Test(priority = 3, dataProvider = "JsonProvider") //
-    public void ImportPNRToDateValid(Map<String,String> search) throws InterruptedException {
+    public void ImportPNRInvalidFromDate(Map<String,String> search) throws InterruptedException {
         new Reports_Common(driver).clickReports().clickImportPNR();
-        Importobj = new ImportPNRrep_Page(driver);
+        Importobj = new ImportPNRReport_Page(driver);
         String Branch = search.get("Branch");
-        String AGN = search.get("AGN");
-        String FromDate = search.get("FromDate");
-        Importobj.SearchInvalidToDate(Branch,AGN,FromDate);// Select date range
-        String Actual=driver.element().getText(Importobj.Txt_ToDateError);
-        String Expected="Required";
+        String Agency = search.get("AGN");
+        String ToDay = search.get("ToDate");
+        String ToMonth = search.get("ToMonth");
+        String ToYear = search.get("ToYear");
+        String Expected = search.get("ExpectedError");
+        Importobj.SearchValidBranch(Branch);
+        Importobj.SearchValidAgency(Agency);
+        Importobj.searchValidToDate(ToDay, ToYear, ToMonth);
+        Importobj.Submit();
+        String Actual=driver.element().getText(Importobj.Txt_DateError);
         Assert.assertEquals(Actual,Expected);
-
     }
 
-
-
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 }
 

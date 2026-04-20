@@ -1,0 +1,17 @@
+{
+  "ValidData": {
+    "FromCurrency": "Saudi Riyal",
+    "ToCurrency": "Egyptian Pound",
+    "RateOfExchange" : "12345.05",
+    "ExpectedError" : "Search Rate of Exchange",
+    "RequiredError" : "Required"
+  },
+
+  "InValidData": {
+    "RateOfExchange1" : "0",
+    "ExpectedError1" : "Invalid Exchange Rate",
+    "InvalidFromCurrency" : "testCurremcy",
+    "InvalidToCurrency" : "Euro",
+    "NoResultsError" : "No data has been found!"
+  }
+}

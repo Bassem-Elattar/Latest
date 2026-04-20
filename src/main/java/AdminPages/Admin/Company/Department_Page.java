@@ -1,5 +1,6 @@
 package AdminPages.Admin.Company;
 import com.shaft.driver.SHAFT;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.By;
 
 public class Department_Page {
@@ -13,21 +14,14 @@ public class Department_Page {
     By Btn_AddDepartment = By.xpath("//button[@routerlink=\"add\"]");
     By Txt_DepartmentName = By.xpath("//input[@id=\"id-Department\"]");
     By Lst_AssignedQueue = By.xpath("//p-multiselect[.//input[@id=\"id-Assignedqueue\"]]");
-    //By SearchQueue = By.xpath("//input[@role=\"textbox\"]");
     By Btn_Exit = By.xpath("//button[@class=\"p-ripple p-element p-multiselect-close p-link ng-star-inserted\"]");
     By Btn_SendApprroval = By.xpath("//button[@type=\"submit\"]");
     By Btn_Cancel = By.xpath("//button[@type=\"reset\"]");
-    ///*
-    By Btn_Admin = By.xpath("//a[@class=\"router-link-active\"]");
     By Rbtn_Inactive = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Inactive\"]]");
     By Rbtn_Active = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Active\"]]");
     By Rbtn_Both = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Both\"]]");
     By Btn_Search = By.xpath("//button[@type=\"submit\"]");
     By Txt_departmentName = By.xpath("//input[@class=\"p-inputtext p-component p-element fg-input ng-untouched ng-pristine ng-valid\"]");
-    By Table = By.xpath("//div[@class=\"table-area\"]");
-    By plus = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/ndc-department/div/tilde-data-table/div/div/div/div/tilde-paginator/div/div/button[2]");
-    By StatusColumn = By.xpath("//*[@id=\"pr_id_82-table\"]/thead/tr/th[3]");
-    By Dashboard =By.xpath("//a[@href=\"/dashboard\"]");
     By Btn_Edit = By.xpath("//i[@class=\"pi pi-pencil\"]");
     By Btn_ThumpUp = By.xpath("//i[@class=\"pi pi-thumbs-up\"]");
     By Btn_ThumpDown = By.xpath("//i[@class=\"pi pi-thumbs-down\"]");
@@ -43,10 +37,12 @@ public class Department_Page {
     By Btn_SendAprroval = By.xpath("(//button[@type=\"submit\"])[3]");
     By Btn_InActiveCircle = By.xpath("//i[@class=\"pi pi-circle-fill\"]");
     By Btn_ActiveCircle = By.xpath("//i[@class=\"pi pi-circle\"]");
+    By ActualResult = By.xpath("//div[@aria-label=\"Added Successfully\"]");
 
-    public void  setCompany(){
-        driver.element().click(Btn_Company);
+    public String getActualResult(){
+        return driver.element().getText(ActualResult);
     }
+
     public void ClickSideMDepartment(){
         driver.element().click(Btn_Department);
     }
@@ -68,20 +64,11 @@ public class Department_Page {
     public void setCancel(){
         driver.element().click(Btn_Cancel);
     }
-    /////////SearchDepartment//////////////////////////////////////////////
-
-
-//    public void  clickOnDashBoard(){
-//        driver.element().click(Dashboard);
-//    }
 
     public void clickOnCompany() {
         driver.element().click(Btn_Company);
-
     }
-    // public void  openOperatingCountry(){
-    //  driver.element().click(OperatingCountry);
-    //  }
+
     public void OpenDepartment() {
         driver.element().click(Btn_Department);
     }
@@ -110,7 +97,6 @@ public class Department_Page {
         driver.element().click(Btn_Edit);
         driver.element().type(Txt_EditDepartmentName,editdepartmentname);
         driver.element().click(Btn_AssignedQueue);
-        // driver.element().select(Search,search);
         driver.element().click(Btn_ExitSearch);
         driver.element().type(Txt_RemarksUp,remarks);
         driver.element().click(Btn_SendAprroval);
@@ -144,6 +130,4 @@ public class Department_Page {
         System.out.println("Start Method: Delete the department");
         driver.element().click(Btn_Trash);
     }
-
-
 }

@@ -1,6 +1,8 @@
 package AdminPages.Admin.Branch;
+import AdminPages.Admin.AdminMenu;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,8 +26,8 @@ public class SearchBranch_TC extends TestBase_TC {
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
-        logIn.EnterUserName("E.saady");
-        logIn.EnterPassword("qqE6)Cxp6>B8");
+        new LogIn_Page(driver).ClickAdmin();
+        new LogIn_Page(driver).ClickOnLoginButton();
         logIn.ClickOnLoginButton();
 
 
@@ -33,6 +35,7 @@ public class SearchBranch_TC extends TestBase_TC {
     @Test(dataProvider = "JsonProvider")
     public void SearchBranch(Map<String,String>branch) throws InterruptedException {
         searchBranch = new Branch_Page1(driver);
+        new AdminMenu(driver).openSubAdmin().openBranch();
         String Branchcode = branch.get("Branchcode");
         String Branchname = branch.get("Branchname");
         String Selectcountry = branch.get("Selectcountry");
@@ -40,10 +43,6 @@ public class SearchBranch_TC extends TestBase_TC {
         String Selectcity = branch.get("Selectcity");
         searchBranch.RouteBranch();
         searchBranch.Txt_BranchCode(Branchcode);
-//        searchBranch.Txt_BranchName(Branchname);
-//        searchBranch.Lst_Country(Selectcountry);
-//        searchBranch.Lst_State(Selectstate);
-//        searchBranch.Lst_City(Selectcity);
         searchBranch.Btn_Active();
         searchBranch.Btn_Search();
         Thread.sleep(1500);
@@ -52,6 +51,7 @@ public class SearchBranch_TC extends TestBase_TC {
     @Test(dataProvider = "JsonProvider")
     public void setSearchBranchInactive(Map<String,String>branch){
         searchBranch = new Branch_Page1(driver);
+        new AdminMenu(driver).openSubAdmin().openBranch();
         String Branchcode = branch.get("Branchcode");
         String Branchname = branch.get("Branchname");
         String Selectcountry = branch.get("Selectcountry");
@@ -59,10 +59,7 @@ public class SearchBranch_TC extends TestBase_TC {
         String Selectcity = branch.get("Selectcity");
         searchBranch.RouteBranch();
         searchBranch.Txt_BranchCode(Branchcode);
-//        searchBranch.Txt_BranchName(Branchname);
         searchBranch.Lst_Country(Selectcountry);
-//        searchBranch.Lst_State(Selectstate);
-//        searchBranch.Lst_City(Selectcity);
         searchBranch.Btn_Inactive();
         searchBranch.Btn_Search();
     }
@@ -70,6 +67,7 @@ public class SearchBranch_TC extends TestBase_TC {
     @Test(dataProvider = "JsonProvider")
     public void setSearchBranchBoth(Map<String,String>branch){
         searchBranch = new Branch_Page1(driver);
+        new AdminMenu(driver).openSubAdmin().openBranch();
         String Branchcode = branch.get("Branchcode");
         String Branchname = branch.get("Branchname");
         String Selectcountry = branch.get("Selectcountry");
@@ -77,11 +75,11 @@ public class SearchBranch_TC extends TestBase_TC {
         String Selectcity = branch.get("Selectcity");
         searchBranch.RouteBranch();
         searchBranch.Txt_BranchCode(Branchcode);
-//        searchBranch.Txt_BranchName(Branchname);
-//        searchBranch.Lst_Country(Selectcountry);
-//        searchBranch.Lst_State(Selectstate);
-//        searchBranch.Lst_City(Selectcity);
         searchBranch.Btn_Both();
         searchBranch.Btn_Search();
+    }
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

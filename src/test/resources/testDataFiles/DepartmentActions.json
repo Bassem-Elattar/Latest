@@ -1,0 +1,14 @@
+{
+  "ValidData": {
+    "DepartmentName": "Latest",
+    "AssignedQueue": "Payment Settled",
+    "ExpectedResult" : "Added Successfully",
+    "Remarks" : "Approved",
+    "ExpectedError" : "No data has been found!"
+  },
+
+  "MapToStaff": {
+    "DepartmentName": "OFFICE ADMIN",
+    "ExpectedResult1" : "Department Mapped To Staff You Need To Delete The Staff First"
+  }
+}

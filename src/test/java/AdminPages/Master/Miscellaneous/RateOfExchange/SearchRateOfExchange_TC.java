@@ -4,6 +4,8 @@ package AdminPages.Master.Miscellaneous.RateOfExchange;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import com.shaft.driver.SHAFT;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,20 +19,14 @@ import static org.junit.Assert.assertEquals;
 public class SearchRateOfExchange_TC extends TestBase_TC {
     private LogIn_Page logIn;
     private RateOfExchange_Page rateOfExchange;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    SHAFT.TestData.JSON testData;
 
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
+        logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        testData = new SHAFT.TestData.JSON("RateOfExchange.json");
     }
     //Valid TestCases
     @Test
@@ -40,29 +36,29 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.ClickSearchButton();
-        // rateOfExchange.PaginationAutomation();
         rateOfExchange.paginateAndVerifyData();
     }
+
     @Test
     public void searchWithFromCurrency()   {
         rateOfExchange= new RateOfExchange_Page(driver);
         new Master_Common(driver).clickMaster()
                 .clickMiscellaneous()
                 .clickRateOfExchange();
-        rateOfExchange.SelectFromCurrency("Egyptian Pound");
+        rateOfExchange.SelectFromCurrency(testData.getTestData("ValidData.FromCurrency"));
         rateOfExchange.ClickSearchButton();
-        assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(1,"Egyptian Pound"));
+        assertEquals(testData.getTestData("ValidData.FromCurrency"),rateOfExchange.TableColumnDataExtractor(1,testData.getTestData("ValidData.FromCurrency")));
     }
+
     @Test
     public void searchWithToCurrency() throws InterruptedException {
         rateOfExchange= new RateOfExchange_Page(driver);
         new Master_Common(driver).clickMaster()
                 .clickMiscellaneous()
                 .clickRateOfExchange();
-        rateOfExchange.SelectToCurrency("Egyptian Pound");
+        rateOfExchange.SelectToCurrency(testData.getTestData("ValidData.ToCurrency"));
         rateOfExchange.ClickSearchButton();
-        Thread.sleep(Long.parseLong("5000"));
-        assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
+        assertEquals(testData.getTestData("ValidData.ToCurrency"),rateOfExchange.TableColumnDataExtractor(2,testData.getTestData("ValidData.ToCurrency")));
     }
     @Test
     public void searchWithFromAndToCurrency() throws InterruptedException {
@@ -70,12 +66,11 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
         new Master_Common(driver).clickMaster()
                 .clickMiscellaneous()
                 .clickRateOfExchange();
-        rateOfExchange.SelectFromCurrency("United States Dollar");
-        rateOfExchange.SelectToCurrency("Egyptian Pound");
+        rateOfExchange.SelectFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.SelectToCurrency(testData.getTestData("ValidData.ToCurrency"));
         rateOfExchange.ClickSearchButton();
-        Thread.sleep(Long.parseLong("5000"));
-        assertEquals("United States Dollar",rateOfExchange.TableColumnDataExtractor(1,"United States Dollar"));
-        assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
+        assertEquals(testData.getTestData("ValidData.FromCurrency"),rateOfExchange.TableColumnDataExtractor(1,testData.getTestData("ValidData.FromCurrency")));
+        assertEquals(testData.getTestData("ValidData.ToCurrency"),rateOfExchange.TableColumnDataExtractor(2,testData.getTestData("ValidData.ToCurrency")));
 
     }
     //inValid
@@ -85,15 +80,16 @@ public class SearchRateOfExchange_TC extends TestBase_TC {
         new Master_Common(driver).clickMaster()
                 .clickMiscellaneous()
                 .clickRateOfExchange();
-        rateOfExchange.SelectFromCurrency("Algerian Dinar");
-        rateOfExchange.SelectToCurrency("Euro");
+        rateOfExchange.SelectFromCurrency(testData.getTestData("InValidData.InvalidFromCurrency"));
+        rateOfExchange.SelectToCurrency(testData.getTestData("InValidData.InvalidToCurrency"));
         rateOfExchange.ClickSearchButton();
-        Thread.sleep(Long.parseLong("5000"));
         String Actual =driver.element().getText(rateOfExchange.Txt_NoDataFounded);
-        assertEquals("No data has been found!",Actual);
-
+        assertEquals(testData.getTestData("InValidData.NoResultsError"),Actual);
     }
 
-
+    @AfterMethod
+    public void Reload(){
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 }
 

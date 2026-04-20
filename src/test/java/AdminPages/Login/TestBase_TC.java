@@ -12,8 +12,7 @@ public class TestBase_TC {
     public void setupBrowse() throws InterruptedException {
         driver = new SHAFT.GUI.WebDriver(DriverFactory.DriverType.CHROME);
         //driver.browser().maximizeWindow();
-        driver.browser().navigateToURL("http://192.168.1.70");
-
+        driver.browser().navigateToURL("http://192.168.1.216");
     }
 
 //    @AfterTest

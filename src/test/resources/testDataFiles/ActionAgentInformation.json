@@ -1,8 +1,13 @@
-[
+
   {
     "DataEnterForDropDown": "Test",
     "AgencyName": "Test Egypt",
-    "Alert" : "Updated Successfully"
+    "Alert" : "Updated Successfully",
+    "PortalUsername" : "AGN10053",
+    "PortalEmail" : "ahmed.refat@tildetech.ae",
+    "PortalPassword" : "r@iyJr09",
+    "RequiredError" : "Required",
+    "UpdatedMessage" : "Updated Successfully",
+    "InvalidPhoneError" : "Please enter valid phone number",
+    "InvalidEmailError" : "Please enter a valid email"
   }
-
-]

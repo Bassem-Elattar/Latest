@@ -1,11 +1,11 @@
 {
   "ValidData": {
-    "BookingStartDate":"07/10/2024",
-    "BookingEndDate":"07/8/2025",
-    "OrderID":"BRN2TESORD25070215UQEW",
-    "BookingReference":"NDCEG-BR-F250702HSW2qd",
-    "GDSPNR":"CQ52ZY",
-    "TicketNo":"0772885623350",
+    "BookingStartDate":"03/20/2026",
+    "BookingEndDate":"04/20/2026",
+    "OrderID":"BRN2TESORD260408RGSOH9",
+    "BookingReference":"NDCEG-BR-F2604084GndR6",
+    "GDSPNR":"O6P4OZ",
+    "TicketNo":"39057639583966",
     "InvvoiceNo":"INVNDC250702JxjmYI",
     "BranchName":"Test",
     "PaxFirstName":"mahmoud",
@@ -13,7 +13,7 @@
     "ClientName":"mahmoud shamekh",
     "AgencyName":"Test Egypt",
     "EmailID":"test.user.ndc@gmail.com",
-    "PaginationResult":"Showing 20 results of 243 results",
-    "Result":"Showing 10 results of 243 results"
+    "PaginationResult":"Showing 20 results",
+    "Result":"Showing 10 results"
   }
 }
