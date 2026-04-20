@@ -42,7 +42,6 @@ public class SearchAgentInformation_TC extends TestBase_TC {
         agentInformation.ClickonSearch();
         WebElement Select = driver.getDriver().findElement(agentInformation.SelectTextFromTable);
         ExpectedResult = Select.getText();
-
         if (testData.getTestData("Name").contains(ExpectedResult)) {
             System.out.println("Test Case SearchWithValidFullName Passed");
 

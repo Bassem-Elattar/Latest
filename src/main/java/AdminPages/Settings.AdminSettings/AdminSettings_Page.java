@@ -13,6 +13,7 @@ public class AdminSettings_Page {
         this.softAssert = new SoftAssert();
 
         this.driver = driver;
+
     }
     static SHAFT.GUI.WebDriver driver;
     public final By Username = By.id("id-Username");
@@ -23,14 +24,12 @@ public class AdminSettings_Page {
     private final By FlightSearchLimitationButton = By.xpath("//a[@href='/master/supplier/flight-search-limitation']");
     By Settings = By.xpath("//span[normalize-space()='Settings']");
     By AdminSettings = By.xpath("//a[@class='ng-star-inserted']");
-
-
-    public final By EditButton = By.xpath("//body[1]/ndc-root[1]/ndc-layout[1]/div[1]/div[3]/div[1]/div[1]/ndc-flight-search-limitation[1]/div[1]/tilde-data-table[1]/div[1]/div[1]/div[1]/div[1]/div[2]/p-table[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]/div[1]/div[1]/i[1]");
-
+    public final By EditButton = By.xpath("(//i[@class='pi pi-pencil'])[1]");
     public final By LimitSupplier = By.xpath("//p-dropdown[@class=\"p-element p-inputwrapper fg-input " +
             "ng-untouched ng-pristine ng-valid ng-star-inserted p-inputwrapper-filled\"]");
     public final By ApproveButton = By.xpath("//button[@type=\"submit\"]");
     public final By GetLimit = By.xpath("(//div//table//tbody//tr//td)[3]");
+
     public AdminSettings_Page NavigateToFlightLimitation(String Check)
     {
         driver.element().click(Master);
@@ -42,8 +41,8 @@ public class AdminSettings_Page {
         driver.element().click(SelectIndex);
         driver.element().click(ApproveButton);
         return this;
-
     }
+
     public final By ClickOnSupplier = By.xpath("//span[@class=\"p-dropdown-label p-inputtext p-placeholder ng-star-inserted\"]");
     public AdminSettings_Page ClickOnSupplierAndChooseIndex(String Check){
 
@@ -53,13 +52,12 @@ public class AdminSettings_Page {
         driver.element().click(SelectIndex);
         return this;
     }
+
     public AdminSettings_Page NavigateToAdminSetting()
     {
         driver.element().click(Settings);
         driver.element().click(AdminSettings);
-
         return this;
-
     }
 
     public AdminSettings_Page EditNewFlightNum(String S)
@@ -68,14 +66,10 @@ public class AdminSettings_Page {
         driver.element().clear(EditBox);
         driver.element().type(EditBox, S);
         driver.element().click(Save);
-
         return this;
-
     }
+
     By BookingMidOffice = By.xpath("//span[normalize-space()='Booking-Mid Office']");
-    By ExpandMenu = By.xpath("//body/ndc-root/ndc-layout[@class='ng-star-inserted']/div[@class='content']/div[@class='side-menu collapsed-sidebar']/button[1]");
-    By DropDownBookingMidOffice = By.xpath("//a[@class='ng-star-inserted']//span[contains(text(),'Booking-Mid Office')]");
-    By Booking = By.xpath("//span[normalize-space()='Booking']");
     By BranchList = By.xpath("//span[normalize-space()='Branch*']");
     By Up_Selling = By.xpath("//p-checkbox[@formcontrolname='isUpSelling']//div[@class='p-checkbox-box']");
     public AdminSettings_Page NavigateToBooking()
@@ -85,9 +79,7 @@ public class AdminSettings_Page {
         final By SelectIndex = By.xpath("//li[@aria-label='Test']");
         driver.element().click(SelectIndex);
         driver.element().click(Up_Selling);
-
         return this;
-
     }
 
     public AdminSettings_Page EditNewUpsellingNum(String S)
@@ -96,10 +88,9 @@ public class AdminSettings_Page {
         driver.element().clear(EditBox);
         driver.element().type(EditBox, S);
         driver.element().click(Save);
-
         return this;
-
     }
+
     public AdminSettings_Page EditNewRefundNum(String S)
     {
         driver.element().click(Pages);
@@ -107,11 +98,8 @@ public class AdminSettings_Page {
         driver.element().clear(EditBox);
         driver.element().type(EditBox, S);
         driver.element().click(Save);
-
         return this;
-
     }
-
 
     By EditFlight = By.xpath("(//i[@class=\"pi pi-pencil\"])[10]");
     By EditUpSelling = By.xpath("(//i[@class=\"pi pi-pencil\"])[10]");
@@ -125,31 +113,25 @@ public class AdminSettings_Page {
     private final By LogOutButton = By.xpath("//span[@class=\"p-menuitem-icon pi pi-sign-out ng-star-inserted\"]");
 
     public AdminSettings_Page LoginAsAdmin() {
-
         driver.element().click(AngelDownForLogOut);
         driver.element().click(LogOutButton);
-
         driver.element().type(Username, "e.saady");
         driver.element().type(Password, "qqE6)Cxp6>B8");
         driver.element().click(LogINButton);
         adminsetting1 = new AdminSettings_Page(driver);
-
         return this;
     }
+
     private final By AngelDownForLogOut1=By.xpath("//img[@src=\"../static/img/dropdown_arrow_icon.png\"]");
     private final By LogOutButton1 = By.xpath("(//a[@href=\"/odeysysadmin/logout\"])[1]");
 
     public AdminSettings_Page LoginAsSuperAdmin() {
-
         driver.element().click(AngelDownForLogOut1);
         driver.element().click(LogOutButton1);
-
         driver.element().type(Username, "odeysysadmin");
         driver.element().type(Password, "qqE6)Cxp6>B8");
         driver.element().click(LogINButton);
         adminsetting1 = new AdminSettings_Page(driver);
-
         return this;
     }
-
 }

@@ -101,12 +101,13 @@ public class EditAgentInformation_TC extends TestBase_TC {
         agentInformation.ClickonSearch();
         driver.element().click(agentInformation.Btn_Editbutton);
         driver.element().click(agentInformation.Btn_SearchKey);
-        //driver.element().click(agentInformation.SelectTextFromKey);
         agentInformation.EnterPhoneNumber(testData.getTestData("phoneExample"));
         driver.element().click(agentInformation.Btn_UpdateButton);
         WebElement Select = driver.getDriver().findElement(agentInformation.InvalidPhone);
         ExpectedResult = Select.getText();
         String InvalidMessagePhone = "Please enter valid phone number";
+        System.out.println(InvalidMessagePhone);
+        System.out.println(ExpectedResult);
         if (InvalidMessagePhone.equals(ExpectedResult)) {
             System.out.println("Test Case PhoneIsClickableAndChangeableInvalid Passed");
         }
@@ -143,11 +144,12 @@ public class EditAgentInformation_TC extends TestBase_TC {
         ExpectedResult = Select.getText();
         String Alert = "Updated Successfully";
         if (Alert.equals(ExpectedResult)) {
-            agentInformation.EnterNDCPortal();
+            agentInformation.EnterNDCPortal(testData.getTestData("PortalUsername"), testData.getTestData("PortalEmail"), testData.getTestData("PortalPassword"));
             driver.element().click(agentInformation.Notification);
             driver.element().click(agentInformation.ProfileManagement);
         }
     }
+
     @AfterMethod
     public void Reload(){
         driver.browser().navigateToURL("http://192.168.1.70");

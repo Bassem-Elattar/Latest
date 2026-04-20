@@ -4,6 +4,7 @@ package AdminPages.Master.Miscellaneous.RateOfExchange;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -20,14 +21,16 @@ import static org.junit.Assert.assertFalse;
 public class CreateRateOfExchange_TC extends TestBase_TC {
     private LogIn_Page logIn;
     private RateOfExchange_Page rateOfExchange;
+    SHAFT.TestData.JSON testData;
 
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        testData = new SHAFT.TestData.JSON("RateOfExchange.json");
     }
+
     //Valid TestCases
     @Test
     public void CreateRateWithValidData() throws InterruptedException {
@@ -36,18 +39,18 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("Saudi Riyal");
-        rateOfExchange.AddToCurrency("Egyptian Pound");
-        rateOfExchange.AddRateOfExchange("12345.05");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("ValidData.RateOfExchange"));
         rateOfExchange.ClickSendForApprovel();
-        rateOfExchange.SelectFromCurrency("Saudi Riyal");
-        rateOfExchange.SelectToCurrency("Egyptian Pound");
+        rateOfExchange.SelectFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.SelectToCurrency(testData.getTestData("ValidData.ToCurrency"));
         rateOfExchange.ClickSearchButton();
-        assertEquals("Saudi Riyal",rateOfExchange.TableColumnDataExtractor(1,"Saudi Riyal"));
-        assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
-        assertEquals("12345.05",rateOfExchange.TableColumnDataExtractor(3,"12345.05"));
-
+        assertEquals(testData.getTestData("ValidData.FromCurrency"),rateOfExchange.TableColumnDataExtractor(1,testData.getTestData("ValidData.FromCurrency")));
+        assertEquals(testData.getTestData("ValidData.ToCurrency"),rateOfExchange.TableColumnDataExtractor(2,testData.getTestData("ValidData.ToCurrency")));
+        assertEquals(testData.getTestData("ValidData.RateOfExchange"),rateOfExchange.TableColumnDataExtractor(3,testData.getTestData("ValidData.RateOfExchange")));
     }
+
     @Test
     public void CreateRateWithValidDataWithSameCurrency() throws InterruptedException {
         rateOfExchange= new RateOfExchange_Page(driver);
@@ -55,16 +58,16 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("Saudi Riyal");
-        rateOfExchange.AddToCurrency("Egyptian Pound");
-        rateOfExchange.AddRateOfExchange("47");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("ValidData.RateOfExchange"));
         rateOfExchange.ClickSendForApprovel();
-        rateOfExchange.SelectFromCurrency("Saudi Riyal");
-        rateOfExchange.SelectToCurrency("Egyptian Pound");
+        rateOfExchange.SelectFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.SelectToCurrency(testData.getTestData("ValidData.ToCurrency"));
         rateOfExchange.ClickSearchButton();
-        assertEquals("Saudi Riyal",rateOfExchange.TableColumnDataExtractor(1,"Saudi Riyal"));
-        assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
-        assertEquals("47",rateOfExchange.TableColumnDataExtractor(3,"47"));
+        assertEquals(testData.getTestData("ValidData.FromCurrency"),rateOfExchange.TableColumnDataExtractor(1,testData.getTestData("ValidData.FromCurrency")));
+        assertEquals(testData.getTestData("ValidData.ToCurrency"),rateOfExchange.TableColumnDataExtractor(2,testData.getTestData("ValidData.ToCurrency")));
+        assertEquals(testData.getTestData("ValidData.RateOfExchange"),rateOfExchange.TableColumnDataExtractor(3,testData.getTestData("ValidData.RateOfExchange")));
     }
     //update on change of Currency
     @Test
@@ -74,16 +77,16 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("United States Dollar");
-        rateOfExchange.AddToCurrency("Egyptian Pound");
-        rateOfExchange.AddRateOfExchange("44");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("ValidData.RateOfExchange"));
         rateOfExchange.ClickSendForApprovel();
-        rateOfExchange.SelectFromCurrency("United States Dollar");
-        rateOfExchange.SelectToCurrency("Egyptian Pound");
+        rateOfExchange.SelectFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.SelectToCurrency(testData.getTestData("ValidData.ToCurrency"));
         rateOfExchange.ClickSearchButton();
-        assertEquals("United States Dollar",rateOfExchange.TableColumnDataExtractor(1,"United States Dollar"));
-        assertEquals("Egyptian Pound",rateOfExchange.TableColumnDataExtractor(2,"Egyptian Pound"));
-        assertEquals("44",rateOfExchange.TableColumnDataExtractor(3,"44"));
+        assertEquals(testData.getTestData("ValidData.FromCurrency"),rateOfExchange.TableColumnDataExtractor(1,testData.getTestData("ValidData.FromCurrency")));
+        assertEquals(testData.getTestData("ValidData.ToCurrency"),rateOfExchange.TableColumnDataExtractor(2,testData.getTestData("ValidData.ToCurrency")));
+        assertEquals(testData.getTestData("ValidData.RateOfExchange"),rateOfExchange.TableColumnDataExtractor(3,testData.getTestData("ValidData.RateOfExchange")));
 
     }
     @Test
@@ -93,18 +96,15 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("United States Dollar");
-        rateOfExchange.AddToCurrency("Egyptian Pound");
-        rateOfExchange.AddRateOfExchange("44");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("ValidData.RateOfExchange"));
         rateOfExchange.ClickCancel();
         String Actual=driver.element().getText(rateOfExchange.Txt_ValidationOnCancelButton);
-        assertEquals("Search Rate of Exchange",Actual);
-
-
+        assertEquals(testData.getTestData("ValidData.ExpectedError"),Actual);
     }
 
     //Invalid testcases
-
     @Test
     public void CreateRateWithoutFromCurrency()  {
         rateOfExchange= new RateOfExchange_Page(driver);
@@ -112,11 +112,11 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddToCurrency("Euro");
-        rateOfExchange.AddRateOfExchange("44");
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("ValidData.RateOfExchange"));
         rateOfExchange.ClickSendForApprovel();
         String Actual=driver.element().getText(rateOfExchange.Txt_ValidationErrorFromCurrency);
-        assertEquals("Required",Actual);
+        assertEquals(testData.getTestData("ValidData.RequiredError"),Actual);
 
     }
     @Test
@@ -126,11 +126,11 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("United States Dollar");
-        rateOfExchange.AddRateOfExchange("44");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("ValidData.RateOfExchange"));
         rateOfExchange.ClickSendForApprovel();
         String Actual=driver.element().getText(rateOfExchange.Txt_ValidationErrorToCurrency);
-        assertEquals("Required",Actual);
+        assertEquals(testData.getTestData("ValidData.RequiredError"),Actual);
 
     }
     @Test
@@ -140,12 +140,11 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("United States Dollar");
-        rateOfExchange.AddToCurrency("Egyptian Pound");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
         rateOfExchange.ClickSendForApprovel();
         String Actual=driver.element().getText(rateOfExchange.Txt_ValidationErrorForRate);
-        assertEquals("Required",Actual);
-
+        assertEquals(testData.getTestData("ValidData.RequiredError"),Actual);
     }
 
     // issue under solving
@@ -156,12 +155,12 @@ public class CreateRateOfExchange_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRateOfExchange();
         rateOfExchange.AddRateButton();
-        rateOfExchange.AddFromCurrency("United States Dollar");
-        rateOfExchange.AddToCurrency("Egyptian Pound");
-        rateOfExchange.AddRateOfExchange("0");
+        rateOfExchange.AddFromCurrency(testData.getTestData("ValidData.FromCurrency"));
+        rateOfExchange.AddToCurrency(testData.getTestData("ValidData.ToCurrency"));
+        rateOfExchange.AddRateOfExchange(testData.getTestData("InValidData.RateOfExchange1"));
         rateOfExchange.ClickSendForApprovel();
         String Actual=driver.element().getText(rateOfExchange.Txt_ValidationErrorForRate);
-        assertEquals("Invalid Exchange Rate",Actual);
+        assertEquals(testData.getTestData("InValidData.ExpectedError1"),Actual);
 
     }
     @AfterMethod

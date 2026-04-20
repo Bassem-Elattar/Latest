@@ -41,8 +41,6 @@ public class AgentInformationnn_Page {
     public final By SelectInvalidTextEmail = By.xpath("//span[normalize-space()='Please enter valid email']");
     public final By STR = By.xpath("//span[@class='fg-error has-error']");
     public final By SelectNoDataFound = By.xpath("//td[@class='message']");
-    public final By SelectEditbutton = By.xpath("//i[@class=\"pi pi-pencil\"]");
-
     private final By Fullname = By.xpath("//input[@id='id-Fullname']");
     private final By Phone = By.xpath("//input[@id='phone number']");
     private final By Email = By.xpath("//input[@id='id-Email']");
@@ -102,13 +100,12 @@ public class AgentInformationnn_Page {
     /// View
     public final By SelectTextFrompopup=By.xpath("//span[normalize-space()='Essam Saady']");
     public final By Viewbutton = By.xpath("(//i[@class='pi pi-eye'])[1]");
-    private final By Closebutton = By.xpath("/html/body/ndc-root/ndc-layout/div/div[3]/div[1]/div/ndc-agent-information/p-dialog/div/div/div[2]/div/button");
+    public final By Closebutton = By.xpath("/html/body/ndc-root/ndc-layout/div/div[3]/div[1]/div/ndc-agent-information/p-dialog/div/div/div[2]/div/button");
     private final By Unlock = By.xpath("//button[@class='p-element p-button p-component']");
     private final By Yes = By.xpath("//span[normalize-space()='Yes']");
     private final By No = By.xpath("//span[normalize-space()='No']");
-    public final By SuccessfullAlert = By.xpath("(//div[@class='ng-tns-c7-49 ng-star-inserted ng-trigger ng-trigger-flyInOut ngx-toastr toast-success'])[1]");
-    public final By SelectInvalidTextEmailForView = By.xpath("//span[contains(text(), 'Please enter a valid email')]");
-// (//div[@class='ng-tns-c7-98 ng-star-inserted ng-trigger ng-trigger-flyInOut ngx-toastr toast-success'])[1]
+    public final By SuccessfullAlert = By.xpath("//div[@id='toast-container']");
+
     public AgentInformationnn_Page ClickonClose() {
         driver.element().click(Closebutton);
         return this;
@@ -150,18 +147,18 @@ public class AgentInformationnn_Page {
     private final By Txt_emailPortal = By.xpath("//input[@id=\"userAlias\"]");
     private final By Txt_PasswordPortal = By.xpath("//input[@id=\"password_password\"]");
     private final By Btn_LoginPortal = By.xpath("//input[@type=\"submit\"]");
-    public final By Notification = By.xpath("//img[@style=\"margin-right: 12px;top: 0px;margin-left: -6px;\"]");
-    public final By ProfileManagement = By.xpath("//img[@src=\"../static/images/icons/profile1.png\"]");
+    public final By Notification = By.xpath("//img[@src='../static/images/icons/setting-new.png']");
+    public final By ProfileManagement = By.xpath("//div[@class='pull-right npdw']//li[3]");
     public final By FullNamePortal = By.xpath("//input[@id=\"firstName\"]");
     public final By SelectTextFromMobilePortal = By.xpath("//span[contains(text(),'010')]");
     String urlforportal = "http://192.168.1.70:8080/odeysysportal/login/loginForm";
-    public String urlfordashboardportal ="http://192.168.1.70:8080/odeysysportal/dashboard/dashboardHome";
+    public String urlfordashboardportal ="http://192.168.1.70:8080/odeysysportal/dashboard/dashboardHome?isCoreSystem=true";
 
-    public AgentInformationnn_Page EnterNDCPortal() {
+    public AgentInformationnn_Page EnterNDCPortal(String Name, String Email, String Password) {
         driver.browser().navigateToURL(urlforportal);
-        driver.element().type(Txt_UsernamePortal,"AGN2");
-        driver.element().type(Txt_emailPortal,"e.saady@ndceg.com");
-        driver.element().type(Txt_PasswordPortal,"qqE6)Cxp6>B8");
+        driver.element().type(Txt_UsernamePortal,Name);
+        driver.element().type(Txt_emailPortal,Email);
+        driver.element().type(Txt_PasswordPortal,Password);
         driver.element().click(Btn_LoginPortal);
         return this;
     }

@@ -138,9 +138,5 @@ public class LogIn_Page {
         driver.element().type(Txt_Username, username);
         driver.element().type(Txt_Password, password);
         return this;
-
-
-
     }
-
 }
