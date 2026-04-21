@@ -29,8 +29,8 @@ public class SearchCity_Page {
     By Rbtn_Active = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Active\"]]");
     By Rbtn_Both = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Both\"]]");
     By Btn_SearchBtn = By.xpath("//button[@type=\"submit\"]");
-    By Btn_setinActive = By.xpath("//i[@class=\"pi pi-circle-fill\"]");
-    By Btn_setactive = By.xpath("//i[@class=\"pi pi-circle\"]");
+    By Btn_setinActive = By.xpath("(//i[@class='pi pi-circle-fill'])[1]");
+    By Btn_setactive = By.xpath("(//i[@class='pi pi-circle'])[1]");
 
     public void ClickonMaster(){
         driver.element().click(Btn_Admin);
@@ -53,6 +53,7 @@ public class SearchCity_Page {
         Thread.sleep(MILLIS1);
         driver.element().type(Txt_CountryName,countryname);
         Thread.sleep(MILLIS1);
+        driver.element().type(Txt_CountryName,countryname).select(Txt_CountryName,countryname);
         driver.element().type(Txt_CityName,cityname);
         Thread.sleep(MILLIS1);
         driver.element().type(Txt_CityCode,citycode);

@@ -26,12 +26,9 @@ public class Airport_Page {
     private final By AirportName = By.xpath("//input[@id='id-AirportName']");
     private final By Country = By.xpath("//input[@id='id-Country']");
     private final By City = By.xpath("//input[@id='id-City']");
-    private final By Type = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-airport/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[5]/ndc-fg-dropdown-input/p-dropdown/div/span");
-    private final By Station = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-airport/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[6]/ndc-fg-dropdown-input/p-dropdown/div/span");
-    private final By Inactive_Active = By.xpath("(//div[@class=\"p-radiobutton-box\"])[1]");
-    private final By Both = By.xpath("(//div[@class=\"p-radiobutton-box\"])[2]");
+    private final By Type = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='Select'])[1]");
+    private final By Station = By.xpath("//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted']");
     private final By Search = By.xpath("//button[@type=\"submit\"]");
-    private final By Table = By.xpath("(//td)[1]");
     private final By IATAAssert =  By.xpath("//td[normalize-space()][1]");
     private final By NameAssert =  By.xpath("//td[normalize-space()][2]");
 

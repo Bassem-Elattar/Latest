@@ -6,6 +6,7 @@ import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
 import AdminPages.Master.Miscellaneous.Region.Country.CreateCountry_Page;
 import AdminPages.Master.Miscellaneous.Region.Country.SearchCountry_Page;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -39,7 +40,7 @@ public class CreateRegion_TC extends TestBase_TC {
     }
 
     @Test(dataProvider = "JsonProvider")
-    public void CreateRegion(Map<String, String> region){
+    public void CreateRegion(Map<String, String> region) throws InterruptedException {
         regionSearchCity = new SearchCity_Page(driver);
         searchRegion = new SearchRegion_Page(driver);
         createRegion = new CreateRegion_Page(driver);
@@ -49,11 +50,10 @@ public class CreateRegion_TC extends TestBase_TC {
         String RegionName = region.get("RegionName");
         String RegionCode = region.get("RegionCode");
         String CountryName = region.get("CountryName");
-        createRegion.setRegionName(RegionName,RegionCode,CountryName);
+        String CountryName1 = region.get("CountryName1");
+        createRegion.setRegionName(RegionName,RegionCode,CountryName, CountryName1);
+        String Expected = "Added Successfully";
+        Assert.assertEquals(createRegion.Actual(),Expected);
         createRegion.verifyURLorErrorMessages();
     }
-
-
-
-
 }

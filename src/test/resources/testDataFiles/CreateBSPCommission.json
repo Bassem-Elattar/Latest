@@ -1,21 +1,24 @@
-[
-  {
-    "AirlineName": "Adria Airways",
-    "CommissionName": "Eyaasttest",
+{
+    "AirlineName": "Air Burkina",
+    "CommissionName": "Eyaasttest1",
     "GDSSupplier": "Galileo",
     "SupplierCredential": "Galileo Live UAE",
     "JourneyType": "One way",
     "TicketDesignator": "",
     "TourCode": "",
-    "OriginAirport": "Anaa(AAA)",
-    "DestinationAirport": "",
+    "OriginAirport": "Anaa",
+    "DestinationAirport": "Arrabury",
     "OriginCity": "",
     "DestinationCity": "",
     "OriginCountry": "",
     "DestinationCountry": "",
     "FareBasisCode": "",
-    "ValidityPeriodFrom":"1",
-    "ValidityPeriodTo": "15",
+    "ValidityPeriodFromDay":"5",
+    "ValidityPeriodFromMonth":"Apr",
+    "ValidityPeriodFromYear":"2026",
+    "ValidityPeriodToDay":"20",
+    "ValidityPeriodToMonth":"Apr",
+    "ValidityPeriodToYear":"2026",
     "OutboundPeriodFrom": "",
     "OutboundPeriodTo": "",
     "InboundPeriodFrom": "",
@@ -27,6 +30,7 @@
     "EnterValue": "10",
     "FareType": "Base Fare",
     "Amount": "Percentage",
+    "SearchCommissionName" : "ME From CAI 5%",
     "A": "",
     "B": "",
     "C": "",
@@ -52,6 +56,4 @@
     "X": "",
     "Y": "",
     "Z": ""
-
-  }
-]
+}

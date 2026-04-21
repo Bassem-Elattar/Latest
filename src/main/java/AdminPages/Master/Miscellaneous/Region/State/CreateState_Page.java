@@ -24,6 +24,13 @@ public class CreateState_Page {
         driver.element().click(option);
         driver.element().click(Btn_SendForApproval);
     }
+
+    public String Actual()
+    {
+        String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
+        return S;
+    }
+
     public void verifyURLorErrorMessages() {
         String expectedURL = "http://192.168.1.70/master/miscellaneous/region/state";
         String expectedError2 = "unique validation error";
@@ -73,10 +80,4 @@ public class CreateState_Page {
             }
         }
     }
-    public String Actual()
-    {
-        String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Your Top up has been processed successfully and sent for approval!!\"]"));
-        return S;
-    }
-
 }

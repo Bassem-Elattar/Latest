@@ -7,6 +7,8 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static org.openqa.selenium.By.xpath;
+
 public class BSPCommission_Page {
 
 
@@ -17,8 +19,8 @@ public class BSPCommission_Page {
 
 
     By Btn_AddCommission = By.xpath("//button[@routerlink=\"add\"]");
-    By Txt_AirlineName = By.xpath("//p-dropdown[.//input[@id=\"id-AirlineName(OnlyGDSAirlines)\"]]");
-    By Txt_CommissionName = By.xpath("//input[@id=\"id-CommissionName\"]");
+    By Txt_AirlineName = By.xpath("//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted']");
+    By Txt_CommissionName = By.xpath("//input[@id='id-CommissionName']");
     By Lst_GDSSupplier = By.xpath("//p-multiselect[.//input[@id=\"id-GDSsupplier\"]]");
     By Lst_SupplierCredential = By.xpath("//p-multiselect[.//input[@id=\"id-Suppliercredential\"]]");
     By Lst_JourneyType = By.xpath("//p-multiselect[.//input[@id=\"id-Journeytype\"]]");
@@ -26,13 +28,12 @@ public class BSPCommission_Page {
     By Txt_TourCode = By.xpath("//input[@id=\"id-TourCode\"]");
     By Rbtn_Airport = By.xpath("//p-radiobutton[.//input[@id=\"Level :-Airport\"]]");
     By Txt_OriginAirport = By.xpath("(//div[@class=\"dropdown-wrapper\"])[1]");
-    By Anna = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[2]/div/ndc-fg-input[1]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/ndc-chips-dropdown-input/div/div[2]/div[2]/label");
-    By Anna2 = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[2]/div/ndc-fg-input[1]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[2]/ndc-chips-dropdown-input/div/div[2]/div[5]/label/input ");
-    By Txt_DestinationAirport = By.xpath("(//div[@class=\"dropdown-wrapper\"])[2]");
+    By SelectOrigin = By.xpath("(//input[@type='checkbox'])[2]");
+    By Txt_DestinationAirport = By.xpath("//input[@placeholder='Search']");
     By Open = By.xpath("//div[@class=\"dropdown-wrapper open\"]");
     By Rbtn_City = By.xpath("//p-radiobutton[.//input[@id=\"Level :-City\"]]");
     By Txt_OriginCity = By.xpath("//input[@id=\"id-Origincities\"]");
-    By Txt_DestinationCity = By.xpath("//input[@id=\"id-Destinationcities\"]");
+    By Txt_DestinationCity = By.xpath("//div[@class='dropdown-wrapper']");
     By Rbtn_Country = By.xpath("//p-radiobutton[.//input[@id=\"Level :-Country\"]]");
     By Txt_OriginCountry = By.xpath("//input[@id=\"id-Origincountries\"]");
     By Txt_DestinationCountry = By.xpath("//input[@id=\"id-Destinationcountries\"]");
@@ -40,10 +41,10 @@ public class BSPCommission_Page {
     By Cbox_Child = By.xpath("//p-checkbox[.//input[@id=\"id-PAXtype:-Child\"]]");
     By Cbox_ExcludeMultipleCarrier = By.xpath("//p-checkbox[.//input[@id=\"id--Excludemultiplecarriers\"]]");
     By Txt_FareBasisCode = By.xpath("//input[@placeholder=\"Enter values\"]");
-    By Btn_ValidityPeriodFrom = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[3]/div/ndc-fg-input[1]/ndc-fg-date-picker-input/span/p-calendar/span/button");
-    By Btn_ValidityPeriodTo = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[3]/div/ndc-fg-input[2]/ndc-fg-date-picker-input/span/p-calendar/span/button/span");
-    By Btn_OutboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-46 p-button p-component p-button-icon-only ng-star-inserted\"]");
-    By Btn_OutboundPeriodTo = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-47 p-button p-component p-button-icon-only ng-star-inserted\"]");
+    By Btn_ValidityPeriodFrom = By.xpath("//input[@id='id-ValidityPeriodFrom']");
+    By Btn_ValidityPeriodTo = By.xpath("//input[@id='id-ValidityPeriodTo']");
+    By Btn_OutboundPeriodFrom = By.xpath("//input[@id='id-OutboundPeriodFrom']");
+    By Btn_OutboundPeriodTo = By.xpath("//input[@id='id-OutboundPeriodTo']");
     By Btn_InboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-48 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Btn_InboundPeriodTo = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-49 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Btn_BlackoutInboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-50 p-button p-component p-button-icon-only ng-star-inserted\"]");
@@ -102,21 +103,18 @@ public class BSPCommission_Page {
     By Rbtn_Active = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Active\"]]");
     By Rbtn_Both = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Both\"]]");
     By Btn_SearchButton = By.xpath("//button[@type=\"submit\"]");
+    By Year = By.xpath("//button[normalize-space()='2026']");
 
     public void AddCommission(){
         driver.element().click(Btn_AddCommission);
     }
 
     public void AirlineName(String airlinename) throws InterruptedException {
-//        driver.element().type(Txt_AirlineName,airlinename);
-//        Thread.sleep(3000);
         driver.element().select(Txt_AirlineName,airlinename);
-
     }
 
     public void CommissionName(String commissionname){
         driver.element().type(Txt_CommissionName,commissionname);
-
     }
 
     public void GDSSupplier(String GDS){
@@ -145,19 +143,14 @@ public class BSPCommission_Page {
 
     public void OriginAirPort(String originairport) throws InterruptedException {
         driver.element().click(Txt_OriginAirport);
-        driver.element().click(Anna);
-        driver.element().click(Txt_OriginAirport);
-
+        driver.element().type(Txt_DestinationAirport, originairport);
+        driver.element().click(SelectOrigin);
     }
 
     public void DestinationAirPort(String destinationairport) throws InterruptedException {
-//        driver.element().type(Txt_DestinationAirport,destinationairport);
-//        Thread.sleep(2000);
-//        driver.element().click(Txt_DestinationAirport);
-        Thread.sleep(2000);
-        driver.element().click(Anna2);
-        Thread.sleep(2000);
-//        driver.element().click(Open);
+        driver.element().click(Txt_DestinationCity);
+        driver.element().type(Txt_DestinationAirport, destinationairport);
+        driver.element().click(SelectOrigin);
     }
 
     public void City(){
@@ -200,12 +193,28 @@ public class BSPCommission_Page {
         driver.element().type(Txt_FareBasisCode,fairebasis);
     }
 
-    public void ValidityPeriodFrom(String validityperiodfrom){
-        driver.element().select(Btn_ValidityPeriodFrom,validityperiodfrom);
+    public void searchValidFromDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_ValidityPeriodFrom);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
     }
 
-    public void ValidityPeriodTo(String validityperiodto){
-        driver.element().select(Btn_ValidityPeriodTo,validityperiodto);
+    public void searchValidToDate(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_ValidityPeriodTo);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
     }
 
     public void OutboundPeriodFrom(String outboundperiodform){
@@ -364,8 +373,7 @@ public class BSPCommission_Page {
     }
 
     public void setAirlineName(String airlineName){
-        driver.element().type(Txt_AirlineName,airlineName).select(Txt_AirlineName,airlineName);
-
+        driver.element().select(Txt_AirlineName,airlineName);
     }
 
     public void setCommissionName(String commissionName){
@@ -451,7 +459,7 @@ public class BSPCommission_Page {
 
     public void performAssertionsAirlineName () {
         String expectedHeaderStatus = "Airline Name";
-        String[] allowedStatusValues = {"Egyptair"};
+        String[] allowedStatusValues = {"Air Burkina"};
 
 
         try {

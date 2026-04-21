@@ -17,19 +17,27 @@ public class CreateRegion_Page {
 
 
 
-    public void setRegionName(String regionName , String regionCode , String countryName){
+    public void setRegionName(String regionName , String regionCode , String countryName, String countryName1) throws InterruptedException {
         driver.element().click(Btn_AddRegion);
         driver.element().type(Txt_RegionName,regionName);
         driver.element().type(Txt_RegionCode,regionCode);
         driver.element().type(Lst_CountryName,countryName);
         driver.element().select(Lst_CountryName,countryName);
+        driver.element().type(Lst_CountryName,countryName1);
+        driver.element().select(Lst_CountryName,countryName1);
         driver.element().click(Btn_SendforAprroval);
+    }
+
+    public String Actual()
+    {
+        String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
+        return S;
     }
 
     public void verifyURLorErrorMessages() {
         String expectedURL = "http://192.168.1.70/master/miscellaneous/region/region";
         String expectedError2 = "unique validation error";
-        String expectedError = "required validation error";
+        String expectedError = "Required";
         String actualURL = driver.browser().getCurrentURL();
 
         // First check: Verify the URL

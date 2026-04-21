@@ -56,8 +56,12 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         String OriginCountry = create.get("OriginCountry");
         String DestinationCountry = create.get("DestinationCountry");
         String FareBasisCode = create.get("FareBasisCode");
-        String ValidityPeriodFrom = create.get("ValidityPeriodFrom");
-        String ValidityPeriodTo = create.get("ValidityPeriodTo");
+        String ValidityPeriodFromDay = create.get("ValidityPeriodFromDay");
+        String ValidityPeriodFromMonth = create.get("ValidityPeriodFromMonth");
+        String ValidityPeriodFromYear = create.get("ValidityPeriodFromYear");
+        String ValidityPeriodToDay = create.get("ValidityPeriodToDay");
+        String ValidityPeriodToMonth = create.get("ValidityPeriodToMonth");
+        String ValidityPeriodToYear = create.get("ValidityPeriodToYear");
         String OutboundPeriodFrom = create.get("OutboundPeriodFrom");
         String OutboundPeriodTo = create.get("OutboundPeriodTo");
         String InboundPeriodFrom = create.get("InboundPeriodFrom");
@@ -103,9 +107,8 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         createBSPCommission.OriginAirPort(OriginAirport);
         createBSPCommission.DestinationAirPort(DestinationAirport);
         createBSPCommission.Adult();
-        Thread.sleep(3000);
-        createBSPCommission.ValidityPeriodFrom(ValidityPeriodFrom);
-        createBSPCommission.ValidityPeriodTo(ValidityPeriodTo);
+        createBSPCommission.searchValidFromDate(ValidityPeriodFromDay, ValidityPeriodFromYear, ValidityPeriodFromMonth);
+        createBSPCommission.searchValidToDate(ValidityPeriodToDay, ValidityPeriodToYear, ValidityPeriodToMonth);
         createBSPCommission.Economy();
         createBSPCommission.EnterValue(EnterValue);
         createBSPCommission.FareType(FareType);
@@ -113,11 +116,5 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         createBSPCommission.setSubmit();
         String Expected = "Added Successfully";
         Assert.assertEquals(createBSPCommission.Actual(),Expected);
-        Thread.sleep(5000);
-
-
-
-
-
     }
 }

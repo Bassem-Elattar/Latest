@@ -37,7 +37,7 @@ public class SearchState_TC extends TestBase_TC {
     }
 
     @Test(dataProvider = "JsonProvider")
-    public void setSearchState(Map<String, String> state) throws InterruptedException {
+    public void SearchState(Map<String, String> state) throws InterruptedException {
         regionSearchCity = new SearchCity_Page(driver);
         searchRegion = new SearchRegion_Page(driver);
         searchState = new SearchState_Page(driver);
@@ -67,8 +67,6 @@ public class SearchState_TC extends TestBase_TC {
             }
         }
     }
-
-
 
     @AfterMethod
     public void navigateBackToURL() {

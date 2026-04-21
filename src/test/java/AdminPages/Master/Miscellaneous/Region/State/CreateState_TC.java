@@ -38,7 +38,7 @@ public class CreateState_TC extends TestBase_TC {
     }
 
     @Test(dataProvider = "JsonProvider")
-    public void setSearchState(Map<String, String> state){
+    public void CreateState(Map<String, String> state){
         regionSearchCity = new SearchCity_Page(driver);
         searchRegion = new SearchRegion_Page(driver);
         searchState = new SearchState_Page(driver);
@@ -53,9 +53,6 @@ public class CreateState_TC extends TestBase_TC {
         createState.setAddState(StateName,StateCode,CountryName);
         String Expected = "Added Successfully";
         Assert.assertEquals(createState.Actual(),Expected);
-
+        createState.verifyURLorErrorMessages();
     }
-
-
-
 }
