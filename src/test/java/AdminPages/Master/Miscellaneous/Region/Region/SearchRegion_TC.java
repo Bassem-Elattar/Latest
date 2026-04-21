@@ -61,7 +61,4 @@ public class SearchRegion_TC extends TestBase_TC {
             }
         }
     }
-
-
-
 }

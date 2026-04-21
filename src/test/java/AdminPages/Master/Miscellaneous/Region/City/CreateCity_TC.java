@@ -31,7 +31,6 @@ public class CreateCity_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
 
     @Test(dataProvider = "JsonProvider")
@@ -52,8 +51,6 @@ public class CreateCity_TC extends TestBase_TC {
         regionAddCity.verifyURLorErrorMessages();
 
     }
-
-
 
     @AfterMethod
     public void navigateBackToURL() {

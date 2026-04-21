@@ -35,9 +35,7 @@ public class ActionState_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
-
 
     @Test(priority = 1, dataProvider = "JsonProvider")
     public void CreateState(Map<String, String> state){
@@ -54,9 +52,7 @@ public class ActionState_TC extends TestBase_TC {
         String CountryName = state.get("CountryName");
         createState.setAddState(StateName,StateCode,CountryName);
         createState.verifyURLorErrorMessages();
-
     }
-
 
     @Test(priority = 2, dataProvider = "JsonProvider")
     public void SearchState(Map<String, String> state) throws InterruptedException {
@@ -90,41 +86,28 @@ public class ActionState_TC extends TestBase_TC {
         }
     }
 
+//    @Test(priority = 3, dataProvider = "JsonProvider")
+//    public void SearchStateAction(Map<String, String> state) throws InterruptedException {
+//        regionSearchCity = new SearchCity_Page(driver);
+//        searchRegion = new SearchRegion_Page(driver);
+//        searchState = new SearchState_Page(driver);
+//        actionState = new ActionState_Page(driver);
+//        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
+//        regionSearchCity.ClickonMaster();
+//        regionSearchCity.ClickonMiscellanous();
+//        regionSearchCity.ClickonRegion();
+//        searchState.setStatebtn();
+//        String StateName = state.get("StateName");
+//        String StateCode = state.get("StateCode");
+//        String CountryName = state.get("CountryName");
+//        String CountryName1 = state.get("CountryName1");
+//        String Remark = state.get("Remark");
+//        searchState.setState(StateName,StateCode,CountryName);
+//        searchState.setBoth();
+//        searchState.setSearch();
+//        actionState.setAddState(Remark,CountryName1);
+//    }
 
-
-    @Test(priority = 3, dataProvider = "JsonProvider")
-    public void SearchStateAction(Map<String, String> state) throws InterruptedException {
-        regionSearchCity = new SearchCity_Page(driver);
-        searchRegion = new SearchRegion_Page(driver);
-        searchState = new SearchState_Page(driver);
-        actionState = new ActionState_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
-        regionSearchCity.ClickonMaster();
-        regionSearchCity.ClickonMiscellanous();
-        regionSearchCity.ClickonRegion();
-        searchState.setStatebtn();
-        String StateName = state.get("StateName");
-        String StateCode = state.get("StateCode");
-        String CountryName = state.get("CountryName");
-        searchState.setState(StateName,StateCode,CountryName);
-        searchState.setBoth();
-        searchState.setSearch();
-        actionState.setAddState("asas","Ireland");
-
-        // Handle pagination and assertions separately
-//        int totalPages = paginationHelper.getTotalPages();
-//        for (int currentPage = 1; currentPage <= totalPages; currentPage++) {
-//            System.out.println("Processing page: " + currentPage);
-//
-//            // Perform assertions
-//            performAssertions();
-//
-//            // Navigate to the next page if not on the last page
-//            if (currentPage < totalPages) {
-//                paginationHelper.navigateToNextPage();
-//            }
-//        }
-    }
     @AfterMethod
     public void navigateBackToURL() {
         driver.browser().navigateToURL("http://192.168.1.70");

@@ -1,102 +1,569 @@
-[INFO ] 2026-04-20 14:40:45.544 [main] ReportManager - 
+[INFO ] 2026-04-21 15:00:02.025 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                     Powered by [1mSHAFT v.7.4.20231015[22m                                                    
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-20 14:40:48.390 [main] ReportManager - Loaded OpenCV "opencv_java470".
-[INFO ] 2026-04-20 14:40:48.390 [main] ReportManager - Initializing Allure Reporting Environment...
-[INFO ] 2026-04-20 14:40:48.496 [main] ReportManager - Initializing Summary Reporting Environment...
-[INFO ] 2026-04-20 14:40:48.510 [main] ReportManager - TestNG run detected...
-[INFO ] 2026-04-20 14:40:48.719 [main] Utils - [TestNG] Running:
-  C:\Users\sheen\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+[INFO ] 2026-04-21 15:00:02.586 [main] ReportManager - Loaded OpenCV "opencv_java470".
+[INFO ] 2026-04-21 15:00:02.587 [main] ReportManager - Initializing Allure Reporting Environment...
+[INFO ] 2026-04-21 15:00:02.691 [main] ReportManager - Initializing Summary Reporting Environment...
+[INFO ] 2026-04-21 15:00:02.710 [main] ReportManager - TestNG run detected...
+[INFO ] 2026-04-21 15:00:02.939 [main] Utils - [TestNG] Running:
+  C:\Users\bassem\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
 
-[INFO ] 2026-04-20 14:40:48.750 [main] ReportManager - 
+[INFO ] 2026-04-21 15:00:02.964 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                              Starting execution of suite setup configuration method                                             
                                           'com.shaft.listeners.internal.ConfigurationHelper.suiteSetup'                                          
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-20 14:40:48.858 [main] ReportManager - Initializing Important Links...
-[INFO ] 2026-04-20 14:40:48.873 [main] ReportManager - Initializing Properties...
-[INFO ] 2026-04-20 14:40:48.961 [main] ReportManager - 
+[INFO ] 2026-04-21 15:00:03.062 [main] ReportManager - Initializing Important Links...
+[INFO ] 2026-04-21 15:00:03.070 [main] ReportManager - Initializing Properties...
+[INFO ] 2026-04-21 15:00:03.163 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                              Starting execution of setup browse configuration method                                             
-                                         'AdminPages.Profile.Travellers.CreateTravellers_TC.setupBrowse'                                         
+                                    'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.setupBrowse'                                    
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-20 14:40:48.977 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
-[INFO ] 2026-04-20 14:40:49.006 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\sheen\Latest\targe..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
-[INFO ] 2026-04-20 14:40:49.006 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
-[INFO ] 2026-04-20 14:40:49.006 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
-[WARN ] 2026-04-20 14:40:51.690 [main] ReportManager - Apr 20, 2026 2:40:51 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-[WARN ] 2026-04-20 14:40:51.690 [main] ReportManager - WARNING: Unable to find CDP implementation matching 147
-[WARN ] 2026-04-20 14:40:51.692 [main] ReportManager - Apr 20, 2026 2:40:51 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
-[WARN ] 2026-04-20 14:40:51.692 [main] ReportManager - WARNING: Unable to find version of CDP to use for 147.0.7727.56. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
-[INFO ] 2026-04-20 14:40:51.692 [main] ReportManager - Successfully Opened: "windows | Chrome".
-[INFO ] 2026-04-20 14:40:51.765 [main] ReportManager - Target URL: "http://192.168.1.216"
-[INFO ] 2026-04-20 14:40:51.844 [main] ReportManager - Initial URL: "about:blank"
-[INFO ] 2026-04-20 14:40:53.060 [main] ReportManager - Navigate to url "http://192.168.1.216".
-[INFO ] 2026-04-20 14:40:53.061 [main] ReportManager - 
+[INFO ] 2026-04-21 15:00:03.200 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
+[INFO ] 2026-04-21 15:00:03.215 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\bassem\NDC-Uplift-..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
+[INFO ] 2026-04-21 15:00:03.217 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
+[INFO ] 2026-04-21 15:00:03.218 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
+[WARN ] 2026-04-21 15:00:07.035 [main] ReportManager - Apr 21, 2026 3:00:07 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+[WARN ] 2026-04-21 15:00:07.035 [main] ReportManager - WARNING: Unable to find CDP implementation matching 147
+[WARN ] 2026-04-21 15:00:07.036 [main] ReportManager - Apr 21, 2026 3:00:07 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+[WARN ] 2026-04-21 15:00:07.037 [main] ReportManager - WARNING: Unable to find version of CDP to use for 147.0.7727.57. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+[INFO ] 2026-04-21 15:00:07.047 [main] ReportManager - Successfully Opened: "windows | Chrome".
+[INFO ] 2026-04-21 15:00:07.134 [main] ReportManager - Target URL: "http://192.168.1.70"
+[INFO ] 2026-04-21 15:00:07.182 [main] ReportManager - Initial URL: "about:blank"
+[INFO ] 2026-04-21 15:00:12.854 [main] ReportManager - Navigate to url "http://192.168.1.70".
+[INFO ] 2026-04-21 15:00:12.856 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                  Starting execution of sign configuration method                                                 
-                                            'AdminPages.Profile.Travellers.CreateTravellers_TC.sign'                                            
+                                       'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.sign'                                       
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-20 14:40:53.431 [main] ReportManager - Type "E.saady" into "Username *".
-[INFO ] 2026-04-20 14:40:53.735 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
-[INFO ] 2026-04-20 14:40:54.057 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:54.149 [main] ReportManager - Click "Login".
-[INFO ] 2026-04-20 14:40:54.307 [main] ReportManager - 
+[INFO ] 2026-04-21 15:00:13.060 [main] ReportManager - Type "E.saady" into "Username *".
+[INFO ] 2026-04-21 15:00:13.197 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
+[INFO ] 2026-04-21 15:00:13.406 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:13.464 [main] ReportManager - Click "Login".
+[INFO ] 2026-04-21 15:00:13.621 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
-                                        Starting Execution: '1 out of 1' test cases in the current suite                                        
-                                Test Method: 'AdminPages.Profile.Travellers.CreateTravellers_TC.CreateTraveller'                                
+                                        Starting Execution: '1 out of 3' test cases in the current suite                                        
+                             Test Method: 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState'                             
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-20 14:40:55.139 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:55.229 [main] ReportManager - Click "Profile".
-[INFO ] 2026-04-20 14:40:55.626 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:55.717 [main] ReportManager - Click " Traveller".
-[INFO ] 2026-04-20 14:40:56.160 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:56.336 [main] ReportManager - Click "Add Traveller ".
-[INFO ] 2026-04-20 14:40:56.632 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:56.717 [main] ReportManager - Click "By.xpath: //p-dropdown[.//input[@id="id-BranchName"]]".
-[INFO ] 2026-04-20 14:40:57.020 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:57.100 [main] ReportManager - Click "By.xpath: //span[text()='Test']".
-[INFO ] 2026-04-20 14:40:57.415 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:57.500 [main] ReportManager - Click "By.xpath: //p-dropdown[.//input[@id="id-Title"]]".
-[INFO ] 2026-04-20 14:40:57.833 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:57.922 [main] ReportManager - Click "By.xpath: //span[text()='MR']".
-[INFO ] 2026-04-20 14:40:58.195 [main] ReportManager - Type "Ryad" into "First Name *".
-[INFO ] 2026-04-20 14:40:58.467 [main] ReportManager - Type "Mahmoud" into "Last Name *".
-[INFO ] 2026-04-20 14:40:58.736 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:58.872 [main] ReportManager - Click "Date of birth *".
-[INFO ] 2026-04-20 14:40:59.186 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:59.269 [main] ReportManager - Click "2026".
-[INFO ] 2026-04-20 14:40:59.583 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:40:59.655 [main] ReportManager - Click "2020".
-[INFO ] 2026-04-20 14:40:59.936 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:00.027 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Oct']".
-[INFO ] 2026-04-20 14:41:00.333 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:00.419 [main] ReportManager - Click "By.xpath: (//span[text()='1'])[1]".
-[INFO ] 2026-04-20 14:41:00.755 [main] ReportManager - Type "assrasdasddsfddsdsssdfdaa@gmail.com" into "Email ID *".
-[INFO ] 2026-04-20 14:41:01.063 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:01.173 [main] ReportManager - Click "By.xpath: //p-dropdown[.//input[@id="id-Nationality"]]".
-[INFO ] 2026-04-20 14:41:01.504 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:01.603 [main] ReportManager - Click "By.xpath: //span[text()='United Arab Emirates']".
-[INFO ] 2026-04-20 14:41:01.917 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:01.991 [main] ReportManager - Click "By.xpath: //p-dropdown[.//input[@id="id-Gender"]]".
-[INFO ] 2026-04-20 14:41:02.301 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:02.386 [main] ReportManager - Click "By.xpath: //span[text()='Male']".
-[INFO ] 2026-04-20 14:41:02.659 [main] ReportManager - Type "01032526898" into "+20 1001234567".
-[INFO ] 2026-04-20 14:41:02.921 [main] ReportManager - Type "cairo" into "Address *".
-[INFO ] 2026-04-20 14:41:03.186 [main] ReportManager - Type "7987978797" into "Passport Number".
-[INFO ] 2026-04-20 14:41:03.506 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:03.599 [main] ReportManager - Click "Expiry Date Expiry Date Expiry Date".
-[INFO ] 2026-04-20 14:41:03.906 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:03.991 [main] ReportManager - Click "2026".
-[INFO ] 2026-04-20 14:41:04.318 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:04.404 [main] ReportManager - Click "By.xpath: //span[normalize-space()='2029']".
-[INFO ] 2026-04-20 14:41:04.687 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:04.769 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Oct']".
-[INFO ] 2026-04-20 14:41:05.054 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-20 14:41:05.127 [main] ReportManager - Click "By.xpath: (//span[text()='1'])[1]".
+[INFO ] 2026-04-21 15:00:14.387 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:14.453 [main] ReportManager - Click "Master".
+[INFO ] 2026-04-21 15:00:14.981 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:15.039 [main] ReportManager - Click "By.xpath: (//a[@class="ng-star-inserted"])[3]".
+[INFO ] 2026-04-21 15:00:15.228 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:15.295 [main] ReportManager - Click " Region".
+[INFO ] 2026-04-21 15:00:15.507 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:15.573 [main] ReportManager - Click "State".
+[INFO ] 2026-04-21 15:00:15.769 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:15.829 [main] ReportManager - Click "Add State ".
+[INFO ] 2026-04-21 15:00:15.969 [main] ReportManager - Type "DemoTesgmhaaas" into "State name *".
+[INFO ] 2026-04-21 15:00:16.077 [main] ReportManager - Type "tyd" into "State Code *".
+[INFO ] 2026-04-21 15:00:16.270 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:16.349 [main] ReportManager - Click "By.xpath: //p-dropdown[.//input[@id="id-CountryName"]]".
+[INFO ] 2026-04-21 15:00:16.536 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:16.613 [main] ReportManager - Click "By.xpath: //span[text()='United Arab Emirates']".
+[INFO ] 2026-04-21 15:00:16.816 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:16.870 [main] ReportManager - Click "Send for approval".
+[INFO ] 2026-04-21 15:00:16.887 [main] ReportManager - Get current url "http://192.168.1.70/master/miscellaneous/region/state/add".
+[INFO ] 2026-04-21 15:00:16.887 [main] ReportManager - URL verification failed. Attempting to check for an error message...
+[INFO ] 2026-04-21 15:00:17.694 [main] ReportManager - Expected condition failed: waiting for com.shaft.listeners.internal.WebDriverListener$$Lambda/0x00000225225d2820@4cd13fad (tried for 0 second(s) with 100 milliseconds interval) || no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),' required validation error ')]"}
+[WARN ] 2026-04-21 15:00:17.702 [main] ReportManager - Apr 21, 2026 3:00:17 PM org.openqa.selenium.support.events.EventFiringDecorator callListenerMethod
+[WARN ] 2026-04-21 15:00:17.702 [main] ReportManager - WARNING: null
+[WARN ] 2026-04-21 15:00:17.702 [main] ReportManager - java.lang.reflect.InvocationTargetException
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.callListenerMethod(EventFiringDecorator.java:328)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.fireBeforeEvents(EventFiringDecorator.java:245)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.lambda$beforeCall$0(EventFiringDecorator.java:181)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at java.base/java.util.Arrays$ArrayList.forEach(Arrays.java:4305)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.beforeCall(EventFiringDecorator.java:181)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at org.openqa.selenium.support.decorators.DefaultDecorated.beforeCall(DefaultDecorated.java:43)
+[WARN ] 2026-04-21 15:00:17.703 [main] ReportManager - 	at org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:320)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at net.bytebuddy.renamed.java.lang.Object$ByteBuddy$NCc17I3R.findElement(Unknown Source)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at AdminPages.Master.Miscellaneous.Region.State.CreateState_Page.verifyURLorErrorMessages(CreateState_Page.java:54)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState(ActionState_TC.java:54)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+[WARN ] 2026-04-21 15:00:17.704 [main] ReportManager - 	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+[WARN ] 2026-04-21 15:00:17.705 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+[WARN ] 2026-04-21 15:00:17.705 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+[WARN ] 2026-04-21 15:00:17.705 [main] ReportManager - 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+[WARN ] 2026-04-21 15:00:17.705 [main] ReportManager - 	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.TestRunner.run(TestRunner.java:621)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+[WARN ] 2026-04-21 15:00:17.706 [main] ReportManager - 	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at org.testng.TestNG.runSuites(TestNG.java:1114)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at org.testng.TestNG.run(TestNG.java:1082)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for com.shaft.listeners.internal.WebDriverListener$$Lambda/0x00000225225d2820@4cd13fad (tried for 0 second(s) with 100 milliseconds interval)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:262)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at com.shaft.listeners.internal.WebDriverListener.beforeFindElement(WebDriverListener.java:62)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[WARN ] 2026-04-21 15:00:17.707 [main] ReportManager - 	... 36 more
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),' required validation error ')]"}
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager -   (Session info: chrome=147.0.7727.57)
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - Build info: version: '4.13.0', revision: 'ba948ece5b*'
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - Driver info: org.openqa.selenium.chrome.ChromeDriver
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - Command: [8a3628960038642e10ca96277fb20bed, findElement {using=xpath, value=//span[contains(text(),' required validation error ')]}]
+[WARN ] 2026-04-21 15:00:17.708 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 147.0.7727.57, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\bassem\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61587}, goog:processID: 20096, networkConnectionEnabled: false, pageLoadStrategy: none, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61587/devtoo..., se:cdpVersion: 147.0.7727.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: ws://localhost:43783/sessio..., webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - Session ID: 8a3628960038642e10ca96277fb20bed
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+[WARN ] 2026-04-21 15:00:17.709 [main] ReportManager - 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+[WARN ] 2026-04-21 15:00:17.710 [main] ReportManager - 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+[WARN ] 2026-04-21 15:00:17.710 [main] ReportManager - 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+[WARN ] 2026-04-21 15:00:17.710 [main] ReportManager - 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+[WARN ] 2026-04-21 15:00:17.710 [main] ReportManager - 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+[WARN ] 2026-04-21 15:00:17.710 [main] ReportManager - 	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+[WARN ] 2026-04-21 15:00:17.711 [main] ReportManager - 	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+[WARN ] 2026-04-21 15:00:17.711 [main] ReportManager - 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+[WARN ] 2026-04-21 15:00:17.711 [main] ReportManager - 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+[WARN ] 2026-04-21 15:00:17.711 [main] ReportManager - 	at com.shaft.listeners.internal.WebDriverListener.lambda$beforeFindElement$0(WebDriverListener.java:62)
+[WARN ] 2026-04-21 15:00:17.711 [main] ReportManager - 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
+[WARN ] 2026-04-21 15:00:17.711 [main] ReportManager - 	... 38 more
+[INFO ] 2026-04-21 15:00:17.724 [main] ReportManager - Find element action failed.
+[INFO ] 2026-04-21 15:00:18.965 [main] ReportManager - Successfully created attachment 'Screenshot - 1776776417850_CreateState_findElement_failed'
+[ERROR] 2026-04-21 15:00:18.966 [main] ReportManager - java.lang.reflect.InvocationTargetException: null
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:249)
+ org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:321)
+ net.bytebuddy.renamed.java.lang.Object$ByteBuddy$NCc17I3R.findElement(Unknown Source)
+ AdminPages.Master.Miscellaneous.Region.State.CreateState_Page.verifyURLorErrorMessages(CreateState_Page.java:54)
+ AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState(ActionState_TC.java:54)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+ org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+ org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+ org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+ org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+ org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+ java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ org.testng.TestRunner.privateRun(TestRunner.java:848)
+ org.testng.TestRunner.run(TestRunner.java:621)
+ org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+ org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+ org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+ org.testng.SuiteRunner.run(SuiteRunner.java:336)
+ org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+ org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+ org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+ org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+ org.testng.TestNG.runSuites(TestNG.java:1114)
+ org.testng.TestNG.run(TestNG.java:1082)
+ com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+ com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),' required validation error ')]"}
+  (Session info: chrome=147.0.7727.57)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8a3628960038642e10ca96277fb20bed, findElement {using=xpath, value=//span[contains(text(),' required validation error ')]}]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 147.0.7727.57, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\bassem\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61587}, goog:processID: 20096, networkConnectionEnabled: false, pageLoadStrategy: none, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61587/devtoo..., se:cdpVersion: 147.0.7727.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: ws://localhost:43783/sessio..., webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8a3628960038642e10ca96277fb20bed
+ java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+ java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+ java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+ org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+ org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+ org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+ org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+ org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+ org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+ org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+ org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:249)
+ org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:321)
+ net.bytebuddy.renamed.java.lang.Object$ByteBuddy$NCc17I3R.findElement(Unknown Source)
+ AdminPages.Master.Miscellaneous.Region.State.CreateState_Page.verifyURLorErrorMessages(CreateState_Page.java:54)
+ AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState(ActionState_TC.java:54)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+ org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+ org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+ org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+ org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+ org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+ java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ org.testng.TestRunner.privateRun(TestRunner.java:848)
+ org.testng.TestRunner.run(TestRunner.java:621)
+ org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+ org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+ org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+ org.testng.SuiteRunner.run(SuiteRunner.java:336)
+ org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+ org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+ org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+ org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+ org.testng.TestNG.runSuites(TestNG.java:1114)
+ org.testng.TestNG.run(TestNG.java:1082)
+ com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+ com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+[INFO ] 2026-04-21 15:00:18.967 [main] ReportManager - First error message element not found.
+[INFO ] 2026-04-21 15:00:19.137 [main] ReportManager - Expected condition failed: waiting for com.shaft.listeners.internal.WebDriverListener$$Lambda/0x00000225225d2820@ba4c99c (tried for 0 second(s) with 100 milliseconds interval) || no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),'unique validation error')]"}
+[WARN ] 2026-04-21 15:00:19.141 [main] ReportManager - Apr 21, 2026 3:00:19 PM org.openqa.selenium.support.events.EventFiringDecorator callListenerMethod
+[WARN ] 2026-04-21 15:00:19.141 [main] ReportManager - WARNING: null
+[WARN ] 2026-04-21 15:00:19.142 [main] ReportManager - java.lang.reflect.InvocationTargetException
+[WARN ] 2026-04-21 15:00:19.142 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+[WARN ] 2026-04-21 15:00:19.142 [main] ReportManager - 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[WARN ] 2026-04-21 15:00:19.142 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.callListenerMethod(EventFiringDecorator.java:328)
+[WARN ] 2026-04-21 15:00:19.142 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.fireBeforeEvents(EventFiringDecorator.java:245)
+[WARN ] 2026-04-21 15:00:19.142 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.lambda$beforeCall$0(EventFiringDecorator.java:181)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at java.base/java.util.Arrays$ArrayList.forEach(Arrays.java:4305)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at org.openqa.selenium.support.events.EventFiringDecorator.beforeCall(EventFiringDecorator.java:181)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at org.openqa.selenium.support.decorators.DefaultDecorated.beforeCall(DefaultDecorated.java:43)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:320)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at net.bytebuddy.renamed.java.lang.Object$ByteBuddy$7ObNIDOJ.findElement(Unknown Source)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at AdminPages.Master.Miscellaneous.Region.State.CreateState_Page.verifyURLorErrorMessages(CreateState_Page.java:61)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState(ActionState_TC.java:54)
+[WARN ] 2026-04-21 15:00:19.143 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[WARN ] 2026-04-21 15:00:19.144 [main] ReportManager - 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[WARN ] 2026-04-21 15:00:19.144 [main] ReportManager - 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+[WARN ] 2026-04-21 15:00:19.144 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+[WARN ] 2026-04-21 15:00:19.144 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+[WARN ] 2026-04-21 15:00:19.144 [main] ReportManager - 	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+[WARN ] 2026-04-21 15:00:19.145 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+[WARN ] 2026-04-21 15:00:19.145 [main] ReportManager - 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+[WARN ] 2026-04-21 15:00:19.145 [main] ReportManager - 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+[WARN ] 2026-04-21 15:00:19.146 [main] ReportManager - 	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+[WARN ] 2026-04-21 15:00:19.146 [main] ReportManager - 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+[WARN ] 2026-04-21 15:00:19.146 [main] ReportManager - 	at org.testng.TestRunner.privateRun(TestRunner.java:848)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.TestRunner.run(TestRunner.java:621)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+[WARN ] 2026-04-21 15:00:19.147 [main] ReportManager - 	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at org.testng.TestNG.runSuites(TestNG.java:1114)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at org.testng.TestNG.run(TestNG.java:1082)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for com.shaft.listeners.internal.WebDriverListener$$Lambda/0x00000225225d2820@ba4c99c (tried for 0 second(s) with 100 milliseconds interval)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:262)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+[WARN ] 2026-04-21 15:00:19.148 [main] ReportManager - 	at com.shaft.listeners.internal.WebDriverListener.beforeFindElement(WebDriverListener.java:62)
+[WARN ] 2026-04-21 15:00:19.149 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[WARN ] 2026-04-21 15:00:19.149 [main] ReportManager - 	... 36 more
+[WARN ] 2026-04-21 15:00:19.149 [main] ReportManager - Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),'unique validation error')]"}
+[WARN ] 2026-04-21 15:00:19.149 [main] ReportManager -   (Session info: chrome=147.0.7727.57)
+[WARN ] 2026-04-21 15:00:19.149 [main] ReportManager - For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - Build info: version: '4.13.0', revision: 'ba948ece5b*'
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - Driver info: org.openqa.selenium.chrome.ChromeDriver
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - Command: [8a3628960038642e10ca96277fb20bed, findElement {using=xpath, value=//span[contains(text(),'unique validation error')]}]
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 147.0.7727.57, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\bassem\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61587}, goog:processID: 20096, networkConnectionEnabled: false, pageLoadStrategy: none, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61587/devtoo..., se:cdpVersion: 147.0.7727.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: ws://localhost:43783/sessio..., webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - Session ID: 8a3628960038642e10ca96277fb20bed
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+[WARN ] 2026-04-21 15:00:19.150 [main] ReportManager - 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+[WARN ] 2026-04-21 15:00:19.151 [main] ReportManager - 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+[WARN ] 2026-04-21 15:00:19.151 [main] ReportManager - 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+[WARN ] 2026-04-21 15:00:19.151 [main] ReportManager - 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+[WARN ] 2026-04-21 15:00:19.151 [main] ReportManager - 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+[WARN ] 2026-04-21 15:00:19.151 [main] ReportManager - 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+[WARN ] 2026-04-21 15:00:19.151 [main] ReportManager - 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+[WARN ] 2026-04-21 15:00:19.152 [main] ReportManager - 	at com.shaft.listeners.internal.WebDriverListener.lambda$beforeFindElement$0(WebDriverListener.java:62)
+[WARN ] 2026-04-21 15:00:19.153 [main] ReportManager - 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
+[WARN ] 2026-04-21 15:00:19.153 [main] ReportManager - 	... 38 more
+[INFO ] 2026-04-21 15:00:19.163 [main] ReportManager - Find element action failed.
+[INFO ] 2026-04-21 15:00:19.335 [main] ReportManager - Successfully created attachment 'Screenshot - 1776776419251_CreateState_findElement_failed'
+[ERROR] 2026-04-21 15:00:19.336 [main] ReportManager - java.lang.reflect.InvocationTargetException: null
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:249)
+ org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:321)
+ net.bytebuddy.renamed.java.lang.Object$ByteBuddy$7ObNIDOJ.findElement(Unknown Source)
+ AdminPages.Master.Miscellaneous.Region.State.CreateState_Page.verifyURLorErrorMessages(CreateState_Page.java:61)
+ AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState(ActionState_TC.java:54)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+ org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+ org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+ org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+ org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+ org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+ java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ org.testng.TestRunner.privateRun(TestRunner.java:848)
+ org.testng.TestRunner.run(TestRunner.java:621)
+ org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+ org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+ org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+ org.testng.SuiteRunner.run(SuiteRunner.java:336)
+ org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+ org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+ org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+ org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+ org.testng.TestNG.runSuites(TestNG.java:1114)
+ org.testng.TestNG.run(TestNG.java:1082)
+ com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+ com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),'unique validation error')]"}
+  (Session info: chrome=147.0.7727.57)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8a3628960038642e10ca96277fb20bed, findElement {using=xpath, value=//span[contains(text(),'unique validation error')]}]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 147.0.7727.57, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\bassem\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61587}, goog:processID: 20096, networkConnectionEnabled: false, pageLoadStrategy: none, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61587/devtoo..., se:cdpVersion: 147.0.7727.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: ws://localhost:43783/sessio..., webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8a3628960038642e10ca96277fb20bed
+ java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+ java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+ java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+ org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+ org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+ org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+ org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+ org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+ org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+ org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+ org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:249)
+ org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:321)
+ net.bytebuddy.renamed.java.lang.Object$ByteBuddy$7ObNIDOJ.findElement(Unknown Source)
+ AdminPages.Master.Miscellaneous.Region.State.CreateState_Page.verifyURLorErrorMessages(CreateState_Page.java:61)
+ AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState(ActionState_TC.java:54)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+ org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+ org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+ org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+ org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+ org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+ java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ org.testng.TestRunner.privateRun(TestRunner.java:848)
+ org.testng.TestRunner.run(TestRunner.java:621)
+ org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+ org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+ org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+ org.testng.SuiteRunner.run(SuiteRunner.java:336)
+ org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+ org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+ org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+ org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+ org.testng.TestNG.runSuites(TestNG.java:1114)
+ org.testng.TestNG.run(TestNG.java:1082)
+ com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+ com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+[INFO ] 2026-04-21 15:00:19.336 [main] ReportManager - Second error message element not found.
+[INFO ] 2026-04-21 15:00:19.336 [main] ReportManager - Neither the URL nor any error messages matched the expected values.
+[INFO ] 2026-04-21 15:00:19.344 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: CreateState'
+[INFO ] 2026-04-21 15:00:19.344 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                  Finished Execution of Test Method: 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.CreateState'                  
+                                                              Test Status: 'Failed'                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-21 15:00:19.471 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                         Starting execution of navigate back to url configuration method                                         
+                                 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.navigateBackToURL'                                 
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-21 15:00:19.494 [main] ReportManager - Target URL: "http://192.168.1.70"
+[INFO ] 2026-04-21 15:00:19.523 [main] ReportManager - Initial URL: "http://192.168.1.70/master/miscellaneous/region/state/add"
+[INFO ] 2026-04-21 15:00:19.755 [main] ReportManager - Navigate to url "http://192.168.1.70".
+[ERROR] 2026-04-21 15:00:19.770 [main] AllureLifecycle - Could not add attachment: no test is running
+[INFO ] 2026-04-21 15:00:19.772 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: navigateBackToURL'
+[INFO ] 2026-04-21 15:00:19.780 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                        Starting Execution: '2 out of 3' test cases in the current suite                                        
+                             Test Method: 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.SearchState'                             
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-21 15:00:20.156 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:20.205 [main] ReportManager - Click "Master".
+[INFO ] 2026-04-21 15:00:20.404 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:20.446 [main] ReportManager - Click "By.xpath: (//a[@class="ng-star-inserted"])[3]".
+[INFO ] 2026-04-21 15:00:20.624 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:20.688 [main] ReportManager - Click " Region".
+[INFO ] 2026-04-21 15:00:20.887 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:20.938 [main] ReportManager - Click "State".
+[INFO ] 2026-04-21 15:00:21.080 [main] ReportManager - Type "Goa" into "State name".
+[INFO ] 2026-04-21 15:00:21.209 [main] ReportManager - Type "Goa" into "State Code".
+[INFO ] 2026-04-21 15:00:21.398 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:21.472 [main] ReportManager - Click "By.xpath: //p-dropdown[.//input[@id="id-Countryname"]]".
+[INFO ] 2026-04-21 15:00:21.681 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:21.772 [main] ReportManager - Click "By.xpath: //span[text()='India']".
+[INFO ] 2026-04-21 15:00:21.974 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:22.033 [main] ReportManager - Click "By.xpath: //p-radiobutton[.//input[@id="id-Status-Both"]]".
+[INFO ] 2026-04-21 15:00:22.207 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-04-21 15:00:22.281 [main] ReportManager - Click "Search in grid".
+[INFO ] 2026-04-21 15:00:22.282 [main] ReportManager - Entering getPages() method
+[INFO ] 2026-04-21 15:00:22.439 [main] ReportManager - Found 3 elements with .page-no
+[INFO ] 2026-04-21 15:00:22.455 [main] ReportManager - Get text action failed.
+[INFO ] 2026-04-21 15:00:22.694 [main] ReportManager - Successfully created attachment 'Screenshot - 1776776422582_SearchState_getText_failed'
+[ERROR] 2026-04-21 15:00:22.696 [main] ReportManager - java.lang.reflect.InvocationTargetException: null
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:249)
+ org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:321)
+ net.bytebuddy.renamed.java.lang.Object$ByteBuddy$3WVBHbUL.getText(Unknown Source)
+ AdminPages.Helper.PaginationHelper.getTotalPages(PaginationHelper.java:33)
+ AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.SearchState(ActionState_TC.java:75)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+ org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+ org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+ org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+ org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+ org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+ java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ org.testng.TestRunner.privateRun(TestRunner.java:848)
+ org.testng.TestRunner.run(TestRunner.java:621)
+ org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+ org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+ org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+ org.testng.SuiteRunner.run(SuiteRunner.java:336)
+ org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+ org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+ org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+ org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+ org.testng.TestNG.runSuites(TestNG.java:1114)
+ org.testng.TestNG.run(TestNG.java:1082)
+ com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+ com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+
+Caused by: org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+  (Session info: chrome=147.0.7727.57)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8a3628960038642e10ca96277fb20bed, getElementText {id=f.29165E343615FB1B8FCA5B05085B2EFE.d.6B85ABF8233E1D1A73747DF890676B98.e.9063}]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 147.0.7727.57, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\bassem\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61587}, goog:processID: 20096, networkConnectionEnabled: false, pageLoadStrategy: none, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61587/devtoo..., se:cdpVersion: 147.0.7727.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: ws://localhost:43783/sessio..., webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (8a3628960038642e10ca96277fb20bed)] -> xpath: //button[contains(@class,'page-no')]]
+Session ID: 8a3628960038642e10ca96277fb20bed
+ java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+ java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+ java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+ org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+ org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+ org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+ org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+ org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+ org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+ org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:192)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:249)
+ org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
+ org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$2(WebDriverDecorator.java:321)
+ net.bytebuddy.renamed.java.lang.Object$ByteBuddy$3WVBHbUL.getText(Unknown Source)
+ AdminPages.Helper.PaginationHelper.getTotalPages(PaginationHelper.java:33)
+ AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.SearchState(ActionState_TC.java:75)
+ java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+ java.base/java.lang.reflect.Method.invoke(Method.java:580)
+ org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+ org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+ org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+ org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+ org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+ org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+ org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+ java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ org.testng.TestRunner.privateRun(TestRunner.java:848)
+ org.testng.TestRunner.run(TestRunner.java:621)
+ org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+ org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+ org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+ org.testng.SuiteRunner.run(SuiteRunner.java:336)
+ org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+ org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+ org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+ org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+ org.testng.TestNG.runSuites(TestNG.java:1114)
+ org.testng.TestNG.run(TestNG.java:1082)
+ com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+ com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+[INFO ] 2026-04-21 15:00:22.699 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: SearchState'
+[INFO ] 2026-04-21 15:00:22.699 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                  Finished Execution of Test Method: 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.SearchState'                  
+                                                              Test Status: 'Failed'                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-21 15:00:22.704 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                         Starting execution of navigate back to url configuration method                                         
+                                 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.navigateBackToURL'                                 
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-04-21 15:00:22.721 [main] ReportManager - Target URL: "http://192.168.1.70"
+[INFO ] 2026-04-21 15:00:22.743 [main] ReportManager - Initial URL: "http://192.168.1.70/master/miscellaneous/region/state"
+[INFO ] 2026-04-21 15:00:22.878 [main] ReportManager - Navigate to url "http://192.168.1.70".
+[ERROR] 2026-04-21 15:00:22.881 [main] AllureLifecycle - Could not add attachment: no test is running
+[INFO ] 2026-04-21 15:00:22.883 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: navigateBackToURL'
+[INFO ] 2026-04-21 15:00:22.888 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                        Starting Execution: '3 out of 3' test cases in the current suite                                        
+                          Test Method: 'AdminPages.Master.Miscellaneous.Region.State.ActionState_TC.SearchStateAction'                          
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m

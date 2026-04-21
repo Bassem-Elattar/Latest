@@ -4,6 +4,7 @@ import AdminPages.Master.Flight.BSPCommission_Page;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import com.shaft.driver.SHAFT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -17,31 +18,22 @@ import java.util.Map;
 public class UpdateBSPCommission_TC extends TestBase_TC {
     private BSPCommission_Page createBSPCommission;
     private LogIn_Page logIn;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
-
-
+    SHAFT.TestData.JSON testData;
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        testData = new SHAFT.TestData.JSON("CreateBSPCommission.json");
     }
 
-
-    @Test(dataProvider = "JsonProvider")
-    public void UpdateBSPCommission(Map<String,String> create) throws InterruptedException {
+    @Test()
+    public void UpdateBSPCommission() throws InterruptedException {
         createBSPCommission = new BSPCommission_Page(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
-                .clickAirline();
-        createBSPCommission.setCommissionName("J9 0% Com");
+                .clickBSP();
+        createBSPCommission.setCommissionName(testData.getTestData("SearchCommissionName"));
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
         createBSPCommission.setUpdateButton();
@@ -50,12 +42,5 @@ public class UpdateBSPCommission_TC extends TestBase_TC {
         createBSPCommission.setApprove();
         String Expected = "Updated Successfully";
         Assert.assertEquals(createBSPCommission.Actualupdate(),Expected);
-
-
     }
-
-
-
-
-
 }

@@ -4,10 +4,7 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Flight.BSPCommission_Page;
 import AdminPages.Master.Master_Common;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -30,17 +27,16 @@ public class SearchBSPCommission_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        createBSPCommission = new BSPCommission_Page(driver);
+        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
     }
 
     @Test
     public void setSearchBSPCommission() throws InterruptedException {
-        createBSPCommission = new BSPCommission_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
-                .clickAirline();
-        createBSPCommission.setAirlineName("Egyptair");
+                .clickBSP();
+        createBSPCommission.setAirlineName("Air Burkina");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
         // Handle pagination and assertions separately
@@ -62,11 +58,9 @@ public class SearchBSPCommission_TC extends TestBase_TC {
 
     @Test
     public void setGDSSearchBSPCommission() throws InterruptedException {
-        createBSPCommission = new BSPCommission_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
-                .clickAirline();
+                .clickBSP();
         createBSPCommission.setGDSSupplier("Galileo");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
@@ -88,11 +82,9 @@ public class SearchBSPCommission_TC extends TestBase_TC {
 
     @Test
     public void setGDSsSearchBSPCommission() throws InterruptedException {
-        createBSPCommission = new BSPCommission_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
-                .clickAirline();
+                .clickBSP();
         createBSPCommission.setGDSSupplier("Amadeus");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
@@ -109,10 +101,9 @@ public class SearchBSPCommission_TC extends TestBase_TC {
                 paginationHelper.navigateToNextPage();
             }
         }
-
     }
     @AfterMethod
     public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.95");
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

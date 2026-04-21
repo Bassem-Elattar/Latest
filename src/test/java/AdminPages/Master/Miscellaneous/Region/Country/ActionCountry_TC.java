@@ -4,6 +4,7 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
+import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -19,21 +20,16 @@ public class ActionCountry_TC extends TestBase_TC {
     private SearchCountry_Page searchCountry;
     private LogIn_Page logIn;
     private AdminPages.Helper.PaginationHelper paginationHelper;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    SHAFT.TestData.JSON testData;
 
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        testData = new SHAFT.TestData.JSON("ActionCountry.json");
     }
+
     @Test(priority = 1)
     public void setInActive(){
         regionSearchCity = new SearchCity_Page(driver);
@@ -44,13 +40,11 @@ public class ActionCountry_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRegion();
         searchCountry.setCountry();
-        searchCountry.setSearchcountry("United Arab Emirates","AE");
+        searchCountry.setSearchcountry(testData.getTestData("CountryName"),testData.getTestData("CountryCode"));
         searchCountry.setBoth();
         searchCountry.setSearchGrid();
         actionCountry.setInActiveIcon();
-
     }
-
 
     @Test(priority = 2)
     public void setActive(){
@@ -62,13 +56,11 @@ public class ActionCountry_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRegion();
         searchCountry.setCountry();
-        searchCountry.setSearchcountry("United Arab Emirates","AE");
+        searchCountry.setSearchcountry(testData.getTestData("CountryName"),testData.getTestData("CountryCode"));
         searchCountry.setBoth();
         searchCountry.setSearchGrid();
         actionCountry.setActiveIcon();
-
     }
-
 
     @Test(priority = 3)
     public void setReject(){
@@ -80,13 +72,11 @@ public class ActionCountry_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRegion();
         searchCountry.setCountry();
-        searchCountry.setSearchcountry("United Arab Emirates","AE");
+        searchCountry.setSearchcountry(testData.getTestData("CountryName"),testData.getTestData("CountryCode"));
         searchCountry.setBoth();
         searchCountry.setSearchGrid();
         actionCountry.setThumbDown("Reject");
-
     }
-
 
     @Test(priority = 4)
     public void setApproved(){
@@ -98,12 +88,12 @@ public class ActionCountry_TC extends TestBase_TC {
                 .clickMiscellaneous()
                 .clickRegion();
         searchCountry.setCountry();
-        searchCountry.setSearchcountry("United Arab Emirates","AE");
+        searchCountry.setSearchcountry(testData.getTestData("CountryName"),testData.getTestData("CountryCode"));
         searchCountry.setBoth();
         searchCountry.setSearchGrid();
         actionCountry.setThumbUp("Approved");
-
     }
+
     @AfterMethod
     public void navigateBackToURL() {
         driver.browser().navigateToURL("http://192.168.1.70");

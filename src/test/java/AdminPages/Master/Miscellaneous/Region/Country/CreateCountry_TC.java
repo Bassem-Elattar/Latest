@@ -32,7 +32,6 @@ public class CreateCountry_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
 
     @Test(dataProvider = "JsonProvider")
@@ -50,14 +49,9 @@ public class CreateCountry_TC extends TestBase_TC {
         String Airline = country.get("Airline");
         createCountry.setOperatingCountryName(CountryName, CountryCode, Airline);
         String Expected = "Added Successfully";
-
         Assert.assertEquals(createCountry.Actual(),Expected);
         createCountry.verifyURLorErrorMessages();
-
     }
-
-
-
 }
 
 
