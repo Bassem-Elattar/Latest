@@ -14,10 +14,10 @@ public class ActionCredentialField_Page {
     By Btn_Submit = By.xpath("//button[@type=\"submit\"]");
 
 
-    public void setSupplierCredintial(String supplierCredintial ,  String supplier){
+    public void setSupplierCredential(String supplierCredential ,  String supplier){
 
         driver.element().click(Btn_Action);
-        driver.element().type(Btn_SupplierCredintial,supplierCredintial);
+        driver.element().type(Btn_SupplierCredintial,supplierCredential);
         driver.element().click(Lst_Supplier);
         By option1 = By.xpath(String.format("//span[text()='%s']", supplier));
         driver.element().click(option1);

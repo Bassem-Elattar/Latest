@@ -14,7 +14,6 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class SearchSupplier_TC extends TestBase_TC {
-    private SearchCity_Page searchCity;
    private SearchSupplier_Page searchSupplier;
    private LogIn_Page logIn;
     private AdminPages.Helper.PaginationHelper paginationHelper;
@@ -31,14 +30,11 @@ public class SearchSupplier_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
-
 
    @Test(dataProvider = "JsonProvider")
     public void SearchSupplier(Map<String, String> search) throws InterruptedException {
        searchSupplier = new SearchSupplier_Page(driver);
-       searchCity = new SearchCity_Page(driver);
        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
        new Master_Common(driver).clickMaster()
                .clickSupplierMenue()
@@ -59,10 +55,5 @@ public class SearchSupplier_TC extends TestBase_TC {
                paginationHelper.navigateToNextPage();
            }
        }
-       // Perform assertions
-
    }
-
-
-
 }

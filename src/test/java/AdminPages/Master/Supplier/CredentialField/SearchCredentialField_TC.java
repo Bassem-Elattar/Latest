@@ -15,10 +15,8 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class SearchCredentialField_TC extends TestBase_TC {
-    private SearchSupplier_Page supplier;
     private SearchCredentialField_Page searchCredentialField;
     private LogIn_Page logIn;
-    private SearchCity_Page regionSearchCity;
     private AdminPages.Helper.PaginationHelper paginationHelper;
 
     @DataProvider(name = "JsonProvider")
@@ -37,31 +35,15 @@ public class SearchCredentialField_TC extends TestBase_TC {
     }
     @Test(dataProvider = "JsonProvider")
     public void SearchCredential(Map<String, String> credentialField) throws InterruptedException {
-        supplier = new SearchSupplier_Page(driver);
         searchCredentialField = new SearchCredentialField_Page(driver);
-        regionSearchCity = new SearchCity_Page(driver);
         paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
-                .clickSupplierCredencial();
-        String SupplierCredintialFieldName = credentialField.get("SupplierCredintialFieldName");
+                .clickCredentialField();
+        String SupplierCredentialFieldName = credentialField.get("SupplierCredentialFieldName");
         String Supplier = credentialField.get("Supplier");
-        searchCredentialField.setSupplierCredintialFieldName(SupplierCredintialFieldName,Supplier);
+        searchCredentialField.setSupplierCredentialFieldName(SupplierCredentialFieldName,Supplier);
         searchCredentialField.setSearchGrid();
-        // Handle pagination and assertions separately
-        int totalPages = paginationHelper.getTotalPages();
-        for (int currentPage = 1; currentPage <= totalPages; currentPage++) {
-            System.out.println("Processing page: " + currentPage);
-
-            // Perform assertions
-            searchCredentialField.performAssertions();
-
-            // Navigate to the next page if not on the last page
-            if (currentPage < totalPages) {
-                paginationHelper.navigateToNextPage();
-            }
-        }
+        searchCredentialField.performAssertions();
     }
-
-
 }

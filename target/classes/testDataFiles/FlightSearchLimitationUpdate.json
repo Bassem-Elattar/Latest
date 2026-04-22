@@ -1,13 +1,11 @@
-[
-  {
-    "IndexChoose": "4",
-    "TypeName" : "Ama",
-    "Name": "Amadeus",
+{
+    "SupplierName": "AirArabiaEgypt",
+    "TypeName" : "AirArabiaEgypt",
+    "Name": "AirArabiaEgypt",
     "InvalidIndex" :"No data has been found!",
     "InvalidType": "j",
     "Edit" : "Updated Successfully",
-    "AnotherIndexChoose" : "5",
+    "AnotherIndexChoose" : "448",
     "IndexInSearch" : "2",
-    "IndexSupplierCredential" : "6"
-  }
-]
+    "IndexSupplierCredential" : "448"
+}

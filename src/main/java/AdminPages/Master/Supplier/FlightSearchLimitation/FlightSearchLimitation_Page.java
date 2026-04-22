@@ -1,6 +1,7 @@
 package AdminPages.Master.Supplier.FlightSearchLimitation;
 
 import com.shaft.driver.SHAFT;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 
@@ -74,54 +75,61 @@ public class FlightSearchLimitation_Page {
 
         return this;
     }
-    public final By Lst_ClickOnSupplier = By.xpath("//span[@class=\"p-dropdown-label p-inputtext p-placeholder ng-star-inserted\"]");
-    public final By Txt_NameOfSupplier = By.xpath("//input[@placeholder=\"Name\"]");
+    public final By Lst_ClickOnSupplier = By.xpath("//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted']");
+    public final By Txt_NameOfSupplier = By.xpath("//input[@id='id-CredentialName']");
     public final By Rbtn_ActiveButton = By.xpath("(//p-radiobutton//div//span[@class=\"p-radiobutton-icon\"])[2]");
-    public final By Rbtn_InactiveButton = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-flight-search-limitation/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[1]/p-radiobutton[1]/div/div[2]");
-    public final By Rbtn_BothButton = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-flight-search-limitation/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[1]/p-radiobutton[3]/div/div[2]");
-    public final By Btn_SearchButton = By.xpath("//button[@type=\"submit\"]");
-    public final By Lst_SelectTextFromTable = By.xpath("//td[contains(text(),'Amadeus')]");
+    public final By Rbtn_InactiveButton = By.xpath("(//div[@class='p-radiobutton-box'])[1]");
+    public final By Rbtn_BothButton = By.xpath("(//div[@class='p-radiobutton-box'])[2]");
+    public final By Btn_SearchButton = By.xpath("//button[@type='submit']");
+    public final By Lst_SelectTextFromTable = By.xpath("(//td[@class='ng-star-inserted'][normalize-space()='AirArabiaEgypt'])[2]");
     public final By Lst_SelectNoData = By.xpath("//td[contains(text(),'No')]");
     public final By Btn_EditButton = By.xpath("(//i[@class=\"pi pi-pencil\"])[1]");
     public final By Pagination = By.xpath("//span[@class=\"p-element p-dropdown-label p-inputtext ng-star-inserted\"]");
     public final By pagination20 = By.xpath("(//div//span[@class=\"ng-star-inserted\"])[2]");
+    public final By SuppliersList = By.xpath("//li[@aria-label='AirArabiaEgypt']");
+
     public FlightSearchLimitation_Page ClickAndTypeName(String Name){
         driver.element().type(Txt_NameOfSupplier, Name);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnSupplierAndChooseIndex(String Check){
-
-
         driver.element().click(Lst_ClickOnSupplier);
-        final By SelectIndex = By.xpath("//p-dropdown//p-overlay//div//div//ul//p-dropdownitem["+ Check+"]");
-        driver.element().click(SelectIndex);
+        driver.element().click(SuppliersList);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnActive(){
         driver.element().click(Rbtn_ActiveButton);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnInactive(){
         driver.element().click(Rbtn_InactiveButton);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnBoth(){
         driver.element().click(Rbtn_BothButton);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnSearch(){
         driver.element().click(Btn_SearchButton);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnPagination(){
         driver.element().click(Pagination);
         driver.element().click(pagination20);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnEditButton(){
         driver.element().click(Btn_EditButton);
         return this;
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// View
 
@@ -145,6 +153,7 @@ public class FlightSearchLimitation_Page {
         agentInformation1.OpenFlightSearchLimitation();
         return this;
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Portal
     private final By UsernamePortal = By.xpath("//input[@id=\"agencyCodeMain\"]");
@@ -167,32 +176,38 @@ public class FlightSearchLimitation_Page {
     public final By CancelButton = By.xpath("//button[@type=\"reset\"]");
     public final By SuccessfullAlert = By.xpath("//div[@role=\"alert\"]");
     public final By GetLimit = By.xpath("(//div//table//tbody//tr//td)[3]");
-    private final By SupplierCredential = By.xpath("//a[@href=\"/master/supplier/supplier-credentials\"]");
+    private final By SupplierCredential = By.xpath("//a[@href='/master/supplier/supplier-credentials']");
     private final By LimitSupplierInSupplierCredential = By.xpath("(//p-dropdown[@class=\"p-element p-inputwrap" +
             "per fg-input ng-untouched ng-pristine ng-star-inserted p-inputwrapper-filled ng-valid\"])[3]");
     private final By UpdateButtonInSupplierCredential = By.xpath("//button[@type=\"submit\"]");
-    public FlightSearchLimitation_Page ClickonLimitDropDown(String Check)
+    private final By SupplierLimit = By.xpath("//li[@aria-label='2']");
+    By SupplierSearchLimit = By.xpath("//*[@id=\"pr_id_96_label\"]");
+
+    public FlightSearchLimitation_Page ClickonLimitDropDown()
     {
         driver.element().click(LimitSupplier);
-        final By SelectIndex = By.xpath("(//p-dropdown//div//ul//p-dropdownitem[@class=\"p-element ng-star-inserted\"])["+Check+"]");
-        driver.element().click(SelectIndex);
+        driver.element().click(SupplierLimit);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnUpdate(){
         driver.element().click(ApproveButton);
         return this;
     }
+
     public FlightSearchLimitation_Page ClickOnCancel()
     {
         driver.element().click(CancelButton);
         return this;
     }
+
     public FlightSearchLimitation_Page NavigateToSupplierCredential()
     {
         driver.element().click(SupplierCredential);
         return this;
 
     }
+
     public FlightSearchLimitation_Page ClickOnLimitOnSupplierCredentialAndChoose(String Check){
         driver.element().click(LimitSupplierInSupplierCredential);
         final By SelectIndex = By.xpath("(//p-dropdown//div//ul//p-dropdownitem[@class=\"p-element ng-star-inserted\"])["+Check+"]");
@@ -200,6 +215,7 @@ public class FlightSearchLimitation_Page {
         return this;
 
     }
+
     public FlightSearchLimitation_Page ClickOnSaveInSupplierCredential(){
         driver.element().click(UpdateButtonInSupplierCredential);
         return this;
