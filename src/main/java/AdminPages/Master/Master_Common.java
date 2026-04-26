@@ -22,6 +22,7 @@ public class Master_Common {
     private final By btn_Supplier = By.xpath("//a[@href='/master/supplier/supplier']");
     private final By btn_SupplierCredencial = By.xpath("//a[@href='/master/supplier/supplier-credentials']");
     private final By btn_FlightSearchLimitation = By.xpath("//a[@href='/master/supplier/flight-search-limitation']");
+    private final By btn_CredentialsField = By.xpath("//span[normalize-space()='Credential Field']");
 
     //////////////miscellaneous//////////
     private final By btn_Miscellaneous = By.xpath("(//a[@class=\"ng-star-inserted\"])[3]");
@@ -80,6 +81,10 @@ public class Master_Common {
     }
     public Master_Common clickSupplierCredencial(){
         driver.element().click(btn_SupplierCredencial);
+        return this;
+    }
+    public Master_Common clickCredentialField(){
+        driver.element().click(btn_CredentialsField);
         return this;
     }
     public Master_Common clickFlightSearchLimitation(){

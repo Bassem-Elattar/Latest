@@ -26,7 +26,7 @@ public class SearchCredentialField_Page {
         driver.element().click(Btn_Credintial);
     }
 
-    public void setSupplierCredintialFieldName(String supplierCredintialFieldName,String supplier){
+    public void setSupplierCredentialFieldName(String supplierCredintialFieldName,String supplier){
         driver.element().type(Btn_SupplierCredintialFieldName,supplierCredintialFieldName);
         driver.element().click(Lst_Supplier);
         By option1 = By.xpath(String.format("//span[text()='%s']", supplier));

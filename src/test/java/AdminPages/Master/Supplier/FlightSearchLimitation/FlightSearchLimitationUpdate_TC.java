@@ -2,8 +2,10 @@ package AdminPages.Master.Supplier.FlightSearchLimitation;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import com.shaft.driver.SHAFT;
 import com.shaft.validation.Validations;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,74 +21,64 @@ public class FlightSearchLimitationUpdate_TC extends TestBase_TC {
 
     private LogIn_Page logIn;
     FlightSearchLimitation_Page FlightLimit;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    SHAFT.TestData.JSON testData;
 
     @BeforeTest
     public void SignIn (){
         logIn = new LogIn_Page(driver);
-        logIn.EnterUserName("E.saady");
-        logIn.EnterPassword("qqE6)Cxp6>B8");
+        logIn.ClickSuperAdmin();
         logIn.ClickOnLoginButton();
         FlightLimit = new FlightSearchLimitation_Page(driver);
+        testData = new SHAFT.TestData.JSON("FlightSearchLimitationUpdate.json");
+    }
+
+    @Test(priority = 1)
+    public void VerifyThatSupplierNameIsNotClickable() throws InterruptedException {
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
                 .clickFlightSearchLimitation();
-
-    }
-
-    @Test(dataProvider = "JsonProvider",priority = 1)
-    public void VerifyThatSupplierNameIsNotClickable(Map<String ,String > Update) throws InterruptedException {
-
         FlightLimit.ClickOnEditButton();
-
         Validations.verifyThat().element(driver.getDriver(), FlightLimit.EditSupplierName).isVisible().perform();
     }
 
-    @Test(dataProvider = "JsonProvider",priority = 2)
-    public void VerifyThatSupplierCredentialIsNotClickable(Map<String ,String > Update) throws InterruptedException {
-        FlightLimit.Reload();
+    @Test(priority = 2)
+    public void VerifyThatSupplierCredentialIsNotClickable() throws InterruptedException {
+        new Master_Common(driver).clickMaster()
+                .clickSupplierMenue()
+                .clickFlightSearchLimitation();
         FlightLimit.ClickOnEditButton();
-
         Validations.verifyThat().element(driver.getDriver(), FlightLimit.EditSupplierCredentials).isVisible().perform();
-
     }
 
-    @Test(dataProvider = "JsonProvider",priority = 3)
-    public void VerifyThatUpdateIsUpdatedSuccessfully(Map<String ,String > Update) throws InterruptedException{
-        FlightLimit.LoginAsSuperAdmin();
-        FlightLimit.Reload();
+    @Test(priority = 3)
+    public void VerifyThatUpdateIsUpdatedSuccessfully() throws InterruptedException{
+        new Master_Common(driver).clickMaster()
+                .clickSupplierMenue()
+                .clickFlightSearchLimitation();
         FlightLimit.ClickOnEditButton();
-        String IndexChoose = Update.get("IndexChoose");
-        FlightLimit.ClickonLimitDropDown(IndexChoose);
+        FlightLimit.ClickonLimitDropDown();
         FlightLimit.ClickOnUpdate();
         WebElement Select = driver.getDriver().findElement(FlightLimit.SuccessfullAlert);
         ExpectedResult = Select.getText();
-        String Edit = Update.get("Edit");
-
-        if(Edit.equals(ExpectedResult)) {
+        if(testData.getTestData("Edit").equals(ExpectedResult)) {
             System.out.println("Test Case VerifyThatUpdateIsUpdatedSuccessfully passed");
         }
         else {
             throw new RuntimeException("Test Case VerifyThatUpdateIsUpdatedSuccessfully Failed");
         }
     }
-    @Test(dataProvider = "JsonProvider",priority = 4)
-    public void VerifyThatCanselIsNotUpdated(Map<String ,String > Update) throws InterruptedException{
-        FlightLimit.Reload();
+
+    @Test(priority = 4)
+    public void VerifyThatCanselIsNotUpdated() throws InterruptedException{
+        new Master_Common(driver).clickMaster()
+                .clickSupplierMenue()
+                .clickFlightSearchLimitation();
         FlightLimit.ClickOnEditButton();
-        String AnotherIndexChoose = Update.get("AnotherIndexChoose");
-        FlightLimit.ClickonLimitDropDown(AnotherIndexChoose);
+        FlightLimit.ClickonLimitDropDown();
         FlightLimit.ClickOnCancel();
         WebElement Select = driver.getDriver().findElement(FlightLimit.GetLimit);
         ExpectedResult = Select.getText();
-        String IndexInSearch = Update.get("IndexInSearch");
-        if(IndexInSearch.equals(ExpectedResult)) {
+        if(testData.getTestData("IndexInSearch").equals(ExpectedResult)) {
             System.out.println("Test Case VerifyThatCanselIsNotUpdated passed");
         }
         else {
@@ -94,47 +86,49 @@ public class FlightSearchLimitationUpdate_TC extends TestBase_TC {
         }
     }
     //Reflections
-    @Test(dataProvider = "JsonProvider",priority = 5)
-    public void VerifyThatSuccessfulUpdatedOnSupplier(Map<String ,String > Update) throws InterruptedException {
-//        FlightLimit.LoginAsSuperAdmin();
-        FlightLimit.Reload();
-
+    @Test(priority = 5)
+    public void VerifyThatSuccessfulUpdatedOnSupplier() throws InterruptedException {
+        new Master_Common(driver).clickMaster()
+                .clickSupplierMenue()
+                .clickFlightSearchLimitation();
         FlightLimit.ClickOnEditButton();
-        String IndexChoose = Update.get("IndexChoose");
-        FlightLimit.ClickonLimitDropDown(IndexChoose);
+        FlightLimit.ClickonLimitDropDown();
         FlightLimit.ClickOnUpdate();
         WebElement Select = driver.getDriver().findElement(FlightLimit.GetLimit);
         ExpectedResult = Select.getText();
-
-        String IndexInSearch = Update.get("IndexInSearch");
-        if(IndexInSearch.equals(ExpectedResult)) {
+        if(testData.getTestData("IndexInSearch").equals(ExpectedResult)) {
             System.out.println("Test Case VerifyThatUpdateIsUpdatedSuccessfully passed");
         } else {
             throw new RuntimeException("Test Case VerifyThatUpdateIsUpdatedSuccessfully Failed");
         }
     }
-    @Test(dataProvider = "JsonProvider",priority = 6)
-    public void VerifyThatSuccessfulUpdatedFromSupplierCredentialOnSearch(Map<String ,String > Update) throws InterruptedException {
-        FlightLimit.Reload();
-        FlightLimit.ClickOnEditButton();
-        String AnotherIndexChoose = Update.get("AnotherIndexChoose");
-        FlightLimit.ClickonLimitDropDown(AnotherIndexChoose);
-        FlightLimit.ClickOnUpdate();
-        FlightLimit.NavigateToSupplierCredential();
-        FlightLimit.ClickOnEditButton();
-        String IndexSupplierCredential = Update.get("IndexSupplierCredential");
-        FlightLimit.ClickOnLimitOnSupplierCredentialAndChoose(IndexSupplierCredential);
-        Thread.sleep(15000);
-        FlightLimit.ClickOnSaveInSupplierCredential();
-        FlightLimit.Reload();
-        FlightLimit.ClickOnSearch();
-        WebElement Select = driver.getDriver().findElement(FlightLimit.GetLimit);
-        ExpectedResult = Select.getText();
 
-        if (AnotherIndexChoose.equals(ExpectedResult)) {
+    @Test(priority = 6)
+    public void VerifyThatSuccessfulUpdatedFromSupplierCredentialOnSearch() throws InterruptedException {
+        new Master_Common(driver).clickMaster()
+                .clickSupplierMenue()
+                .clickFlightSearchLimitation();
+        FlightLimit.ClickOnEditButton();
+        FlightLimit.ClickonLimitDropDown();
+        FlightLimit.ClickOnUpdate();
+        new Master_Common(driver).clickMaster()
+                .clickSupplierMenue()
+                .clickSupplierCredencial();
+        FlightLimit.ClickOnEditButton();
+        FlightLimit.ClickOnSaveInSupplierCredential();
+        FlightLimit.ClickOnSearch();
+        Thread.sleep(1000);
+        WebElement Select = driver.getDriver().findElement(FlightLimit.SupplierSearchLimit);
+        ExpectedResult = Select.getText();
+        if (testData.getTestData("IndexInSearch").equals(ExpectedResult)) {
             System.out.println("Test Case VerifyThatUpdateIsUpdatedSuccessfully passed");
         } else {
             throw new RuntimeException("Test Case VerifyThatUpdateIsUpdatedSuccessfully Failed");
         }
+    }
+
+    @AfterMethod
+    public void navigateBackToURL() {
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

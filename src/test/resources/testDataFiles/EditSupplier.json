@@ -1,0 +1,13 @@
+[
+  {
+    "SupplierName": "AegeanKSA",
+    "ProductType": "GDS",
+    "Country": "Egypt",
+    "Email": "mahmd@gmail.com",
+    "City": "Cairo",
+    "PinCode": "1125",
+    "WhiteListBoard": "ada",
+    "WhiteListBoard2": "Cai",
+    "Remarks": "approve"
+  }
+]

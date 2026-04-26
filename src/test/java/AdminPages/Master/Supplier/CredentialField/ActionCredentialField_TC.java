@@ -4,6 +4,7 @@ import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
 import AdminPages.Master.Supplier.Supplier.SearchSupplier_Page;
+import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -19,66 +20,44 @@ import java.util.List;
 
 public class ActionCredentialField_TC extends TestBase_TC {
 
-    private SearchSupplier_Page supplier;
     private SearchCredentialField_Page searchCredentialField;
     private LogIn_Page logIn;
-    private SearchCity_Page regionSearchCity;
-    private CreateCredentialField_Page createCredentialField;
     private ActionCredentialField_Page actionCredentialField;
-    private AdminPages.Helper.PaginationHelper paginationHelper;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    SHAFT.TestData.JSON testData;
 
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        searchCredentialField = new SearchCredentialField_Page(driver);
+        actionCredentialField = new ActionCredentialField_Page(driver);
+        testData = new SHAFT.TestData.JSON("ActionCredentialField.json");
     }
+
     @Test(priority = 1)
     public void setActionCredentialField() throws InterruptedException {
-        supplier = new SearchSupplier_Page(driver);
-        searchCredentialField = new SearchCredentialField_Page(driver);
-        regionSearchCity = new SearchCity_Page(driver);
-        createCredentialField = new CreateCredentialField_Page(driver);
-        actionCredentialField = new ActionCredentialField_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
-                .clickSupplierCredencial();
-        searchCredentialField.setSupplierCredintialFieldName("endpoint_URL","Amadeus");
+                .clickCredentialField();
+        searchCredentialField.setSupplierCredentialFieldName(testData.getTestData("SupplierCredentialFieldName1"),testData.getTestData("Supplier1"));
         searchCredentialField.setSearchGrid();
-        actionCredentialField.setSupplierCredintial("Egypttest","Galileo");
+        actionCredentialField.setSupplierCredential(testData.getTestData("SupplierCredentialFieldName"),testData.getTestData("Supplier"));
         String Expected = "Updated Successfully";
         String Actual = driver.element().getText(By.xpath("//div[@aria-label=\"Updated Successfully\"]"));
         Assert.assertEquals(Actual,Expected);
-
-
         }
-
 
     @Test(priority = 2)
     public void setSearchCredentialField() throws InterruptedException {
-        supplier = new SearchSupplier_Page(driver);
-        searchCredentialField = new SearchCredentialField_Page(driver);
-        regionSearchCity = new SearchCity_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
-                .clickSupplierCredencial();
-        searchCredentialField.setSupplierCredintialFieldName("Egypttest", "Galileo");
+                .clickCredentialField();
+        searchCredentialField.setSupplierCredentialFieldName(testData.getTestData("SupplierCredentialFieldName"),testData.getTestData("Supplier"));
         searchCredentialField.setSearchGrid();
 
         // Perform assertions
         performAssertions();
-
-
     }
 
     private void performAssertions() {
@@ -126,6 +105,6 @@ public class ActionCredentialField_TC extends TestBase_TC {
     }
     @AfterMethod
     public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70/master/flight/preferAirline/add");
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

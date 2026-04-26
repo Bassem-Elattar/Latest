@@ -5,7 +5,9 @@ import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
 import AdminPages.Master.Supplier.Supplier.SearchSupplier_Page;
+import com.shaft.driver.SHAFT;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,60 +19,41 @@ import java.util.Map;
 
 public class CreateCredential_TC extends TestBase_TC {
 
-    private SearchSupplier_Page supplier;
-    private SearchCredentialField_Page searchCredentialField;
     private LogIn_Page logIn;
-    private SearchCity_Page regionSearchCity;
     private CreateCredentialField_Page createCredentialField;
-
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+    SHAFT.TestData.JSON testData;
 
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
+        testData = new SHAFT.TestData.JSON("CreateCredential.json");
+        createCredentialField = new CreateCredentialField_Page(driver);
     }
 
-    @Test(priority = 1, dataProvider = "JsonProvider")
-    public void CreateCredential(Map<String, String> credentialField){
-        supplier = new SearchSupplier_Page(driver);
-        searchCredentialField = new SearchCredentialField_Page(driver);
-        regionSearchCity = new SearchCity_Page(driver);
-        createCredentialField = new CreateCredentialField_Page(driver);
+    @Test(priority = 1)
+    public void CreateCredential(){
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
-                .clickSupplierCredencial();
-        String SupplierCredintial = credentialField.get("SupplierCredintial");
-        String Supplier = credentialField.get("Supplier");
-        createCredentialField.setSupplierCredintial(SupplierCredintial,Supplier);
+                .clickCredentialField();
+        createCredentialField.setSupplierCredintial(testData.getTestData("SupplierCredential"), testData.getTestData("Supplier"));
         String Expected = "Added Successfully";
         Assert.assertEquals(createCredentialField.Actual(),Expected);
-
-
     }
 
     @Test(priority = 2)
-    public void setInvalidCreateCredentialField(){
-        supplier = new SearchSupplier_Page(driver);
-        searchCredentialField = new SearchCredentialField_Page(driver);
-        regionSearchCity = new SearchCity_Page(driver);
-        createCredentialField = new CreateCredentialField_Page(driver);
+    public void setInvalidCredentialField(){
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
-                .clickSupplierCredencial();
-        createCredentialField.setSupplierCredintial("","Amadeus");
+                .clickCredentialField();
+        createCredentialField.setSupplierCredintial("", testData.getTestData("Supplier"));
         String expected1 = "Required";
         Assert.assertEquals(createCredentialField.Actual2(),expected1);
-
     }
 
-
-
+    @AfterMethod
+    public void navigateBackToURL() {
+        driver.browser().navigateToURL("http://192.168.1.70");
+    }
 }

@@ -46,7 +46,7 @@
   </parameter>
   <parameter>
     <key>sun.java.command</key>
-    <value>com.intellij.rt.testng.RemoteTestNGStarter -usedefaultlisteners false -socket52371 @w@C:\Users\bassem\AppData\Local\Temp\idea_working_dirs_testng7.tmp -temp C:\Users\bassem\AppData\Local\Temp\idea_testng11.tmp</value>
+    <value>com.intellij.rt.testng.RemoteTestNGStarter -usedefaultlisteners false -socket51779 @w@C:\Users\bassem\AppData\Local\Temp\idea_working_dirs_testng9.tmp -temp C:\Users\bassem\AppData\Local\Temp\idea_testng11.tmp</value>
   </parameter>
   <parameter>
     <key>jdk.debug</key>

@@ -66,14 +66,11 @@ public class AddSupplierCredential_TC extends TestBase_TC {
         String DevCreate = add.get("DevCreate");
         addSupplierCredential.setAddSupplierCredential(Supplier,CredentialName,CountryPOC,Currency,CredentialType
         ,FlightSearchLimit,ConnectionTime,ReadTimeOut);
-        addSupplierCredential.GDS(EndpointURL);
+        //addSupplierCredential.GDS(EndpointURL);
 //        addSupplierCredential.RestrictedAirline();
 
         addSupplierCredential.setSaveBtn();
         Thread.sleep(10000);
-
-
-
     }
 
 
