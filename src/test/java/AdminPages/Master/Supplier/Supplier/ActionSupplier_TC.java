@@ -6,7 +6,6 @@ import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,6 +16,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class ActionSupplier_TC extends TestBase_TC {
+    private SearchCity_Page searchCity;
     private SearchSupplier_Page searchSupplier;
     private ActionSupplier_Page actionSupplier;
     private LogIn_Page logIn;
@@ -34,12 +34,16 @@ public class ActionSupplier_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-        searchSupplier = new SearchSupplier_Page(driver);
-        actionSupplier = new ActionSupplier_Page(driver);
+
     }
+
+
 
     @Test(priority = 1, dataProvider = "JsonProvider")
     public void ActionSupplier(Map<String, String> supplier){
+        searchSupplier = new SearchSupplier_Page(driver);
+        searchCity = new SearchCity_Page(driver);
+        actionSupplier = new ActionSupplier_Page(driver);
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
                 .clickSupplier();
@@ -47,18 +51,21 @@ public class ActionSupplier_TC extends TestBase_TC {
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
         actionSupplier.setApprove("yes");
+
     }
 
     @Test(priority = 2, dataProvider = "JsonProvider")
     public void SearchSupplier(Map<String, String> search) throws InterruptedException {
-        new Master_Common(driver).clickMaster()
-                .clickSupplierMenue()
-                .clickSupplier();
+        searchSupplier = new SearchSupplier_Page(driver);
+        searchCity = new SearchCity_Page(driver);
+//        new Master_Common(driver).clickMaster()
+//                .clickSupplierMenue()
+//                .clickSupplier();
         String SupplierName = search.get("SupplierName");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
         String expectedHeader = "Status";
-        String expectedData = "InActive";
+        String expectedData = "Active";
 
         ///////////////////////Check TableData///////////////////////
         try {
@@ -77,24 +84,32 @@ public class ActionSupplier_TC extends TestBase_TC {
             e.printStackTrace();
             Assert.fail("An exception occurred while trying to verify the table header or data: " + e.getMessage());
         }
+
     }
 
     @Test(priority = 3, dataProvider = "JsonProvider")
     public void SearchSupplierReject(Map<String, String> supplier){
-        new Master_Common(driver).clickMaster()
-                .clickSupplierMenue()
-                .clickSupplier();
+        searchSupplier = new SearchSupplier_Page(driver);
+        searchCity = new SearchCity_Page(driver);
+        actionSupplier = new ActionSupplier_Page(driver);
+//        new Master_Common(driver).clickMaster()
+//                .clickSupplierMenue()
+//                .clickSupplier();
         String SupplierName = supplier.get("SupplierName");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
         actionSupplier.setReject("No");
+
     }
+
 
     @Test(priority = 4, dataProvider = "JsonProvider")
     public void SearchSupplierRejected(Map<String, String> search) throws InterruptedException {
-        new Master_Common(driver).clickMaster()
-                .clickSupplierMenue()
-                .clickSupplier();
+        searchSupplier = new SearchSupplier_Page(driver);
+        searchCity = new SearchCity_Page(driver);
+//        new Master_Common(driver).clickMaster()
+//                .clickSupplierMenue()
+//                .clickSupplier();
         String SupplierName = search.get("SupplierName");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
@@ -118,10 +133,8 @@ public class ActionSupplier_TC extends TestBase_TC {
             e.printStackTrace();
             Assert.fail("An exception occurred while trying to verify the table header or data: " + e.getMessage());
         }
+
     }
 
-    @AfterMethod
-    public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70");
-    }
+
 }

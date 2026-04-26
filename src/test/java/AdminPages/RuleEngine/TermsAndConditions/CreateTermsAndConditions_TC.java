@@ -6,10 +6,7 @@ import AdminPages.Master.Flight.Airline.CreateAirline_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
 import lombok.SneakyThrows;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -28,7 +25,7 @@ public class CreateTermsAndConditions_TC extends TestBase_TC {
         return JsonDataUtil.readJsonData(filePath);
     }
 
-    @BeforeTest
+    @BeforeMethod
     public void sign() throws InterruptedException {
         logIn = new LogIn_Page(driver);
         logIn.ClickSuperAdmin();
@@ -79,6 +76,6 @@ public class CreateTermsAndConditions_TC extends TestBase_TC {
     }
     @AfterMethod
     public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.216");
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

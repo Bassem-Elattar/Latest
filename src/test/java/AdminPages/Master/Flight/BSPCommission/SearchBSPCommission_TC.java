@@ -22,21 +22,24 @@ public class SearchBSPCommission_TC extends TestBase_TC {
         return JsonDataUtil.readJsonData(filePath);
     }
 
-    @BeforeTest
+    @BeforeClass
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-        createBSPCommission = new BSPCommission_Page(driver);
-        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
+
+
     }
 
-    @Test
+    @Test(priority  = 1)
     public void setSearchBSPCommission() throws InterruptedException {
+        createBSPCommission = new BSPCommission_Page(driver);
+        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
                 .clickBSP();
-        createBSPCommission.setAirlineName("Air Burkina");
+
+        createBSPCommission.setAirlineName("Egyptair");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
         // Handle pagination and assertions separately
@@ -56,11 +59,14 @@ public class SearchBSPCommission_TC extends TestBase_TC {
     }
 
 
-    @Test
+    @Test(priority  = 2)
     public void setGDSSearchBSPCommission() throws InterruptedException {
+        createBSPCommission = new BSPCommission_Page(driver);
+        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
                 .clickBSP();
+
         createBSPCommission.setGDSSupplier("Galileo");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
@@ -80,11 +86,14 @@ public class SearchBSPCommission_TC extends TestBase_TC {
 
     }
 
-    @Test
+    @Test(priority  = 3)
     public void setGDSsSearchBSPCommission() throws InterruptedException {
+        createBSPCommission = new BSPCommission_Page(driver);
+        paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
                 .clickBSP();
+
         createBSPCommission.setGDSSupplier("Amadeus");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();
@@ -101,6 +110,7 @@ public class SearchBSPCommission_TC extends TestBase_TC {
                 paginationHelper.navigateToNextPage();
             }
         }
+
     }
     @AfterMethod
     public void navigateBackToURL() {

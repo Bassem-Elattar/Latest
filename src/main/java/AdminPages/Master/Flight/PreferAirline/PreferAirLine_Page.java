@@ -26,18 +26,20 @@ public class PreferAirLine_Page {
     SHAFT.GUI.WebDriver driver;
     private final By AirlineName =xpath( "//*[@id=\"id-AirlineName\"]");
     //xpath("//ndc-fg-input[.//input[@id=\"id-AirlineName\"]]");
-    public final By Lst_SupplierName = xpath("//p-dropdown[.//input[@id=\"id-SupplierName\"]]");//dropdowenlist
+    public final By Lst_SupplierName = xpath("//p-dropdown//input[@id=\"id-SupplierName\"]");//dropdowenlist
     private final By  Rbtn_INActiveButton = xpath(" //p-radiobutton[.//input[@id=\"id-Status-Inactive\"]]");
     private final By  Rbtn_ActiveButton = xpath(" //p-radiobutton[.//input[@id=\"id-Status-Active\"]]");
     private final By  Rbtn_BothButton = xpath("//p-radiobutton[.//input[@id=\"id-Status-Both\"]]");
 
     private final By Btn_SearchInGrid = xpath("//span[@class=\"p-button-label\"]");
-    private final By Btn_CancelButton = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-prefer-airline/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div/div[1]/button/span");
+    private final By Btn_CancelButton = xpath("//button[@label='Cancel']");
     private final By Btn_AddAirLineButton = xpath("//span[@ style=\"margin-inline-end: 10px;\"]");
     private final By Txt_AddPreferAirlineName = id("id-Airlinename");
     private final By SPECIFICAddPreferAirlineName = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-add-prefer-airline/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[1]/ndc-fg-auto-complete-input/span/p-autocomplete/span/div/ul/li[1]");
+    private final By clickSupplier = xpath("(//div[@role='button'])[1]");
+    private final By clickpcc = xpath("(//div[@role='button'])[2]");
 
-    private final By Lst_AddSupplierName = xpath("//p-dropdown[@class=\"p-element p-inputwrapper fg-input ng-untouched ng-pristine ng-invalid ng-star-inserted\"]");
+    private final By Lst_AddSupplierName = xpath("(//p-dropdownitem[@class=\"p-element ng-star-inserted\"])[1]");
     private final By Lst_AddPCCSupplier = xpath("//p-dropdown[.//input[@id=\"id-SupplierPCC\"]]");
     private final By Txt_AddAirLineName=xpath("//input[@id=\"id-Airlinename\"]");
     private final By Btn_DisLike = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-prefer-airline/div/tilde-data-table/div/div/div/div/div[2]/p-table/div/div/table/tbody/tr[1]/td[6]/div/div[2]/i");
@@ -59,7 +61,7 @@ public class PreferAirLine_Page {
 
 
     private final By Btn_PCCForSupplierEdit = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-add-prefer-airline/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-dropdown-input/p-dropdown/div/div[2]");//dropdowenlist
-    private final By Btn_SendForApprovalButton = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-add-prefer-airline/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div/div[2]/button/span");
+    private final By Btn_SendForApprovalButton = xpath("//button[@label='Submit']");
     public final By Btn_MinusButton = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/ndc-prefer-airline/div/tilde-data-table/div/div/div/div/tilde-paginator/div/div/button[1]/i");
     public final By Btn_plusButton = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/ndc-prefer-airline/div/tilde-data-table/div/div/div/div/tilde-paginator/div/div/button[2]/i");
     public final By NumberOfRowsInEveryPage = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/ndc-prefer-airline/div/tilde-data-table/div/div/div/div/tilde-paginator/div[1]/div/span[2]");
@@ -92,8 +94,8 @@ public class PreferAirLine_Page {
     private final By  Rbtn_ActiveSign=xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-prefer-airline/div/tilde-data-table/div/div/div/div/div[2]/p-table/div/div/table/tbody/tr/td[6]/div/div[3]/i");
     private final By  Rbtn_INActiveSign=xpath("//i[@class=\"pi pi-circle-fill\"]");
     private final By Txt_ADDAirlineName=xpath("//input[@id=\"id-Airlinename\"]");
-    public final By ValidationOnAirLineName=xpath("//span[contains(text(),' Airline name is required ')]");
-    public final By ValidationOnPCCName=xpath("//span[contains(text(),' Supplier Pcc is required ')]");
+    public final By ValidationOnAirLineName=xpath("//span[contains(text(),' Required ')]");
+    public final By ValidationOnPCCName=xpath("//span[contains(text(),' Required ')]");
     public final By AddSucessfuly=xpath("//div[@aria-label=\"Added Successfully\"]");
     public final By RestricatedAirLine=xpath("//div[@aria-label=\"Remove the restricted airlines to add prefer airline\"]");
     public final By ValidtionInPcc=xpath("//span[contains(text(),'required validation error')]");
@@ -128,9 +130,17 @@ public class PreferAirLine_Page {
 
 
     public PreferAirLine_Page SelectSupplierName(String supplierName) {
-        driver.element().click(Lst_SupplierName);
+//        driver.element().click(Lst_SupplierName);
         By option = xpath(String.format("//span[text()='%s']", supplierName));
         driver.element().click(option);
+        return this;
+    }
+    public PreferAirLine_Page clickOnSupplierList() {
+        driver.element().click(clickSupplier);
+        return this;
+    }
+    public PreferAirLine_Page clickOnPCCSupplierList() {
+        driver.element().click(clickpcc);
         return this;
     }
 
@@ -273,14 +283,14 @@ public class PreferAirLine_Page {
         return this;
     }
     public PreferAirLine_Page SelectAddSupplierName(String supplierName) {
-        driver.element().click(Lst_AddSupplierName);
+      //  driver.element().click(Lst_AddSupplierName);
         By option = xpath(String.format("//span[text()='%s']", supplierName));
         driver.element().click(option);
         return this;
     }
 
     public PreferAirLine_Page SelectAddPCCSupplierName(String pccSupplierName) {
-        driver.element().click(Lst_AddPCCSupplier);
+       // driver.element().click(Lst_AddPCCSupplier);
         By option = xpath(String.format("//span[text()='%s']", pccSupplierName));
         driver.element().click(option);
         return this;

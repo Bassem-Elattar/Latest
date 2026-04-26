@@ -6,10 +6,11 @@ import org.openqa.selenium.WebElement;
 
 public class CancellationCharge_Page {
 
+    private SHAFT.GUI.WebDriver driver ;
     public CancellationCharge_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-    SHAFT.GUI.WebDriver driver ;
+
 
 
     /////////////// RuleEngine Route /////////////
@@ -37,7 +38,7 @@ public class CancellationCharge_Page {
     By Btn_Clone = By.xpath("//i[@class=\"pi pi-clone ng-star-inserted\"]");
     By Txt_NewCancellationChargeName = By.xpath("//input[@id=\"id-NewCancellationChargeName\"]");
     By Btn_Save = By.xpath("//span[normalize-space()='Submit']");
-    By Btn_Delete = By.xpath("//i[@class='pi pi-trash ng-star-inserted']");
+    By Btn_Delete = By.xpath("//i[@class='p-element pi pi-trash ng-star-inserted']");
     By Confirm_Delete = By.xpath("//button[normalize-space()='Delete']");
 
     //////////////// Create CancellationCharge /////////////////

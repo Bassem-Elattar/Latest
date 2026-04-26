@@ -5,6 +5,7 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -27,7 +28,7 @@ public class CreateBSPCommission_TC extends TestBase_TC {
     }
 
 
-    @BeforeTest
+    @BeforeMethod
     public void sign(){
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
@@ -56,12 +57,8 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         String OriginCountry = create.get("OriginCountry");
         String DestinationCountry = create.get("DestinationCountry");
         String FareBasisCode = create.get("FareBasisCode");
-        String ValidityPeriodFromDay = create.get("ValidityPeriodFromDay");
-        String ValidityPeriodFromMonth = create.get("ValidityPeriodFromMonth");
-        String ValidityPeriodFromYear = create.get("ValidityPeriodFromYear");
-        String ValidityPeriodToDay = create.get("ValidityPeriodToDay");
-        String ValidityPeriodToMonth = create.get("ValidityPeriodToMonth");
-        String ValidityPeriodToYear = create.get("ValidityPeriodToYear");
+        String ValidityPeriodFrom = create.get("ValidityPeriodFrom");
+        String ValidityPeriodTo = create.get("ValidityPeriodTo");
         String OutboundPeriodFrom = create.get("OutboundPeriodFrom");
         String OutboundPeriodTo = create.get("OutboundPeriodTo");
         String InboundPeriodFrom = create.get("InboundPeriodFrom");
@@ -98,6 +95,14 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         String X = create.get("X");
         String Y = create.get("Y");
         String Z = create.get("Z");
+        String fromYear = create.get("FromYear");
+        String fromMonth = create.get("FromMonth");
+        String fromDay = create.get("FromDate");
+        String toYear = create.get("ToYear");
+        String toMonth = create.get("ToMonth");
+        String toDay = create.get("ToDate");
+
+        createBSPCommission.clickAirline();
         createBSPCommission.AirlineName(AirlineName);
         createBSPCommission.CommissionName(CommissionName);
         createBSPCommission.GDSSupplier(GDSSupplier);
@@ -107,8 +112,9 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         createBSPCommission.OriginAirPort(OriginAirport);
         createBSPCommission.DestinationAirPort(DestinationAirport);
         createBSPCommission.Adult();
-        createBSPCommission.searchValidFromDate(ValidityPeriodFromDay, ValidityPeriodFromYear, ValidityPeriodFromMonth);
-        createBSPCommission.searchValidToDate(ValidityPeriodToDay, ValidityPeriodToYear, ValidityPeriodToMonth);
+        createBSPCommission.searchValidFromDate(fromDay,fromYear,fromMonth);
+
+        createBSPCommission.searchValidToDate(toDay,toYear,toMonth);
         createBSPCommission.Economy();
         createBSPCommission.EnterValue(EnterValue);
         createBSPCommission.FareType(FareType);
@@ -116,5 +122,11 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         createBSPCommission.setSubmit();
         String Expected = "Added Successfully";
         Assert.assertEquals(createBSPCommission.Actual(),Expected);
+        Thread.sleep(5000);
+
+
+
+
+
     }
 }

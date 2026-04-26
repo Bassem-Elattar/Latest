@@ -1,24 +1,21 @@
-{
+[
+  {
     "AirlineName": "Air Burkina",
-    "CommissionName": "Eyaasttest1",
+    "CommissionName": "Eyaasttest",
     "GDSSupplier": "Galileo",
     "SupplierCredential": "Galileo Live UAE",
     "JourneyType": "One way",
     "TicketDesignator": "",
     "TourCode": "",
-    "OriginAirport": "Anaa",
-    "DestinationAirport": "Arrabury",
+    "OriginAirport": "Anaa(AAA)",
+    "DestinationAirport": "",
     "OriginCity": "",
     "DestinationCity": "",
     "OriginCountry": "",
     "DestinationCountry": "",
     "FareBasisCode": "",
-    "ValidityPeriodFromDay":"5",
-    "ValidityPeriodFromMonth":"Apr",
-    "ValidityPeriodFromYear":"2026",
-    "ValidityPeriodToDay":"20",
-    "ValidityPeriodToMonth":"Apr",
-    "ValidityPeriodToYear":"2026",
+    "ValidityPeriodFrom":"1",
+    "ValidityPeriodTo": "15",
     "OutboundPeriodFrom": "",
     "OutboundPeriodTo": "",
     "InboundPeriodFrom": "",
@@ -30,7 +27,6 @@
     "EnterValue": "10",
     "FareType": "Base Fare",
     "Amount": "Percentage",
-    "SearchCommissionName" : "ME From CAI 5%",
     "A": "",
     "B": "",
     "C": "",
@@ -55,5 +51,13 @@
     "W": "",
     "X": "",
     "Y": "",
-    "Z": ""
-}
+    "Z": "",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Jan",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Jan"
+
+  }
+]
