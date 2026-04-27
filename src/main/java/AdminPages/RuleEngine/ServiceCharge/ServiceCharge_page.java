@@ -89,9 +89,9 @@ public class ServiceCharge_page {
     private final By Btn_eye = By.xpath("//div[@class='action exception-buttons ng-star-inserted']//i[@class='pi pi-eye']");
     private final By Btn_Close = By.xpath("//button[@label='Close']");
     private final By Btn_approval = By.xpath("//i[@class='pi pi-thumbs-up']");
+    By Year = By.xpath("//button[normalize-space()='2026']");
 
-/// //shalabyyy locator///////
-By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
+    By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_SubmitAction = By.xpath("(//button[@type=\"submit\"])[2]");
     By Btn_last = By.xpath("//span[@id=\"last\"]");
     public By Table_FirstRow = By.xpath("//table//tbody/tr[1]");
@@ -281,7 +281,6 @@ By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     }
     */
 
-    /// ///shalaby//////////
 
     public boolean findServiceInPages(String ServiceChargeName) {
         int maxPages = 20; // safety limit
@@ -334,7 +333,33 @@ By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
         driver.element().type(txt_Reamrks,remark).click(Btn_Approve);
 
     }
+    public ServiceCharge_page searchValidFromDate(String From, String year, String month) throws InterruptedException {
 
+        driver.element().click(txt_SelectValidityFrom);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+
+    }
+
+    public ServiceCharge_page searchValidToDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(txt_SelectValidityTo);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+
+    }
 
 
 

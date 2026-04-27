@@ -1,4 +1,5 @@
 package AdminPages.RuleEngine.CancellationCharge;
+import AdminPages.RuleEngine.ServiceCharge.ServiceCharge_page;
 import com.shaft.driver.SHAFT;
 import com.shaft.gui.element.ElementActions;
 import org.openqa.selenium.By;
@@ -74,7 +75,7 @@ public class CancellationCharge_Page {
     By BtnReject = By.xpath("(//button[@class=\"col-sm-12 col-md-6 col-lg-2 p-element p-ripple p-button p-component justify-content-center ng-star-inserted\"])[1]");
     By BtnApprove = By.xpath("//button[normalize-space()='Approve']");
     By BtnUpdateSendForApproval = By.xpath("(//button[@class=\"col-sm-12 col-md-6 col-lg-2 p-element p-ripple p-button p-component justify-content-center ng-star-inserted\"])[3]");
-
+    By Year = By.xpath("//button[normalize-space()='2026']");
 
     public void Txt_CancellationChargeName(String Txt){
         driver.element().type(Txt_CancellationChargeName,Txt);
@@ -202,6 +203,33 @@ public class CancellationCharge_Page {
 
     public String ActualCreate() {
         return driver.element().getText(CreationConfirmation);
+    }
+    public CancellationCharge_Page searchValidFromDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_ValidityPeriodFrom);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+
+    }
+
+    public CancellationCharge_Page searchValidToDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_ValidityPeriodTo);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+
     }
 
 }

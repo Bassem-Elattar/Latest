@@ -1,6 +1,6 @@
 {
   "Set1": {
-    "discountName": "Automation Discount30205211",
+    "discountName": "gb",
     "discountDis": "Description 1",
     "validityFrom": "22",
     "validityTo": "19",
@@ -12,26 +12,37 @@
     "Value": "All",
     "Faretype": "Total Fare",
     "Amounttype": "Percentage",
-    "AmountValue": "10"
+    "AmountValue": "10",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Jan",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Jan"
   },
 
   "SearchSet1": {
     "Country": "Egypt",
-    "Branch": "Test"
+    "Branch": "Test",
+    "ErrorMessage": "Discount found in table!"
   },
   "Actions" : {
-    "discountname" : "Automation Discount 232102",
-    "remark" : "shalaby"
+    "discountname" : "nm",
+    "remark" : "AHMED"
   },
 
   "UpdateSet1": {
-    "name": "Automation Discount30205211",
-    "discountName": "Automation Discount 232102",
+    "name": "gb",
+    "discountName": "nm",
     "discountDis": "Description Discount = 100",
-    "Validityfrom": "23",
-    "ValidityTo": "19",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Feb",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Feb",
     "Amounttype": "Amount",
     "AmountValue": "100",
-    "Remarks": "Update By Shalaby"
+    "Remarks": "REFAT"
   }
 }

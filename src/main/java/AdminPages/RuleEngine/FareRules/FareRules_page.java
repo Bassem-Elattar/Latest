@@ -41,6 +41,7 @@ public class FareRules_page {
     //////remark///////
     private final By txt_remark= By.xpath("//textarea");
     private final By btn_SubmitRemark= By.xpath("(//button[@type='submit'])[2]");
+    By Year = By.xpath("//button[normalize-space()='2026']");
 
     public FareRules_page navigateToRuleEngine(){
         driver.element().click(btn_RuleEngine);
@@ -124,5 +125,31 @@ public class FareRules_page {
         driver.element().click(btn_SubmitRemark);
         return this;
     }
+    public FareRules_page searchValidFromDate(String From, String year, String month) throws InterruptedException {
+        driver.element().click(txt_selectFromDate);
+        driver.element().click(Year);
+    By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+    By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+    By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        return this;
+
+}
+
+public FareRules_page searchValidToDate(String From, String year, String month) throws InterruptedException {
+
+    driver.element().click(txt_selectToDate);
+    driver.element().click(Year);
+    By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+    driver.element().click(year1);
+    By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+    driver.element().click(month1);
+    By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+    driver.element().click(Day);
+    return this;
+
+}
 
 }

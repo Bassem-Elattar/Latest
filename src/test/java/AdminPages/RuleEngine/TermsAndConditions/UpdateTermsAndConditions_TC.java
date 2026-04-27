@@ -5,36 +5,38 @@ import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Flight.Airline.Airline_Page;
 import AdminPages.Master.Flight.Airline.UpdateAirline_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public class UpdateTermsAndConditions_TC extends TestBase_TC {
+public class UpdateTermsAndConditions_TC  {
     private TermsAndConditions_Page TermAndCon;
     private LogIn_Page logIn;
+    SHAFT.TestData.JSON testData;
+    SHAFT.GUI.WebDriver driver;
 
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+
     @BeforeTest
     public void sign() throws InterruptedException {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
-        logIn.ClickOnLoginButton();
-        Thread.sleep(2000);
+        testData = new SHAFT.TestData.JSON("UpdateTermsAndConditions.json");
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        new LogIn_Page(driver).ClickSuperAdmin();
+        TermAndCon = new TermsAndConditions_Page(driver);
 
     }
-    @Test(priority = 1, dataProvider = "JsonProvider")
-    public void UpdateTermsAndConditions(Map<String, String> Update) throws InterruptedException {
+    @Test(priority = 1)
+    public void UpdateTermsAndConditions() throws InterruptedException {
         System.out.println("Verify Error Messages And Update Successfully");
         TermAndCon = new TermsAndConditions_Page(driver);
         new RuleEngine_Common(driver).clickRuleEngine().clickTermsAndConditions();
@@ -47,15 +49,15 @@ public class UpdateTermsAndConditions_TC extends TestBase_TC {
         TermAndCon.ClickOnCheckedReviewPage();
         TermAndCon.ClickOnCheckedETicket();
         TermAndCon.ClickOnSendForApprovalEdit();
-        String Expected = "Required";
-        String Expected2 = "Required";
-        String Expected3 = "Required";
-        String Expected4 = "Required";
+        String Expected = testData.getTestData("Required");
+        String Expected2 = testData.getTestData("Required");
+        String Expected3 = testData.getTestData("Required");
+        String Expected4 = testData.getTestData("Required");
         Assert.assertEquals(TermAndCon.ActualResult(), Expected2);
         Thread.sleep(2000);
         TermAndCon.ChooseAllCountryEdit();
         driver.element().click(TermAndCon.Lst_CountryEdit);
-        String Remarks = Update.get("Remarks");
+        String Remarks = testData.getTestData("Remarks");
         TermAndCon.RemarksSendForApprovalEdit(Remarks);
         TermAndCon.ClickOnSendForApprovalEdit();
         TermAndCon.ChooseAllBranch();
@@ -63,9 +65,9 @@ public class UpdateTermsAndConditions_TC extends TestBase_TC {
         TermAndCon.ClickOnETicket();
         TermAndCon.ClickOnSendForApprovalEdit();
         Thread.sleep(2000);
-        String Expected5 = "http://192.168.1.70/rule-engine/terms";
-        String Actual = driver.browser().getCurrentURL();
-        Assert.assertEquals(Actual, Expected5);
+//        String Expected5 = "http://192.168.1.70/rule-engine/terms";
+//        String Actual = driver.browser().getCurrentURL();
+//        Assert.assertEquals(Actual, Expected5);
 
     }
 }

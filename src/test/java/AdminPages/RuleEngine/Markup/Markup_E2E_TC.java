@@ -34,8 +34,12 @@ public class Markup_E2E_TC {
         page.addMarkup(
                 testData.getTestData("Set1.MarkupName"),
                 testData.getTestData("Set1.MarkupDis"),
-                testData.getTestData("Set1.validityFrom"),
-                testData.getTestData("Set1.validityTo"),
+                testData.getTestData("Set1.FromYear"),
+                testData.getTestData("Set1.FromMonth"),
+                testData.getTestData("Set1.FromDate"),
+                testData.getTestData("Set1.ToYear"),
+                testData.getTestData("Set1.ToMonth"),
+                testData.getTestData("Set1.ToDate"),
                 testData.getTestData("Set1.Country"),
                 testData.getTestData("Set1.Branch"),
                 testData.getTestData("Set1.Agency"),
@@ -67,8 +71,12 @@ public class Markup_E2E_TC {
                 testData.getTestData(updatePath + ".name"),
                 testData.getTestData(updatePath + ".MarkupName"),
                 testData.getTestData(updatePath + ".MarkupDis"),
-                testData.getTestData(updatePath + ".Validityfrom"),
-                testData.getTestData(updatePath + ".ValidityTo"),
+                testData.getTestData("UpdateSet1.FromYear"),
+                testData.getTestData("UpdateSet1.FromMonth"),
+                testData.getTestData("UpdateSet1.FromDate"),
+                testData.getTestData("UpdateSet1.ToYear"),
+                testData.getTestData("UpdateSet1.ToMonth"),
+                testData.getTestData("UpdateSet1.ToDate"),
 //                testData.getTestData(updatePath + ".Faretype"),
                 testData.getTestData(updatePath + ".Amounttype"),
                 testData.getTestData(updatePath + ".AmountValue"),
@@ -85,7 +93,7 @@ public class Markup_E2E_TC {
         page.activestatus();
 //        page.goToNextPage();
         page.findMarkupInPages(markupname);
-        Assert.assertTrue(page.findMarkupInPages(markupname), "Discount found in table!");
+        Assert.assertTrue(page.findMarkupInPages(markupname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(page.Table_FirstRow).exists();
     }
 

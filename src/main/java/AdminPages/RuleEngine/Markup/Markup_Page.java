@@ -70,6 +70,8 @@ public class Markup_Page {
     private By rowMarkup(String markupname){
         return By.xpath("//td[normalize-space()='" + markupname + "']");
     }
+    By Year = By.xpath("//button[normalize-space()='2026']");
+
     private By approveButton(String markupname){
         return By.xpath("//tr[td[normalize-space()='" + markupname + "']]//i[contains(@class,'pi-thumbs-up')]");
     }
@@ -176,18 +178,28 @@ public class Markup_Page {
         driver.element().click(Btn_SubmitAction);
     }
 
-    public void addMarkup(String MarkupName , String MarkupDis,String validityFrom,String validityTo,String Country,String Branch,String Agency,String Attribute,String Operator ,String Value,String Faretype,String Amounttype,String AmountValue) throws InterruptedException {
+    public void addMarkup(String MarkupName , String MarkupDis,String year,String month,String From, String year2,String month2,String From1,String Country,String Branch,String Agency,String Attribute,String Operator ,String Value,String Faretype,String Amounttype,String AmountValue) throws InterruptedException {
         driver.element().click(Btn_AddMarkup);
         driver.element().type(txt_MarkupName,MarkupName)
                 .type(txt_MarkupDisc,MarkupDis);
         driver.element().click(Dpick_Validityfrom);
-        driver.element().click(After);
-        By option12 = xpath(String.format("//span[contains(text(), '%s')]", validityFrom));
-        driver.element().click(option12);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
         driver.element().click(Dpick_ValidityTo);
-        driver.element().doubleClick(After);
-        By option13 = xpath(String.format("//span[contains(text(), '%s')]", validityTo));
-        driver.element().click(option13);
+
+        driver.element().click(Year);
+        By year3 = By.xpath("//span[normalize-space()='" + year2 + "']");
+        driver.element().click(year3);
+        By month3 = By.xpath("//span[normalize-space()='" + month2 + "']");
+        driver.element().click(month3);
+        By Day1 = By.xpath(String.format("(//span[text()='%s'])[1]", From1));
+        driver.element().click(Day1);
+
         driver.element().click(Lst_CountryPosForAdd);
         Thread.sleep(3000);
         driver.element().type(Search,Country);
@@ -230,8 +242,7 @@ public class Markup_Page {
         driver.element().click(Btn_Submit);
 
     }
-    public void updateMarkup(String name, String MarkupName, String MarkupDis, String Validityfrom,
-                             String ValidityTo, String Amounttype,
+    public void updateMarkup(String name, String MarkupName, String MarkupDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
                              String AmountValue, String Remarks) {
 
         // 1. Build dynamic row locator
@@ -258,13 +269,27 @@ public class Markup_Page {
 
         // Validity From
         driver.element().click(Dpick_Validityfrom);
-        By fromOption = By.xpath(String.format("//span[normalize-space()='%s']", Validityfrom));
-        driver.element().click(fromOption);
-
+        By yearr = By.xpath("//button[text()=" + year + "]");
+        driver.element().click(yearr);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
         // Validity To
         driver.element().click(Dpick_ValidityTo);
-        By toOption = By.xpath(String.format("//span[normalize-space()='%s']", ValidityTo));
-        driver.element().click(toOption);
+        By yearr1 = By.xpath("//button[text()=" + year2 + "]");
+        driver.element().click(yearr1);
+        By year3 = By.xpath("//span[normalize-space()='" + year2 + "']");
+        driver.element().click(year3);
+        By month3 = By.xpath("//span[normalize-space()='" + month2 + "']");
+        driver.element().click(month3);
+        By Day1 = By.xpath(String.format("(//span[text()='%s'])[1]", From1));
+        driver.element().click(Day1);
+
+
+
 
         // Dropdowns
 //        driver.element().select(Lst_FareType, Faretype);
