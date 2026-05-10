@@ -17,7 +17,7 @@ public class AddSupplierCredential_Page {
     By Lst_CredentialType = By.xpath("//p-dropdown[.//input[@id=\"id-CredentialType\"]]");
     By Lst_FlightSearchLimit = By.xpath("//p-dropdown[.//input[@id=\"id-FlightSearchLimit\"]]");
     By Lst_ConnectionTime = By.xpath("//p-dropdown[.//input[@id=\"id-ConnectionTimeout\"]]");
-    By Lst_ReadTimeOut = By.xpath("//body[1]/ndc-root[1]/ndc-layout[1]/div[1]/div[3]/div[1]/div[1]/ndc-add-supplier-credentials[1]/div[1]/div[1]/ndc-fg-form-container[1]/div[1]/ndc-fg-form-generator[1]/form[1]/ndc-fg-input[9]/ndc-fg-dropdown-input[1]/p-dropdown[1]/div[1]");
+    By Lst_ReadTimeOut = By.xpath("(//div[@role='button'])[7]");
     By Txt_EndpointURL = By.xpath("//input[@id=\"id-EndpointURL\"]");
     By Password = By.xpath("//input[@id=\"id-password\"]");
     By DisplayName = By.xpath("//input[@id=\"id-displayname\"]");
