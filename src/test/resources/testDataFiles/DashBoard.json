@@ -1,0 +1,13 @@
+
+  {
+    "FromDate": "2",
+    "FromYear": "2026",
+    "FromMonth": "Feb",
+    "ToDate": "3",
+    "ToYear": "2026",
+    "ToMonth": "May",
+    "fromdate":"02/02/2026",
+    "verify_New_Booking_View": "New Booking",
+    "bookingReference": "NDCEG-BR-F260408iKY5df",
+    "bookingDetailsURL_Itinerary": "http://192.168.1.70/booking/booking-details/BRN103KIKORD260408ZWVJLH"
+  }
