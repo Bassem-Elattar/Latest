@@ -99,6 +99,7 @@ public class ManualBooking_TC {
                 .assertBaseFare(baseFare)
                 .assertTax(tax)
                 .assertTotalADT(total);
+      //  manualBooking.clickPay();
     }
 
 
@@ -217,6 +218,8 @@ public class ManualBooking_TC {
                 .assertBaseFare_INF(infantBase)
                 .assertTax_INF(infantTax)
                 .assertTotal(String.valueOf(total));
+        //  manualBooking.clickPay();
+
     }
     @Test (priority = 2)
     public void verifyThatAdminCanCreateManualBookingInvoiceSuccessfullyWithRuleEngine() throws InterruptedException {
@@ -284,6 +287,8 @@ public class ManualBooking_TC {
                 .assertDiscount(discount)
                 .assertServiceCharge(serviceCharge)
                 .assertTotalwithRule(total);
+        //  manualBooking.clickPay();
+
     }
 
 }
