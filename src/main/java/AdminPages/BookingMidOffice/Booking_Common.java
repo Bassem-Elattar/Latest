@@ -10,7 +10,7 @@ public class Booking_Common {
     private final By btn_Sub_BookingMidOffice = By.xpath("//a[@class='ng-star-inserted']");
     private final By btn_SearchBooking = By.xpath("//a[@href='/booking/search-booking']");
     private final By btn_Booking = By.xpath("//a[@href='/booking/booking']");
-    private final By btn_MyQuotes = By.xpath("//a[@href='/booking/quotes']");
+    private final By btn_MyQuotes = By.xpath("//a[@href='/booking/search-my-quotes']");
     private final By btn_ManualBookingInvoice = By.xpath("//a[@href='/booking/manual-booking-invoice']");
     private final By ShowMoreBtn = By.xpath("(//button[@type='button'])[1]");
 

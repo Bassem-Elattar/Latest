@@ -12,12 +12,12 @@ public class SearchBookingBranch {
 
     By BookingMidOffice = By.xpath("//a[@class='mid-office-1'and contains(text(),'Booking-Mid Office')]");
     By Booking = By.xpath("//li[@id='Booking']");
-    By BranchList = By.xpath("//span[normalize-space()='Branch*']");
+    By BranchList = By.xpath( "//p-dropdown[@formcontrolname='branch']");
     By StartingFrom = By.xpath("//div[contains(text(),'From *')]");
     By selectFrom = By.xpath("//input[@placeholder='Search']");
     By fromCheckBox = By.xpath("(//div[@class='p-checkbox-box'])[1]");
     By GoingTo = By.xpath("//span[normalize-space()='To *']");
-    By selectTo = By.xpath("(//input[@placeholder='Search'])[1]");
+    By selectTo = By.xpath("//div[contains(@class,'p-dropdown-header')]//input[@placeholder='Search']");
     By DataPicker = By.xpath("//input[@placeholder='YYYY-MM-DD *']");
     By noOfAdults = By.xpath("(//p-button[@icon='pi pi-plus'])[1]");
     By noOfChildren = By.xpath("(//p-button[@icon='pi pi-plus'])[2]");
@@ -32,6 +32,45 @@ public class SearchBookingBranch {
     By noSearchResultsMsg = By.xpath("//p[contains(text(),'No, search results available')]");
     By Year = By.xpath("//button[normalize-space()='2026']");
     By PassengersList = By.xpath("//button[@class='passengers-btn ng-star-inserted']");
+    By firstFlicghtSelector = By.xpath("(//div[contains(@class,'left-side-card')]//p-checkbox//div[contains(@class,'p-checkbox-box')])[1]");
+    By saveQuoteBtn = By.xpath("//button[contains(@class,'flight-action-btn') and contains(.,'Save Quote')]");
+    By NewUserCheckForQuoteTxt = By.xpath("//label[normalize-space()='New user']");
+    By QuoteNewUserFirstNameTxt = By.id("id-FirstName");
+    By QuoteNewUserLastNameTxt = By.id("id-LastName");
+    By QuoteNewUserEmailTxt = By.id("id-Email");
+    By QuoteNewUserAddEmailBtn = By.xpath("//button[.//span[normalize-space()='Add Email']]");
+    By QuoteNewUserPhone = By.id("Phone");
+    By ConfirmSaveQuoteBtn = By.xpath("//button[@type='submit']//span[normalize-space()='Save Quote']/ancestor::button");
+    By QuoteSavedMsg = By.xpath("//span[normalize-space()='Quote Saved']");
+    By firstBookFlightButton = By.xpath("(//button[.//span[normalize-space()='Book Flight']])[1]");
+
+    public void BookFirstFlight() {
+        driver.element().click(firstBookFlightButton);
+    }
+    public SearchBookingBranch selectFirstFlight(){
+        driver.element().click(firstFlicghtSelector);
+        return new SearchBookingBranch(driver);
+    }
+    public SearchBookingBranch SaveQuote(){
+        driver.element().click(saveQuoteBtn);
+        return new SearchBookingBranch(driver);
+    }
+    public SearchBookingBranch ConfirmSaveQuote(String NewUserFirstName,String NewUserLastName,String NewUserEmail,String NewUserPhone){
+
+        driver.element().click(NewUserCheckForQuoteTxt);
+        driver.element().type(QuoteNewUserFirstNameTxt,NewUserFirstName);
+        driver.element().type(QuoteNewUserLastNameTxt,NewUserLastName);
+        driver.element().type(QuoteNewUserEmailTxt,NewUserEmail);
+        driver.element().click(QuoteNewUserAddEmailBtn);
+        driver.element().type(QuoteNewUserPhone,NewUserPhone);
+        driver.element().click(ConfirmSaveQuoteBtn);
+        return new SearchBookingBranch(driver);
+    }
+    public void AssertThatQuoteSaved(){
+        driver.verifyThat()
+                .element(QuoteSavedMsg)
+                .isVisible();
+    }
 
     public SearchBookingBranch ClickOnBookingMidOffice() {
         driver.element().click(BookingMidOffice);
@@ -48,8 +87,20 @@ public class SearchBookingBranch {
         return new SearchBookingBranch(driver);
     }
 
-    public SearchBookingBranch SelectBranch(String Branch) {
-        driver.element().select(BranchList, Branch);
+    public SearchBookingBranch SelectBranch(String branch) {
+
+        // open dropdown
+        driver.element().click(BranchList);
+
+        // select option
+        By branchOption = By.xpath(
+                "//li[@role='option']//span[normalize-space()='" + branch + "']"
+        );
+
+        driver.element().waitToBeReady(branchOption);
+
+        driver.element().click(branchOption);
+
         return new SearchBookingBranch(driver);
     }
 
