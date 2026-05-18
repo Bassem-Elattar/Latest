@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import utilities.FileUploadUtil;
 import utilities.JsonDataUtil;
 
+import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -71,7 +72,8 @@ public class CreateAGN_TC extends TestBase_TC {
         By fileInputLocator = By.xpath("(//input[@type='file'])[1]");
         By fileInputLocator2 = By.xpath("(//input[@type='file'])[2]");
         String filePath = "C:\\Users\\Mahmoud\\Desktop\\white-empty-canvas_1194-7555.jpg";
-        FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator2, filePath);
+        driver.element().type(fileInputLocator,"C:\\Users\\Ahmed Refat\\NDC-Uplift-Automation\\src\\test\\resources\\sample.png");
+      //  FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator2, filePath);
         CRAGN.DOC();
         String filePath2 = "C:\\Users\\Mahmoud\\Desktop\\New Microsoft Word Document.docx"; // Replace with your file path
         FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath2);
