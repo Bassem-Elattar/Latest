@@ -9,6 +9,7 @@ import org.testng.asserts.SoftAssert;
 public class TermsAndConditions_Page {
     //constant
     private final SoftAssert softAssert;
+    static SHAFT.GUI.WebDriver driver;
 
     public TermsAndConditions_Page(SHAFT.GUI.WebDriver driver) {
 
@@ -16,7 +17,7 @@ public class TermsAndConditions_Page {
 
         this.driver = driver;
     }
-    static SHAFT.GUI.WebDriver driver;
+
     By Btn_RuleEngine = By.xpath("//a[@href=\"/rule-engine\"]");
     By Btn_TermsANDCondition = By.xpath("//img[@src=\"../static/img/term_cond_icon.png\"]");
     By Btn_Search = By.xpath("//button[@type=\"submit\"]");

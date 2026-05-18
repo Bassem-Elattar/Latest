@@ -1,6 +1,10 @@
-[
+
   {
     "SelectSupplier": "Galileo",
-    "Description": "OK Muhamed Elmaghraby"
+    "Description": "OK",
+    "Required": "Required",
+    "ValidationMessage": "Please check atleast one event type option.",
+    "PendingStatus": "pending For Approval",
+    "RejectStatus": "Reject",
+    "ApproveStatus": "Approved"
   }
-]

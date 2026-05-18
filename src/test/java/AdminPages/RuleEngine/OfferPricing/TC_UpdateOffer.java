@@ -3,12 +3,15 @@ package AdminPages.RuleEngine.OfferPricing;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.FileUploadUtil;
 import utilities.JsonDataUtil;
 
@@ -18,43 +21,39 @@ import java.util.Map;
 
 
 
-public class TC_UpdateOffer extends TestBase {
+public class TC_UpdateOffer  {
     private UpdateOffer_Page Edit;
     private LogIn_Page logIn;
     private SearchOffer_Page Search;
+    SHAFT.GUI.WebDriver driver;
+    private SHAFT.TestData.JSON testData;
 
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
+
     @BeforeTest
     public void sign() throws InterruptedException {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
-        logIn.ClickOnLoginButton();
-        Thread.sleep(3000);
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
+
+        testData = new SHAFT.TestData.JSON("Updateoffer.json");
     }
-    @Test(dataProvider = "JsonProvider")
-    public void UpdateOffer(Map<String, String> Offer) throws InterruptedException {
+    @Test
+    public void UpdateOffer() throws InterruptedException {
         Edit = new UpdateOffer_Page(driver);
         Search = new SearchOffer_Page(driver);
         new RuleEngine_Common(driver).clickRuleEngine().clickOfferPricing();
         Search.setBoth();
         Search.search();
-        String Discreption = Offer.get("Discreption");
-        String Remarks = Offer.get("Remarks");
+        String Discreption = testData.getTestData("Discreption");
+        String Remarks = testData.getTestData("Remarks");
         Edit.UpdateOffer(Discreption,Remarks);
         Edit.Sendapprove();
-        String Expected = "Updated Successfully";
+        String Expected = testData.getTestData("success");
         Assert.assertEquals(Edit.Actual(),Expected);
 
 
-    }
-    @AfterMethod
-    public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.90");
     }
 
 }

@@ -25,7 +25,8 @@ public class FareRulesTCs extends TestBase_TC {
         new RuleEngine_Common(driver).clickRuleEngine().clickFareRuleMaster();
         new FareRules_page(driver).ClickAtAddFareRule()
                 .SelectSuplier()
-                .SelectValidDate(testData.getTestData("validData.ValidityFrom"), testData.getTestData("validData.ValidityTo"))
+                .searchValidFromDate(testData.getTestData("validData.FromDate"),testData.getTestData("validData.FromYear"),testData.getTestData("validData.FromMonth"))
+                .searchValidToDate(testData.getTestData("validData.ToDate"),testData.getTestData("validData.ToYear"),testData.getTestData("validData.ToMonth"))
                 .SelectCountry()
                 .EnterFareName(testData.getTestData("validData.FareName"))
                 .EnterFareDescription(testData.getTestData("validData.Description"))

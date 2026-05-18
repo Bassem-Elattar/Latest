@@ -2,13 +2,16 @@ package AdminPages.RuleEngine.OfferPricing;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.FileUploadUtil;
 
 public class CreateOffer_Page {
+    private final SHAFT.GUI.WebDriver driver;
+    private SHAFT.TestData.JSON testData;
 
     public CreateOffer_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
+        testData = new SHAFT.TestData.JSON("Createoffer.json");
     }
-    SHAFT.GUI.WebDriver driver;
     By Btn_Rule = By.xpath("//a[@href=\"/rule-engine\"]");
     By Btn_Offer = By.xpath("(//div[@class=\"panel-heading accordion-toggle\"])[5]");
     By Btn_Add =By.xpath("//button[@routerlink=\"add\"]");
@@ -22,20 +25,25 @@ public class CreateOffer_Page {
 
 
 
-    public void CreateOffer(String Discount,String Discreption) throws InterruptedException {
-        driver.element().click(Btn_Rule)
-                .click(Btn_Offer);
+
+    public void CreateOffer(String Discount,String Discreption,String value) throws InterruptedException {
+
         driver.element().click(Btn_Add);
         driver.element().type(Txt_Id,Discount);
-        Thread.sleep(1000);
-        driver.element().click(ClickDiscount);
-        driver.element().type(Txt_Discreption,Discreption);
+        //Thread.sleep(1000);
 
+        driver.element().click(By.xpath(String.format("//span[text()='%s']", value)));
+        driver.element().type(Txt_Discreption,Discreption);
 
 
     }
     public void img(){
         driver.element().click(Btn_Upload);
+    }
+    public void uploadImage(){
+        By fileInputLocator = By.xpath("(//input[@type='file'])[1]");
+        String filePath = testData.getTestData("filePath");
+        FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
     }
     public void Sendapprove(){
         driver.element().click(Btn_SendForaproval);

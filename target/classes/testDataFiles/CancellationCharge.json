@@ -19,7 +19,8 @@
 
   "Search": {
     "Name": "ahmed",
-    "Country": "Egypt"
+    "Country": "Egypt",
+    "errorMessage": "No data has been found!"
   },
 
   "Update": {
@@ -31,7 +32,13 @@
     "FareType": "Base Fare",
     "Adult": "2",
     "Child": "2",
-    "Infant": "2"
+    "Infant": "2",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Feb",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Feb"
   }
 }
 

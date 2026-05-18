@@ -4,19 +4,26 @@ import AdminPages.Login.TestBase;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.RuleEngine.RuleEngine_Common;
 import AdminPages.RuleEngine.ServiceCharge.ServiceCharge_page;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 
-public class EndToEndService extends TestBase_TC {
+public class EndToEndService  {
     private SHAFT.TestData.JSON testData;
     private ServiceCharge_page service1;
     private RuleEngine_Common ser1;
+    SHAFT.GUI.WebDriver driver;
     @BeforeTest
     public void login(){
         testData = new SHAFT.TestData.JSON("ServiceCharge.json");
-        new LogIn_Page(driver).ClickAdmin();
-        new LogIn_Page(driver).ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
+
         service1 = new ServiceCharge_page(driver);
         ser1 = new RuleEngine_Common(driver);
         ser1.clickRuleEngine().clickServiceCharge();
@@ -28,7 +35,8 @@ public class EndToEndService extends TestBase_TC {
 
                 .ClickAtAddServiceCharge()
                 .EnterServiceName(testData.getTestData("Set1.ServiceChargeName"))
-                .SelectValidityDate(testData.getTestData("Set1.ValidityFrom"), testData.getTestData("Set1.ValidityTo"))
+                .searchValidFromDate(testData.getTestData("Set1.FromDate"),testData.getTestData("Set1.FromYear"),testData.getTestData("Set1.FromMonth"))
+                .searchValidToDate(testData.getTestData("Set1.ToDate"),testData.getTestData("Set1.ToYear"),testData.getTestData("Set1.ToMonth"))
                 .EnterServiceDescription(testData.getTestData("Set1.ServiceChargeDescription"))
                 .SelectListCountryPOS(testData.getTestData("Set1.CountryPOS"))
                 .SelectListBranch(testData.getTestData("Set1.Branch"))

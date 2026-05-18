@@ -39,8 +39,12 @@ public class E2EDiscount {
         discount.adddiscount(
                 testData.getTestData("Set1.discountName"),
                 testData.getTestData("Set1.discountDis"),
-                testData.getTestData("Set1.validityFrom"),
-                testData.getTestData("Set1.validityTo"),
+                testData.getTestData("Set1.FromYear"),
+                testData.getTestData("Set1.FromMonth"),
+                testData.getTestData("Set1.FromDate"),
+                testData.getTestData("Set1.ToYear"),
+                testData.getTestData("Set1.ToMonth"),
+                testData.getTestData("Set1.ToDate"),
                 testData.getTestData("Set1.Country"),
                 testData.getTestData("Set1.Branch"),
                 testData.getTestData("Set1.Agency"),
@@ -69,8 +73,12 @@ public class E2EDiscount {
                 testData.getTestData("UpdateSet1.name"),
                 testData.getTestData("UpdateSet1.discountName"),
                 testData.getTestData("UpdateSet1.discountDis"),
-                testData.getTestData("UpdateSet1.Validityfrom"),
-                testData.getTestData("UpdateSet1.ValidityTo"),
+                testData.getTestData("UpdateSet1.FromYear"),
+                testData.getTestData("UpdateSet1.FromMonth"),
+                testData.getTestData("UpdateSet1.FromDate"),
+                testData.getTestData("UpdateSet1.ToYear"),
+                testData.getTestData("UpdateSet1.ToMonth"),
+                testData.getTestData("UpdateSet1.ToDate"),
 //                testData.getTestData("UpdateSet1.Faretype"),
                 testData.getTestData("UpdateSet1.Amounttype"),
                 testData.getTestData("UpdateSet1.AmountValue"),
@@ -86,7 +94,7 @@ public class E2EDiscount {
         discount.search_Discount(country,branch);
         discount.activestatus();
         discount.findDiscountInPages(discountname);
-        Assert.assertTrue(discount.findDiscountInPages(discountname), "Discount found in table!");
+        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }
 
