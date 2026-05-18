@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeTest;
 
 public class TestBase_TC {
 
-    protected SHAFT.GUI.WebDriver driver ;
+    public SHAFT.GUI.WebDriver driver ;
 
     @BeforeTest
     public void setupBrowse() throws InterruptedException {

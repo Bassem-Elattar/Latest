@@ -25,10 +25,10 @@ public class Role_Page {
     private final By Rbtn_Active = By.xpath("(//p-radiobutton)[2]");
     private final By Rbtn_Both = By.xpath("(//p-radiobutton)[3]");
     private final By btn_Search = By.xpath("//button[@type='submit']");
-    private final By btn_Edit = By.xpath("(//div[@class='action ng-star-inserted'])[1]");
-    private final By btn_Approve = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[1]");
-    private final By btn_Reject = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[2]");
-    private final By btn_Copy = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[3]");
+    private final By btn_Edit = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[1]");
+    private final By btn_Approve = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[2]");
+    private final By btn_Reject = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[3]");
+    private final By btn_Copy = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[4]");
     private final By btn_Paginate = By.xpath("//button[@class='next']");
     private final By RoleNameField = By.xpath("//tr[1]/td[1]");
         ///////////////AddPage///////////////////
@@ -191,7 +191,7 @@ public class Role_Page {
         return this;
     }
     public Role_Page ClickIsViewAtAllFields() {
-        for (i=1;i<60;i++){
+        for (i=1;i<62;i++){
             if(i==1){
                 driver.element().click(btn_DashBoard_Tab);
             }
@@ -206,55 +206,55 @@ public class Role_Page {
 
                 driver.element().click(btn_Agency_Tab);
             }
-            if(i==11){
+            if(i==12){
 
                 driver.element().click(btn_Staff_Tab);
             }
-            if(i==12){
+            if(i==13){
 
                 driver.element().click(btn_Master_Tab);
             }
-            if(i==18){
+            if(i==19){
 
                 driver.element().click(btn_Supplier_Tab);
             }
-            if(i==22){
+            if(i==24){
 
                 driver.element().click(btn_Miscellaneous_Tab);
             }
-            if(i==26){
+            if(i==28){
 
                 driver.element().click(btn_PaymentGateway_Tab);
             }
-            if(i==27){
+            if(i==29){
 
                 driver.element().click(btn_RuleEngine_Tab);
             }
-            if(i==35){
+            if(i==37){
 
                 driver.element().click(btn_Setting_Tab);
             }
-            if(i==37){
+            if(i==39){
 
                 driver.element().click(btn_UserManagement_Tab);
             }
-            if(i==39){
+            if(i==41){
 
                 driver.element().click(btn_BookingMidOffice_Tab);
             }
-            if(i==43){
+            if(i==45){
 
                 driver.element().click(btn_Profile_Tab);
             }
-            if(i==44){
+            if(i==46){
 
                 driver.element().click(btn_Reports_Tab);
             }
-            if(i==58){
+            if(i==60){
 
                 driver.element().click(btn_PNRQuery_Tab);
             }
-            if(i==59){
+            if(i==61){
 
                 driver.element().click(btn_TransferPNR_Tab);
             }
@@ -264,70 +264,70 @@ public class Role_Page {
         return this;
     }
     public Role_Page ClickIsEditAtAllFields() {
-        for (j=1;j<60;j++) {
-            if(j==1){
+        for (i=1;i<62;i++){
+            if(i==1){
                 driver.element().click(btn_DashBoard_Tab);
             }
-            if(j==2){
+            if(i==2){
                 driver.element().click(btn_Admin_Tab);
             }
-            if(j==6){
+            if(i==6){
 
                 driver.element().click(btn_Branch_Tab);
             }
-            if(j==7){
+            if(i==7){
 
                 driver.element().click(btn_Agency_Tab);
             }
-            if(j==11){
+            if(i==12){
 
                 driver.element().click(btn_Staff_Tab);
             }
-            if(j==12){
+            if(i==13){
 
                 driver.element().click(btn_Master_Tab);
             }
-            if(j==18){
+            if(i==19){
 
                 driver.element().click(btn_Supplier_Tab);
             }
-            if(j==22){
+            if(i==24){
 
                 driver.element().click(btn_Miscellaneous_Tab);
             }
-            if(j==26){
+            if(i==28){
 
                 driver.element().click(btn_PaymentGateway_Tab);
             }
-            if(j==27){
+            if(i==29){
 
                 driver.element().click(btn_RuleEngine_Tab);
             }
-            if(j==35){
+            if(i==37){
 
                 driver.element().click(btn_Setting_Tab);
             }
-            if(j==37){
+            if(i==39){
 
                 driver.element().click(btn_UserManagement_Tab);
             }
-            if(j==39){
+            if(i==41){
 
                 driver.element().click(btn_BookingMidOffice_Tab);
             }
-            if(j==43){
+            if(i==45){
 
                 driver.element().click(btn_Profile_Tab);
             }
-            if(j==44){
+            if(i==46){
 
                 driver.element().click(btn_Reports_Tab);
             }
-            if(j==58){
+            if(i==60){
 
                 driver.element().click(btn_PNRQuery_Tab);
             }
-            if(j==59){
+            if(i==61){
 
                 driver.element().click(btn_TransferPNR_Tab);
             }
@@ -336,70 +336,70 @@ public class Role_Page {
         return this;
     }
     public Role_Page ClickIsApproveAtAllFields() {
-        for (k=1;k<60;k++) {
-            if(k==1){
+        for (i=1;i<62;i++){
+            if(i==1){
                 driver.element().click(btn_DashBoard_Tab);
             }
-            if(k==2){
+            if(i==2){
                 driver.element().click(btn_Admin_Tab);
             }
-            if(k==6){
+            if(i==6){
 
                 driver.element().click(btn_Branch_Tab);
             }
-            if(k==7){
+            if(i==7){
 
                 driver.element().click(btn_Agency_Tab);
             }
-            if(k==11){
+            if(i==12){
 
                 driver.element().click(btn_Staff_Tab);
             }
-            if(k==12){
+            if(i==13){
 
                 driver.element().click(btn_Master_Tab);
             }
-            if(k==18){
+            if(i==19){
 
                 driver.element().click(btn_Supplier_Tab);
             }
-            if(k==22){
+            if(i==24){
 
                 driver.element().click(btn_Miscellaneous_Tab);
             }
-            if(k==26){
+            if(i==28){
 
                 driver.element().click(btn_PaymentGateway_Tab);
             }
-            if(k==27){
+            if(i==29){
 
                 driver.element().click(btn_RuleEngine_Tab);
             }
-            if(k==35){
+            if(i==37){
 
                 driver.element().click(btn_Setting_Tab);
             }
-            if(k==37){
+            if(i==39){
 
                 driver.element().click(btn_UserManagement_Tab);
             }
-            if(k==39){
+            if(i==41){
 
                 driver.element().click(btn_BookingMidOffice_Tab);
             }
-            if(k==43){
+            if(i==45){
 
                 driver.element().click(btn_Profile_Tab);
             }
-            if(k==44){
+            if(i==46){
 
                 driver.element().click(btn_Reports_Tab);
             }
-            if(k==58){
+            if(i==60){
 
                 driver.element().click(btn_PNRQuery_Tab);
             }
-            if(k==59){
+            if(i==61){
 
                 driver.element().click(btn_TransferPNR_Tab);
             }
