@@ -4,9 +4,9 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.importPNR.ImportPNR_Page;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 import utilities.DataUtils;
 
 public class ImportPNR_Test {
@@ -15,7 +15,7 @@ public class ImportPNR_Test {
     private SHAFT.TestData.JSON testData;
     private ImportPNR_Page importPNRPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         CommonMethod.setupDriver(DataUtils.get("browser"));
         driver = CommonMethod.getDriver();
@@ -27,27 +27,48 @@ public class ImportPNR_Test {
         importPNRPage = new ImportPNR_Page(driver);
         importPNRPage.navigateToImportPNRPage();
     }
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
 
 
     @Test
-    public void TC01_importPNRSuccessfully() {
+    public void TC01_BranchSuccessfulImport() {
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
                 .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
                 .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
                 .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton()
-                .checkTermsAndConditionsCheckbox()
+                .clickSearchButton();
+
+        String totalFareBeforePay= importPNRPage.getTotalFareBeforePay();
+
+        importPNRPage.checkTermsAndConditionsCheckbox()
                 .clickMainPayButton()
                 .clickConfirmPayPopupPayButton();
 
+        String totalFareAfterPay= importPNRPage.getTotalFareAfterPay();
 
-        driver.element().assertThat(importPNRPage.getTicketConfirmedSuccessMessage())
-                .text()
-                .contains(testData.getTestData("validAutoTicketingPnr.expectedSuccessMessage"));
+        SoftAssert softAssert=new SoftAssert();
+
+        String actual = importPNRPage.getTicketConfirmedSuccessMessageText();
+        String expected = testData.getTestData("validAutoTicketingPnr.expectedSuccessMessage");
+
+        softAssert.assertEquals(
+                totalFareAfterPay,
+                totalFareBeforePay,
+                "Total fare before and after payment are not equal. "
+                        + "Before Pay: " + totalFareBeforePay
+                        + " | After Pay: " + totalFareAfterPay
+        );
+
+        softAssert.assertTrue(
+                actual.contains(expected),
+                "Success message is not correct. Actual: " + actual + " | Expected: " + expected
+        );
+
+        softAssert.assertAll();
+
     }
 
 

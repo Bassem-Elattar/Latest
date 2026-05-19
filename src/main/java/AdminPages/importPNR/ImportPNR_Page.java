@@ -54,6 +54,15 @@ public class ImportPNR_Page {
     private final By ticketConfirmedSuccessMessage =
             By.xpath("//p[contains(normalize-space(.),'Your ticket has been successfully Confirmed. Thank you for choosing NDC')]");
 
+    //Total fare before pay
+    private final By totalFareBeforePay =
+            By.xpath("//div[contains(@class,'fare-total-amount')]");
+
+    //Total pay after pay
+    private final By totalFareAfterPay =
+            By.xpath("//div[contains(@class,'total-value')]");
+
+    //
     private By dropdownOption(String optionText) {
         return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
     }
@@ -129,8 +138,16 @@ public class ImportPNR_Page {
         return this;
     }
 
-    public By getTicketConfirmedSuccessMessage() {
-        return ticketConfirmedSuccessMessage;
+    public String getTicketConfirmedSuccessMessageText() {
+        return driver.element().getText(ticketConfirmedSuccessMessage);
+    }
+
+    public String getTotalFareBeforePay() {
+        return driver.element().getText(totalFareBeforePay);
+    }
+
+    public String getTotalFareAfterPay() {
+        return driver.element().getText(totalFareAfterPay);
     }
 
 
