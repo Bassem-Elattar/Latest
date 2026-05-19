@@ -59,7 +59,7 @@ public class ManualBooking_TC {
                         testData.getTestData("FromMonth"))
                 .selectSupplier(testData.getTestData("supplier"))
                 .selectAirline(testData.getTestData("airline"))
-                .UploadPDF("C:\\Users\\Yara\\NDC-Uplift-Automation\\src\\test\\resources\\sendGridUsage.pdf")
+                .UploadPDF("src/test/resources/sendGridUsage.pdf")
                 .enterBaseADT(testData.getTestData("passengers.adult.baseFare"))
                 .enterTaxADT(testData.getTestData("passengers.adult.tax"))
 
@@ -95,11 +95,12 @@ public class ManualBooking_TC {
 //            //    .assertRouteVisible()
 //             //   .assertPassengerCountVisible()
 //              //  .assertTripTypeVisible()
-                .openSegmentsDetails()
+                //.openSegmentsDetails()
                 .assertBaseFare(baseFare)
                 .assertTax(tax)
                 .assertTotalADT(total);
-      //  manualBooking.clickPay();
+        manualBooking.clickPay();
+        Thread.sleep(10000);
     }
 
 
@@ -126,7 +127,7 @@ public class ManualBooking_TC {
                 .clickAddPassenger()
                 .selectSupplier(testData.getTestData("supplier"))
                 .selectAirline(testData.getTestData("airline"))
-                .UploadPDF("C:\\Users\\Yara\\NDC-Uplift-Automation\\src\\test\\resources\\sendGridUsage.pdf")
+                .UploadPDF("src/test/resources/sendGridUsage.pdf")
                 .enterBaseADT(testData.getTestData("passengers.adult.baseFare"))
                 .enterTaxADT(testData.getTestData("passengers.adult.tax"))
                 .enterBaseCHD(testData.getTestData("passengers.child.baseFare"))
@@ -218,7 +219,7 @@ public class ManualBooking_TC {
                 .assertBaseFare_INF(infantBase)
                 .assertTax_INF(infantTax)
                 .assertTotal(String.valueOf(total));
-        //  manualBooking.clickPay();
+          manualBooking.clickPay();
 
     }
     @Test (priority = 2)
@@ -236,7 +237,7 @@ public class ManualBooking_TC {
                         testData.getTestData("FromMonth"))
                 .selectSupplier(testData.getTestData("supplier"))
                 .selectAirline(testData.getTestData("airline"))
-                .UploadPDF("C:\\Users\\Yara\\NDC-Uplift-Automation\\src\\test\\resources\\sendGridUsage.pdf")
+                .UploadPDF("src/test/resources/sendGridUsage.pdf")
                 .enterBaseADT(testData.getTestData("passengers.adult.baseFare"))
                 .enterTaxADT(testData.getTestData("passengers.adult.tax"))
                 .addRuleEngine(testData.getTestData("markup"), testData.getTestData("servicecharge"), testData.getTestData("discount") )
@@ -281,13 +282,13 @@ public class ManualBooking_TC {
 //            //    .assertRouteVisible()
 //             //   .assertPassengerCountVisible()
 //              //  .assertTripTypeVisible()
-                .openSegmentsDetails()
+                //.openSegmentsDetails()
                 .assertBaseFare(Base)
                 .assertTax(tax)
                 .assertDiscount(discount)
                 .assertServiceCharge(serviceCharge)
                 .assertTotalwithRule(total);
-        //  manualBooking.clickPay();
+          manualBooking.clickPay();
 
     }
 
