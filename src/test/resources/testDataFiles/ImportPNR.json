@@ -5,8 +5,12 @@
     "branchName": "AboBakrTravel",
     "agencyName": "AbouBakrTravel_AGN",
     "agentName": "bakromer",
+    "branchName": "Uplift2_Mohamed Ahmed",
+    "agencyName": "Uplift2_Mohamed Ahmed (AGN9788)",
+    "agentName": "Mohamed Ahmed",
     "supplier": "Galileo",
     "supplierCredential": "Live EGY PCC",
+    "supplierCredential": "KSA Galileoo",
     "expectedSuccessMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC"
   },
 
