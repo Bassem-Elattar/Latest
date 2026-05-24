@@ -11,6 +11,9 @@ public class ImportPNR_Page {
         this.driver=driver;
     }
 
+
+
+
     // Navigation
     private final By Btn_importPNR=By.xpath("//*[text()='Import PNR']");
 
@@ -19,7 +22,12 @@ public class ImportPNR_Page {
 
     // Branch Name dropdown
     private final By branchNameDropdown=By.xpath("//*[contains(text(),'Select Branch')]");
+    //HNA ENTA ME5TAR EL SEARCH INPUT FIELD FEL DROPDOWN MESH EL ELEMENT EL MAFROOD TE3MELO SELECT MEN EL DROPDOWN
+    //private final By branchNameDropdownSearchInput=By.xpath("//input[@aria-activedescendant=\"p-highlighted-option\"]");
+
+
     private final By branchNameDropdownSearchInput=By.xpath("//input[@aria-activedescendant=\"p-highlighted-option\"]");
+
 
     // Agency Name dropdown
     private final By agencyNameDropdown=By.xpath("//*[text()='Select Agency']");
@@ -72,6 +80,14 @@ public class ImportPNR_Page {
 
     private final By ticketedPNRStatus =
             By.xpath("//span[contains(@class, 'status-ticketed')]");
+
+
+    private final By importOnAnotherCredMessage =
+            By.xpath("//div[@aria-label='BOOKING FILE DISPLAY DENIED PER SELECTIVE ACCESS AGREEMENT']");
+
+
+    private final By ImportPNROnTheSameEnvMessage =
+            By.xpath("//div[@aria-label='This PNR is already exist kindly go to My Booking section to retrieve the details.']");
 
     //added contains to the locator to select only part of the optionText because the branch name contains also branch code which is a part of the whole name
     //Validation message for PNR Code less than 6 chars
@@ -198,18 +214,17 @@ public class ImportPNR_Page {
         return driver.element().getText(organizationDoesNotSupportImportPNRToast);
     }
 
-
-
-
-
-
-
-
-
-
-
     public String getTicketedPNRStatusText() {
         return driver.element().getText(ticketedPNRStatus);
     }
+
+    public String getImportOnAnotherCredText() {
+        return driver.element().getText(importOnAnotherCredMessage);
+    }
+
+    public String getImportOnTheSameEnvText() {
+        return driver.element().getText(ImportPNROnTheSameEnvMessage);
+    }
+
 
 }

@@ -98,6 +98,29 @@ public class ImportPNR_Test {
     }
 
     @Test
+    public void TC012_ValidateImportingOnAnotherCred(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+        String actual = importPNRPage.getImportOnAnotherCredText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.expectedImportOnAnotherCredMessage").trim();
+        Assert.assertEquals(actual,expected);
+    }
+
+    @Test
+    public void TC013_ValidateImportingOnTheSameEnv(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+        String actual = importPNRPage.getImportOnTheSameEnvText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.expectedImportOnTheSameEnvMessage").trim();
+        Assert.assertEquals(actual,expected);
+    }
+    @Test
     public void TC04_showValidationWhenPNRCodeLessThanSixChars(){
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCodeLessThanSixChar"));
 
