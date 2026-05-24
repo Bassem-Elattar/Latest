@@ -71,5 +71,61 @@ public class ImportPNR_Test {
 
     }
 
+    @Test
+    public void TC04_showValidationWhenPNRCodeLessThanSixChars(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCodeLessThanSixChar"));
+
+        String actual=importPNRPage.getPNRCodeLessThanSixCharsValidationMessageText();
+        String expected=testData.getTestData("validAutoTicketingPnr.expectedValidationMessageForPnrCodeLessThanSixChars");
+
+
+        Assert.assertTrue(
+                actual.contains(expected),
+                "Success message is not correct. Actual: " + actual + " | Expected: " + expected
+        );
+    }
+
+    @Test
+    public void TC09_shouldShowToastMessageWhenPNRDoesNotExist(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.DummyPnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+
+        String invalidPnr=testData.getTestData("validAutoTicketingPnr.DummyPnrCode");
+
+        String actual=importPNRPage.getUnableToRetrieveToastPNRCodeMessageText();
+        String expected=testData.getTestData("validAutoTicketingPnr.toastMessageWhenPNRDoesNotExist")
+                +" "+invalidPnr;
+
+        Assert.assertTrue(
+                actual.contains(expected),
+                "Toast message is not correct. Actual: " + actual + " | Expected: " + expected
+        );
+
+
+
+    }
+
+    @Test
+    public void TC06_showToastWhenBranchDoesNotSupportImportPNR(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.DummyPnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchImportPnrClosed"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+
+        String actual=importPNRPage.getOrganizationDoesNotSupportImportPNRToastText();
+        String expected=testData.getTestData("validAutoTicketingPnr.toastMessageWhenBranchImportPnrClosed");
+
+        Assert.assertTrue(
+                actual.contains(expected),
+                "Toast message is not correct. Actual: " + actual + " | Expected: " + expected
+        );
+
+
+    }
+
 
 }

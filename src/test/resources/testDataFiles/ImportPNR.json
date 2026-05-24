@@ -2,12 +2,18 @@
   "validAutoTicketingPnr": {
     "ticketingType": "AUTO",
     "pnrCode": "GXY8L1",
-    "branchName": "AboBakrTravel",
+    "pnrCodeLessThanSixChar": "ABC12",
+    "DummyPnrCode": "ABC123",
+    "branchName": "AboBakrTravel (BRN471)",
+    "branchImportPnrClosed": "AboubakrTravel_Closed_PNR (BRN617)",
     "agencyName": "AbouBakrTravel_AGN",
     "agentName": "bakromer",
     "supplier": "Galileo",
     "supplierCredential": "Live EGY PCC",
-    "expectedSuccessMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC"
+    "expectedSuccessMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC",
+    "expectedValidationMessageForPnrCodeLessThanSixChars": "PNR code less than 6 chars!",
+    "toastMessageWhenPNRDoesNotExist": "UNABLE TO RETRIEVE - CHECK RECORD LOCATOR -",
+    "toastMessageWhenBranchImportPnrClosed": "Selected Organization does not support import pnr functionality"
   },
 
   "validManualTicketingPnr": {

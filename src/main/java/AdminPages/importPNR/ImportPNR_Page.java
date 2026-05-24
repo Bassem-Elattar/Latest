@@ -62,6 +62,18 @@ public class ImportPNR_Page {
     private final By totalFareAfterPay =
             By.xpath("//div[contains(@class,'total-value')]");
 
+    //Validation message for PNR Code less than 6 chars
+    private final By pnrCodeLessThanSixCharsValidationMessage =
+            By.xpath("//span[contains(normalize-space(),'PNR code less than 6 chars!')]");
+
+    //Toast message for PNR doesn't exist
+    private final By unableToRetrievePNRCode=
+            By.xpath("//div[@role='alert' and contains(@class,'toast-message')]");
+
+    //Toast message for Selected Organization does not support import pnr functionality
+    private final By organizationDoesNotSupportImportPNRToast =
+            By.xpath("//div[@role='alert' and contains(@class,'toast-message') and @aria-label='Selected Organization does not support import pnr functionality']");
+
     //
     private By dropdownOption(String optionText) {
         return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
@@ -149,6 +161,20 @@ public class ImportPNR_Page {
     public String getTotalFareAfterPay() {
         return driver.element().getText(totalFareAfterPay);
     }
+
+    public String getPNRCodeLessThanSixCharsValidationMessageText(){
+        return driver.element().getText(pnrCodeLessThanSixCharsValidationMessage);
+    }
+
+    public String getUnableToRetrieveToastPNRCodeMessageText() {
+        return driver.element().getText(unableToRetrievePNRCode);
+    }
+
+    public String getOrganizationDoesNotSupportImportPNRToastText() {
+        return driver.element().getText(organizationDoesNotSupportImportPNRToast);
+    }
+
+
 
 
 
