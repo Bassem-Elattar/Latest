@@ -77,20 +77,20 @@ public class ImportPNR_Page {
             By.xpath("//div[@aria-label='No Segments found for this PNR.']");
 
 
-
     private final By ticketedPNRStatus =
             By.xpath("//span[contains(@class, 'status-ticketed')]");
 
-    //added contains to the locator to select only part of the optionText because the branch name contains also branch code which is a part of the whole name
+
+    private final By importOnAnotherCredMessage =
+            By.xpath("//div[@aria-label='BOOKING FILE DISPLAY DENIED PER SELECTIVE ACCESS AGREEMENT']");
+
+
+    private final By ImportPNROnTheSameEnvMessage =
+            By.xpath("//div[@aria-label='This PNR is already exist kindly go to My Booking section to retrieve the details.']");
+
     private By dropdownOption(String optionText) {
         return By.xpath("//li[contains(normalize-space(@aria-label),'" +optionText+ "')]");
     }
-
-
-    //
-//    private By dropdownOption(String optionText) {
-//        return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
-//    }
 
     public void navigateToImportPNRPage(){
         driver.element().click(Btn_importPNR);
@@ -185,5 +185,14 @@ public class ImportPNR_Page {
     public String getTicketedPNRStatusText() {
         return driver.element().getText(ticketedPNRStatus);
     }
+
+    public String getImportOnAnotherCredText() {
+        return driver.element().getText(importOnAnotherCredMessage);
+    }
+
+    public String getImportOnTheSameEnvText() {
+        return driver.element().getText(ImportPNROnTheSameEnvMessage);
+    }
+
 
 }
