@@ -11,6 +11,9 @@ public class ImportPNR_Page {
         this.driver=driver;
     }
 
+
+
+
     // Navigation
     private final By Btn_importPNR=By.xpath("//*[text()='Import PNR']");
 
@@ -19,7 +22,12 @@ public class ImportPNR_Page {
 
     // Branch Name dropdown
     private final By branchNameDropdown=By.xpath("//*[contains(text(),'Select Branch')]");
+    //HNA ENTA ME5TAR EL SEARCH INPUT FIELD FEL DROPDOWN MESH EL ELEMENT EL MAFROOD TE3MELO SELECT MEN EL DROPDOWN
+    //private final By branchNameDropdownSearchInput=By.xpath("//input[@aria-activedescendant=\"p-highlighted-option\"]");
+
+
     private final By branchNameDropdownSearchInput=By.xpath("//input[@aria-activedescendant=\"p-highlighted-option\"]");
+
 
     // Agency Name dropdown
     private final By agencyNameDropdown=By.xpath("//*[text()='Select Agency']");
@@ -58,19 +66,35 @@ public class ImportPNR_Page {
     private final By totalFareBeforePay =
             By.xpath("//div[contains(@class,'fare-total-amount')]");
 
+
+
     //Total pay after pay
     private final By totalFareAfterPay =
             By.xpath("//div[contains(@class,'total-value')]");
 
-    //
+
+    private final By cancelledPNRToastMessage =
+            By.xpath("//div[@aria-label='No Segments found for this PNR.']");
+
+
+
+    private final By ticketedPNRStatus =
+            By.xpath("//span[contains(@class, 'status-ticketed')]");
+
+    //added contains to the locator to select only part of the optionText because the branch name contains also branch code which is a part of the whole name
     private By dropdownOption(String optionText) {
-        return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
+        return By.xpath("//li[contains(normalize-space(@aria-label),'" +optionText+ "')]");
     }
 
-    public ImportPNR_Page navigateToImportPNRPage(){
+
+    //
+//    private By dropdownOption(String optionText) {
+//        return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
+//    }
+
+    public void navigateToImportPNRPage(){
         driver.element().click(Btn_importPNR);
 
-        return this;
     }
 
     public ImportPNR_Page enterPNRCode(String pnrCode){
@@ -128,6 +152,10 @@ public class ImportPNR_Page {
         return this;
     }
 
+    public boolean isPayButtonClickable(){
+        return driver.element().isElementClickable(mainPayButton);
+    }
+
     public ImportPNR_Page clickMainPayButton() {
         driver.element().click(mainPayButton);
         return this;
@@ -150,21 +178,12 @@ public class ImportPNR_Page {
         return driver.element().getText(totalFareAfterPay);
     }
 
+    public String getCancelledPNRToastMessageText() {
+        return driver.element().getText(cancelledPNRToastMessage);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String getTicketedPNRStatusText() {
+        return driver.element().getText(ticketedPNRStatus);
+    }
 
 }

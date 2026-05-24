@@ -71,5 +71,31 @@ public class ImportPNR_Test {
 
     }
 
+@Test
+    public void TC08_ValidateTicketedPNR() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+
+        String actual = importPNRPage.getTicketedPNRStatusText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.pnrStatus").trim();
+        Assert.assertEquals(actual,expected);
+        Assert.assertFalse(importPNRPage.isPayButtonClickable());
+    }
+
+    @Test
+    public void TC011_ValidateCancelledPNR() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+        String actual = importPNRPage.getCancelledPNRToastMessageText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.ExpectedCancelledPNRMessage").trim();
+        Assert.assertEquals(actual,expected);
+    }
+
 
 }
