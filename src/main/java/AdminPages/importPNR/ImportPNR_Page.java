@@ -55,7 +55,7 @@ public class ImportPNR_Page {
             By.xpath("//p[contains(normalize-space(.),'Your ticket has been successfully Confirmed. Thank you for choosing NDC')]");
 
     private By dropdownOption(String optionText) {
-        return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
+            return By.xpath("//li[normalize-space(@aria-label)='"+ optionText +"']");
     }
 
     public ImportPNR_Page navigateToImportPNRPage(){

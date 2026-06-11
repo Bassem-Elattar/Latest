@@ -1,15 +1,15 @@
 {
   "validAutoTicketingPnr": {
     "ticketingType": "AUTO",
-    "pnrCode": "GXGC2W",
-    "branchName": "AboBakrTravel",
-    "agencyName": "AbouBakrTravel_AGN",
-    "agentName": "bakromer",
-    "branchName": "Uplift2_Mohamed Ahmed",
+    "pnrCode": "GYJQF2",
+    "branchName": "Uplift2_Mohamed Ahmed (BRN277)",
+    "agencyName": "Uplift2_Mohamed Ahmed (AGN9788)",
+    "agentName": "Mohamed Ahmed",
+    "branchName": "Uplift2_Mohamed Ahmed (BRN277)",
     "agencyName": "Uplift2_Mohamed Ahmed (AGN9788)",
     "agentName": "Mohamed Ahmed",
     "supplier": "Galileo",
-    "supplierCredential": "Live EGY PCC",
+
     "supplierCredential": "KSA Galileoo",
     "expectedSuccessMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC"
   },

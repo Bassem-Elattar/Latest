@@ -77,10 +77,35 @@ public class ImportPNR_Test {
         Assert.assertTrue(actualMessage.matches("PNR code cannot exceed 9 characters554"));
 }
 
+@Test
+    public void TC10_VerifyCredentialWrong(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
+                .selectAgentName(testData.getTestData("validAutoTicketingPnr.agentName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+
+        String actualMessage = driver.element().getText(By.xpath("//div[@aria-label='BOOKING FILE DISPLAY DENIED PER SELECTIVE ACCESS AGREEMENT']"));
+        Assert.assertTrue(actualMessage.contains("BOOKING FILE DISPLAY DENIED PER SELECTIVE"));
+}
+
+@Test
+public void TC02_importPNrWithAgency(){
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
+                .selectAgentName(testData.getTestData("validAutoTicketingPnr.agentName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton()
+         .checkTermsAndConditionsCheckbox()
+            .clickMainPayButton()
+            .clickConfirmPayPopupPayButton();
 
 
-
-
+}
 
 
 
