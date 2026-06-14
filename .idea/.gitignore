@@ -2,3 +2,8 @@
 /shelf/
 /workspace.xml
 /uiDesigner.xml
+/target/
+/extent-reports/
+/allure-results/
+/generatedReport*
+/.idea/
