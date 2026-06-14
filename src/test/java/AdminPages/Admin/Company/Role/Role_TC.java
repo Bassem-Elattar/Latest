@@ -8,10 +8,7 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.DataUtils;
 import utilities.GmailReaderUtil;
 import utilities.JsonDataUtil;
@@ -28,7 +25,7 @@ public class Role_TC {
     SHAFT.GUI.WebDriver driver;
     private Staff_Page addStaff;
 
-    @BeforeClass
+    @BeforeMethod
     public void login(){
         testData = new SHAFT.TestData.JSON("Role.json");
         CommonMethod.setupDriver(DataUtils.get("browser"));
@@ -181,4 +178,10 @@ public class Role_TC {
 //        String s = GmailReaderUtil.getLatestEmail("ahmedref124@gmail.com","gljl enks vept uiwv");
 //        System.out.println(s);
 //    }
+@AfterMethod
+public void navigateBackToURL() {
+    new LogIn_Page(driver).ClickOnLogOuTButton();
+//    driver.quit();
+
+}
 }

@@ -4,21 +4,24 @@ import AdminPages.BookingMidOffice.Booking_Common;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase;
 import AdminPages.Login.TestBase_TC;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import utilities.DataUtils;
 
 import java.sql.Time;
 
-public class SearchBookingTCs extends TestBase_TC {
+public class SearchBookingTCs  {
     private SHAFT.TestData.JSON testData;
+    SHAFT.GUI.WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void login(){
         testData = new SHAFT.TestData.JSON("SearchBooking.json");
-        new LogIn_Page(driver).ClickAdmin();
-        new LogIn_Page(driver).ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        new LogIn_Page(driver).AdminLogin();
     }
 
     @Test
@@ -110,8 +113,8 @@ public class SearchBookingTCs extends TestBase_TC {
 
     @AfterMethod
     public void navigateBackToURL() {
-        // Optionally close the browser
-        // driver.quit();
-        driver.browser().navigateToURL("http://192.168.1.70");
+         new LogIn_Page(driver).ClickOnLogOuTButton();
+//         driver.quit();
+
     }
 }
