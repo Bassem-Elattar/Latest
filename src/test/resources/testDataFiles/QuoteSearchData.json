@@ -1,0 +1,14 @@
+{
+  "Branch": "Test",
+  "Agency": "A",
+  "QuoteID": "EGAGN9969BRN22605147LwLqZ",
+  "PassengerName": "Ghada Mahmoud",
+  "EmailID": "Ghada@gmail.com",
+  "CreationDateFrom": "05/01/2026",
+  "CreationDateTo": "05/14/2026",
+  "TravelDateFrom": "09/01/2026",
+  "TravelDateTo": "09/30/2026",
+  "QuoteStatus": "Open",
+  "BranchNameToRejectRelatedQuote": "Test",
+  "QuoteIdToBeRejected": "EGAGN9969BRN22605147LwLqZ"
+}

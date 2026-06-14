@@ -23,17 +23,12 @@ public class RateOfExchange_Page {
     }
 
     SHAFT.GUI.WebDriver driver;
-    private final By Btn_ClickRate = By.xpath("//li[@id=\"ROE\"]");
     private final By Lst_FromCurrency = By.xpath("//p-dropdown[.//input[@id=\"id-Fromcurrency\"]]");
     private final By Lst_ToCurrency = By.xpath("//p-dropdown[.//input[@id=\"id-ToCurrency\"]]");
-    //private final By SearchInGrid=By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-rate-of-exchange/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div/div/button/span");
     private final By Btn_SearchInGrid = By.xpath("//button[@type=\"submit\"]");
-//    private final By AddRateOfExchange = By.xpath("//button[@routerlink=\"add\"]");
     private final By Btn_AddRateOfExchange = By.xpath("//button[@routerlink=\"add\"]");
     private final By Lst_AddFromCurrency = By.xpath("//p-dropdown[.//input[@id=\"id-Fromcurrency\"]]");
     private final By Lst_AddToCurrency = By.xpath("//p-dropdown[.//input[@id=\"id-Tocurrency\"]]");
-
-    //  public final By AddExchangeRate = By.xpath("//span[.//input[@id=\"id-Exchangerate\"]]");
     private final By Btn_AddExchangeRate = By.xpath("//*[@id=\"id-Exchangerate\"]");
     private final By Btn_SendForApprovel = By.xpath("//button[@type=\"submit\"] ");
     private final By Btn_Cancel = By.xpath("//button[@type=\"reset\"]");
@@ -45,21 +40,12 @@ public class RateOfExchange_Page {
     private final By nextPageButton = By.xpath(" //button[@class=\"next\"]");
     private final By prevPageButton = By.xpath(" //button[@class=\"prev\"]");
     private final By Btn_pageNumbers = By.xpath("//a[contains(@href, 'page')]");
-    final By Btn_firstPage = By.linkText("First");
-    final By Btn_lastPage = By.linkText("Last");
-    final By Btn_nextPage = By.linkText("»");
-    final By prevPage = By.linkText("«");
     public By Txt_NoDataFounded=By.xpath("//td[@class=\"message\"]");
     public By Txt_ValidationErrorToCurrency=By.xpath("//span[@class='fg-error has-error']");
     public By Txt_ValidationErrorFromCurrency=By.xpath("//span[@class='fg-error has-error']");
     public By Txt_ValidationErrorForRate=By.xpath("//span[@class='fg-error has-error']");
     public By Txt_ValidationOnCancelButton=By.xpath("//div[@class=\"col-sm-12 col-lg-6 form-title\"]");
-    public void NavigateToRateOfExchangePage(){
-        driver.element().click(Btn_Master);
-        driver.element().click(Btn_Miscellaneous);
-        driver.element().click(Btn_RateOfExchange);
 
-    }
     public RateOfExchange_Page SelectFromCurrency(String Currency) {
         driver.element().click(Lst_FromCurrency);
         By option = xpath(String.format("//span[text()='%s']", Currency));

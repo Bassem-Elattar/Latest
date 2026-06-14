@@ -17,7 +17,7 @@ public class AddSupplierCredential_Page {
     By Lst_CredentialType = By.xpath("//p-dropdown[.//input[@id=\"id-CredentialType\"]]");
     By Lst_FlightSearchLimit = By.xpath("//p-dropdown[.//input[@id=\"id-FlightSearchLimit\"]]");
     By Lst_ConnectionTime = By.xpath("//p-dropdown[.//input[@id=\"id-ConnectionTimeout\"]]");
-    By Lst_ReadTimeOut = By.xpath("//p-dropdown[.//input[@id=\"id-ReadTimeout\"]]");
+    By Lst_ReadTimeOut = By.xpath("(//div[@role='button'])[7]");
     By Txt_EndpointURL = By.xpath("//input[@id=\"id-EndpointURL\"]");
     By Password = By.xpath("//input[@id=\"id-password\"]");
     By DisplayName = By.xpath("//input[@id=\"id-displayname\"]");
@@ -25,7 +25,7 @@ public class AddSupplierCredential_Page {
     By Btn_Save = By.xpath("//button[@type=\"submit\"]");
 
     public void setAddSupplierCredential(String supplier, String credentialname, String countrypoc, String currency
-    , String credentialtype,String flightsearchlimit,String connectiontime,String readtimeout){
+    , String credentialtype,String flightsearchlimit,String connectiontime,String readtimeout) throws InterruptedException {
         driver.element().click(Btn_AddSupplierCredential);
         driver.element().click(Lst_Supplier);
         By option = By.xpath(String.format("//span[text()='%s']", supplier));
@@ -48,6 +48,7 @@ public class AddSupplierCredential_Page {
         driver.element().click(Lst_ConnectionTime);
         By option5 = By.xpath(String.format("//span[text()='%s']", connectiontime));
         driver.element().click(option5);
+        Thread.sleep(1000);
         driver.element().click(Lst_ReadTimeOut);
         By option6 = By.xpath(String.format("//span[text()='%s']", readtimeout));
         driver.element().click(option6);

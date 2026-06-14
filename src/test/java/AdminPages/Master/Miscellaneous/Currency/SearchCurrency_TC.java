@@ -29,10 +29,8 @@ public class SearchCurrency_TC extends TestBase_TC {
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
-        logIn.EnterUserName("E.saady");
-        logIn.EnterPassword("qqE6)Cxp6>B8");
+        logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
 
 
@@ -63,8 +61,6 @@ public class SearchCurrency_TC extends TestBase_TC {
             }
         }
     }
-
-
 
     @AfterMethod
     public void navigateBackToURL() {

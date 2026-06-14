@@ -33,9 +33,7 @@ public class CreateCurrency_TC extends TestBase_TC {
         logIn = new LogIn_Page(driver);
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
-
     }
-
 
     @Test(dataProvider = "JsonProvider")
     public void CreateCurrency(Map<String, String> create) throws InterruptedException {
@@ -55,9 +53,9 @@ public class CreateCurrency_TC extends TestBase_TC {
         String Expected = "Added Successfully";
         Assert.assertEquals(createCurrency.Actual(),Expected);
     }
+
     @AfterMethod
     public void navigateBackToURL() {
         driver.browser().navigateToURL("http://192.168.1.70");
     }
-
 }

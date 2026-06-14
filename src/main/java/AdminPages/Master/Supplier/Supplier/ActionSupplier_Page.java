@@ -21,9 +21,9 @@ public class ActionSupplier_Page {
     By Txt_Email = By.xpath("//input[@id=\"id-1-Email\"]");
     By Lst_City = By.xpath("//input[@id=\"id-City\"]");
     By Txt_PinCode = By.xpath("//input[@id=\"id-PINcode\"]");
-    By Btn_ClearCountry = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-supplier/div/div/ndc-fg-form-container/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[1]/div/ndc-fg-input[2]/ndc-fg-auto-complete-input/span/p-autocomplete/span/i");
+    By Btn_ClearCountry = By.xpath("//INPUT[@id='id-Country']");
     By Lst_WhitelistBoard = By.xpath("//input[@id=\"id-WhitelistAirports\"]");
-    By Btn_Approved = By.xpath("(//button[@type=\"submit\"])[1]");
+    By Btn_Approved = By.xpath("(//i[@class=\"pi pi-thumbs-up\"])[1]");
 
    public void setEditBtn(String producttype , String country , String email , String city , String pincode , String whitelistboard,String whitelistboard2,String remarks) throws InterruptedException {
      driver.element().click(Btn_Edit);

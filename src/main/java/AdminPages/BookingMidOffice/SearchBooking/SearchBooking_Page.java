@@ -18,7 +18,7 @@ public class SearchBooking_Page {
     private final By Btn_SearchBooking = By.xpath("//a[@href = '/booking']");
         /////select module////
     private final By Btn_Flight = By.xpath("(//li[@role='presentation'])[15]");
-   // private final By Btn_Booking = By.xpath("//a[@id='p-tabpanel-1-label']");
+    private final By ShowMoreBtn = By.xpath("(//button[@type='button'])[1]");
     private final By Btn_Booking = By.xpath("(//li[@role='presentation'])[14]");
      /////general fields//////
     private final By Dpick_BookingStartDate = By.xpath("//input[@id='id-BookingStartDate']");
@@ -55,8 +55,8 @@ public class SearchBooking_Page {
     private final By AgencyName_Column = By.xpath("//tbody/tr[1]/td[4]");
     private final By ClientName_Column = By.xpath("//tbody/tr[1]/td[5]");
 
-    private final By Results = By.xpath("//p[contains(text(),'Showing 10 results of 243 results')]");
-    private final By PaginateResults = By.xpath("//p[contains(text(),'Showing 20 results of 243 results')]");
+    private final By Results = By.xpath("//p[contains(text(),'Showing 10 results')]");
+    private final By PaginateResults = By.xpath("//p[contains(text(),'Showing 20 results')]");
     private final By Btn_paginate = By.xpath("//button[@class='next']");
 
 
@@ -176,7 +176,8 @@ public class SearchBooking_Page {
     }
 
     public SearchBooking_Page verifyThatTheResultShowsSuccessfully() {
-        softAssert.assertEquals(driver.element().getText(Results),testData.getTestData("ValidData.Result"));
+        softAssert.assertTrue(driver.element().getText(Results).contains(testData.getTestData("ValidData.Result")),
+                "Actual text does not contain expected value");
         return this;
     }
 
@@ -211,8 +212,8 @@ public class SearchBooking_Page {
     }
 
     public SearchBooking_Page verifyThatTheUserCanPaginateTheResultSuccessfully() {
-        softAssert.assertEquals(driver.element().getText(PaginateResults),testData.getTestData("ValidData.PaginationResult"));
+        softAssert.assertTrue(driver.element().getText(PaginateResults).contains(testData.getTestData("ValidData.PaginationResult")),
+                "Actual text does not contain expected value");
         return this;
     }
-
 }

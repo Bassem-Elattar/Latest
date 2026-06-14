@@ -56,7 +56,7 @@ public class ActionActiveDeactiveAgentInformation_TC extends TestBase_TC {
 
     @Test ()
     public void VerifyThatAgencyOwnerCanLoginPortal() {
-        agentInformation.EnterNDCPortal();
+        agentInformation.EnterNDCPortal(testData.getTestData("PortalUsername"), testData.getTestData("PortalEmail"), testData.getTestData("PortalPassword"));
         String Select = driver.getDriver().getCurrentUrl();
         if (Select.equals(agentInformation.urlfordashboardportal)) {
         System.out.println("Test Case VerifyThatAgencyOwnerCanLoginPortal Passed");
@@ -65,6 +65,7 @@ public class ActionActiveDeactiveAgentInformation_TC extends TestBase_TC {
         throw new RuntimeException("Test Case VerifyThatAgencyOwnerCanLoginPortal Failed");
         }
     }
+
     @AfterMethod
     public void Reload(){
         driver.browser().navigateToURL("http://192.168.1.70");

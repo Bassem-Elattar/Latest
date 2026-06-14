@@ -118,6 +118,7 @@ public class LogIn_Page {
     public LogIn_Page ClickSuperAdmin() {
         driver.element().type(Txt_Username, "odeysysadmin");
         driver.element().type(Txt_Password, "qqE6)Cxp6>B8");
+        driver.element().click(Btn_LogINButton);
         return this;
 
 
@@ -138,9 +139,5 @@ public class LogIn_Page {
         driver.element().type(Txt_Username, username);
         driver.element().type(Txt_Password, password);
         return this;
-
-
-
     }
-
 }

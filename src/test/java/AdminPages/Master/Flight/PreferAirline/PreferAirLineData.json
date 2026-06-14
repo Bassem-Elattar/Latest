@@ -27,13 +27,13 @@
   },
   "validCreate1": {
     "AirLineName": "Aero Contractors",
-    "supplierName": "GDI",
-    "SupplierPcc": "GDI Egypt PCC"
+    "supplierName": "E",
+    "SupplierPcc": "pcc"
   },
   "validCreate2": {
-    "AirLineName": "40-Mile Air",
+    "AirLineName": "40MileAir",
     "supplierName": "Galileo",
-    "supplierPCC": "Live Egypt PCC"
+    "supplierPCC": "Live EGY PCC"
 
   },
   "InvalidCreate3": {
@@ -46,7 +46,7 @@
     "supplierPCC": "Galileo Live UAE"
   },
   "InvalidCreate5": {
-    "AirLineName": "40-Mile Air",
+    "AirLineName": "40MileAir",
     "supplierName": "Galileo"
   },
   "ValidUpdateData": {

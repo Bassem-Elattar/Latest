@@ -26,7 +26,6 @@ public class AdminSettings_TC extends TestBase_TC {
         adminsettings = new AdminSettings_Page(driver);
     }
 
-
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
         String fileName = method.getName();
@@ -57,11 +56,11 @@ public class AdminSettings_TC extends TestBase_TC {
         }
         new Setting_Common(driver).clickSetting().clickAdminSetting();
         adminsettings.EditNewFlightNum(BaseValueOfFlight);
-
+        logIn.ClickOnLogOuTButton();
     }
+
     @Test()
     public void ValidAdminSetting_TC2() {
-        logIn.ClickOnLogOuTButton();
         logIn.ClickAdmin();
         logIn.ClickOnLoginButton();
         adminsettings.NavigateToAdminSetting();
@@ -74,11 +73,10 @@ public class AdminSettings_TC extends TestBase_TC {
         logIn.ClickOnLoginButton();
         adminsettings.NavigateToAdminSetting();
         adminsettings.EditNewUpsellingNum("2");
-
     }
+
     @AfterMethod
     public void Reload(){
         driver.browser().navigateToURL("http://192.168.1.70");
     }
-
 }

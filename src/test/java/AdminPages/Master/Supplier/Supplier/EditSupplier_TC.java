@@ -14,7 +14,6 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class EditSupplier_TC extends TestBase_TC {
-    private SearchCity_Page searchCity;
     private SearchSupplier_Page searchSupplier;
     private ActionSupplier_Page actionSupplier;
     private LogIn_Page logIn;
@@ -27,7 +26,6 @@ public class EditSupplier_TC extends TestBase_TC {
         return JsonDataUtil.readJsonData(filePath);
     }
 
-
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
@@ -36,17 +34,23 @@ public class EditSupplier_TC extends TestBase_TC {
 
     }
     @Test( dataProvider = "JsonProvider")
-    public void SearchSupplier(Map<String, String> search) throws InterruptedException {
+    public void EditSupplier(Map<String, String> search) throws InterruptedException {
         searchSupplier = new SearchSupplier_Page(driver);
-        searchCity = new SearchCity_Page(driver);
         actionSupplier = new ActionSupplier_Page(driver);
         new Master_Common(driver).clickMaster()
                 .clickSupplierMenue()
                 .clickSupplier();
         String SupplierName = search.get("SupplierName");
+        String ProductType = search.get("ProductType");
+        String Country = search.get("Country");
+        String Email = search.get("Email");
+        String City = search.get("City");
+        String PinCode = search.get("PinCode");
+        String WhiteListBoard = search.get("WhiteListBoard");
+        String WhiteListBoard2 = search.get("WhiteListBoard2");
+        String Remark = search.get("Remarks");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
-        actionSupplier.setEditBtn("GDS","egy","mahmd@gmail.com","cai","1125","ada","Cai","approve");
-}
-
+        actionSupplier.setEditBtn(ProductType,Country,Email,City,PinCode,WhiteListBoard,WhiteListBoard2,Remark);
+    }
 }

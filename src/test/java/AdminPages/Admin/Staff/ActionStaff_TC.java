@@ -35,13 +35,13 @@ public class ActionStaff_TC extends TestBase_TC {
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
-        logIn.ClickOnLoginButton();
+        logIn.ClickAdmin();
+        //logIn.ClickOnLoginButton();
         new AdminMenu(driver).openSubAdmin().openStaff();
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")
-    public void CreateStaff(SHAFT.GUI.WebDriver driver, Map<String,String> st) throws InterruptedException {
+    public void CreateStaff(Map<String,String> st) throws InterruptedException {
         staff = new Staff_Page(driver);
        // staff.Clickonadmin();
 //        staff.ClickonStuff();
@@ -113,6 +113,32 @@ public class ActionStaff_TC extends TestBase_TC {
 //
 //
 //    }
+public void AddStaff(Map<String,String> st) throws InterruptedException {
+    staff = new Staff_Page(driver);
+    // staff.Clickonadmin();
+//        staff.ClickonStuff();
+    new AdminMenu(driver).openSubAdmin().openStaff();
+    staff.addstuff();
+    String Usertype =st.get("Usertype");
+    String SearchOperatingCountry=st.get("SearchOperatingCountry");
+    Branch = st.get("SearchBranch");
+    Department =st.get("SearchDepartment");
+    String SearchRole = st.get("SearchRole");
+    StaffName = st.get("EmployeeName");
+    String EmployeeEmail = st.get("EmployeeEmail");
+    String EmployeePhoneNo = st.get("EmployeePhoneNo");
+    String EmployeeSecondaryNo = st.get("EmployeeSecondaryNo");
+    UserName = st.get("UserName");
+    String ApprovalList = st.get("ApprovalList");
+    staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
+            ,StaffName,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,UserName,ApprovalList);
+    staff.YesUndercut();
+    Thread.sleep(3000);
+    staff.setInactive();
+    staff.fill(StaffName,UserName,Branch,Department);
+    staff.ThumpUp("Approved");
+    Thread.sleep(3000);
+}
 
     @AfterMethod
     public void navigateBackToURL() {

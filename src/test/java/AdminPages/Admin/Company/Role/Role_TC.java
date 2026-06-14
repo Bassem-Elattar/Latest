@@ -75,7 +75,7 @@ public class Role_TC {
                 .ClickSearch()
                 .VerifyTheRoleName()
                 .ClickApprove()
-                .EnterRemarkText("validData.Remark")
+                .EnterRemarkText(testData.getTestData("validData.Remark"))
                 .ClickSubmit();
     }
 
@@ -97,14 +97,20 @@ public class Role_TC {
 
         verifyThatUserCanCreateRoleWithViewOnly();
         verifyThatUserCanSearchWithRoleNameAndApproveTheRole();
-        new ActionStaff_TC().CreateStaff(driver,st);
+        ActionStaff_TC actionStaff = new ActionStaff_TC();
+        actionStaff.driver = this.driver;
+        actionStaff.AddStaff(st);
         new LogIn_Page(driver).ClickOnLogOuTButton();
     }
-    @Test(dependsOnMethods = "CreateRoleWithViewPermessionAndCreateStaffWithIt")
+    @Test(dependsOnMethods = "CreateRoleWithViewPermessionAndCreateStaffAndLoginWithIt")
     public void VerifyThatUserHasHisPermissionOnly() throws InterruptedException {
         Thread.sleep(30000);
         new LogIn_Page(driver).ClickUser(testData.getTestData("validData.Userame"),(testData.getTestData("validData.Password")));
         new LogIn_Page(driver).ClickOnLoginButton();
+        Thread.sleep(1000);
+        driver.browser().refreshCurrentPage();
+        Thread.sleep(1000);
+        new AdminMenu(driver).openSubAdmin().OperatingCountry();
         new Role_Page(driver).verifyUserHasPermissionsViewOnly();
     }
     @Test
@@ -125,11 +131,17 @@ public class Role_TC {
 
         verifyThatUserCanCreateRoleWithEditOnly();
         verifyThatUserCanSearchWithRoleNameAndApproveTheRole();
-        new ActionStaff_TC().CreateStaff(driver,st);
+        ActionStaff_TC actionStaff = new ActionStaff_TC();
+        actionStaff.driver = this.driver;
+        actionStaff.AddStaff(st);
         new LogIn_Page(driver).ClickOnLogOuTButton();
         Thread.sleep(30000);
         new LogIn_Page(driver).ClickUser(testData.getTestData("validData.Userame"),(testData.getTestData("validData.Password")));
         new LogIn_Page(driver).ClickOnLoginButton();
+        Thread.sleep(1000);
+        driver.browser().refreshCurrentPage();
+        Thread.sleep(1000);
+        new AdminMenu(driver).openSubAdmin().Company().OperatingCountry();
         new Role_Page(driver).verifyUserHasPermissionsViewAndEdit();
     }
     @Test
@@ -149,13 +161,19 @@ public class Role_TC {
         st.put("ApprovalList", testData.getTestData("validData.ApprovalList"));
         verifyThatUserCanCreateRoleWithAprrovalOnly();
         verifyThatUserCanSearchWithRoleNameAndApproveTheRole();
-        new ActionStaff_TC().CreateStaff(driver,st);
+        ActionStaff_TC actionStaff = new ActionStaff_TC();
+        actionStaff.driver = this.driver;
+        actionStaff.AddStaff(st);
         new LogIn_Page(driver).ClickOnLogOuTButton();
         Thread.sleep(30000);
 
         new LogIn_Page(driver).ClickUser(testData.getTestData("validData.Userame"),(testData.getTestData("validData.Password")));
         //new LogIn_Page(driver).ClickUser(mUser.toString(),mPass.toString());
         new LogIn_Page(driver).ClickOnLoginButton();
+        Thread.sleep(1000);
+        driver.browser().refreshCurrentPage();
+        Thread.sleep(1000);
+        new AdminMenu(driver).openSubAdmin().OperatingCountry();
         new Role_Page(driver).verifyUserHasPermissionsViewAndApprove();
     }
 //    @Test

@@ -22,7 +22,6 @@ public class Discount_Page {
     private final By txt_DiscountName = By.xpath("//input[@id=\"id-DiscountName\"]");
     private final By txt_DiscountDisc = By.xpath("//textarea[@placeholder=\"Discount Description\"]");
     private final By Dpick_Validityfrom = By.xpath("(//button)[4]");
-    //  private final By Select_Date = By.xpath("//span[@class=\"p-ripple p-element ng-tns-c52-7 ng-star-inserted\"]");
     private final By Dpick_ValidityTo = By.xpath("//input[@id='id-ValidityPeriodTo']");
     private final By Lst_CountryPosForAdd = By.xpath("//p-multiselect[.//input[@id=\"id-CountryPOS\"]]");
     private final By Lst_BranchForAdd = By.xpath("//p-multiselect[.//input[@id=\"id-Branch\"]]");
@@ -48,11 +47,14 @@ public class Discount_Page {
     private final By Btn_Checkbox = By.xpath("//div[@role='checkbox' and contains(@class,'p-checkbox-box') and @aria-checked='false']");
     private final By Btn_AllAgency = By.xpath("//li[contains(@class,'p-multiselect-item')]//span[normalize-space()='Test Egypt']");
     private final By Btn_CheckBoxSearch = By.xpath("(//p-checkbox[.//input[@value=\"All\"]])[1]");
+    By Btn_ValidityPeriodTo = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[2]");
+    By Btn_ValidityPeriodFrom = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[1]");
+    By Year = By.xpath("//button[normalize-space()='2026']");
+
     By editIcon = By.xpath("//i[contains(@class,'pi-pencil')]");
     By txt_Reamrks = By.xpath("//textarea[@name=\"remarks\"]");
     By Btn_Approve = By.xpath("(//button[@type=\"submit\"])[2]");
-    //    By Reject = By.xpath("//i[@class=\"pi pi-thumbs-down\"]");
-//    By Approve = By.xpath("//i[@class=\"pi pi-thumbs-up\"]");
+
     By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_SubmitAction = By.xpath("(//button[@type=\"submit\"])[2]");
     By Btn_last = By.xpath("//span[@id=\"last\"]");
@@ -159,7 +161,6 @@ public class Discount_Page {
         if (!findDiscountInPages(discountname)) {
             throw new RuntimeException("Discount not found: " + discountname);
         }
-//        driver.element().click(actionButton(discountname));
         driver.element().click(rejectButton(discountname));
         driver.element().type(RemarksAction, remark);
         driver.element().click(Btn_SubmitAction);
@@ -169,44 +170,46 @@ public class Discount_Page {
         if (!findDiscountInPages(discountname)) {
             throw new RuntimeException("Discount not found: " + discountname);
         }
-//        driver.element().click(actionButton(discountname));
+
         driver.element().click(approveButton(discountname));
         driver.element().type(RemarksAction, remark);
         driver.element().click(Btn_SubmitAction);
     }
 
-    //    public String getStatus(String Status){
-//        return driver.element().getText(statusCell(Status));
-//    }
-    public void adddiscount(String discountName, String discountDis, String validityFrom, String validityTo, String Country, String Branch, String Agency, String Attribute, String Operator, String Value, String Faretype, String Amounttype, String AmountValue) throws InterruptedException {
-//        driver.element().click(Btn_Discount);
+    public void adddiscount(String discountName, String discountDis, String year,String month,String From, String year2,String month2,String From1, String Country, String Branch, String Agency, String Attribute, String Operator, String Value, String Faretype, String Amounttype, String AmountValue) throws InterruptedException {
         driver.element().click(Btn_AddDiscount);
         driver.element().type(txt_DiscountName, discountName)
                 .type(txt_DiscountDisc, discountDis);
-        driver.element().click(Dpick_Validityfrom);
-       // driver.element().click(After);
-        By option12 = xpath(String.format("//span[contains(text(), '%s')]", validityFrom));
-        driver.element().click(option12);
-        driver.element().click(Dpick_ValidityTo);
+        driver.element().click(Btn_ValidityPeriodFrom);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        driver.element().click(Btn_ValidityPeriodTo);
+        driver.element().click(Year);
+        By year3 = By.xpath("//span[normalize-space()='" + year2 + "']");
+        driver.element().click(year3);
+        By month3 = By.xpath("//span[normalize-space()='" + month2 + "']");
+        driver.element().click(month3);
+        By Day1 = By.xpath(String.format("(//span[text()='%s'])[1]", From1));
+        driver.element().click(Day1);
+
         Thread.sleep(2000);
-        driver.element().click(After);
-        driver.element().click(After);
-        Thread.sleep(2000);
-        By option13 = xpath(String.format("//span[contains(text(), '%s')]", validityTo));
-        driver.element().click(option13);
+
         driver.element().click(Lst_CountryPosForAdd);
         Thread.sleep(3000);
         driver.element().type(Search, Country);
         Thread.sleep(3000);
         driver.element().click(Btn_Checkbox);
-//                  .click(Lst_CountryPosForAdd);
-//                        Thread.sleep(3000);
+
         driver.element().click(Lst_BranchForAdd);
         Thread.sleep(5000);
         driver.element().type(txt_Search, Branch);
         Thread.sleep(3000);
         driver.element().click(Btn_Checkbox)
-//                .click(Lst_BranchForAdd)
                 .click(Lst_AgencyForAdd);
         Thread.sleep(3000);
         driver.element().type(Search, Agency);
@@ -236,8 +239,7 @@ public class Discount_Page {
         driver.element().click(Btn_Submit);
 
     }
-    public void updatediscount(String name, String discountName, String discountDis, String Validityfrom,
-                             String ValidityTo, String Amounttype,
+    public void updatediscount(String name, String discountName, String discountDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
                              String AmountValue, String Remarks) {
 
         // 1. Build dynamic row locator
@@ -263,14 +265,24 @@ public class Discount_Page {
         driver.element().type(txt_DiscountDisc, discountDis);
 
         // Validity From
-        driver.element().click(Dpick_Validityfrom);
-        By fromOption = By.xpath(String.format("//span[normalize-space()='%s']", Validityfrom));
-        driver.element().click(fromOption);
-
-        // Validity To
-        driver.element().click(Dpick_ValidityTo);
-        By toOption = By.xpath(String.format("//span[normalize-space()='%s']", ValidityTo));
-        driver.element().click(toOption);
+        driver.element().click(Btn_ValidityPeriodFrom);
+        By yearr = By.xpath("//button[text()=" + year + "]");
+        driver.element().click(yearr);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+        driver.element().click(Btn_ValidityPeriodTo);
+        By yearr1 = By.xpath("//button[text()=" + year2 + "]");
+        driver.element().click(yearr1);
+        By year3 = By.xpath("//span[normalize-space()='" + year2 + "']");
+        driver.element().click(year3);
+        By month3 = By.xpath("//span[normalize-space()='" + month2 + "']");
+        driver.element().click(month3);
+        By Day1 = By.xpath(String.format("(//span[text()='%s'])[1]", From1));
+        driver.element().click(Day1);
 
         // Dropdowns
 //        driver.element().select(Lst_FareType, Faretype);
@@ -284,6 +296,31 @@ public class Discount_Page {
 
         // Approve/Update button
         driver.element().click(Btn_Approve);
+    }
+    public void searchValidFromDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_ValidityPeriodFrom);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+
+    }
+
+    public void searchValidToDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_ValidityPeriodTo);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+
     }
 }
 

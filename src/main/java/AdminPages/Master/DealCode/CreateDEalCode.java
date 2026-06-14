@@ -58,16 +58,13 @@ public class CreateDEalCode  {
 
     public final By Btn_Editicone = By.xpath("(//i[@class='pi pi-pencil'])[1]");
     public final By Txt_Supplier = By.xpath("//span[@id='pr_id_15_label']");
-    public final By Txt_supplierCredential = By.xpath("/html[1]/body[1]/ndc-root[1]/ndc-layout[1]/div[1]/div[2]/div[1]/div[1]/ndc-add-deal-code[1]/div[1]/div[1]/ndc-fg-form-container[1]/div[1]/ndc-fg-form-generator[1]/form[1]/div[1]/div[1]/ndc-fg-input[2]/ndc-fg-dropdown-input[1]/p-dropdown[1]/div[1]/span[1]");
-    public final By Txt_AirLine = By.xpath("/html[1]/body[1]/ndc-root[1]/ndc-layout[1]/div[1]/div[2]/div[1]/div[1]/ndc-add-deal-code[1]/div[1]/div[1]/ndc-fg-form-container[1]/div[1]/ndc-fg-form-generator[1]/form[1]/div[1]/div[1]/ndc-fg-input[3]/ndc-fg-dropdown-input[1]/p-dropdown[1]/div[1]/span[1]");
-    public final By Txt_SelectFrom = By.xpath("//div[@class='group d-flex flex-column']//div[1]//ndc-fg-input[1]//ndc-chips-dropdown-input[1]//div[1]//div[1]//div[1]//div[1]");
-    public final By Txt_SelectTO = By.xpath("//div[@class='dynamic-inputs']//div[2]//ndc-fg-input[1]//ndc-chips-dropdown-input[1]//div[1]//div[1]//div[1]//div[1]");
+    public final By Txt_supplierCredential = By.xpath("(//div[@class='p-dropdown p-component p-dropdown-clearable'])[2]");
+    public final By Txt_AirLine = By.xpath("(//div[@class='p-dropdown p-component p-dropdown-clearable'])[3]");
     public final By Txt_DealCode = By.cssSelector("input[placeholder=\"Deal Code\"]");
     public final By Txt_SalesFrom = By.cssSelector("#id-SalesValidityFrom");
     public final By Txt_SalesTO = By.cssSelector("#id-SalesValidityTo");
     public final By Txt_TravelFrom = By.cssSelector("#id-TravelValidityFrom");
     public final By Txt_TravelTO = By.cssSelector("#id-TravelValidityTo");
-
     public final By Btn_Approve = By.xpath("//span[normalize-space()='Approve']");
     public final By Btn_Reject = By.xpath("//span[normalize-space()='Reject']");
     public final By Btn_sendForApproval = By.xpath("//span[normalize-space()='Send For Approval']");

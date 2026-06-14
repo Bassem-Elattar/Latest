@@ -17,7 +17,8 @@ public class BSPCommission_Page {
 
 
     By Btn_AddCommission = By.xpath("//button[@routerlink=\"add\"]");
-    By Txt_AirlineName = By.xpath("//p-dropdown[.//input[@id=\"id-AirlineName(OnlyGDSAirlines)\"]]");
+    By Btn_airline = By.xpath("(//div[@role='button'])[1]");
+    By Txt_AirlineName = By.xpath("//p-dropdown//input[@class='p-dropdown-filter p-inputtext p-component']");
     By Txt_CommissionName = By.xpath("//input[@id=\"id-CommissionName\"]");
     By Lst_GDSSupplier = By.xpath("//p-multiselect[.//input[@id=\"id-GDSsupplier\"]]");
     By Lst_SupplierCredential = By.xpath("//p-multiselect[.//input[@id=\"id-Suppliercredential\"]]");
@@ -26,8 +27,8 @@ public class BSPCommission_Page {
     By Txt_TourCode = By.xpath("//input[@id=\"id-TourCode\"]");
     By Rbtn_Airport = By.xpath("//p-radiobutton[.//input[@id=\"Level :-Airport\"]]");
     By Txt_OriginAirport = By.xpath("(//div[@class=\"dropdown-wrapper\"])[1]");
-    By Anna = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[2]/div/ndc-fg-input[1]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/ndc-chips-dropdown-input/div/div[2]/div[2]/label");
-    By Anna2 = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[2]/div/ndc-fg-input[1]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[2]/ndc-chips-dropdown-input/div/div[2]/div[5]/label/input ");
+    By Anna = By.xpath("//div[@class='dropdown-menu ng-star-inserted']/div[2]/label/input");
+    By Anna2 = By.xpath("//div[@class='dropdown-menu ng-star-inserted']/div[2]/label/input");
     By Txt_DestinationAirport = By.xpath("(//div[@class=\"dropdown-wrapper\"])[2]");
     By Open = By.xpath("//div[@class=\"dropdown-wrapper open\"]");
     By Rbtn_City = By.xpath("//p-radiobutton[.//input[@id=\"Level :-City\"]]");
@@ -40,8 +41,8 @@ public class BSPCommission_Page {
     By Cbox_Child = By.xpath("//p-checkbox[.//input[@id=\"id-PAXtype:-Child\"]]");
     By Cbox_ExcludeMultipleCarrier = By.xpath("//p-checkbox[.//input[@id=\"id--Excludemultiplecarriers\"]]");
     By Txt_FareBasisCode = By.xpath("//input[@placeholder=\"Enter values\"]");
-    By Btn_ValidityPeriodFrom = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[3]/div/ndc-fg-input[1]/ndc-fg-date-picker-input/span/p-calendar/span/button");
-    By Btn_ValidityPeriodTo = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-bsp-commission/div/div/div[2]/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[3]/div/ndc-fg-input[2]/ndc-fg-date-picker-input/span/p-calendar/span/button/span");
+    By Btn_ValidityPeriodFrom = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[1]");
+    By Btn_ValidityPeriodTo = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[2]");
     By Btn_OutboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-46 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Btn_OutboundPeriodTo = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-47 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Btn_InboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-48 p-button p-component p-button-icon-only ng-star-inserted\"]");
@@ -89,7 +90,7 @@ public class BSPCommission_Page {
     By Btn_Approve  = By.xpath( "(//button[@type=\"submit\"])[1]");
     By Btn_Reject  = By.xpath("(//button[@type=\"submit\"])[2]");
     By Btn_SendForApproval  = By.xpath("(//button[@type=\"submit\"])[3]");
-    By Btn_UpdateButton = By.xpath("//i[@class=\"pi pi-pencil\"]");
+    By Btn_UpdateButton = By.xpath("(//i[@class=\"pi pi-pencil\"])[1]");
     By Txt_Remarks = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     ////
     By Btn_Master = By.xpath("//a[@href=\"/master\"]");
@@ -102,11 +103,13 @@ public class BSPCommission_Page {
     By Rbtn_Active = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Active\"]]");
     By Rbtn_Both = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Both\"]]");
     By Btn_SearchButton = By.xpath("//button[@type=\"submit\"]");
-
+    By Year = By.xpath("//button[normalize-space()='2026']");
     public void AddCommission(){
         driver.element().click(Btn_AddCommission);
     }
-
+    public void clickAirline(){
+        driver.element().click(Btn_airline);
+    }
     public void AirlineName(String airlinename) throws InterruptedException {
 //        driver.element().type(Txt_AirlineName,airlinename);
 //        Thread.sleep(3000);
@@ -364,6 +367,7 @@ public class BSPCommission_Page {
     }
 
     public void setAirlineName(String airlineName){
+        driver.element().click(Btn_airline);
         driver.element().type(Txt_AirlineName,airlineName).select(Txt_AirlineName,airlineName);
 
     }
@@ -485,7 +489,31 @@ public class BSPCommission_Page {
             Assert.fail("An exception occurred while trying to verify the table header or data: " + e.getMessage());
         }
     }
+    public void searchValidFromDate(String From, String year, String month) throws InterruptedException {
 
+        driver.element().click(Btn_ValidityPeriodFrom);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+
+    }
+
+    public void searchValidToDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_ValidityPeriodTo);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+
+    }
     private boolean isValueInArray (String value, String[]array){
         for (String element : array) {
             if (element.equals(value)) {

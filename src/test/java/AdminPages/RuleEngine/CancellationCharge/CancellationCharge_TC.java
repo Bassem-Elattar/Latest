@@ -3,39 +3,43 @@ package AdminPages.RuleEngine.CancellationCharge;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 
 
-public class CancellationCharge_TC extends TestBase_TC {
+public class CancellationCharge_TC  {
     private LogIn_Page logIn;
     private CancellationCharge_Page cancellationChargePage;
     public String Charge_Code;
-    private RuleEngine_Common cancel;
+//    private RuleEngine_Common cancel;
     SHAFT.TestData.JSON testData;
+    SHAFT.GUI.WebDriver driver;
 
     @BeforeTest
     public void sign() {
-        logIn = new LogIn_Page(driver);
-        cancellationChargePage = new CancellationCharge_Page(driver);
-        cancel = new RuleEngine_Common(driver);
+
         testData = new SHAFT.TestData.JSON("CancellationCharge.json");
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
-        cancel.clickRuleEngine().clickCancellationCharge();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        new LogIn_Page(driver).AdminLogin();
+       new RuleEngine_Common(driver).clickRuleEngine().clickCancellationCharge();
+
     }
 
     ////////////////////////// to run E2E scenario = Run the CancellationCharge_TC class/////////////////
     @Test(priority = 1)
-    public void CreateCancellationCharge(){
+    public void CreateCancellationCharge() throws InterruptedException {
         cancellationChargePage = new CancellationCharge_Page(driver);
         cancellationChargePage.BtnAddCancellationCharge();
         cancellationChargePage.Txt_CancellationChargeName(testData.getTestData("Create.Name"));
         cancellationChargePage.TxtCancellationChargeDescription(testData.getTestData("Create.Description"));
-        cancellationChargePage.Dpick_ValidityPeriodFrom(testData.getTestData("Create.ValidityPeriodFrom"));
-        cancellationChargePage.Dpick_ValidityPeriodTo(testData.getTestData("Create.ValidityPeriodTo"));
+        cancellationChargePage.searchValidFromDate(testData.getTestData("Create.FromDate"),testData.getTestData("Create.FromYear"),testData.getTestData("Create.FromMonth"));
+        cancellationChargePage.searchValidToDate(testData.getTestData("Create.ToDate"),testData.getTestData("Create.ToYear"),testData.getTestData("Create.ToMonth"));
         cancellationChargePage.Lst_CountryPos();
         cancellationChargePage.Btn_Select();
         cancellationChargePage.LstFareType(testData.getTestData("Create.FareType"));
@@ -68,13 +72,13 @@ public class CancellationCharge_TC extends TestBase_TC {
     }
 
     @Test(priority = 3)
-    public void UpdateCancellationCharge(){
+    public void UpdateCancellationCharge() throws InterruptedException {
         cancellationChargePage = new CancellationCharge_Page(driver);
         cancellationChargePage.BtnUpdate();
         cancellationChargePage.Txt_CancellationChargeName(testData.getTestData("Update.Name"));
         cancellationChargePage.TxtCancellationChargeDescription(testData.getTestData("Update.Description"));
-        cancellationChargePage.Dpick_ValidityPeriodFrom(testData.getTestData("Update.ValidityPeriodFrom"));
-        cancellationChargePage.Dpick_ValidityPeriodTo(testData.getTestData("Update.ValidityPeriodTo"));
+       // cancellationChargePage.searchValidFromDate(testData.getTestData("Update.FromDate"),testData.getTestData("Update.FromYear"),testData.getTestData("Update.FromMonth"));
+        //cancellationChargePage.searchValidToDate(testData.getTestData("Update.ToDate"),testData.getTestData("Update.ToYear"),testData.getTestData("Update.ToMonth"));
         cancellationChargePage.LstFareType(testData.getTestData("Update.FareType"));
         cancellationChargePage.TxtAdult(testData.getTestData("Update.Adult"));
         cancellationChargePage.TxtChild(testData.getTestData("Update.Child"));
@@ -85,7 +89,7 @@ public class CancellationCharge_TC extends TestBase_TC {
     @Test(priority = 4)
     public void DeleteCancellationCharge (){
         cancellationChargePage.Btn_Delete();
-        String Expected = "No data has been found!";
+        String Expected = testData.getTestData("Search.errorMessage");
         String Actual = cancellationChargePage.EmptySearch();
         Assert.assertEquals(Actual, Expected);
     }

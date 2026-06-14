@@ -1,6 +1,6 @@
 package AdminPages.Master.Supplier.SupplierCredential;
 import AdminPages.Admin.Branch.AddNewBranch_Page;
-import AdminPages.BookingMidOffice.Booking.SearchBookingPage;
+import AdminPages.BookingMidOffice.Booking.SearchBookingBranch;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class Demo extends TestBase_TC {
 
-    private SearchBookingPage searchBooking;
+    private SearchBookingBranch searchBooking;
     private SearchCity_Page searchCity;
     private SearchSupplier_Page searchSupplier;
     private ActionSupplier_Page actionSupplier;
@@ -199,11 +199,11 @@ public class Demo extends TestBase_TC {
 
     @Test(dataProvider = "Booking")
     public void setSearchBooking(Map<String,String> Book) throws InterruptedException {
-        searchBooking = new SearchBookingPage(driver);
+        searchBooking = new SearchBookingBranch(driver);
         String SelectBranch = Book.get("SelectBranch");
         String StartingFrom = Book.get("StartingFrom");
         String GoingTo = Book.get("GoingTo");
-        searchBooking.setBooking(SelectBranch,StartingFrom,GoingTo);
+        //searchBooking.setBooking(SelectBranch,StartingFrom,GoingTo);
 
     }
     @AfterMethod

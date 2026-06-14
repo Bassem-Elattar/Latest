@@ -40,7 +40,7 @@ public class UpdateBSPCommission_TC extends TestBase_TC {
         createBSPCommission = new BSPCommission_Page(driver);
         new Master_Common(driver).clickMaster()
                 .clickFlight()
-                .clickAirline();
+                .clickBSP();
         createBSPCommission.setCommissionName("J9 0% Com");
         createBSPCommission.setBoth();
         createBSPCommission.setSearchButton();

@@ -9,6 +9,7 @@ import org.testng.asserts.SoftAssert;
 public class TermsAndConditions_Page {
     //constant
     private final SoftAssert softAssert;
+    static SHAFT.GUI.WebDriver driver;
 
     public TermsAndConditions_Page(SHAFT.GUI.WebDriver driver) {
 
@@ -16,7 +17,7 @@ public class TermsAndConditions_Page {
 
         this.driver = driver;
     }
-    static SHAFT.GUI.WebDriver driver;
+
     By Btn_RuleEngine = By.xpath("//a[@href=\"/rule-engine\"]");
     By Btn_TermsANDCondition = By.xpath("//img[@src=\"../static/img/term_cond_icon.png\"]");
     By Btn_Search = By.xpath("//button[@type=\"submit\"]");
@@ -52,13 +53,13 @@ public class TermsAndConditions_Page {
             "p-ripple p-button p-component justify-content-center ng-star-inserted\"])[2]");
     By Btn_SendForApprovalEdit = By.xpath("(//button[@class=\"col-sm-12 col-md-6 col-lg-2 " +
             "p-element p-ripple p-button p-component justify-content-center ng-star-inserted\"])[3]");
-    By Msg_Required1 = By.xpath("(//span[@class=\"fg-error\"])[1]");
-    By Msg_Required2 = By.xpath("(//span[@class=\"fg-error\"])[2]");
-    By Msg_Required3 = By.xpath("(//span[@class=\"fg-error\"])[3]");
-    By Msg_Required4 = By.xpath("(//span[@class=\"fg-error\"])[4]");
-    By Msg_Required5 = By.xpath("(//span[@class=\"fg-error\"])[5]");
+    By Msg_Required1 = By.xpath("(//span[@class=\"fg-error has-error\"])[1]");
+    By Msg_Required2 = By.xpath("(//span[@class=\"fg-error has-error\"])[2]");
+    By Msg_Required3 = By.xpath("(//span[@class=\"fg-error has-error\"])[3]");
+    By Msg_Required4 = By.xpath("(//span[@class=\"fg-error has-error\"])[4]");
+    By Msg_Required5 = By.xpath("(//span[@class=\"fg-error has-error\"])[5]");
 
-    By Txt_RemarksEdit = By.xpath("//textarea[@class=\"p-inputtextarea p-inputtext p-component p-element ng-pristine ng-invalid ng-touched\"]");
+    By Txt_RemarksEdit = By.xpath("//textarea[@placeholder=\"remarks...\"]");
 
     By Lst_CountryEdit = By.xpath("(//div[@class=\"p-element p-multiselect-label-container\"])[1]");
     By Lst_BranchEdit = By.xpath("(//div[@class=\"p-element p-multiselect-label-container\"])[2]");
@@ -230,11 +231,11 @@ public class TermsAndConditions_Page {
         return S;
     }
     public String ActualResult3(){
-        String S = ElementActions.getInstance().getText(Msg_Required4);
+        String S = ElementActions.getInstance().getText(Msg_Required3);
         return S;
     }
     public String ActualResult4(){
-        String S = ElementActions.getInstance().getText(Msg_Required5);
+        String S = ElementActions.getInstance().getText(Msg_Required4);
         return S;
     }
     public TermsAndConditions_Page DeselectAll(){

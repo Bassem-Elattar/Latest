@@ -2,13 +2,17 @@ package AdminPages.RuleEngine.OfferPricing;
 
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase;
+import AdminPages.RuleEngine.Markup.Markup_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.FileUploadUtil;
 import utilities.JsonDataUtil;
 
@@ -18,43 +22,39 @@ import java.util.Map;
 
 
 
-public class TC_CreateOffer extends TestBase {
+public class TC_CreateOffer {
     private CreateOffer_Page Create;
     private LogIn_Page logIn;
+    SHAFT.GUI.WebDriver driver;
+    private SHAFT.TestData.JSON testData;
 
-    @DataProvider(name = "JsonProvider")
-    public static Object[][] provideJsonData(Method method) throws IOException {
-        String fileName = method.getName();
-        String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
-        return JsonDataUtil.readJsonData(filePath);
-    }
     @BeforeTest
     public void sign() throws InterruptedException {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
-        logIn.ClickOnLoginButton();
-        Thread.sleep(3000);
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
+
+        testData = new SHAFT.TestData.JSON("Createoffer.json");
+        Create = new CreateOffer_Page(driver);
+
     }
-    @Test(dataProvider = "JsonProvider")
-    public void CreateOffer(Map<String, String> Offer) throws InterruptedException {
+    @Test
+    public void CreateOffer() throws InterruptedException {
         new RuleEngine_Common(driver).clickRuleEngine().clickOfferPricing();
         Create = new CreateOffer_Page(driver);
-        String Discount = Offer.get("Discount");
-        String Discreption = Offer.get("Discreption");
-        Create.CreateOffer(Discount,Discreption);
+        String Discount = testData.getTestData("Discount");
+        String Discreption = testData.getTestData("Discreption");
+        String value = testData.getTestData("DiscountName");
+        Create.CreateOffer(Discount,Discreption,value);
         Create.img();
-        By fileInputLocator = By.xpath("(//input[@type='file'])[1]");
-        String filePath = "C:\\Users\\Mohamed Shalaby\\Desktop\\image.jpg";
-        FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
+        Create.uploadImage();
         Create.Sendapprove();
-        String Expected = "Added Successfully";
+        String Expected = testData.getTestData("Success");
         Assert.assertEquals(Create.Actual(),Expected);
 
 
-    }
-    @AfterMethod
-    public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.90");
     }
 
 }

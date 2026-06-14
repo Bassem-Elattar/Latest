@@ -1,0 +1,15 @@
+{
+  "brName": "Test",
+  "NumberOfAdults": "1",
+  "NumberOfChildren": "1",
+  "NumberOfInfants": "1",
+  "source": "CAI",
+  "destination": "DXB",
+  "secondDestination": "CAI",
+  "JourneyDay": "24",
+  "JourneyYear" : "2026",
+  "JourneyMonth" : "Jul",
+  "dayOfSecondJourney": "25",
+  "monthOfSecondJourney": "Mar",
+  "yearOfSecondJourney": "2026"
+}

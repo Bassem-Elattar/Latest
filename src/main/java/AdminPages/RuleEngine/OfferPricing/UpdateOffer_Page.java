@@ -10,7 +10,7 @@ public class UpdateOffer_Page {
     SHAFT.GUI.WebDriver driver;
     By Btn_Rule = By.xpath("//a[@href=\"/rule-engine\"]");
     By Btn_Offer = By.xpath("(//div[@class=\"panel-heading accordion-toggle\"])[5]");
-    By Btn_Edit =By.xpath("(//div[@class=\"action ng-star-inserted\"])[1]");
+    By Btn_Edit =By.xpath("(//div[@class=\"action exception-buttons ng-star-inserted\"])[1]");
     By Txt_Id = By.xpath("//input[@id=\"id-DiscountID\"]");
     By Btn_Upload = By.xpath("//button[@label=\"Primary\"]");
     By Txt_Discreption = By.xpath("//textarea[@placeholder=\"Description...\"]");
@@ -31,8 +31,9 @@ public class UpdateOffer_Page {
 
         driver.element().click(Btn_Edit);
 //        driver.element().type(Txt_Id,Discount);
-//        Thread.sleep(1000);
+        Thread.sleep(1000);
 //        driver.element().click(ClickDiscount);
+        driver.element().clear(Txt_Discreption);
         driver.element().type(Txt_Discreption,Discreption);
         driver.element().type(Txt_Remarks,Remarks);
 

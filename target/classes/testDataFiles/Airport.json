@@ -1,7 +1,7 @@
 {
   "Add": {
-    "IATA": "zgg",
-    "AirportName": "tttttttttt",
+    "IATA": "sda",
+    "AirportName": "asdafa",
     "Country":"Egypt",
     "City":"Cairo",
     "Station": "1",
@@ -14,8 +14,8 @@
   },
 
   "Search": {
-    "IATA": "zgg",
-    "AirportName": "tttttttttt",
+    "IATA": "sda",
+    "AirportName": "asdafa",
     "Country":"Egypt",
     "City":"Cairo",
     "Type": "2",
@@ -23,14 +23,13 @@
   },
 
   "Update": {
-    "IATA1": "zgz",
-    "AirportName1": "hhhhhhhh",
+    "IATA1": "SDH",
+    "AirportName1": "aaaaaaa",
     "Country1":"Egypt",
     "City1":"Cairo",
     "Station": "3",
     "Latitude": "13.1",
     "Longitude": "113.2"
-
   }
 }
 

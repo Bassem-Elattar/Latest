@@ -14,26 +14,19 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class CreateDealCode extends TestBase_TC {
-
-
     SHAFT.TestData.JSON testData;
-
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeClass
     public void SetupBrowser (){
-
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/test.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/DealCode.json");
         new LogIn_Page(driver).ClickAdmin();
         new LogIn_Page(driver).ClickOnLoginButton();
-
     }
 
     @Test(priority = 1) // TODO : End To End Scenario Create By Sector
     public void Create_DEALCODE () throws InterruptedException {
         // SoftAssert softAssert = new SoftAssert();
-
-
         new Master_Common(driver).clickMaster().clickFlight().clickDealCode();
         new Create.CreateDEalCode(driver).clickONAddDealCodeButton().choseSupplier(testData.getTestData("supplier"))
                 .choseSupplierCredential(testData.getTestData("supplierCredential"))
@@ -41,7 +34,6 @@ public class CreateDealCode extends TestBase_TC {
                 .SelectFrom().writeFirstSectorFrom(testData.getTestData("firstSectorFrom"))
                 .clickONCheckBox1().
                 //.SelectFrom().SelectFrom().writeSecondSectorFrom(testData.getTestData("secondSectorFrom")).clickONCheckBox2()//TODO: بضغط مرتين  + اكن ضغطة منهم ضغطها بره والتانية ع نفس المكان
-
 
                         selectTo().writeFirstSectorTo(testData.getTestData("FirstSectorTO"))  // TODO : ضغط تانى ع select from  عشان يخفى القايمه اكن ضغط  ف  اى مكان بره
 
@@ -56,13 +48,10 @@ public class CreateDealCode extends TestBase_TC {
 //  Assert.assertFalse(sectorData.isEmpty());
         new Create.CreateDEalCode(driver).clickOnSendForAPPROVEL();
 
-
         //TODO Assert For create a deal code well
   String actualadded = new Create.CreateDEalCode(driver).returnActualMsg();
   String expectedadd = "Deal Code Added Successfully";
  softAssert.assertEquals(actualadded,expectedadd);
-
-
 
         new Master.SearchAction(driver).choseinactive().clickONSearch();
 
@@ -76,12 +65,7 @@ public class CreateDealCode extends TestBase_TC {
 
         new Master.SearchAction(driver).choseactive().clickONSearch().clickOnExportExcel();
         softAssert.assertAll();
-
-
-
-
     }
-
 
     @Test(priority = 2) // TODO : End To End Scenario Create By Country
     public void CreateDealCode_Country () throws InterruptedException {
@@ -98,7 +82,6 @@ public class CreateDealCode extends TestBase_TC {
                 .travelValidityFrom(testData.getTestData("travelFrom"))
                 .travelValidityTO(testData.getTestData("travelTO"));
 
-
 //TODO :  Assert for Country From is not empty
 //        String sectorData = createDealCode.chosenSector();
 //        Assert.assertFalse(sectorData.isEmpty());
@@ -109,10 +92,7 @@ public class CreateDealCode extends TestBase_TC {
         String expectedadd = "Deal Code Added Successfully";
         softAssert.assertEquals(actualadded,expectedadd);
 
-
-
         new Master.SearchAction(driver).choseinactive().clickONSearch();
-
         new Create.CreateDEalCode(driver).clickONapprovelAction().writeRemark(testData.getTestData("Remark"))
                 .clickONSubmit();
 
@@ -124,7 +104,6 @@ public class CreateDealCode extends TestBase_TC {
         new Master.SearchAction(driver).choseactive().clickONSearch().clickOnExportExcel();
         softAssert.assertAll();
     }
-
 
     @Test(priority = 3)
     public void EditDealCode(){
@@ -149,8 +128,6 @@ public class CreateDealCode extends TestBase_TC {
             Assert.assertTrue(driver.element().isElementClickable(new Create.CreateDEalCode(driver).Btn_Approve));
             Assert.assertTrue(driver.element().isElementClickable(new Create.CreateDEalCode(driver).Btn_Reject));
             Assert.assertTrue(driver.element().isElementClickable(new Create.CreateDEalCode(driver).Btn_sendForApproval));
-
-
         }
         finally {
             driver.browser().captureScreenshot();
@@ -160,19 +137,8 @@ public class CreateDealCode extends TestBase_TC {
         softAssert.assertAll();
     }
 
-
-
-
-
-
-
-
-
-
-
     @AfterMethod
     public void quit (){
-
         driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

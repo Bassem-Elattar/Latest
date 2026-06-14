@@ -57,15 +57,12 @@ public class SearchCountry_TC extends TestBase_TC {
             // Perform assertions
             searchCountry.performAssertions();
 
-
             // Navigate to the next page if not on the last page
             if (currentPage < totalPages) {
                 paginationHelper.navigateToNextPage();
             }
         }
     }
-
-
 }
 
 

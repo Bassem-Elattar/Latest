@@ -1,6 +1,6 @@
 [
   {
-    "AirlineName": "Adria Airways",
+    "AirlineName": "Air Burkina",
     "CommissionName": "Eyaasttest",
     "GDSSupplier": "Galileo",
     "SupplierCredential": "Galileo Live UAE",
@@ -51,7 +51,13 @@
     "W": "",
     "X": "",
     "Y": "",
-    "Z": ""
+    "Z": "",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Jan",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Jan"
 
   }
 ]

@@ -1,6 +1,6 @@
 {
   "Create": {
-    "Name": "bassem",
+    "Name": "ahmed",
     "Description": "ali",
     "ValidityPeriodFrom": "25",
     "ValidityPeriodTo": "27",
@@ -8,16 +8,23 @@
     "FareType": "Total Fare",
     "Adult": "1",
     "Child": "1",
-    "Infant": "1"
+    "Infant": "1",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Jan",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Jan"
   },
 
   "Search": {
-    "Name": "bassem",
-    "Country": "Egypt"
+    "Name": "ahmed",
+    "Country": "Egypt",
+    "errorMessage": "No data has been found!"
   },
 
   "Update": {
-    "Name": "updated",
+    "Name": "updatedddd",
     "Description": "new",
     "ValidityPeriodFrom": "24",
     "ValidityPeriodTo": "27",
@@ -25,7 +32,13 @@
     "FareType": "Base Fare",
     "Adult": "2",
     "Child": "2",
-    "Infant": "2"
+    "Infant": "2",
+    "FromDate": "1",
+    "FromYear" : "2027",
+    "FromMonth" : "Feb",
+    "ToDate": "3",
+    "ToYear" : "2027",
+    "ToMonth" : "Feb"
   }
 }
 

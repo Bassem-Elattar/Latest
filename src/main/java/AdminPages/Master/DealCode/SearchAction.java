@@ -20,7 +20,6 @@ public class SearchAction {
     private final By both = By.cssSelector("p-radiobutton:has(+ label[for=\"id-Status-Both\"])\n");
     private final By searchButton = By.cssSelector("button[type=\"submit\"]");
     public final By exportToExel = By.className("mg-end-10");
-    public final By grid = By.xpath(" /html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-deal-code/div/tilde-data-table/div/div/div/div/div[2]");
     public  final By dealcode=By.xpath("//*[@id=\"pr_id_11-table\"]/tbody/tr[1]/td[2]");
     private final  By table =By.xpath("//table//tr/td[5]");
     private final  By searchFields =By.cssSelector("[class=\"table-area\"]");

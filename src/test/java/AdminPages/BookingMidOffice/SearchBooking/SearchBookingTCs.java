@@ -20,9 +20,10 @@ public class SearchBookingTCs extends TestBase_TC {
         new LogIn_Page(driver).ClickAdmin();
         new LogIn_Page(driver).ClickOnLoginButton();
     }
+
     @Test
     public void verifyThatUserCanSearchByBooking() throws InterruptedException {
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         Thread.sleep(300);
         new SearchBooking_Page(driver)
                 .SelectBooking()
@@ -32,9 +33,10 @@ public class SearchBookingTCs extends TestBase_TC {
                 .ClickSearch()
                 .verifyThatTheResultShowsSuccessfully();
     }
+
     @Test
     public void verifyThatUserCanSearchByOrderID(){
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
@@ -46,7 +48,7 @@ public class SearchBookingTCs extends TestBase_TC {
 
     @Test
     public void verifyThatUserCanSearchByBookingReference(){
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
@@ -58,7 +60,7 @@ public class SearchBookingTCs extends TestBase_TC {
 
     @Test
     public void verifyThatUserCanSearchByTicketNo(){
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
@@ -67,9 +69,10 @@ public class SearchBookingTCs extends TestBase_TC {
                 .ClickSearch()
                 .verifyThatTheUserCanSearchByTicketNo();
     }
+
     @Test
     public void verifyThatUserCanSearchByAirline_GDSPNR(){
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
@@ -81,7 +84,7 @@ public class SearchBookingTCs extends TestBase_TC {
 
     @Test
     public void verifyThatUserCanSearchBySpecificAgency(){
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectBooking()
                 .SelectBranch()
@@ -94,7 +97,7 @@ public class SearchBookingTCs extends TestBase_TC {
 
     @Test
     public void verifyThatUserCanPaginateTheResult(){
-        new Booking_Common(driver).clickBookingMidOffice().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectBooking()
                 .SelectBranch()
@@ -109,6 +112,6 @@ public class SearchBookingTCs extends TestBase_TC {
     public void navigateBackToURL() {
         // Optionally close the browser
         // driver.quit();
-        driver.browser().navigateToURL("http://192.168.1.90");
+        driver.browser().navigateToURL("http://192.168.1.70");
     }
 }

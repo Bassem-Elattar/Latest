@@ -58,9 +58,9 @@ public class ActionSupplier_TC extends TestBase_TC {
     public void SearchSupplier(Map<String, String> search) throws InterruptedException {
         searchSupplier = new SearchSupplier_Page(driver);
         searchCity = new SearchCity_Page(driver);
-        new Master_Common(driver).clickMaster()
-                .clickSupplierMenue()
-                .clickSupplier();
+//        new Master_Common(driver).clickMaster()
+//                .clickSupplierMenue()
+//                .clickSupplier();
         String SupplierName = search.get("SupplierName");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
@@ -92,8 +92,9 @@ public class ActionSupplier_TC extends TestBase_TC {
         searchSupplier = new SearchSupplier_Page(driver);
         searchCity = new SearchCity_Page(driver);
         actionSupplier = new ActionSupplier_Page(driver);
-        searchCity.ClickonMaster();
-        searchSupplier.clickonsupplier();
+//        new Master_Common(driver).clickMaster()
+//                .clickSupplierMenue()
+//                .clickSupplier();
         String SupplierName = supplier.get("SupplierName");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();
@@ -106,8 +107,9 @@ public class ActionSupplier_TC extends TestBase_TC {
     public void SearchSupplierRejected(Map<String, String> search) throws InterruptedException {
         searchSupplier = new SearchSupplier_Page(driver);
         searchCity = new SearchCity_Page(driver);
-        searchCity.ClickonMaster();
-        searchSupplier.clickonsupplier();
+//        new Master_Common(driver).clickMaster()
+//                .clickSupplierMenue()
+//                .clickSupplier();
         String SupplierName = search.get("SupplierName");
         searchSupplier.searchsupplierdata(SupplierName);
         searchSupplier.setBoth();

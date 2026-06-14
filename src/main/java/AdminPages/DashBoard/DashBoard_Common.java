@@ -15,4 +15,7 @@ public class DashBoard_Common {
         driver.element().click(btn_DashBoard);
         return this;
     }
+
+    public void clickDashboard() {
+    }
 }

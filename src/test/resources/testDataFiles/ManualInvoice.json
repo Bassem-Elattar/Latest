@@ -1,0 +1,79 @@
+{
+  "branch": "Test",
+  "agency": "Test Egypt",
+  "agent": "TEST",
+  "from": "CAI",
+  "to": "JED",
+  "departureDate": "2026-05-20",
+  "FromDate": "2",
+  "FromYear": "2026",
+  "FromMonth": "Dec",
+  "supplier": "Galileo",
+  "airline": "EgyptAir",
+  "markup": "100",
+  "servicecharge": "25",
+  "discount": "50",
+
+  "passengers": {
+    "adult": {
+      "baseFare": "1000",
+      "tax": "200"
+    },
+    "child": {
+      "baseFare": "700",
+      "tax": "150"
+    },
+    "infant": {
+      "baseFare": "300",
+      "tax": "50"
+    }
+  },
+
+  "gdsPnr": "ABC123",
+  "airlinePnr": "XYZ789",
+  "flightNo": "MS123",
+
+  "title": "Mr",
+  "firstName": "Ahmed",
+  "lastName": "Mohammed",
+  "dateOfBirth": "01/12/1999",
+  "gender": "Male",
+  "documentNumber": "A12345678",
+  "documentExpiry": "01/02/2030",
+  "ticketNumber": "1234567890123",
+  "email": "yara.khaled@tildetech.ae",
+  "phone": "1011622290",
+  "nationality" : "Egypt",
+
+      "title1": "Mr",
+      "firstName1": "Mostafa",
+      "lastName1": "adham",
+      "dateOfBirth1": "01/07/2020",
+      "gender1": "Male",
+      "documentNumber1": "A12305678",
+      "documentExpiry1": "01/02/2030",
+      "ticketNumber1": "1234507890123",
+      "email1": "adult@test.com",
+      "phone1": "1011622290",
+      "nationality1": "Egypt",
+
+
+
+      "title2": "Mr",
+      "firstName2": "Adham",
+      "lastName2": "Ashry",
+      "dateOfBirth2": "01/12/2025",
+      "gender2": "Male",
+      "documentNumber2": "B12345678",
+      "documentExpiry2": "01/02/2030",
+      "ticketNumber2": "2234567890123",
+      "email2": "child@test.com",
+      "phone2": "1011622290",
+      "nationality2": "Egypt"
+
+
+
+
+
+
+}
