@@ -3,6 +3,9 @@ package AdminPages.BookingMidOffice.Booking;
 import com.shaft.driver.SHAFT;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchBookingBranch {
     public SearchBookingBranch(SHAFT.GUI.WebDriver driver) {
@@ -12,18 +15,18 @@ public class SearchBookingBranch {
 
     By BookingMidOffice = By.xpath("//a[@class='mid-office-1'and contains(text(),'Booking-Mid Office')]");
     By Booking = By.xpath("//li[@id='Booking']");
-    By BranchList = By.xpath( "//p-dropdown[@formcontrolname='branch']");
+    By BranchList = By.xpath( "//span[normalize-space()='Branch*']");
     By StartingFrom = By.xpath("//div[contains(text(),'From *')]");
-    By selectFrom = By.xpath("//input[@placeholder='Search']");
+    By selectFrom = By.xpath("//input[@role='textbox']");
     By fromCheckBox = By.xpath("(//div[@class='p-checkbox-box'])[1]");
     By GoingTo = By.xpath("//span[normalize-space()='To *']");
-    By selectTo = By.xpath("//div[contains(@class,'p-dropdown-header')]//input[@placeholder='Search']");
-    By DataPicker = By.xpath("//input[@placeholder='YYYY-MM-DD *']");
+    By selectTo = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
+    By DataPicker = By.xpath("//input[@placeholder='DD/MM/YYYY *']");
     By noOfAdults = By.xpath("(//p-button[@icon='pi pi-plus'])[1]");
     By noOfChildren = By.xpath("(//p-button[@icon='pi pi-plus'])[2]");
     By noOfInfants = By.xpath("(//p-button[@icon='pi pi-plus'])[3]");
     By SearchButton = By.xpath("//button[@class='p-element btn search-btn p-button p-component']");
-    By WhiteMarkup = By.xpath("(//button[@class='flight-action-btn mr-2'])[1]");
+    By WhiteMarkup = By.xpath("(//button[@aria-label='Apply markup'])[1]");
     By DiscountLabel = By.xpath("(//p[contains(text(),'Save EGP ')])[1]");
     By ServiceChargeLabel = By.xpath("(//p[contains(text(),'EGP ')])[2]");
     By CancelChargeLabel = By.xpath("(//p[contains(text(),'EGP ')])[2]");
@@ -42,10 +45,25 @@ public class SearchBookingBranch {
     By QuoteNewUserPhone = By.id("Phone");
     By ConfirmSaveQuoteBtn = By.xpath("//button[@type='submit']//span[normalize-space()='Save Quote']/ancestor::button");
     By QuoteSavedMsg = By.xpath("//span[normalize-space()='Quote Saved']");
-    By firstBookFlightButton = By.xpath("(//button[.//span[normalize-space()='Book Flight']])[1]");
+    By BookFlight_BTN = By.xpath("(//span[contains(text(),'Book Flight')])[1]");
+    By inputField = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
+    By FlightDetails_Btn = By.xpath("(//button[contains(text(),'Flight Details')])[1]");
+    By FlightDetails_Txt = By.xpath("(//div[@class='p-tabview-panels'])[2]");
+    By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
+    By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
+    By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-27']//div[@class='custom-accordion-header flex align-items-center gap-2 w-full ng-star-inserted']");
+    By SegmentExpand_Txt = By.xpath("(//div[@class='flight-segments p-0 ng-tns-c111-199'])[1]");
+    By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
+    By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
+    By TotalPrice_Txt = By.xpath("//div[@class='price-total']");
+    By SupplierName_Txt = By.xpath("(//div[@class='badges-row'])[1]");
+    By durationLabel_Txt = By.className("duration-label");
+    By MarkUp_Inpt = By.xpath("(//input[@placeholder='Markup'])[1]");
+    By FareDetails_Txt = By.xpath("(//div[@class='fare-details-block ng-star-inserted'])[1]");
+
 
     public void BookFirstFlight() {
-        driver.element().click(firstBookFlightButton);
+        driver.element().click(BookFlight_BTN);
     }
     public SearchBookingBranch selectFirstFlight(){
         driver.element().click(firstFlicghtSelector);
@@ -55,6 +73,89 @@ public class SearchBookingBranch {
         driver.element().click(saveQuoteBtn);
         return new SearchBookingBranch(driver);
     }
+
+    public SearchBookingBranch OpenSideMenuInfo(){
+        driver.element().click(FlightDetails_Btn);
+        return new SearchBookingBranch(driver);
+    }
+
+    public List<String> SegmentDetails() {
+        for (int i=1; i<6; i++) {
+            By expandButton = By.xpath("(//button[@class='expand-btn'])["+ i +"]");
+            if (!driver.getDriver().findElements(expandButton).isEmpty()) {
+                driver.element().click(expandButton);
+            }
+        }
+        List<WebElement> elements = driver.getDriver().findElements(FlightDetails_Txt);
+        List<String> Segment = new ArrayList<>();
+
+        for (WebElement element : elements) {
+            Segment.add(element.getText());
+        }
+        return Segment;
+    }
+
+    public List<String> FareDetails() {
+        driver.element().click(FareDetails_Btn);
+        for (int i=2; i<6; i++) {
+            By expandButton = By.xpath("(//button[@class='toggle-icon'])["+ i +"]");
+            if (!driver.getDriver().findElements(expandButton).isEmpty()) {
+                driver.element().click(expandButton);
+            }
+        }
+
+        List<WebElement> elements = driver.getDriver().findElements(FlightDetails_Txt);
+        List<String> Fare = new ArrayList<>();
+
+        for (WebElement element : elements) {
+            Fare.add(element.getText());
+        }
+        return Fare;
+    }
+
+    public List<String> BaggageInfo() {
+        driver.element().click(BaggageInfo_Btn);
+        for (int i=2; i<6; i++) {
+            By expandButton = By.xpath("(//button[@class='expand-toggle'])["+ i +"]");
+            if (!driver.getDriver().findElements(expandButton).isEmpty()) {
+                driver.element().click(expandButton);
+            }
+        }
+        List<WebElement> elements = driver.getDriver().findElements(FlightDetails_Txt);
+        List<String> Baggage = new ArrayList<>();
+
+        for (WebElement element : elements) {
+            Baggage.add(element.getText());
+        }
+        return Baggage;
+    }
+
+    public List<String> FlightCard() {
+        List<WebElement> elements = driver.getDriver().findElements(FlightCard_Txt);
+        List<String> flightCard = new ArrayList<>();
+
+        for (WebElement element : elements) {
+            flightCard.add(element.getText());
+        }
+        return flightCard;
+    }
+
+    public List<String> PaxSegmentDetails() {
+        driver.element().click(SegmentExpand_Btn);
+        List<WebElement> elements = driver.getDriver().findElements(SegmentExpand_Txt);
+        List<String> Segment = new ArrayList<>();
+
+        for (WebElement element : elements) {
+            Segment.add(element.getText());
+        }
+        return Segment;
+    }
+
+    public SearchBookingBranch CloseTheSideMenuInfo(){
+     driver.element().click(Close_Btn);
+     return new SearchBookingBranch(driver);
+    }
+
     public SearchBookingBranch ConfirmSaveQuote(String NewUserFirstName,String NewUserLastName,String NewUserEmail,String NewUserPhone){
 
         driver.element().click(NewUserCheckForQuoteTxt);
@@ -88,19 +189,10 @@ public class SearchBookingBranch {
     }
 
     public SearchBookingBranch SelectBranch(String branch) {
-
-        // open dropdown
         driver.element().click(BranchList);
-
-        // select option
-        By branchOption = By.xpath(
-                "//li[@role='option']//span[normalize-space()='" + branch + "']"
-        );
-
-        driver.element().waitToBeReady(branchOption);
-
+        driver.element().type(inputField, branch);
+        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
         driver.element().click(branchOption);
-
         return new SearchBookingBranch(driver);
     }
 
@@ -119,14 +211,6 @@ public class SearchBookingBranch {
         return new SearchBookingBranch(driver);
     }
 
-    //    public SearchBookingBranch SelectDateOfJourney(String Months, String Year, String Day) {
-//        driver.element().click(DataPicker);
-//        driver.element().select(By.xpath("//select[@class='ui-datepicker-year']"), Year);
-//        driver.element().select(By.xpath("//select[@class='ui-datepicker-month']"), Months);
-//        driver.element().click(By.xpath("//a[contains(@class, 'ui-state-default') and text()='" + Day + "']"));
-//
-//        return new SearchBookingBranch(driver);
-//    }
     public SearchBookingBranch SelectDateOfJourney(String to, String year, String month) throws InterruptedException {
 
         driver.element().click(DataPicker);
@@ -179,7 +263,6 @@ public class SearchBookingBranch {
     public SearchBookingBranch ValidateTheDiscountIsApplied(int DiscountAdded) {
         String Discount = driver.getDriver().findElement(DiscountLabel).getText();
         String processedText = Discount.replace("Save EGP ", "").replace(".00", "").replace(",", "").trim();
-
         Assert.assertEquals(processedText, String.valueOf(DiscountAdded));
         return new SearchBookingBranch(driver);
     }
@@ -192,8 +275,6 @@ public class SearchBookingBranch {
         String ServiceOnFareDetails = driver.getDriver().findElement(ServiceChargeOnFareDetails).getText();
         String ServiceOnFareDetailsProcessedText = ServiceOnFareDetails.replace(".00", "");
         Assert.assertEquals(ServiceOnFareDetailsProcessedText, String.valueOf(ServiceCharge));
-
-
         return new SearchBookingBranch(driver);
     }
 
@@ -201,7 +282,6 @@ public class SearchBookingBranch {
         String Discount = driver.getDriver().findElement(CancelChargeLabel).getText();
         String processedText = Discount.replace("EGP", "").replace(".0", "");
         Assert.assertEquals(processedText, String.valueOf(CancelCharge));
-
         return new SearchBookingBranch(driver);
     }
 }
