@@ -29,6 +29,7 @@ public class ImportPNR_Test {
         importPNRPage = new ImportPNR_Page(driver);
         importPNRPage.navigateToImportPNRPage();
     }
+
     @AfterMethod
     public void tearDown() {
         driver.quit();
@@ -43,15 +44,15 @@ public class ImportPNR_Test {
                 .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
                 .clickSearchButton();
 
-        String totalFareBeforePay= importPNRPage.getTotalFareBeforePay();
+        String totalFareBeforePay = importPNRPage.getTotalFareBeforePay();
 
         importPNRPage.checkTermsAndConditionsCheckbox()
                 .clickMainPayButton()
                 .clickConfirmPayPopupPayButton();
 
-        String totalFareAfterPay= importPNRPage.getTotalFareAfterPay();
+        String totalFareAfterPay = importPNRPage.getTotalFareAfterPay();
 
-        SoftAssert softAssert=new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();
 
         String actual = importPNRPage.getTicketConfirmedSuccessMessageText();
         String expected = testData.getTestData("validAutoTicketingPnr.expectedSuccessMessage");
@@ -73,61 +74,36 @@ public class ImportPNR_Test {
 
     }
 
-@Test
-    public void TC08_ValidateTicketedPNR() {
+    @Test
+    public void TC02_importPNrWithAgency() {
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
                 .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
+                .selectAgentName(testData.getTestData("validAutoTicketingPnr.agentName"))
                 .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
                 .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton();
+                .clickSearchButton()
+                .checkTermsAndConditionsCheckbox()
+                .clickMainPayButton()
+                .clickConfirmPayPopupPayButton();
 
-        String actual = importPNRPage.getTicketedPNRStatusText().trim();
-        String expected = testData.getTestData("validAutoTicketingPnr.pnrStatus").trim();
-        Assert.assertEquals(actual,expected);
-        Assert.assertFalse(importPNRPage.isPayButtonClickable());
+
     }
 
     @Test
-    public void TC011_ValidateCancelledPNR() {
-        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
-                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
-                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
-                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton();
-        String actual = importPNRPage.getCancelledPNRToastMessageText().trim();
-        String expected = testData.getTestData("validAutoTicketingPnr.ExpectedCancelledPNRMessage").trim();
-        Assert.assertEquals(actual,expected);
+    public void TC03_validatePnrCodeLength() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"));
+
+        String actualMessage = driver.element().getText(By.xpath("//span[normalize-space()='PNR code cannot exceed 9 characters']"));
+        Assert.assertTrue(actualMessage.matches("PNR code cannot exceed 9 characters554"));
     }
 
     @Test
-    public void TC012_ValidateImportingOnAnotherCred(){
-        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
-                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
-                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
-                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton();
-        String actual = importPNRPage.getImportOnAnotherCredText().trim();
-        String expected = testData.getTestData("validAutoTicketingPnr.expectedImportOnAnotherCredMessage").trim();
-        Assert.assertEquals(actual,expected);
-    }
-
-    @Test
-    public void TC013_ValidateImportingOnTheSameEnv(){
-        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
-                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
-                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
-                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton();
-        String actual = importPNRPage.getImportOnTheSameEnvText().trim();
-        String expected = testData.getTestData("validAutoTicketingPnr.expectedImportOnTheSameEnvMessage").trim();
-        Assert.assertEquals(actual,expected);
-    }
-    @Test
-    public void TC04_showValidationWhenPNRCodeLessThanSixChars(){
+    public void TC04_showValidationWhenPNRCodeLessThanSixChars() {
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCodeLessThanSixChar"));
 
-        String actual=importPNRPage.getPNRCodeLessThanSixCharsValidationMessageText();
-        String expected=testData.getTestData("validAutoTicketingPnr.expectedValidationMessageForPnrCodeLessThanSixChars");
+        String actual = importPNRPage.getPNRCodeLessThanSixCharsValidationMessageText();
+        String expected = testData.getTestData("validAutoTicketingPnr.expectedValidationMessageForPnrCodeLessThanSixChars");
 
 
         Assert.assertTrue(
@@ -137,38 +113,15 @@ public class ImportPNR_Test {
     }
 
     @Test
-    public void TC09_shouldShowToastMessageWhenPNRDoesNotExist(){
-        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.DummyPnrCode"))
-                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
-                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
-                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton();
-
-        String invalidPnr=testData.getTestData("validAutoTicketingPnr.DummyPnrCode");
-
-        String actual=importPNRPage.getUnableToRetrieveToastPNRCodeMessageText();
-        String expected=testData.getTestData("validAutoTicketingPnr.toastMessageWhenPNRDoesNotExist")
-                +" "+invalidPnr;
-
-        Assert.assertTrue(
-                actual.contains(expected),
-                "Toast message is not correct. Actual: " + actual + " | Expected: " + expected
-        );
-
-
-
-    }
-
-    @Test
-    public void TC06_showToastWhenBranchDoesNotSupportImportPNR(){
+    public void TC05_showToastWhenBranchDoesNotSupportImportPNR() {
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.DummyPnrCode"))
                 .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchImportPnrClosed"))
                 .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
                 .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
                 .clickSearchButton();
 
-        String actual=importPNRPage.getOrganizationDoesNotSupportImportPNRToastText();
-        String expected=testData.getTestData("validAutoTicketingPnr.toastMessageWhenBranchImportPnrClosed");
+        String actual = importPNRPage.getOrganizationDoesNotSupportImportPNRToastText();
+        String expected = testData.getTestData("validAutoTicketingPnr.toastMessageWhenBranchImportPnrClosed");
 
         Assert.assertTrue(
                 actual.contains(expected),
@@ -178,33 +131,62 @@ public class ImportPNR_Test {
 
     }
 
-@Test
-    public void TC02_VerifyOrganizationDoesNotSupportImportPnr () {
-    importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
-            .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
-            .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
-            .selectAgentName(testData.getTestData("validAutoTicketingPnr.agentName"))
-            .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
-            .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-            .clickSearchButton();
+    @Test
+    public void TC06_VerifyOrganizationDoesNotSupportImportPnr() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
+                .selectAgentName(testData.getTestData("validAutoTicketingPnr.agentName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
 
-    // TODO :  Assert for Appear message when agency not support or can't The import pnr
+        // TODO :  Assert for Appear message when agency not support or can't The import pnr
 
-    String actualMessage = driver.element().getText(By.xpath("//div[@aria-label='Selected Organization does not support import pnr functionality']"));
+        String actualMessage = driver.element().getText(By.xpath("//div[@aria-label='Selected Organization does not support import pnr functionality']"));
 
-   Assert.assertTrue(actualMessage.contains("Selected Organization does not support import pnr functionality"));
-}
+        Assert.assertTrue(actualMessage.contains("Selected Organization does not support import pnr functionality"));
+    }
 
-@Test
-    public void TC03_validatePnrCodeLength (){
-        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"));
 
-        String actualMessage = driver.element().getText(By.xpath("//span[normalize-space()='PNR code cannot exceed 9 characters']"));
-        Assert.assertTrue(actualMessage.matches("PNR code cannot exceed 9 characters554"));
-}
+    @Test
+    public void TC07_ValidateTicketedPNR() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
 
-@Test
-    public void TC10_VerifyCredentialWrong(){
+        String actual = importPNRPage.getTicketedPNRStatusText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.pnrStatus").trim();
+        Assert.assertEquals(actual, expected);
+        Assert.assertFalse(importPNRPage.isPayButtonClickable());
+    }
+
+    @Test
+    public void TC08_shouldShowToastMessageWhenPNRDoesNotExist() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.DummyPnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+
+        String invalidPnr = testData.getTestData("validAutoTicketingPnr.DummyPnrCode");
+
+        String actual = importPNRPage.getUnableToRetrieveToastPNRCodeMessageText();
+        String expected = testData.getTestData("validAutoTicketingPnr.toastMessageWhenPNRDoesNotExist")
+                + " " + invalidPnr;
+
+        Assert.assertTrue(
+                actual.contains(expected),
+                "Toast message is not correct. Actual: " + actual + " | Expected: " + expected
+        );
+
+
+    }
+
+    @Test
+    public void TC09_VerifyCredentialWrong() {
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
                 .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
                 .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
@@ -215,30 +197,43 @@ public class ImportPNR_Test {
 
         String actualMessage = driver.element().getText(By.xpath("//div[@aria-label='BOOKING FILE DISPLAY DENIED PER SELECTIVE ACCESS AGREEMENT']"));
         Assert.assertTrue(actualMessage.contains("BOOKING FILE DISPLAY DENIED PER SELECTIVE"));
-}
+    }
 
-@Test
-public void TC02_importPNrWithAgency(){
+    @Test
+    public void TC010_ValidateCancelledPNR() {
         importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
                 .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
-                .selectAgencyName(testData.getTestData("validAutoTicketingPnr.agencyName"))
-                .selectAgentName(testData.getTestData("validAutoTicketingPnr.agentName"))
                 .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
                 .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
-                .clickSearchButton()
-         .checkTermsAndConditionsCheckbox()
-            .clickMainPayButton()
-            .clickConfirmPayPopupPayButton();
+                .clickSearchButton();
+        String actual = importPNRPage.getCancelledPNRToastMessageText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.ExpectedCancelledPNRMessage").trim();
+        Assert.assertEquals(actual, expected);
+    }
 
+    @Test
+    public void TC011_ValidateImportingOnAnotherCred() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+        String actual = importPNRPage.getImportOnAnotherCredText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.expectedImportOnAnotherCredMessage").trim();
+        Assert.assertEquals(actual, expected);
+    }
 
-}
-
-
-
-
-
-
-
+    @Test
+    public void TC012_ValidateImportingOnTheSameEnv() {
+        importPNRPage.enterPNRCode(testData.getTestData("validAutoTicketingPnr.pnrCode"))
+                .selectBranchName(testData.getTestData("validAutoTicketingPnr.branchName"))
+                .selectSupplier(testData.getTestData("validAutoTicketingPnr.supplier"))
+                .selectSupplierCredential(testData.getTestData("validAutoTicketingPnr.supplierCredential"))
+                .clickSearchButton();
+        String actual = importPNRPage.getImportOnTheSameEnvText().trim();
+        String expected = testData.getTestData("validAutoTicketingPnr.expectedImportOnTheSameEnvMessage").trim();
+        Assert.assertEquals(actual, expected);
+    }
 
 
 }
