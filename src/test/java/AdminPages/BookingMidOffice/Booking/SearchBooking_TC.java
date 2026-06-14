@@ -11,7 +11,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
-
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
