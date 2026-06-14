@@ -1,5 +1,4 @@
 {
-  "loginUrl": "http://192.168.1.92:9500/auth/login",
   "dashboardUrl": "http://192.168.1.92:9500/dashboard",
 
   "validAgencyCode": "AGN2",
@@ -14,7 +13,7 @@
   "invalidEmailField": "InvalidEmail!!@",
 
   "invalidLoginMessage": "Invalid credentials, Please try again.",
-
+t
   "invalidAgencyCodeValidationMessage": "Please enter a valid agency code",
   "invalidEmailValidationMessage": "Please enter a valid email",
 
