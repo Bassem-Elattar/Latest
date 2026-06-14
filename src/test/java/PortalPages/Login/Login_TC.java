@@ -31,7 +31,7 @@ public class Login_TC {
 
         loginPage = new Login_Page(driver);
 
-        driver.browser().navigateToURL(DataUtils.get("portalBaseUrl"));
+        driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
     }
 
     @AfterMethod
@@ -41,10 +41,10 @@ public class Login_TC {
 
 
     @Test(priority = 1)
-    public void validLogin() {
-        loginPage.enterAgencyCode(testData.getTestData("validAgencyCode"))
-                .enterEmail(testData.getTestData("validEmail"))
-                .enterPassword(testData.getTestData("validPassword"))
+    public void PortalLogin() {
+        loginPage.enterAgencyCode(DataUtils.get("Portal_AgencyCode"))
+                .enterEmail(DataUtils.get("Portal_Email"))
+                .enterPassword(DataUtils.get("Portal_Password"))
                 .clickLoginButton();
 
 
