@@ -57,10 +57,10 @@ public class SearchBookingBranch {
     By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
     By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
     By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-0']");
-    By SegmentExpand_Txt = By.xpath("//div[@class=\"flight-route flex align-items-center justify-content-between\"]");
+    By SegmentExpand_Txt = By.xpath("(//div[@id='p-accordiontab-0-content'])[1]");
     By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
-    By TotalPrice_Txt = By.xpath("//div[@class='price-total']");
+    By FareBreakDown_Txt = By.xpath("//div[@class='fare-breakdown-container ng-star-inserted']");
     By SupplierName_Txt = By.xpath("(//div[@class='badges-row'])[1]");
     By durationLabel_Txt = By.className("duration-label");
     By MarkUp_Inpt = By.xpath("(//input[@placeholder='Markup'])[1]");
@@ -81,6 +81,10 @@ public class SearchBookingBranch {
     public SearchBookingBranch SaveQuote(){
         driver.element().click(saveQuoteBtn);
         return new SearchBookingBranch(driver);
+    }
+
+    public String FareBreakDown(){
+        return driver.element().getText(FareBreakDown_Txt);
     }
 
     public SearchBookingBranch OpenSideMenuInfo(){
@@ -139,26 +143,20 @@ public class SearchBookingBranch {
         return Baggage;
     }
 
-    public List<String> FlightCard() {
-        List<WebElement> elements = driver.getDriver().findElements(FlightCard_Txt);
-        List<String> flightCard = new ArrayList<>();
-
-        for (WebElement element : elements) {
-            flightCard.add(element.getText());
-        }
-        return flightCard;
+    public String FlightCard() {
+        return driver.element().getText(FlightCard_Txt);
     }
 
-    public List<String> PaxSegmentDetails() {
-        driver.element().click(SegmentExpand_Btn);
-        List<WebElement> elements = driver.getDriver().findElements(SegmentExpand_Txt);
-        List<String> Segment = new ArrayList<>();
-
-        for (WebElement element : elements) {
-            Segment.add(element.getText());
-        }
-        return Segment;
-    }
+//    public List<String> PaxSegmentDetails() {
+//        driver.element().click(SegmentExpand_Btn);
+//        List<WebElement> elements = driver.getDriver().findElements(SegmentExpand_Txt);
+//        List<String> Segment = new ArrayList<>();
+//
+//        for (WebElement element : elements) {
+//            Segment.add(element.getText());
+//        }
+//        return Segment;
+//    }
 
     public SearchBookingBranch CloseTheSideMenuInfo(){
      driver.element().click(Close_Btn);
@@ -197,7 +195,7 @@ public class SearchBookingBranch {
         return new SearchBookingBranch(driver);
     }
 
-    public SearchBookingBranch SelectBranch(String branch) {
+    public SearchBookingBranch SelectBranch(String branch) throws InterruptedException {
         driver.element().click(BranchList);
         driver.element().type(inputField, branch);
         By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");

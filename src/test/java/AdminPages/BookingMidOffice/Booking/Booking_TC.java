@@ -14,12 +14,14 @@ import utilities.DataUtils;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
+import org.testng.asserts.SoftAssert;
 
 public class Booking_TC extends TestBase_TC {
 
     private SearchBookingBranch Booking;
     SHAFT.TestData.JSON testData;
     private LogIn_Page logIn;
+    SoftAssert softAssert = new SoftAssert();
     Faker faker = new Faker();
     String NumberOfAdults;
     String NumberOfChildren;
@@ -77,42 +79,41 @@ public class Booking_TC extends TestBase_TC {
         PassengerPaxPhone = testData.getTestData("Phone");
     }
 
-
     @Test
     public void SearchOneWay() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         //new SearchBooking_Page(driver).
-        searchBookingBranch.SelectBranch(testData.getTestData("brName")).
-                AddStartingFrom(testData.getTestData("source")).AddGoingTo(testData.getTestData("destination"))
-                .SelectDateOfJourney(testData.getTestData("JourneyDay"), testData.getTestData("JourneyYear"), testData.getTestData("JourneyMonth"))
+        searchBookingBranch.SelectBranch(BranchName).
+                AddStartingFrom(source).AddGoingTo(destination)
+                .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
                 .passengersDropDown()
-                .SelectNumberOfAdult(Integer.parseInt(testData.getTestData("NumberOfAdults"))).SelectNumberOfChildren(Integer.parseInt(testData.getTestData("NumberOfChildren"))).SelectNumberOfInfant(Integer.parseInt(testData.getTestData("NumberOfInfants"))).clickOnSearchButton().OpenSideMenuInfo();
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+
         List<String> SegmentData = searchBookingBranch.SegmentDetails();
         List<String> FareData = searchBookingBranch.FareDetails();
-        List<String> BaggageData = searchBookingBranch.BaggageInfo();
         searchBookingBranch.CloseTheSideMenuInfo();
-        List<String> FlightCard = searchBookingBranch.FlightCard();
+        String FlightCard = searchBookingBranch.FlightCard();
         searchBookingBranch.BookFirstFlight();
-        //driver.browser().refreshCurrentPage();
-        List<String> paxSegmentDetails = searchBookingBranch.PaxSegmentDetails();
-        System.out.println(paxSegmentDetails);
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
 
-//        JavascriptExecutor js = (JavascriptExecutor) driver.getDriver();
-//
-//// This script returns true if an element containing that exact text exists on the page
-//        Thread.sleep(9000);
-//        boolean noResults = (Boolean) js.executeScript(
-//                "return Array.from(document.querySelectorAll('p')).some(p => p.textContent.includes('No, search results available.'));"
-//        );
-//
-//        if (noResults) {
-//            System.out.println("No search results message");
-//            searchBookingBranch.clickOnSearchButton();
-//        } else {
-//            System.out.println("There is search results");
-//        }
+        boolean found = FareData.stream()
+                .anyMatch(text -> text.contains(FareBreakDown));
+
+        softAssert.assertTrue(
+                found,
+                "No element contains: " + FareBreakDown
+        );
+
+        boolean found1 = SegmentData.stream()
+                .anyMatch(text -> text.contains(FlightCard));
+
+        softAssert.assertTrue(
+                found1,
+                "No element contains: " + FlightCard
+        );
     }
+
     @Test
     public void Hold() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
@@ -125,13 +126,9 @@ public class Booking_TC extends TestBase_TC {
                 .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
         List<String> SegmentData = searchBookingBranch.SegmentDetails();
         List<String> FareData = searchBookingBranch.FareDetails();
-        List<String> BaggageData = searchBookingBranch.BaggageInfo();
         searchBookingBranch.CloseTheSideMenuInfo();
-        List<String> FlightCard = searchBookingBranch.FlightCard();
         searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
-        //driver.browser().refreshCurrentPage();
-        List<String> paxSegmentDetails = searchBookingBranch.PaxSegmentDetails();
-        System.out.println(paxSegmentDetails);
+
         new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
                 adultDob,
                 childDob,
@@ -140,9 +137,8 @@ public class Booking_TC extends TestBase_TC {
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
-
-
     }
+
     @Test
     public void Book() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
@@ -156,12 +152,7 @@ public class Booking_TC extends TestBase_TC {
         List<String> SegmentData = searchBookingBranch.SegmentDetails();
         List<String> FareData = searchBookingBranch.FareDetails();
         List<String> BaggageData = searchBookingBranch.BaggageInfo();
-        searchBookingBranch.CloseTheSideMenuInfo();
-        List<String> FlightCard = searchBookingBranch.FlightCard();
         searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
-        //driver.browser().refreshCurrentPage();
-        List<String> paxSegmentDetails = searchBookingBranch.PaxSegmentDetails();
-        System.out.println(paxSegmentDetails);
         new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
                 adultDob,
                 childDob,
@@ -170,8 +161,5 @@ public class Booking_TC extends TestBase_TC {
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
-
-
     }
-
 }
