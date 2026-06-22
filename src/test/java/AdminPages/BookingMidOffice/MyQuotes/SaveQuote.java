@@ -12,8 +12,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.FakerSingleton;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class SaveQuote extends TestBase_TC {
     SHAFT.TestData.JSON testData;
@@ -32,10 +34,9 @@ public class SaveQuote extends TestBase_TC {
     String QuoteNewUserEmail;
     String QuoteNewUserPhone;
     String PassengerPaxTitle;
-    String PassengerPaxFirstName;
-    String PassengerPaxLastName;
-    String PassengerPaxDateOfBirth;
-    String PassengerPaxDocumentNumber;
+    String adultDob;
+    String childDob;
+    String infantDob;
     String PassengerPaxExpiryDate;
     String PassengerPaxNationality;
     String PassengerPaxEmail;
@@ -73,10 +74,9 @@ public class SaveQuote extends TestBase_TC {
         QuoteNewUserPhone = testData.getTestData("QuoteNewUserPhone");
         testData = new SHAFT.TestData.JSON("PassengerPaxDetails.json");
         PassengerPaxTitle = testData.getTestData("Title");
-        PassengerPaxFirstName = testData.getTestData("FirstName");;
-        PassengerPaxLastName = testData.getTestData("LastName");;
-        PassengerPaxDateOfBirth = testData.getTestData("DateOfBirth");;
-        PassengerPaxDocumentNumber = testData.getTestData("DocumentNumber");;
+        adultDob = testData.getTestData("DateOfBirth");
+        childDob = testData.getTestData("ChildDateOfBirth");
+        infantDob = testData.getTestData("InfantDateOfBirth");
         PassengerPaxExpiryDate = testData.getTestData("ExpiryDate");;
         PassengerPaxNationality = testData.getTestData("Nationality");;
         PassengerPaxEmail = testData.getTestData("Email");
@@ -141,24 +141,24 @@ public class SaveQuote extends TestBase_TC {
             System.out.println("There is search results");
             //Save Quote
             searchBookingBranch.BookFirstFlight();
-            new PaxDetailsPage(driver).
-                    fillOnePassengerDetails(PassengerPaxTitle,
-                                            PassengerPaxFirstName,
-                                            QuoteNewUserLastName,
-                                            PassengerPaxDateOfBirth,
-                                            PassengerPaxEmail,
-                                            PassengerPaxPhone,
-                                            PassengerPaxDocumentNumber,
-                                            PassengerPaxExpiryDate,
-                                            PassengerPaxNationality)
-                    .SaveQuote()
-                    .AssertThatQuoteSaved();
+            new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                    adultDob,
+                    childDob,
+                    infantDob,
+                    PassengerPaxEmail,
+                    PassengerPaxPhone,
+                    PassengerPaxExpiryDate,
+                    PassengerPaxNationality)
+                    .saveQuote()
+                    .assertThatQuoteSaved();
         }
+
     }
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
+//    @AfterMethod
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 }

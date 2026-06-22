@@ -3,7 +3,12 @@ package AdminPages.BookingMidOffice.Booking;
 import com.shaft.driver.SHAFT;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +56,8 @@ public class SearchBookingBranch {
     By FlightDetails_Txt = By.xpath("(//div[@class='p-tabview-panels'])[2]");
     By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
     By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
-    By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-27']//div[@class='custom-accordion-header flex align-items-center gap-2 w-full ng-star-inserted']");
-    By SegmentExpand_Txt = By.xpath("(//div[@class='flight-segments p-0 ng-tns-c111-199'])[1]");
+    By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-0']");
+    By SegmentExpand_Txt = By.xpath("//div[@class=\"flight-route flex align-items-center justify-content-between\"]");
     By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
     By TotalPrice_Txt = By.xpath("//div[@class='price-total']");
@@ -60,10 +65,14 @@ public class SearchBookingBranch {
     By durationLabel_Txt = By.className("duration-label");
     By MarkUp_Inpt = By.xpath("(//input[@placeholder='Markup'])[1]");
     By FareDetails_Txt = By.xpath("(//div[@class='fare-details-block ng-star-inserted'])[1]");
+    private final By brandedFares = By.xpath("//p-carousel");
+    private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
 
 
-    public void BookFirstFlight() {
+    public SearchBookingBranch BookFirstFlight() throws InterruptedException {
         driver.element().click(BookFlight_BTN);
+        Thread.sleep(3000);
+        return this;
     }
     public SearchBookingBranch selectFirstFlight(){
         driver.element().click(firstFlicghtSelector);
@@ -283,5 +292,22 @@ public class SearchBookingBranch {
         String processedText = Discount.replace("EGP", "").replace(".0", "");
         Assert.assertEquals(processedText, String.valueOf(CancelCharge));
         return new SearchBookingBranch(driver);
+    }
+    public void proceedIfBrandedFareExists() {
+
+        WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(20));
+
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(brandedFares));
+
+            List<WebElement> fares = driver.getDriver().findElements(brandedFares);
+
+            if (!fares.isEmpty()) {
+                wait.until(ExpectedConditions.elementToBeClickable(Btn_Proceed)).click();
+            }
+
+        } catch (TimeoutException e) {
+            System.out.println("Branded fare not found, skipping proceed...");
+        }
     }
 }
