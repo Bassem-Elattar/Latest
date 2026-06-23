@@ -7,6 +7,7 @@ import AdminPages.Reports.Reports_Common;
 import AdminPages.Reports.Statement.State;
 import com.github.javafaker.Faker;
 import com.shaft.driver.SHAFT;
+import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -14,6 +15,7 @@ import utilities.DataUtils;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
+import org.testng.asserts.SoftAssert;
 
 public class SearchBooking_TC extends TestBase_TC {
 
@@ -21,6 +23,7 @@ public class SearchBooking_TC extends TestBase_TC {
     private LogIn_Page logIn;
     Faker faker = new Faker();
     SHAFT.TestData.JSON testData;
+    SoftAssert softAssert = new SoftAssert();
 
     public SearchBooking_TC() throws FileNotFoundException {
     }
@@ -50,8 +53,14 @@ public class SearchBooking_TC extends TestBase_TC {
         searchBookingBranch.CloseTheSideMenuInfo();
         List<String> FlightCard = searchBookingBranch.FlightCard();
         searchBookingBranch.BookFirstFlight();
-        List<String> paxSegmentDetails = searchBookingBranch.PaxSegmentDetails();
-        System.out.println(paxSegmentDetails);
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+        System.out.println(FareBreakDown);
+        softAssert.assertTrue(
+                FareData.contains(FareBreakDown),
+                "Actual value [" + FareData + "] does not contain expected value [" + FareBreakDown + "]"
+        );
+//        List<String> paxSegmentDetails = searchBookingBranch.PaxSegmentDetails();
+//        System.out.println(paxSegmentDetails);
 
 //        JavascriptExecutor js = (JavascriptExecutor) driver.getDriver();
 //

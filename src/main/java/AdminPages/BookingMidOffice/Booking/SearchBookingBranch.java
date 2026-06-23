@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
+import org.testng.asserts.SoftAssert;
 
 public class SearchBookingBranch {
     public SearchBookingBranch(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
     SHAFT.GUI.WebDriver driver ;
+    SoftAssert softAssert = new SoftAssert();
 
     By BookingMidOffice = By.xpath("//a[@class='mid-office-1'and contains(text(),'Booking-Mid Office')]");
     By Booking = By.xpath("//li[@id='Booking']");
@@ -51,19 +53,23 @@ public class SearchBookingBranch {
     By FlightDetails_Txt = By.xpath("(//div[@class='p-tabview-panels'])[2]");
     By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
     By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
-    By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-27']//div[@class='custom-accordion-header flex align-items-center gap-2 w-full ng-star-inserted']");
-    By SegmentExpand_Txt = By.xpath("(//div[@class='flight-segments p-0 ng-tns-c111-199'])[1]");
+    By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-0']");
+    By SegmentExpand_Txt = By.xpath("(//div[@class='flight-route flex align-items-center justify-content-between'])[1]");
     By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
-    By TotalPrice_Txt = By.xpath("//div[@class='price-total']");
+    By TotalPrice_Txt = By.xpath("(//div[@class='price-total'])[1]");
     By SupplierName_Txt = By.xpath("(//div[@class='badges-row'])[1]");
-    By durationLabel_Txt = By.className("duration-label");
+    By FareBreakDown_Txt = By.xpath("//div[@class='fare-breakdown-container ng-star-inserted']");
     By MarkUp_Inpt = By.xpath("(//input[@placeholder='Markup'])[1]");
     By FareDetails_Txt = By.xpath("(//div[@class='fare-details-block ng-star-inserted'])[1]");
 
+    public String FareBreakDown() {
+        return driver.element().getText(FareBreakDown_Txt);
+    }
 
-    public void BookFirstFlight() {
+    public SearchBookingBranch BookFirstFlight() {
         driver.element().click(BookFlight_BTN);
+        return new SearchBookingBranch(driver);
     }
     public SearchBookingBranch selectFirstFlight(){
         driver.element().click(firstFlicghtSelector);
