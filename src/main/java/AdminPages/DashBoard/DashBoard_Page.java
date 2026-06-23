@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 
 import static org.openqa.selenium.By.xpath;
 public class DashBoard_Page {
-    private SHAFT.GUI.WebDriver driver;
+    public SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
     private SoftAssert softAssert = new SoftAssert();
 

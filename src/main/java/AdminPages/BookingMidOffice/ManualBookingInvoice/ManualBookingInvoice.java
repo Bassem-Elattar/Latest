@@ -65,6 +65,8 @@ public class ManualBookingInvoice {
 
     private final By btn_PassengerSelection =
             By.xpath("//button[@class='passengers-btn ng-star-inserted']");
+    private final By addAdult =
+            By.xpath("(//span[contains(@class,'pi-plus')]/parent::button)[1]");
     private final By addChild =
             By.xpath("(//span[contains(@class,'pi-plus')]/parent::button)[2]");
     private final By addINF =

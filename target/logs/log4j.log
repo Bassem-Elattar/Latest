@@ -1,98 +1,360 @@
-[INFO ] 2026-04-22 14:51:05.227 [main] ReportManager - 
+[INFO ] 2026-06-17 16:06:37.793 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                     Powered by [1mSHAFT v.7.4.20231015[22m                                                    
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-22 14:51:05.903 [main] ReportManager - Loaded OpenCV "opencv_java470".
-[INFO ] 2026-04-22 14:51:05.904 [main] ReportManager - Initializing Allure Reporting Environment...
-[INFO ] 2026-04-22 14:51:06.006 [main] ReportManager - Initializing Summary Reporting Environment...
-[INFO ] 2026-04-22 14:51:06.024 [main] ReportManager - TestNG run detected...
-[INFO ] 2026-04-22 14:51:06.273 [main] Utils - [TestNG] Running:
-  C:\Users\bassem\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
+[INFO ] 2026-06-17 16:06:40.904 [main] ReportManager - Loaded OpenCV "opencv_java470".
+[INFO ] 2026-06-17 16:06:40.904 [main] ReportManager - Initializing Allure Reporting Environment...
+[INFO ] 2026-06-17 16:06:41.056 [main] ReportManager - Initializing Summary Reporting Environment...
+[INFO ] 2026-06-17 16:06:41.077 [main] ReportManager - TestNG run detected...
+[INFO ] 2026-06-17 16:06:41.429 [main] Utils - [TestNG] Running:
+  C:\Users\sheen\AppData\Local\JetBrains\IdeaIC2025.2\temp-testng-customsuite.xml
 
-[INFO ] 2026-04-22 14:51:06.302 [main] ReportManager - 
+[INFO ] 2026-06-17 16:06:41.460 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                              Starting execution of suite setup configuration method                                             
                                           'com.shaft.listeners.internal.ConfigurationHelper.suiteSetup'                                          
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-22 14:51:06.438 [main] ReportManager - Initializing Important Links...
-[INFO ] 2026-04-22 14:51:06.447 [main] ReportManager - Initializing Properties...
-[INFO ] 2026-04-22 14:51:06.536 [main] ReportManager - 
+[INFO ] 2026-06-17 16:06:41.598 [main] ReportManager - Initializing Important Links...
+[INFO ] 2026-06-17 16:06:41.614 [main] ReportManager - Initializing Properties...
+[INFO ] 2026-06-17 16:06:41.744 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                              Starting execution of setup browse configuration method                                             
-                                        'AdminPages.Master.Supplier.SupplierCredential.Demo.setupBrowse'                                        
+                                       'AdminPages.BookingMidOffice.Booking.SearchBooking_TC.setupBrowse'                                       
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-22 14:51:06.557 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
-[INFO ] 2026-04-22 14:51:06.573 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\bassem\NDC-Uplift-..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
-[INFO ] 2026-04-22 14:51:06.574 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
-[INFO ] 2026-04-22 14:51:06.574 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
-[WARN ] 2026-04-22 14:51:09.529 [main] ReportManager - Apr 22, 2026 2:51:09 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-[WARN ] 2026-04-22 14:51:09.529 [main] ReportManager - WARNING: Unable to find CDP implementation matching 147
-[WARN ] 2026-04-22 14:51:09.529 [main] ReportManager - Apr 22, 2026 2:51:09 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
-[WARN ] 2026-04-22 14:51:09.529 [main] ReportManager - WARNING: Unable to find version of CDP to use for 147.0.7727.102. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
-[INFO ] 2026-04-22 14:51:09.548 [main] ReportManager - Successfully Opened: "windows | Chrome".
-[INFO ] 2026-04-22 14:51:09.637 [main] ReportManager - Target URL: "http://192.168.1.70"
-[INFO ] 2026-04-22 14:51:09.674 [main] ReportManager - Initial URL: "about:blank"
-[INFO ] 2026-04-22 14:51:23.577 [main] ReportManager - Navigate to url "http://192.168.1.70".
-[INFO ] 2026-04-22 14:51:23.580 [main] ReportManager - 
+[INFO ] 2026-06-17 16:06:41.771 [main] ReportManager - Setting "targetOperatingSystem" property with "windows".
+[INFO ] 2026-06-17 16:06:41.795 [main] ReportManager - Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--start-maximized, --remote-allow-origins=*, --enable-automation, --disable-background-timer-..., --disable-backgrounding-occ..., --disable-features=Calculat..., --disable-hang-monitor, --disable-domain-reliability, --disable-renderer-backgrou..., --disable-features=Autofill..., --metrics-recording-only, --no-first-run, --no-default-browser-check, --silent-debugger-extension..., --disable-extensions, --disable-component-extensi..., --disable-dev-shm-usage, --disable-features=MediaRouter, --disable-features=Translate, --disable-ipc-flooding-prot..., --disable-background-networ..., --mute-audio, --disable-breakpad, --ignore-certificate-errors, --disable-device-discovery-..., --force-color-profile=srgb, --hide-scrollbars, --host-resolver-rules, --no-pings, --disable-features=AvoidUnn..., --disable-features=Certific..., --disable-sync, --disable-features=Optimiza..., --disable-features=DialMedi..., --disable-features=GlobalMe..., --disable-features=Improved..., --disable-features=LazyFram..., --disable-field-trial-config, --enable-features=NetworkSe..., --enable-features=NetworkSe..., --enable-use-zoom-for-dsf, --log-net-log, --net-log-capture-mode, --disable-client-side-phish..., --disable-default-apps, --disable-features=Interest...], extensions: [], prefs: {download.default_directory: C:\Users\sheen\Latest\targe..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: none, timeouts: {pageLoad: 60000, script: 30000}, unhandledPromptBehavior: ignore, webSocketUrl: true}
+[INFO ] 2026-06-17 16:06:41.797 [main] ReportManager - Attempting to run locally on: "windows | Chrome".
+[INFO ] 2026-06-17 16:06:41.797 [main] ReportManager - Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection...
+[WARN ] 2026-06-17 16:06:46.455 [main] ReportManager - Jun 17, 2026 4:06:46 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+[WARN ] 2026-06-17 16:06:46.455 [main] ReportManager - WARNING: Unable to find CDP implementation matching 148
+[WARN ] 2026-06-17 16:06:46.457 [main] ReportManager - Jun 17, 2026 4:06:46 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+[WARN ] 2026-06-17 16:06:46.457 [main] ReportManager - WARNING: Unable to find version of CDP to use for 148.0.7778.217. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.13.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+[INFO ] 2026-06-17 16:06:46.465 [main] ReportManager - Successfully Opened: "windows | Chrome".
+[INFO ] 2026-06-17 16:06:46.560 [main] ReportManager - Target URL: "http://192.168.1.70"
+[INFO ] 2026-06-17 16:06:46.653 [main] ReportManager - Initial URL: "about:blank"
+[INFO ] 2026-06-17 16:06:47.924 [main] ReportManager - Navigate to url "http://192.168.1.70".
+[INFO ] 2026-06-17 16:06:47.924 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                  Starting execution of sign configuration method                                                 
-                                            'AdminPages.Master.Supplier.SupplierCredential.Demo.sign'                                            
+                                           'AdminPages.BookingMidOffice.Booking.SearchBooking_TC.sign'                                           
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-22 14:51:23.876 [main] ReportManager - Type "E.saady" into "Username *".
-[INFO ] 2026-04-22 14:51:24.034 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
-[INFO ] 2026-04-22 14:51:24.335 [main] ReportManager - Moved the mouse to the middle of the element.
-[INFO ] 2026-04-22 14:51:24.439 [main] ReportManager - Click "Login".
-[INFO ] 2026-04-22 14:51:24.781 [main] ReportManager - 
+[INFO ] 2026-06-17 16:06:48.458 [main] ReportManager - Type "E.saady" into "Username *".
+[INFO ] 2026-06-17 16:06:48.944 [main] ReportManager - Type "qqE6)Cxp6>B8" into "Password * Forgot Password?".
+[INFO ] 2026-06-17 16:06:49.319 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:06:49.438 [main] ReportManager - Click "Login".
+[INFO ] 2026-06-17 16:06:49.446 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:06:49.448 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:06:49.448 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:06:49.452 [main] ReportManager - Successfully created attachment 'Test Data - JSON'
+[INFO ] 2026-06-17 16:06:49.527 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                        Starting Execution: '1 out of 1' test cases in the current suite                                        
+                                Test Method: 'AdminPages.BookingMidOffice.Booking.SearchBooking_TC.SearchOneWay'                                
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-06-17 16:06:50.683 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:06:50.754 [main] ReportManager - Click "Booking-Mid Office".
+[INFO ] 2026-06-17 16:06:50.756 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:06:50.756 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:27.409 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:27.564 [main] ReportManager - Click "By.xpath: //span[normalize-space()='Branch*']".
+[INFO ] 2026-06-17 16:07:27.918 [main] ReportManager - Type "Test" into "By.xpath: //input[@class='p-dropdown-filter p-inputtext p-component']".
+[INFO ] 2026-06-17 16:07:28.211 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:28.295 [main] ReportManager - Click "Test (BRN2)".
+[INFO ] 2026-06-17 16:07:28.297 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:28.299 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:29.078 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:29.181 [main] ReportManager - Click "By.xpath: //div[contains(text(),'From *')]".
+[INFO ] 2026-06-17 16:07:29.461 [main] ReportManager - Type "CAI" into "By.xpath: //input[@role='textbox']".
+[INFO ] 2026-06-17 16:07:29.753 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:31.230 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:31.331 [main] ReportManager - Click "By.xpath: (//div[@class='p-checkbox-box'])[1]".
+[INFO ] 2026-06-17 16:07:31.331 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:31.331 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:31.664 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:31.762 [main] ReportManager - Click "By.xpath: //span[normalize-space()='To *']".
+[INFO ] 2026-06-17 16:07:32.066 [main] ReportManager - Type "DXB" into "By.xpath: //input[@class='p-dropdown-filter p-inputtext p-component']".
+[INFO ] 2026-06-17 16:07:32.760 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:32.846 [main] ReportManager - Click "DXB".
+[INFO ] 2026-06-17 16:07:32.846 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:32.846 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:32.880 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:32.880 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:32.912 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:32.912 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:33.264 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:33.362 [main] ReportManager - Click "DD/MM/YYYY *".
+[INFO ] 2026-06-17 16:07:33.715 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:33.799 [main] ReportManager - Click "2026".
+[INFO ] 2026-06-17 16:07:34.144 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:34.232 [main] ReportManager - Click "By.xpath: //span[normalize-space()='2026']".
+[INFO ] 2026-06-17 16:07:34.544 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:34.632 [main] ReportManager - Click "Jul".
+[INFO ] 2026-06-17 16:07:34.945 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:35.014 [main] ReportManager - Click "By.xpath: (//span[text()='24'])[1]".
+[INFO ] 2026-06-17 16:07:35.345 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:35.446 [main] ReportManager - Click "1  ".
+[INFO ] 2026-06-17 16:07:35.447 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:35.447 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:35.463 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:35.463 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:35.800 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:35.885 [main] ReportManager - Click "By.xpath: (//p-button[@icon='pi pi-plus'])[2]".
+[INFO ] 2026-06-17 16:07:35.885 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:35.885 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "src/test/resources/testDataFiles/searchBookingBrData.json"".
+[INFO ] 2026-06-17 16:07:36.235 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:36.316 [main] ReportManager - Click "By.xpath: (//p-button[@icon='pi pi-plus'])[3]".
+[INFO ] 2026-06-17 16:07:36.653 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:36.795 [main] ReportManager - Click "Search".
+[INFO ] 2026-06-17 16:07:43.327 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:43.473 [main] ReportManager - Click "Flight Details".
+[INFO ] 2026-06-17 16:07:44.770 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:44.858 [main] ReportManager - Click "By.xpath: (//button[@class='expand-btn'])[1]".
+[INFO ] 2026-06-17 16:07:45.273 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:45.364 [main] ReportManager - Click "By.xpath: (//button[@class='expand-btn'])[2]".
+[INFO ] 2026-06-17 16:07:45.703 [main] ReportManager - Get Text from element, text is "Cairo
+Dubai
+(Via: Abu Dhabi)
+24 Jul, 2026
+CAI
+✈
+DXB
+Fri 24, Jul
+19:45
+24 Jul, 2026
+CAI
+Cairo
+Cairo International Airport
+Terminal: 2
+✈
+3h 30m
+00:15
+25 Jul, 2026
+AUH
+Abu Dhabi
+Abu Dhabi International
+Terminal: A
+Etihad
+EY-716
+OPERATED BY
+Etihad
+CABIN
+Economy
+AIRCRAFT
+320
+Layover at AUH (Abu Dhabi International) is 55m.
+01:10
+25 Jul, 2026
+AUH
+Abu Dhabi
+Abu Dhabi International
+Terminal: A
+✈
+2h
+03:10
+25 Jul, 2026
+XNB
+Dubai
+Etihad Bus Station
+Terminal: Please check terminal information with Airline
+Etihad
+EY-5412
+OPERATED BY
+Etihad
+CABIN
+Economy
+AIRCRAFT
+BUS
+2 Segments
+1 Layover".
+[INFO ] 2026-06-17 16:07:46.009 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:46.141 [main] ReportManager - Click " Fare Details".
+[INFO ] 2026-06-17 16:07:46.586 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:46.672 [main] ReportManager - Click "By.xpath: (//button[@class='toggle-icon'])[2]".
+[INFO ] 2026-06-17 16:07:47.089 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:47.174 [main] ReportManager - Click "By.xpath: (//button[@class='toggle-icon'])[3]".
+[INFO ] 2026-06-17 16:07:47.439 [main] ReportManager - Get Text from element, text is "JOURNEYS
+Cairo (CAI)
+Dubai (DXB)
+Fri 24, Jul
+FARE BREAKDOWN
+ADULT
+× 1
+Base Fare
+( 1 X 4,228 = 4,228 ) EGP
+Tax & Fees
+( 1 X 5,179.8 = 5,179.8 ) EGP
+CHILD
+× 1
+Base Fare
+( 1 X 3,171 = 3,171 ) EGP
+Tax & Fees
+( 1 X 5,179.8 = 5,179.8 ) EGP
+INFANT
+× 1
+Base Fare
+( 1 X 655 = 655 ) EGP
+Tax & Fees
+( 1 X 3,348.8 = 3,348.8 ) EGP
+PENALTIES
+❌
+CANCEL
+Non Refundable
+🔄
+CHANGE
+Change Not Permitted
+DISCOUNT/CHARGE
+🔖
+DISCOUNT
+0 EGP
+💳
+SERVICE CHARGE
+0 EGP
+TOTAL PRICE*
+21,763 EGP
+FARE RULES
+No fare rules available
+Full Fare Rules".
+[INFO ] 2026-06-17 16:07:47.775 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:47.876 [main] ReportManager - Click " Baggage Info".
+[INFO ] 2026-06-17 16:07:48.271 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:48.353 [main] ReportManager - Click "By.xpath: (//button[@class='expand-toggle'])[2]".
+[INFO ] 2026-06-17 16:07:48.706 [main] ReportManager - Get Text from element, text is "Cairo (CAI)
+Abu Dhabi (AUH)
+CABIN / ADULT
+Check with Airline
+ADULT
+CHECK-IN / ADULT
+0 Kilograms Allowed.
+CHILD
+CHECK-IN / CHILD
+0 Kilograms Allowed.
+INFANT
+CHECK-IN / INFANT
+0 Kilograms Allowed.
+Abu Dhabi (AUH)
+Dubai (XNB)
+CABIN / ADULT
+Check with Airline
+ADULT
+CHECK-IN / ADULT
+0 Kilograms Allowed.
+CHILD
+CHECK-IN / CHILD
+0 Kilograms Allowed.
+INFANT
+CHECK-IN / INFANT
+0 Kilograms Allowed.
+ℹ️
+The baggage information is only for reference. Please check with airline before check-in.
+💼
+Extra Baggage
+Baggage can be opted on select passenger page
+⚠️
+* Include Special Baggage Charges (like charges levied on sporting equipment, skiing equipment, LED/LCD etc.)".
+[INFO ] 2026-06-17 16:07:48.991 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:49.110 [main] ReportManager - Click "By.xpath: (//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]".
+[INFO ] 2026-06-17 16:07:49.304 [main] ReportManager - Get Text from element, text is "Etihad
+19:45
+CAI
+Economy
+6h 25m
+AUH
+EY-716 (RBD - U)
+EY-5412 (RBD - U)
+03:10
+XNB".
+[INFO ] 2026-06-17 16:07:49.685 [main] ReportManager - Moved the mouse to the middle of the element.
+[INFO ] 2026-06-17 16:07:49.798 [main] ReportManager - Click "By.xpath: (//span[contains(text(),'Book Flight')])[1]".
+[INFO ] 2026-06-17 16:08:04.152 [main] ReportManager - Get text "Fare Breakdown
+Base fare: (1 Adult)
+4,228 EGP
+Base fare: (1 Child)
+3,171 EGP
+Base fare: (1 Infant)
+655 EGP
+Tax & Fees: (1 Adult)
+5,179.8 EGP
+Tax & Fees: (1 Child)
+5,179.8 EGP
+Tax & Fees: (1 Infant)
+3,348.8 EGP
+Total:
+21,763 EGP" from "By.xpath: //div[@class='fare-breakdown-container ng-star-inserted']".
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - Fare Breakdown
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - Base fare: (1 Adult)
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - 4,228 EGP
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - Base fare: (1 Child)
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - 3,171 EGP
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - Base fare: (1 Infant)
+[INFO ] 2026-06-17 16:08:04.153 [main] ReportManager - 655 EGP
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - Tax & Fees: (1 Adult)
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - 5,179.8 EGP
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - Tax & Fees: (1 Child)
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - 5,179.8 EGP
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - Tax & Fees: (1 Infant)
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - 3,348.8 EGP
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - Total:
+[INFO ] 2026-06-17 16:08:04.154 [main] ReportManager - 21,763 EGP
+[INFO ] 2026-06-17 16:08:04.166 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Current Method log: SearchOneWay'
+[INFO ] 2026-06-17 16:08:04.167 [main] ReportManager - 
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                     Finished Execution of Test Method: 'AdminPages.BookingMidOffice.Booking.SearchBooking_TC.SearchOneWay'                     
+                                                              Test Status: 'Failed'                                                              
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[INFO ] 2026-06-17 16:08:04.368 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                            Starting execution of engine teardown configuration method                                           
                                         'com.shaft.listeners.internal.ConfigurationHelper.engineTeardown'                                        
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-22 14:51:24.783 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log'
-[INFO ] 2026-04-22 14:51:24.784 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "target/logs/log4j.log"".
-[INFO ] 2026-04-22 14:51:24.784 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "target/logs/log4j.log"".
-[INFO ] 2026-04-22 14:51:24.786 [main] ReportManager - File Action "ReadFileAsByteArray" successfully performed. With the following test data "File Path: "C:\Users\bassem\NDC-Uplift-Automation\target\logs\log4j.log"".
-[INFO ] 2026-04-22 14:51:24.787 [main] ReportManager - File Action "DeleteFile" successfully performed. With the following test data "Target File Path: "target/logs/log4j.log", file was not deleted.".
-[INFO ] 2026-04-22 14:51:24.789 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log: 20260422-145124'
-[INFO ] 2026-04-22 14:51:24.790 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "allure-results/cucumberReport.html"".
-[INFO ] 2026-04-22 14:51:24.796 [main] ReportManager - Successfully created attachment 'HTML - Checkpoints Report'
-[INFO ] 2026-04-22 14:51:25.182 [main] ReportManager - Successfully Closed Driver.
-[INFO ] 2026-04-22 14:51:25.189 [main] ReportManager - ===============================================
-[INFO ] 2026-04-22 14:51:25.189 [main] ReportManager - Default Suite
-[INFO ] 2026-04-22 14:51:25.189 [main] ReportManager - Total tests run: 9, Passes: 0, Failures: 9, Skips: 0
-[INFO ] 2026-04-22 14:51:25.189 [main] ReportManager - ===============================================
-[INFO ] 2026-04-22 14:51:25.190 [main] ReportManager - Generating Allure Report Archive...
-[INFO ] 2026-04-22 14:51:25.206 [main] ReportManager - Executing: ".\C:\Users\bassem\.m2\repository\allure\allure-2.21.0/bin/allure.bat generate 'allure-results' -o 'generatedReport/allure-report'" locally.
-[INFO ] 2026-04-22 14:51:26.067 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: "C:\Users\bassem\.m2\repository\allure\allure-2.21.0/bin/allure.bat generate 'allure-results' -o 'generatedReport/allure-report'" | Exit Status: "1"".
-[ERROR] 2026-04-22 14:51:26.068 [main] AllureLifecycle - Could not start step: no test case running
-[ERROR] 2026-04-22 14:51:26.069 [main] AllureLifecycle - Could not add attachment: no test is running
-[INFO ] 2026-04-22 14:51:26.070 [main] ReportManager - Successfully created attachment 'Terminal Action Actual Result - Command Log'
-[ERROR] 2026-04-22 14:51:26.070 [main] AllureLifecycle - Could not update step: no step running
-[ERROR] 2026-04-22 14:51:26.070 [main] AllureLifecycle - Could not stop step: no step running
-[INFO ] 2026-04-22 14:51:26.071 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "C:\Users\bassem\.m2\repository\allure\"".
-[INFO ] 2026-04-22 14:51:26.071 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "C:\Users\bassem\.m2\repository\allure\"".
-[INFO ] 2026-04-22 14:51:26.071 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "C:\Users\bassem\.m2\repository\allure\"".
-[INFO ] 2026-04-22 14:51:26.523 [main] ReportManager - File Action "CopyFolder" successfully performed. With the following test data "Source Folder: "C:\Users\bassem\.m2\repository\allure" | Destination Folder: "generatedReport\allure"".
-[INFO ] 2026-04-22 14:51:26.555 [main] ReportManager - File Action "CopyFolder" successfully performed. With the following test data "Source Folder: "allure-results" | Destination Folder: "generatedReport\allure-results"".
-[INFO ] 2026-04-22 14:51:27.393 [main] ReportManager - File Action "ZipFiles" successfully performed. With the following test data "Target Folder: "generatedReport/" | Destination Archive: "generatedReport_20260422-145126.zip"".
-[INFO ] 2026-04-22 14:51:27.435 [main] ReportManager - File Action "DeleteFile" successfully performed. With the following test data "Target File Path: "generatedReport/", file was  deleted.".
-[INFO ] 2026-04-22 14:51:27.440 [main] ReportManager - Executing: ".\generate_allure_report.bat" locally.
-[INFO ] 2026-04-22 14:51:27.453 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: "generate_allure_report.bat" | Exit Status: "asynchronous"".
-[INFO ] 2026-04-22 14:51:27.458 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative File Path: "execution-summary/ExecutionSummaryReport_22-04-2026_14-51-27-0456-pm.html"".
-[INFO ] 2026-04-22 14:51:27.462 [main] ReportManager - File Action "WriteToFile" successfully performed. With the following test data "Target File Path: "C:\Users\bassem\NDC-Uplift-Automation\execution-summary\ExecutionSummaryReport_22-04-2026_14-51-27-0456-pm.html"".
-[INFO ] 2026-04-22 14:51:27.467 [main] ReportManager - Executing: ".\execution-summary/ExecutionSummaryReport_*.html" locally.
-[INFO ] 2026-04-22 14:51:28.201 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: ".\execution-summary/ExecutionSummaryReport_*.html" | Exit Status: "0"".
-[INFO ] 2026-04-22 14:51:28.201 [main] ReportManager - 
+[INFO ] 2026-06-17 16:08:04.371 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log'
+[INFO ] 2026-06-17 16:08:04.373 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "target/logs/log4j.log"".
+[INFO ] 2026-06-17 16:08:04.374 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "target/logs/log4j.log"".
+[INFO ] 2026-06-17 16:08:04.376 [main] ReportManager - File Action "ReadFileAsByteArray" successfully performed. With the following test data "File Path: "C:\Users\sheen\Latest\target\logs\log4j.log"".
+[INFO ] 2026-06-17 16:08:04.380 [main] ReportManager - File Action "DeleteFile" successfully performed. With the following test data "Target File Path: "target/logs/log4j.log", file was not deleted.".
+[INFO ] 2026-06-17 16:08:04.386 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Execution log: 20260617-160804'
+[INFO ] 2026-06-17 16:08:04.388 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "allure-results/cucumberReport.html"".
+[INFO ] 2026-06-17 16:08:04.398 [main] ReportManager - Successfully created attachment 'HTML - Checkpoints Report'
+[INFO ] 2026-06-17 16:08:04.413 [main] ReportManager - Successfully created attachment 'SHAFT Engine Logs - Issues log CSV: 20260617-160804'
+[INFO ] 2026-06-17 16:08:06.020 [main] ReportManager - Successfully Closed Driver.
+[INFO ] 2026-06-17 16:08:06.031 [main] ReportManager - ===============================================
+[INFO ] 2026-06-17 16:08:06.031 [main] ReportManager - Default Suite
+[INFO ] 2026-06-17 16:08:06.031 [main] ReportManager - Total tests run: 1, Passes: 0, Failures: 1, Skips: 0
+[INFO ] 2026-06-17 16:08:06.031 [main] ReportManager - ===============================================
+[INFO ] 2026-06-17 16:08:06.031 [main] ReportManager - Generating Allure Report Archive...
+[INFO ] 2026-06-17 16:08:06.053 [main] ReportManager - Executing: ".\C:\Users\sheen\.m2\repository\allure\allure-2.21.0/bin/allure.bat generate 'allure-results' -o 'generatedReport/allure-report'" locally.
+[INFO ] 2026-06-17 16:08:06.811 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: "C:\Users\sheen\.m2\repository\allure\allure-2.21.0/bin/allure.bat generate 'allure-results' -o 'generatedReport/allure-report'" | Exit Status: "1"".
+[ERROR] 2026-06-17 16:08:06.815 [main] AllureLifecycle - Could not start step: no test case running
+[ERROR] 2026-06-17 16:08:06.817 [main] AllureLifecycle - Could not add attachment: no test is running
+[INFO ] 2026-06-17 16:08:06.821 [main] ReportManager - Successfully created attachment 'Terminal Action Actual Result - Command Log'
+[ERROR] 2026-06-17 16:08:06.821 [main] AllureLifecycle - Could not update step: no step running
+[ERROR] 2026-06-17 16:08:06.821 [main] AllureLifecycle - Could not stop step: no step running
+[INFO ] 2026-06-17 16:08:06.822 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "C:\Users\sheen\.m2\repository\allure\"".
+[INFO ] 2026-06-17 16:08:06.822 [main] ReportManager - File Action "DoesFileExist" successfully performed. With the following test data "File Path: "C:\Users\sheen\.m2\repository\allure\"".
+[INFO ] 2026-06-17 16:08:06.823 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative Folder Path: "C:\Users\sheen\.m2\repository\allure\"".
+[INFO ] 2026-06-17 16:08:07.880 [main] ReportManager - File Action "CopyFolder" successfully performed. With the following test data "Source Folder: "C:\Users\sheen\.m2\repository\allure" | Destination Folder: "generatedReport\allure"".
+[INFO ] 2026-06-17 16:08:07.993 [main] ReportManager - File Action "CopyFolder" successfully performed. With the following test data "Source Folder: "allure-results" | Destination Folder: "generatedReport\allure-results"".
+[INFO ] 2026-06-17 16:08:15.500 [main] ReportManager - File Action "ZipFiles" successfully performed. With the following test data "Target Folder: "generatedReport/" | Destination Archive: "generatedReport_20260617-160807.zip"".
+[INFO ] 2026-06-17 16:08:15.689 [main] ReportManager - File Action "DeleteFile" successfully performed. With the following test data "Target File Path: "generatedReport/", file was  deleted.".
+[INFO ] 2026-06-17 16:08:15.693 [main] ReportManager - Executing: ".\generate_allure_report.bat" locally.
+[INFO ] 2026-06-17 16:08:15.708 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: "generate_allure_report.bat" | Exit Status: "asynchronous"".
+[INFO ] 2026-06-17 16:08:15.716 [main] ReportManager - File Action "GetAbsolutePath" successfully performed. With the following test data "Relative File Path: "execution-summary/ExecutionSummaryReport_17-06-2026_16-08-15-0708-pm.html"".
+[INFO ] 2026-06-17 16:08:15.726 [main] ReportManager - File Action "WriteToFile" successfully performed. With the following test data "Target File Path: "C:\Users\sheen\Latest\execution-summary\ExecutionSummaryReport_17-06-2026_16-08-15-0708-pm.html"".
+[INFO ] 2026-06-17 16:08:15.732 [main] ReportManager - Executing: ".\execution-summary/ExecutionSummaryReport_*.html" locally.
+[INFO ] 2026-06-17 16:08:16.304 [main] ReportManager - Terminal Action "PerformTerminalCommands" successfully performed. With the following test data "Host Name: "localHost" | Command: ".\execution-summary/ExecutionSummaryReport_*.html" | Exit Status: "0"".
+[INFO ] 2026-06-17 16:08:16.306 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                                          Test Execution Summary Results                                                         
-                                              Total Cases: 9 --> Passed: 0 | Failed: 9 | Skipped: 0                                              
+                                              Total Cases: 1 --> Passed: 0 | Failed: 1 | Skipped: 0                                              
 ------------------------------------------------------------------------------------------------------------------------------------------------
 [0m
-[INFO ] 2026-04-22 14:51:28.202 [main] ReportManager - 
+[INFO ] 2026-06-17 16:08:16.306 [main] ReportManager - 
 [0;7m------------------------------------------------------------------------------------------------------------------------------------------------
                                            This test run was powered by [1mSHAFT v.7.4.20231015[22m                                           
                                SHAFT [1;4mis and will always be 100% FREE[22;24m for commercial and private use                               

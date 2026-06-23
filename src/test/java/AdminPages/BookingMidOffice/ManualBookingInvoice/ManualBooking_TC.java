@@ -67,7 +67,7 @@ public class ManualBooking_TC {
                 .enterAirLine(testData.getTestData("airlinePnr"))
                 .enterFlightNo(testData.getTestData("flightNo"))
                 .addTraveler();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
         new PaxDetailsPage(driver).fillOnePassengerDetails(
                 testData.getTestData("title"),
                 testData.getTestData("firstName"),
@@ -80,7 +80,7 @@ public class ManualBooking_TC {
                 testData.getTestData("nationality"));
         manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
                 .selectADTDocumentType();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
         // ================= ASSERT =================
 
         String baseFare = testData.getTestData("passengers.adult.baseFare");
@@ -100,7 +100,7 @@ public class ManualBooking_TC {
                 .assertTax(tax)
                 .assertTotalADT(total);
         manualBooking.clickPay();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
     }
 
 
@@ -138,7 +138,7 @@ public class ManualBooking_TC {
                 .enterAirLine(testData.getTestData("airlinePnr"))
                 .enterFlightNo(testData.getTestData("flightNo"))
                 .addTraveler();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
 
 
         new PaxDetailsPage(driver).fillOnePassengerDetails(
@@ -185,7 +185,7 @@ public class ManualBooking_TC {
                 );
         manualBooking.enterINFTicketNumber(testData.getTestData("ticketNumber2"))
                 .selectINFDocumentType().selectAssignedUser();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
 
 
 
@@ -246,7 +246,7 @@ public class ManualBooking_TC {
                 .enterAirLine(testData.getTestData("airlinePnr"))
                 .enterFlightNo(testData.getTestData("flightNo"))
                 .addTraveler();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
         new PaxDetailsPage(driver).fillOnePassengerDetails(
                 testData.getTestData("title"),
                 testData.getTestData("firstName"),
@@ -259,7 +259,7 @@ public class ManualBooking_TC {
                 testData.getTestData("nationality"));
         manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
                 .selectADTDocumentType();
-        Thread.sleep(10000);
+        Thread.sleep(4000);
         // ================= ASSERT =================
 
         String baseFare = testData.getTestData("passengers.adult.baseFare");
@@ -289,8 +289,6 @@ public class ManualBooking_TC {
                 .assertServiceCharge(serviceCharge)
                 .assertTotalwithRule(total);
           manualBooking.clickPay();
-
     }
-
 }
 

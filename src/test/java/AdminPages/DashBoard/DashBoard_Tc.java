@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 import utilities.DataUtils;
 
 public class DashBoard_Tc {
-    SHAFT.GUI.WebDriver driver;
+    private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
-    private DashBoard_Page dashboard;
+    public DashBoard_Page dashboard;
 
 
     @BeforeClass
@@ -24,7 +24,6 @@ public class DashBoard_Tc {
         new LogIn_Page(driver).AdminLogin();
         new DashBoard_Common(driver).clickDashboard();
     }
-
 
     @Test
     public void Tc1_Search_Flights_Dashboard() throws InterruptedException {
