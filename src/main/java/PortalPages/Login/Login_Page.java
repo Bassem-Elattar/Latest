@@ -2,6 +2,7 @@ package PortalPages.Login;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.DataUtils;
 
 public class Login_Page {
 
@@ -123,6 +124,15 @@ public class Login_Page {
     public String getTxt_PasswordRequiredMessage() {
         return driver.element().getText(Txt_PasswordRequiredMessage);
     }
+
+    public void PortalLogin() {
+        driver.element().type(Txt_AgencyCode, DataUtils.get("Portal_AgencyCode"));
+        driver.element().type(Txt_Email, DataUtils.get("Portal_Email"));
+        driver.element().type(Txt_Password, DataUtils.get("Portal_Password"));
+        driver.element().click(Btn_Login);
+    }
+
+
 
 
 
