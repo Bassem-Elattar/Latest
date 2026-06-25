@@ -15,16 +15,7 @@ public class ProfileManagementtest {
     private Login_Page loginPage;
 
 
-  /*  @BeforeMethod
-    public void setup() {
-        CommonMethod.setupDriver(DataUtils.get("browser"));
-        driver = CommonMethod.getDriver();
 
-        driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
-        new Login_Page(driver).PortalLogin();
-
-
-    }*/
   @BeforeClass
   public void setup() {
       CommonMethod.setupDriver(DataUtils.get("browser"));
@@ -83,8 +74,6 @@ public class ProfileManagementtest {
                 .Verify_AgentName_View()
                 .Verify_ContactNo_View();
 
-        //Thread.sleep(30000);
-       // driver.quit();
 
     }
     @Test
@@ -99,11 +88,7 @@ public class ProfileManagementtest {
 
                 .CLICK_Action_active();
 
-                //.Verify_AgentName_View()
-             //   .Verify_ContactNo_View();
 
-        //Thread.sleep(30000);
-     //   driver.quit();
 
     }
 
@@ -120,11 +105,11 @@ public class ProfileManagementtest {
                 .TYPE_EMAIL("automation" + System.currentTimeMillis() + "@gmail.com")
                 .TYPE_Date_of_Joining()
                 .TYPE_Address()
-                //.UploadPDF("C:\\Users\\MediaTech\\NDC-Uplift-Automation\\src\\test\\resources\\tanga.pdf")
+
                 .UploadPDF(System.getProperty("user.dir") + "/src/test/resources/sendGridUsage.pdf")
                 .CLICK_SAVE();
         Thread.sleep(3000);
-        //.type_full_name()
+
         new ProfileManagemet(driver).type_full_name_search()
                 .type_Contact_No_search()
                 .type_Contact_No_search()
