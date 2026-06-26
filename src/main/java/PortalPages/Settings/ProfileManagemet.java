@@ -50,6 +50,10 @@ public class ProfileManagemet {
         driver.element().click(Btn_Profilemanagement);
         return this;
     }
+    public ProfileManagemet type_full_name_dynamic(String fullName) {
+        driver.element().type(Txt_FullName, fullName);
+        return this;
+    }
 
 
     // ================= Add New Agent Action =================
@@ -59,6 +63,7 @@ public class ProfileManagemet {
     }
 
     public ProfileManagemet type_full_name (){
+        driver.element().waitToBeReady(Txt_FullName);
         driver.element().type(Txt_FullName, testData.getTestData("fullname"));
         return this;
     }
@@ -90,6 +95,7 @@ public class ProfileManagemet {
     }
 
     public ProfileManagemet TYPE_Address() {
+        driver.element().waitToBeReady(Txt_Address);
 
         driver.element().isElementClickable(Txt_Address);
 
