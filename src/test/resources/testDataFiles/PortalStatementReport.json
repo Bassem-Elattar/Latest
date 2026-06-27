@@ -1,0 +1,54 @@
+{
+  "ValidDateRange": {
+    "InvoiceFromDate": "01/06/2026",
+    "InvoiceToDate": "27/06/2026"
+  },
+
+  "SameDaySearch": {
+    "InvoiceDate": "01/06/2026"
+  },
+
+  "InvalidFromAfterTo": {
+    "InvoiceFromDate": "20/06/2026",
+    "InvoiceToDate": "10/06/2026",
+    "ExpectedError": "invoiceFromDate must be smaller than invoiceToDate"
+  },
+
+  "Passenger": {
+    "ValidName": "ali omar",
+    "InvalidName": "AutomationNoRecord999"
+  },
+
+  "BookingReference": {
+    "ValidReference": "NDCEG-TR260601JPe5Z0",
+    "InvalidReference": "NDCEG-TR260611NWE0h"
+  },
+
+  "Agent": {
+    "Name": "Essam Saady"
+  },
+
+  "ValidationMessages": {
+    "Required": "Required"
+  },
+
+  "TableHeaders": {
+    "SrNo": "Sr. No.",
+    "BranchName": "Branch Name",
+    "AgencyName": "Agency Name",
+    "ProductName": "Product Name",
+    "DateOfIssue": "Date of Issue",
+    "PassengerNameRoomNo": "Passenger Name. /Room No.",
+    "PnrNumber": "Pnr Number",
+    "TicketNumber": "Ticket Number",
+    "TransactionStatus": "Transaction Status",
+    "TransactionId": "Transaction ID",
+    "Route": "Route",
+    "TotalPayable": "Total Payable",
+    "Discount": "Discount",
+    "TransactionAmountDebit": "Transaction Amount Debit",
+    "TransactionAmountCredit": "Transaction Amount Credit",
+    "WalletBalance": "Wallet Balance",
+    "AirlineCode": "Airline Code"
+  }
+}
