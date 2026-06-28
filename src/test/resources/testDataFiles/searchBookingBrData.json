@@ -1,16 +1,16 @@
 {
-  "brName": "Bangla Branch",
-  "NumberOfAdults": "1",
-  "NumberOfChildren": "1",
-  "NumberOfInfants": "1",
-  "source": "AUH",
-  "destination": "CGP",
-  "secondDestination": "CAI",
-  "JourneyDay": "23",
+  "brName" : "AutomationTest",
+  "NumberOfAdults" : "1",
+  "NumberOfChildren" : "0",
+  "NumberOfInfants" : "0",
+  "source" : "CAI",
+  "destination" : "JED",
+  "secondDestination" : "CAI",
+  "JourneyDay" : "23",
   "JourneyYear" : "2026",
   "JourneyMonth" : "Jul",
-  "dayOfSecondJourney": "25",
-  "monthOfSecondJourney": "Mar",
-  "yearOfSecondJourney": "2026"
-
+  "dayOfSecondJourney" : "25",
+  "monthOfSecondJourney" : "Mar",
+  "yearOfSecondJourney" : "2026",
+  "BookingReference" : "NDCEG-BR-F260628O1QNqN"
 }
