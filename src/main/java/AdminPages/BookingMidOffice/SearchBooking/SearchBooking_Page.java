@@ -234,6 +234,7 @@ public class SearchBooking_Page {
         return new String[]{day, month, year};
     }
 
+
     public SearchBooking_Page SelectCurrentStartDate() throws InterruptedException {
         String[] date = getCurrentDate();
 

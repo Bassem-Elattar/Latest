@@ -153,6 +153,7 @@ public class Booking_TC extends TestBase_TC {
         searchBookingBranch.SuccessPayAfterHoldAssertion();
     }
 
+
     @Test
     public void Book() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);

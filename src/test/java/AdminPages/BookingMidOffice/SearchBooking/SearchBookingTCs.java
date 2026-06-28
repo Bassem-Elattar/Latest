@@ -21,6 +21,7 @@ public class SearchBookingTCs extends TestBase_TC {
         new LogIn_Page(driver).ClickOnLoginButton();
     }
 
+
     @Test
     public void verifyThatUserCanSearchByBooking() throws InterruptedException {
         new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();

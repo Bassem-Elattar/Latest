@@ -197,6 +197,7 @@ public class SearchBookingBranch {
                 .isVisible();
     }
 
+
     public void SuccessPayAfterHoldAssertion() {
         String ExpectedResult = "Your ticket has been successfully Confirmed";
         String ActualResult = driver.element().getText(Txt_SuccessMessage);
