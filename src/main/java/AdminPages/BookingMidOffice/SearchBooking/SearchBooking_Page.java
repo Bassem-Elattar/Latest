@@ -1,8 +1,12 @@
 package AdminPages.BookingMidOffice.SearchBooking;
 
+import AdminPages.BookingMidOffice.Booking.SearchBookingBranch;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class SearchBooking_Page {
     private SHAFT.GUI.WebDriver driver;
@@ -26,7 +30,8 @@ public class SearchBooking_Page {
     private final By Dpick_BookingEndDate = By.xpath("//input[@id='id-BookingEndDate']");
     private final By Btn_SelectBookingEndDate = By.xpath("(//button[@tabindex='0'])[2]");
     private final By lst_OpenBranch = By.xpath("(//div[@role='button'])[1]");
-    private final By Btn_SelectBranch = By.xpath("//li[@aria-label='Test']");
+    private final By Inpt_Branch = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
+    private final By Btn_Branch = By.xpath("//p-dropdownitem[@class='p-element ng-star-inserted']");
     private final By lst_OpenAgency = By.xpath("//div[@class='p-multiselect-trigger']");
     private final By Btn_SelectAgency = By.xpath("//li[@aria-label='Test Egypt']");
     private final By Btn_CloseAgency = By.xpath("//li[@aria-label='Test Egypt']");
@@ -58,6 +63,7 @@ public class SearchBooking_Page {
     private final By Results = By.xpath("//p[contains(text(),'Showing 10 results')]");
     private final By PaginateResults = By.xpath("//p[contains(text(),'Showing 20 results')]");
     private final By Btn_paginate = By.xpath("//button[@class='next']");
+    private final By Year = By.xpath("//button[normalize-space()='2026']");
 
 
         public SearchBooking_Page NavigateToSearchBooking() {
@@ -105,9 +111,10 @@ public class SearchBooking_Page {
         return this;
     }
 
-    public SearchBooking_Page SelectBranch() {
+    public SearchBooking_Page SelectBranch(String branch) {
         driver.element().click(lst_OpenBranch);
-        driver.element().click(Btn_SelectBranch);
+        driver.element().type(Inpt_Branch, branch);
+        driver.element().click(Btn_Branch);
         return this;
     }
 
@@ -215,5 +222,51 @@ public class SearchBooking_Page {
         softAssert.assertTrue(driver.element().getText(PaginateResults).contains(testData.getTestData("ValidData.PaginationResult")),
                 "Actual text does not contain expected value");
         return this;
+    }
+
+    public static String[] getCurrentDate() {
+        LocalDate today = LocalDate.now();
+
+        String day = String.format("%02d", today.getDayOfMonth());
+        String month = today.format(DateTimeFormatter.ofPattern("MMM", Locale.ENGLISH));
+        String year = String.valueOf(today.getYear());
+
+        return new String[]{day, month, year};
+    }
+
+    public SearchBooking_Page SelectCurrentStartDate() throws InterruptedException {
+        String[] date = getCurrentDate();
+
+        String day = date[0];
+        String month = date[1];
+        String year = date[2];
+
+        driver.element().click(Dpick_BookingStartDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", day));
+        driver.element().click(Day);
+        return new SearchBooking_Page(driver);
+    }
+
+    public SearchBooking_Page SelectCurrentEndDate() throws InterruptedException {
+        String[] date = getCurrentDate();
+
+        String day = date[0];
+        String month = date[1];
+        String year = date[2];
+
+        driver.element().click(Dpick_BookingEndDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", day));
+        driver.element().click(Day);
+        return new SearchBooking_Page(driver);
     }
 }

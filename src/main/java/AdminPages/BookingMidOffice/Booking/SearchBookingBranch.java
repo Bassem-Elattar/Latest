@@ -7,17 +7,22 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.testng.asserts.SoftAssert;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import org.testng.asserts.SoftAssert;
 
 public class SearchBookingBranch {
     public SearchBookingBranch(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
     SHAFT.GUI.WebDriver driver ;
-
+    SoftAssert softAssert = new SoftAssert();
     By BookingMidOffice = By.xpath("//a[@class='mid-office-1'and contains(text(),'Booking-Mid Office')]");
     By Booking = By.xpath("//li[@id='Booking']");
     By BranchList = By.xpath( "//span[normalize-space()='Branch*']");
@@ -56,18 +61,20 @@ public class SearchBookingBranch {
     By FlightDetails_Txt = By.xpath("(//div[@class='p-tabview-panels'])[2]");
     By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
     By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
-    By SegmentExpand_Btn = By.xpath("//a[@id='p-accordiontab-0']");
-    By SegmentExpand_Txt = By.xpath("(//div[@id='p-accordiontab-0-content'])[1]");
+    By Txt_BookingRef = By.xpath("(//span[@class='main-text align-items-center flex gap-2 ng-star-inserted'])[1]");
+    By Btn_SelectBookingRef = By.xpath("(//td[@class='ng-star-inserted'])[2]");
+    By Btn_Lock = By.xpath("(//div[@class='locker exception-buttons'])[2]");
+    By Btn_TakeControl = By.xpath("//button[normalize-space()='Take Control']");
+    By Btn_ConfirmToPay = By.xpath("//button[@label='Confirm To Pay']");
+    By Btn_CheckBox = By.xpath("//div[@class='p-checkbox-box']");
+    By Btn_Pay = By.xpath("//button[@class='p-element p-button-sm p-button-primary pay p-button p-component']");
     By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
     By FareBreakDown_Txt = By.xpath("//div[@class='fare-breakdown-container ng-star-inserted']");
-    By SupplierName_Txt = By.xpath("(//div[@class='badges-row'])[1]");
-    By durationLabel_Txt = By.className("duration-label");
-    By MarkUp_Inpt = By.xpath("(//input[@placeholder='Markup'])[1]");
-    By FareDetails_Txt = By.xpath("(//div[@class='fare-details-block ng-star-inserted'])[1]");
     private final By brandedFares = By.xpath("//p-carousel");
     private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
-
+    By Txt_PayableAmount = By.xpath("(//span[@class='text-900 font-semibold text-lg'])[1]");
+    By Txt_SuccessMessage = By.xpath("(//p[@class='mx-2 text-base text-green-700 ng-star-inserted'])[1]");
 
     public SearchBookingBranch BookFirstFlight() throws InterruptedException {
         driver.element().click(BookFlight_BTN);
@@ -126,6 +133,16 @@ public class SearchBookingBranch {
         return Fare;
     }
 
+    public void assertContains(List<String> actualData, String expected, SoftAssert softAssert) {
+        boolean found = actualData.stream().anyMatch(text -> text.contains(expected));
+
+        softAssert.assertTrue(
+                found,
+                "Expected: [" + expected + "]\n" +
+                        "Actual:\n" + String.join("\n", actualData)
+        );
+    }
+
     public List<String> BaggageInfo() {
         driver.element().click(BaggageInfo_Btn);
         for (int i=2; i<6; i++) {
@@ -180,9 +197,13 @@ public class SearchBookingBranch {
                 .isVisible();
     }
 
-    public SearchBookingBranch ClickOnBookingMidOffice() {
-        driver.element().click(BookingMidOffice);
-        return new SearchBookingBranch(driver);
+    public void SuccessPayAfterHoldAssertion() {
+        String ExpectedResult = "Your ticket has been successfully Confirmed";
+        String ActualResult = driver.element().getText(Txt_SuccessMessage);
+        softAssert.assertTrue(
+                ActualResult.contains(ExpectedResult),
+                "Expected [" + ActualResult + "] to contain [" + ExpectedResult + "]"
+        );
     }
 
     public Boolean ReturnNoSearchResultsMsg() {
@@ -262,6 +283,20 @@ public class SearchBookingBranch {
         return new SearchBookingBranch(driver);
     }
 
+    public String GetBookingReference() {
+        String Text = driver.element().getText(Txt_BookingRef);
+        return Text.split("Booking Reference:")[1].trim();
+    }
+
+    public void PayAfterHoldFlow() {
+        driver.element().click(Btn_SelectBookingRef);
+        driver.element().click(Btn_Lock);
+        driver.element().click(Btn_TakeControl);
+        driver.element().click(Btn_ConfirmToPay);
+        driver.element().click(Btn_CheckBox);
+        driver.element().click(Btn_Pay);
+    }
+
     public SearchBookingBranch clickOnWhiteMarkupButton() {
         driver.element().click(WhiteMarkup);
         return new SearchBookingBranch(driver);
@@ -291,9 +326,22 @@ public class SearchBookingBranch {
         Assert.assertEquals(processedText, String.valueOf(CancelCharge));
         return new SearchBookingBranch(driver);
     }
+
+    public void addBookingReference(String bookingReference) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/test/resources/testDataFiles/searchBookingBrData.json");
+
+        ObjectNode json = (ObjectNode) mapper.readTree(file);
+
+        json.put("BookingReference", bookingReference);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
+    }
+
     public void proceedIfBrandedFareExists() {
 
-        WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(5));
 
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(brandedFares));

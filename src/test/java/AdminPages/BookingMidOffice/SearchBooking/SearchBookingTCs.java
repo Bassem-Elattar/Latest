@@ -24,10 +24,9 @@ public class SearchBookingTCs extends TestBase_TC {
     @Test
     public void verifyThatUserCanSearchByBooking() throws InterruptedException {
         new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
-        Thread.sleep(300);
         new SearchBooking_Page(driver)
                 .SelectBooking()
-                .SelectBranch()
+                .SelectBranch(testData.getTestData("ValidData.BranchName"))
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
                 .SelectValidEndDate(testData.getTestData("ValidData.BookingEndDate"))
                 .ClickSearch()
@@ -87,7 +86,7 @@ public class SearchBookingTCs extends TestBase_TC {
         new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectBooking()
-                .SelectBranch()
+                .SelectBranch(testData.getTestData("ValidData.BranchName"))
                 .SelectAgency()
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
                 .SelectValidEndDate(testData.getTestData("ValidData.BookingEndDate"))
@@ -100,7 +99,7 @@ public class SearchBookingTCs extends TestBase_TC {
         new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectBooking()
-                .SelectBranch()
+                .SelectBranch(testData.getTestData("ValidData.BranchName"))
                 .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
                 .SelectValidEndDate(testData.getTestData("ValidData.BookingEndDate"))
                 .ClickSearch()

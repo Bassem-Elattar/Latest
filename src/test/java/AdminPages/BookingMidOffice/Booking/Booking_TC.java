@@ -1,17 +1,23 @@
 package AdminPages.BookingMidOffice.Booking;
 import AdminPages.BookingMidOffice.Booking_Common;
+import AdminPages.BookingMidOffice.SearchBooking.SearchBookingTCs;
 import AdminPages.BookingMidOffice.SearchBooking.SearchBooking_Page;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
 import AdminPages.Reports.Statement.State;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
+
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.testng.asserts.SoftAssert;
@@ -44,8 +50,7 @@ public class Booking_TC extends TestBase_TC {
     String PassengerPaxNationality;
     String PassengerPaxEmail;
     String PassengerPaxPhone;
-
-
+    String BookingReference;
 
     @BeforeTest
     public void sign(){
@@ -63,6 +68,7 @@ public class Booking_TC extends TestBase_TC {
         dayOfFirstJourney = testData.getTestData( "JourneyDay");
         monthOfFirstJourney = testData.getTestData( "JourneyMonth");
         yearOfFirstJourney = testData.getTestData( "JourneyYear");
+        BookingReference = testData.getTestData("BookingReference");
         testData = new SHAFT.TestData.JSON("QuoteData.json");
         QuoteNewUserFirstName = testData.getTestData("QuoteUserFirstName");
         QuoteNewUserLastName = testData.getTestData("QuoteUserLastName");
@@ -79,55 +85,45 @@ public class Booking_TC extends TestBase_TC {
         PassengerPaxPhone = testData.getTestData("Phone");
     }
 
+//    @Test
+//    public void SearchOneWay() throws InterruptedException {
+//        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+//        new Booking_Common(driver).clickBookingMidOffice();
+//        searchBookingBranch.SelectBranch(BranchName).
+//                AddStartingFrom(source).AddGoingTo(destination)
+//                .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+//                .passengersDropDown()
+//                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+//
+//        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+//        List<String> FareData = searchBookingBranch.FareDetails();
+//        searchBookingBranch.CloseTheSideMenuInfo();
+//        String FlightCard = searchBookingBranch.FlightCard();
+//        searchBookingBranch.BookFirstFlight();
+//        String FareBreakDown = searchBookingBranch.FareBreakDown();
+//
+//        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+//        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+//    }
+
     @Test
-    public void SearchOneWay() throws InterruptedException {
+    public void Hold() throws Exception {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
-        //new SearchBooking_Page(driver).
         searchBookingBranch.SelectBranch(BranchName).
                 AddStartingFrom(source).AddGoingTo(destination)
                 .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
                 .passengersDropDown()
                 .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
-
         List<String> SegmentData = searchBookingBranch.SegmentDetails();
         List<String> FareData = searchBookingBranch.FareDetails();
         searchBookingBranch.CloseTheSideMenuInfo();
         String FlightCard = searchBookingBranch.FlightCard();
-        searchBookingBranch.BookFirstFlight();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
         String FareBreakDown = searchBookingBranch.FareBreakDown();
 
-        boolean found = FareData.stream()
-                .anyMatch(text -> text.contains(FareBreakDown));
-
-        softAssert.assertTrue(
-                found,
-                "No element contains: " + FareBreakDown
-        );
-
-        boolean found1 = SegmentData.stream()
-                .anyMatch(text -> text.contains(FlightCard));
-
-        softAssert.assertTrue(
-                found1,
-                "No element contains: " + FlightCard
-        );
-    }
-
-    @Test
-    public void Hold() throws InterruptedException {
-        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
-        new Booking_Common(driver).clickBookingMidOffice();
-        //new SearchBooking_Page(driver).
-        searchBookingBranch.SelectBranch(BranchName).
-                AddStartingFrom(source).AddGoingTo(destination)
-                .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
-                .passengersDropDown()
-                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
-        List<String> SegmentData = searchBookingBranch.SegmentDetails();
-        List<String> FareData = searchBookingBranch.FareDetails();
-        searchBookingBranch.CloseTheSideMenuInfo();
-        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
 
         new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
                 adultDob,
@@ -137,13 +133,30 @@ public class Booking_TC extends TestBase_TC {
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+        String BookingReference = searchBookingBranch.GetBookingReference();
+        searchBookingBranch.addBookingReference(BookingReference);
+    }
+
+    @Test
+    public void PayAfterHold() throws InterruptedException {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
+        new SearchBooking_Page(driver)
+                .SelectFlight()
+                .SelectBranch(BranchName)
+                .SelectCurrentStartDate()
+                .SelectCurrentEndDate()
+                .EnterBookingReference(BookingReference)
+                .ClickSearch()
+                .verifyThatTheUserCanSearchByBookinReference();
+        searchBookingBranch.PayAfterHoldFlow();
+        searchBookingBranch.SuccessPayAfterHoldAssertion();
     }
 
     @Test
     public void Book() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
-        //new SearchBooking_Page(driver).
         searchBookingBranch.SelectBranch(BranchName).
                 AddStartingFrom(source).AddGoingTo(destination)
                 .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
@@ -151,8 +164,14 @@ public class Booking_TC extends TestBase_TC {
                 .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
         List<String> SegmentData = searchBookingBranch.SegmentDetails();
         List<String> FareData = searchBookingBranch.FareDetails();
-        List<String> BaggageData = searchBookingBranch.BaggageInfo();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
         searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
         new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
                 adultDob,
                 childDob,
