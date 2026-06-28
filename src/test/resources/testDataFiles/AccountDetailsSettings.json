@@ -1,0 +1,20 @@
+{
+  "Page": {
+    "Title": "Account Details and Settings"
+  },
+  "Agency": {
+    "AttemptedName": "Automation Edited Agency"
+  },
+  "Website": {
+    "ValidUrl": "https://test.com",
+    "EmptyValue": ""
+  },
+  "Logo": {
+    "ValidImagePath": "src/test/resources/image_200x200.png",
+    "UnsupportedFilePath": "src/test/resources/sendGridUsage.pdf"
+  },
+  "Messages": {
+    "Success": "Settings updated successfully",
+    "UnsupportedFile": "The file type is not supported. Please upload an image in .jpg, .png, .jpeg, .bmp format ."
+  }
+}
