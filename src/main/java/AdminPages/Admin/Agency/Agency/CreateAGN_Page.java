@@ -13,9 +13,8 @@ public class CreateAGN_Page {
     public CreateAGN_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-
     SHAFT.GUI.WebDriver driver;
-    public By AGNBtn = xpath("/html/body/ndc-root/ndc-layout/div/div[1]/tilde-theme-side-menu/div/ul/li[3]/tilde-theme-accordion/header/a");
+//    public By AGNBtn = xpath("/html/body/ndc-root/ndc-layout/div/div[1]/tilde-theme-side-menu/div/ul/li[3]/tilde-theme-accordion/header/a");
     public By Agency = xpath("//a[@href=\"/admin/agency\"]");
     By ADDBtn = xpath("//button[@routerlink=\"add\"]");
     By SelectBranch = xpath("(//p-dropdown[.//input[@id=\"id-Branch\"]])[1]");
@@ -28,31 +27,39 @@ public class CreateAGN_Page {
     By ContactPer = xpath("//input[@id=\"id-Contactperson\"]");
     By Email = xpath("(//input[@id=\"id-EmailID\"])[1]");
     By PhoneNum = xpath("(//input[@id=\"Phone Number\"])[1]");
-    By UploadDOC = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/ndc-fg-form-container[2]/div/ndc-fg-form-generator/form/div[1]/div[2]/div[1]/ndc-fg-input[1]/ndc-fg-file-input/div/button");
+    By UploadDOC = xpath("//ndc-fg-input//ndc-fg-file-input//button");
     By StartDate = xpath("//input[@id=\"id-ContractStartDate\"]");
     By EndDate = xpath("//input[@id=\"id-ContractEndDate\"]");
-    By UploadLogo = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/ndc-fg-form-container[3]/div/ndc-fg-form-generator/form/div[1]/div[2]/ndc-fg-input/ndc-fg-image-input/div/button");
+    By UploadLogo = xpath("//ndc-fg-input//ndc-fg-image-input//button");
     By Invoice = xpath("//p-dropdown[.//input[@id=\"id-Invoicegeneration\"]]");
     By Creditlimit = xpath("//input[@id=\"id-Creditlimit\"]");
     By TOPLimit = xpath("//input[@id=\"id-Topuplimit\"]");
     By CashPay = xpath("//p-checkbox[.//input[@id=\"id-Paymentoption-Cash\"]]");
     //By Amad = xpath("//a[@id=\"p-tabpanel-1-label\"]");
     By SendApprove = xpath("//button[@type=\"submit \"]");
-    By After = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/ndc-fg-form-container[2]/div/ndc-fg-form-generator/form/div[1]/div[2]/div[1]/ndc-fg-input[3]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[2]");
+    By After = xpath("//p-calendar//button[contains(@class,'p-datepicker-next')]//span");
     //  By path = By.xpath("//input[@type='file']");
-    By Galileo = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[1]/a/span");
-    By Sabre = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[3]/a/span");
-    By Select = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[2]/p-tabpanel[1]/div/div/ndc-fg-form-generator/form/div[1]/div/ndc-fg-input[1]/ndc-fg-dropdown-input/p-multiselect/div/div[3]");
-    By Rbtn_Inactive = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Inactive\"]]");
+//    By Galileo = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[1]/a/span");
+//    By Sabre = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[3]/a/span");
+//    By Select = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[2]/p-tabpanel[1]/div/div/ndc-fg-form-generator/form/div[1]/div/ndc-fg-input[1]/ndc-fg-dropdown-input/p-multiselect/div/div[3]");
+//    By Rbtn_Inactive = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Inactive\"]]");
     public By Btn_Search = By.xpath("//span[@class=\"p-button-label\"]");
     By SearchAgencyN = By.xpath("//*[@id=\"id-Agencyname\"]");
-    By Btn_ThumpUp = By.xpath("//i[@class=\"pi pi-thumbs-up\"]");
+    By Btn_ThumpUp = By.xpath("(//i[@class='pi pi-thumbs-up'])[1]");
     By Btn_ThumpDown = By.xpath("//i[@class=\"pi pi-thumbs-down\"]");
-    By Txt_RemarksUp = By.xpath("//ndc-root/ndc-dialog-modal/p-dialog//div[3]//ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input/ndc-fg-text-area-input/div/textarea");
-    By Btn_Submitup =  By.xpath("//ndc-root/ndc-dialog-modal/p-dialog//div[3]/div/ndc-fg-form-container//ndc-fg-form-generator/form//div[2]/button/span");
+    By Txt_RemarksUp = By.xpath("//ndc-dialog-modal//ndc-fg-text-area-input//textarea");
+    By Btn_Submitup =  By.xpath("//ndc-dialog-modal//button[@type='submit']");
     By Txt_AgencyName = xpath("//input[@id=\"id-Agencyname\"]");
     By Rbtn_StatusAGN = xpath("(//p-radiobutton[.//span[@class=\"p-radiobutton-icon\"]])[1]");
     By Submit = xpath("//button[@type=\"submit\"]");
+    By Btn_Next = By.xpath("//ndc-agency//tilde-paginator//button//i[contains(@class,'pi-chevron-right')]");
+
+
+
+    private By rowAgency(String agencyname) {
+        return By.xpath("//td[normalize-space()='" + agencyname + "']");
+
+    }
 
     public void CreateValidAGN(String selectbranch, String AgencyName, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) {
 //        driver.element().click(AGNBtn);
@@ -86,9 +93,9 @@ public class CreateAGN_Page {
         driver.element().type(Creditlimit, Credit)
                 .type(TOPLimit, Top)
                 .click(CashPay);
-        driver.element().click(Select);
-        By option30 = xpath(String.format("//span[text()='%s']", pcc1));
-        driver.element().click(option30);
+//        driver.element().click(Select);
+//        By option30 = xpath(String.format("//span[text()='%s']", pcc1));
+//        driver.element().click(option30);
 
 
         driver.element().click(SendApprove);
@@ -120,8 +127,9 @@ public class CreateAGN_Page {
 //        driver.element().click(Btn_Search);
 //
 //    }
-    public void setThumpUp(String remarksup){
+    public void setThumpUp(String remarksup) throws InterruptedException {
         driver.element().click(Btn_ThumpUp);
+        Thread.sleep(2000);
         driver.element().type(Txt_RemarksUp,remarksup);
         driver.element().click(Btn_Submitup);
     }
@@ -130,12 +138,34 @@ public class CreateAGN_Page {
 
     }
 
-    public void serachAgency(String Agencyname) {
-        driver.element().click(AGNBtn);
-        driver.element().click(Agency)
-                .type(Txt_AgencyName,Agencyname)
-                .click(Rbtn_StatusAGN)
-                .click(Submit);
+//    public void serachAgency(String Agencyname) {
+//        driver.element().click(AGNBtn);
+//        driver.element().click(Agency)
+//                .type(Txt_AgencyName,Agencyname)
+//                .click(Rbtn_StatusAGN)
+//                .click(Submit);
+//    }
+    public boolean findAgencyInPages(String agencyName) {
+        int maxPages = 20; // safety limit to avoid infinite loops
+
+        for (int i = 0; i < maxPages; i++) {
+
+            // Check if agency exists in current page
+            if (driver.element().isElementDisplayed(rowAgency(agencyName))) {
+                return true;
+            }
+
+            // Check if Next button is disabled or not visible
+            if (!driver.element().isElementDisplayed(Btn_Next)) {
+                break;
+            }
+
+            // Scroll and go to next page
+            driver.element().scrollToElement(Btn_Next);
+            driver.element().click(Btn_Next);
+        }
+
+        return false; // agency not found in any page
     }
 
     public void performAssertions () {

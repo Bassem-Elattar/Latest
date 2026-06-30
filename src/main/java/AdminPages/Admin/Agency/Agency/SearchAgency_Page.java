@@ -25,6 +25,7 @@ public class SearchAgency_Page {
     public void setSearchAgency(String agencyname) throws InterruptedException {
         //driver.element().waitToBeReady(Btn_Agency);
         Thread.sleep(Long.parseLong("1000"));
+
         // driver.element().click(Btn_Agency);
         driver.element().click(Btn_agency);
         //  driver.element().type(Txt_AgencyCode,agencycode);

@@ -63,7 +63,6 @@ public class SearchBranch_TC extends TestBase_TC {
         searchBranch.Btn_Inactive();
         searchBranch.Btn_Search();
     }
-
     @Test(dataProvider = "JsonProvider")
     public void setSearchBranchBoth(Map<String,String>branch){
         searchBranch = new Branch_Page1(driver);

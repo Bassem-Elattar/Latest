@@ -31,14 +31,12 @@ public class CreateAGN_TC extends TestBase_TC {
         String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
         return JsonDataUtil.readJsonData(filePath);
     }
-
     @BeforeTest
     public void sign() {
         logIn = new LogIn_Page(driver);
         logIn.ClickSuperAdmin();
         logIn.ClickOnLoginButton();
         new AdminMenu(driver).openSubAdmin().Agency();
-
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")

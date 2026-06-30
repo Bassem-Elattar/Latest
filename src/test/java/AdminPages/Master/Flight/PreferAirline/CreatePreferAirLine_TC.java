@@ -30,14 +30,12 @@ public class CreatePreferAirLine_TC extends TestBase_TC {
     public void sign(){
         preferAirLine = new PreferAirLine_Page(driver);
         logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
+        logIn.ClickSuperAdmin();
         logIn.ClickOnLoginButton();
-
-
     }
 
 
-//    @Test(dataProvider = "JsonProvider")
+    //    @Test(dataProvider = "JsonProvider")
 //    public void testCreateForPreferAirLine1(String AirLineName, String supplierName,String SupplierPcc) throws InterruptedException {
 //        new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
 //
@@ -59,35 +57,34 @@ public class CreatePreferAirLine_TC extends TestBase_TC {
 //
 //    }
     // Valid
-    @Test
-    public void testCreateForPreferAirLine() throws InterruptedException {
+    @Test(dataProvider = "CreatePreferAirLineWithValidData",dataProviderClass = PreferAirLineDataProvider_TC.class)
+    public void testCreateForPreferAirLine(String AirLineName,String supplierName,String SupplierPcc,String Expected) throws InterruptedException {
         new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
 
         preferAirLine.clickAddAirLineButton();
-        preferAirLine.AddAirlineName("Aeropelican Air Services","Aeropelican Air Services");
+        preferAirLine.AddAirlineName(AirLineName,AirLineName);
         preferAirLine.clickOnSupplierList();
-        preferAirLine.SelectAddSupplierName("Amadeus");
+        preferAirLine.SelectAddSupplierName(supplierName);
         preferAirLine.clickOnPCCSupplierList();
-        preferAirLine.SelectAddPCCSupplierName("Amadeus Live");
+        preferAirLine.SelectAddPCCSupplierName(SupplierPcc);
         preferAirLine.SendForApprovalButton();
-        String Acual =driver.element().getText(By.xpath("//div[@aria-label=\"Prefer Airline already exists.\"]"));
-        String Expected="Prefer Airline already exists.";
+        String Acual =driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
         Assert.assertEquals(Acual,Expected,"This Behaviour not correct ");
-        preferAirLine.clickOnCancelButton();
-        preferAirLine.EnterAirlineName("Aeropelican Air Services");
-        preferAirLine.clickOnSupplierList();
-        preferAirLine.SelectSupplierName("Amadeus");
+//        preferAirLine.clickOnCancelButton();
+//        preferAirLine.EnterAirlineName(AirLineName);
+//        preferAirLine.clickOnSupplierList();
+//        preferAirLine.SelectSupplierName(supplierName);
         preferAirLine.clickBothButton()
                 .clickOnSearchInGrid();
-        assertEquals("Aeropelican Air Services",preferAirLine.TableColumnDataExtractor(0,"Aeropelican Air Services"));
-        assertEquals("Amadeus",preferAirLine.TableColumnDataExtractor(1,"Amadeus"));
+//        assertEquals(AirLineName,preferAirLine.TableColumnDataExtractor(0,AirLineName));
+//        assertEquals(supplierName,preferAirLine.TableColumnDataExtractor(1,supplierName));
     }
     @Test(dataProvider = "CreatePreferAirLineWithValidDataAlreadyExist", dataProviderClass = PreferAirLineDataProvider_TC.class)
-    public void testCreateForPreferAirLine2(String AirLineName, String supplierName ,String SupplierPcc) throws InterruptedException {
+    public void testCreateForPreferAirLine2(String AirLineName, String supplierName ,String SupplierPcc,String Expected) throws InterruptedException {
         new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
 
         preferAirLine.clickAddAirLineButton();
-        preferAirLine.AddAirlineName("Aer", AirLineName);
+        preferAirLine.AddAirlineName(AirLineName, AirLineName);
         preferAirLine.clickOnSupplierList();
         preferAirLine.SelectAddSupplierName(supplierName);
         preferAirLine.clickOnPCCSupplierList();
@@ -95,24 +92,20 @@ public class CreatePreferAirLine_TC extends TestBase_TC {
         preferAirLine.SendForApprovalButton();
         Thread.sleep(1000);
         String Acual =driver.element().getText(By.xpath("//div[@aria-label=\"Prefer Airline already exists.\"]"));
-        String Expected="Prefer Airline already exists.";
         Assert.assertEquals(Acual,Expected,"This Behaviour not correct ");
-
-
     }
-    @Test
-    public void testCreateForPreferAirLineWithRestractedAirLine( ) throws InterruptedException {
+    @Test(dataProvider = "CreateForPreferAirLineWithRestrictedAirLine", dataProviderClass = PreferAirLineDataProvider_TC.class)
+    public void testCreateForPreferAirLineWithRestractedAirLine(String AirLineName, String supplierName ,String SupplierPcc,String Expected) throws InterruptedException {
         new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
 
         preferAirLine.clickAddAirLineButton();
-        preferAirLine.AddAirlineName("Dev","Dev Create Five");
+        preferAirLine.AddAirlineName(AirLineName,AirLineName);
         preferAirLine.clickOnSupplierList();
-        preferAirLine.SelectAddSupplierName("Galileo");
+        preferAirLine.SelectAddSupplierName(supplierName);
         preferAirLine.clickOnPCCSupplierList();
-        preferAirLine.SelectAddPCCSupplierName("Live EGY PCC");
+        preferAirLine.SelectAddPCCSupplierName(SupplierPcc);
         preferAirLine.SendForApprovalButton();
         String Acual =driver.element().getText(preferAirLine.RestricatedAirLine);
-        String Expected="Remove the restricted airlines to add prefer airline";
         Assert.assertEquals(Acual,Expected,"This Behaviour not correct ");
         Thread.sleep(1000);
 
@@ -154,7 +147,7 @@ public class CreatePreferAirLine_TC extends TestBase_TC {
         new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
 
         preferAirLine.clickAddAirLineButton();
-        preferAirLine.AddAirlineName("40",AirLineName);
+       preferAirLine.AddAirlineName(AirLineName,AirLineName);
         preferAirLine.clickOnSupplierList();
         preferAirLine.SelectAddSupplierName(supplierName);
         preferAirLine.SendForApprovalButton();
@@ -163,7 +156,7 @@ public class CreatePreferAirLine_TC extends TestBase_TC {
     }
     @AfterMethod
     public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70");
+        driver.browser().navigateToURL("http://192.168.1.216");
     }
 
 

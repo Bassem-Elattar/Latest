@@ -25,7 +25,6 @@ public class CreateTravellers_TC extends TestBase_TC {
         String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
         return JsonDataUtil.readJsonData(filePath);
     }
-
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
@@ -33,7 +32,6 @@ public class CreateTravellers_TC extends TestBase_TC {
         logIn.ClickOnLoginButton();
 
     }
-
     @Test(dataProvider = "JsonProvider")
     public void CreateTraveller(Map<String, String> create) throws InterruptedException {
         createTravellers = new CreateTravellers_Page(driver);

@@ -35,9 +35,7 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
         new LogIn_Page(driver).ClickAdmin();
         new LogIn_Page(driver).ClickOnLoginButton();
         new AdminMenu(driver).openSubAdmin().openBranch();
-
     }
-
     @Test
     public void CreateBranch() throws InterruptedException {
         addNewBranch = new Branch_Page(driver);

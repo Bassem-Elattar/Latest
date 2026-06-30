@@ -30,7 +30,6 @@ public class AddTopUpRequest_TC extends TestBase_TC {
         String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
         return JsonDataUtil.readJsonData(filePath);
     }
-
     @BeforeTest
     public void sign(){
         logIn = new LogIn_Page(driver);
@@ -39,7 +38,6 @@ public class AddTopUpRequest_TC extends TestBase_TC {
         new AdminMenu(driver).openSubAdmin().Company().TopUp();
 
     }
-
     @Test(dataProvider = "JsonProvider")
     public void AddTopUpRequest(Map<String, String> top) throws InterruptedException {
         createDepartment = new Department_Page(driver);

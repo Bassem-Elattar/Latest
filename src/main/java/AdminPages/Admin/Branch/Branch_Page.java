@@ -159,6 +159,7 @@ public class Branch_Page {
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(25));
 
         driver.element().click(typeLocator);
+
         JavascriptExecutor js = (JavascriptExecutor) driver.getDriver();
         boolean elementExists = (Boolean) js.executeScript(
                 "return document.querySelector('li[role=\"option\"]') !== null;"

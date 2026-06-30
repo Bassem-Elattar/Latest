@@ -46,8 +46,6 @@ public class SearchLoginDetails_TC extends TestBase_TC {
         Search.ValidData(agn,FromDate,ToDate);
         Thread.sleep(3000);
         assertEquals("Test Egypt",Search.Table(0,"Test Egypt"));
-
-
     }
 
 
