@@ -76,6 +76,8 @@ public class PaxDetailsPage {
     private final By GDSPNR_Confirmation = By.xpath("//th[text()='GDS PNR Number']");
     private final By brandedFares = By.xpath("//p-carousel");
     private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
+    private final By Btn_ExpandAll= By.xpath("(//span[normalize-space()='Expand All'])[1]");
+
     By assignedToDropdowns =
             By.xpath("//p-dropdown[@formcontrolname='assignedTo']");
     private By dropdownOptionByIndex(int index) {
@@ -133,7 +135,7 @@ public class PaxDetailsPage {
                 Integer.parseInt(testData.getTestData("NumberOfAdults"))
                         + Integer.parseInt(testData.getTestData("NumberOfChildren"))
                         + Integer.parseInt(testData.getTestData("NumberOfInfants"));
-
+        driver.element().click(Btn_ExpandAll);
         for (int i = 0; i < total; i++) {
 
             // paxType XPath starts from 1
@@ -176,8 +178,8 @@ public class PaxDetailsPage {
                 System.out.println("Infant Passenger : " + (i + 1));
             }
 
-            if (i<=total-2)
-            driver.element().click(seeMore(i + 7));
+//            if (i<=total-2)
+//            driver.element().click(seeMore(i + 7));
         }
         List<WebElement> assignedToElements =
                 driver.getDriver().findElements(assignedToDropdowns);// just for size

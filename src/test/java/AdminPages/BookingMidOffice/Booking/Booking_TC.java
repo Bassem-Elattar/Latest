@@ -51,6 +51,10 @@ public class Booking_TC extends TestBase_TC {
     String PassengerPaxEmail;
     String PassengerPaxPhone;
     String BookingReference;
+    String DayOfSecondTrip;
+    String MonthOfSecondTrip;
+    String YearOfSecondTrip;
+    String SecondDestination;
 
     @BeforeTest
     public void sign(){
@@ -69,6 +73,10 @@ public class Booking_TC extends TestBase_TC {
         monthOfFirstJourney = testData.getTestData( "JourneyMonth");
         yearOfFirstJourney = testData.getTestData( "JourneyYear");
         BookingReference = testData.getTestData("BookingReference");
+        YearOfSecondTrip = testData.getTestData("yearOfSecondJourney");
+        MonthOfSecondTrip = testData.getTestData("monthOfSecondJourney");
+        DayOfSecondTrip = testData.getTestData("dayOfSecondJourney");
+        SecondDestination = testData.getTestData("SecondDestination");
         testData = new SHAFT.TestData.JSON("QuoteData.json");
         QuoteNewUserFirstName = testData.getTestData("QuoteUserFirstName");
         QuoteNewUserLastName = testData.getTestData("QuoteUserLastName");
@@ -85,29 +93,29 @@ public class Booking_TC extends TestBase_TC {
         PassengerPaxPhone = testData.getTestData("Phone");
     }
 
-//    @Test
-//    public void SearchOneWay() throws InterruptedException {
-//        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
-//        new Booking_Common(driver).clickBookingMidOffice();
-//        searchBookingBranch.SelectBranch(BranchName).
-//                AddStartingFrom(source).AddGoingTo(destination)
-//                .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
-//                .passengersDropDown()
-//                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
-//
-//        List<String> SegmentData = searchBookingBranch.SegmentDetails();
-//        List<String> FareData = searchBookingBranch.FareDetails();
-//        searchBookingBranch.CloseTheSideMenuInfo();
-//        String FlightCard = searchBookingBranch.FlightCard();
-//        searchBookingBranch.BookFirstFlight();
-//        String FareBreakDown = searchBookingBranch.FareBreakDown();
-//
-//        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
-//        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
-//    }
+    @Test
+    public void SearchOneWay() throws InterruptedException {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName).
+                AddStartingFrom(source).AddGoingTo(destination)
+                .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+    }
 
     @Test
-    public void Hold() throws Exception {
+    public void HoldOneWay() throws Exception {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         searchBookingBranch.SelectBranch(BranchName).
@@ -138,8 +146,35 @@ public class Booking_TC extends TestBase_TC {
     }
 
     @Test
-    public void PayAfterHold() throws InterruptedException {
+    public void PayAfterHoldOneWay() throws Exception {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName).
+                AddStartingFrom(source).AddGoingTo(destination)
+                .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+        String BookingReference = searchBookingBranch.GetBookingReference();
+        searchBookingBranch.addBookingReference(BookingReference);
+
         new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
@@ -153,14 +188,269 @@ public class Booking_TC extends TestBase_TC {
         searchBookingBranch.SuccessPayAfterHoldAssertion();
     }
 
-
     @Test
-    public void Book() throws InterruptedException {
+    public void BookOneWay() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         searchBookingBranch.SelectBranch(BranchName).
                 AddStartingFrom(source).AddGoingTo(destination)
                 .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
+    }
+
+    @Test
+    public void SearchRoundTrip() throws InterruptedException {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectRoundTrip()
+                .AddStartingFromRoundTrip(source).AddGoingToRoundTrip(destination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+    }
+
+    @Test
+    public void HoldRoundTrip() throws Exception {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectRoundTrip()
+                .AddStartingFromRoundTrip(source).AddGoingToRoundTrip(destination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+        String BookingReference = searchBookingBranch.GetBookingReference();
+        searchBookingBranch.addBookingReference(BookingReference);
+    }
+
+    @Test
+    public void PayAfterHoldRoundTrip() throws Exception {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectRoundTrip()
+                .AddStartingFromRoundTrip(source).AddGoingToRoundTrip(destination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+        String BookingReference = searchBookingBranch.GetBookingReference();
+        searchBookingBranch.addBookingReference(BookingReference);
+
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
+        new SearchBooking_Page(driver)
+                .SelectFlight()
+                .SelectBranch(BranchName)
+                .SelectCurrentStartDate()
+                .SelectCurrentEndDate()
+                .EnterBookingReference(BookingReference)
+                .ClickSearch()
+                .verifyThatTheUserCanSearchByBookinReference();
+        searchBookingBranch.PayAfterHoldFlow();
+        searchBookingBranch.SuccessPayAfterHoldAssertion();
+    }
+
+    @Test
+    public void BookRoundTrip() throws InterruptedException {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectRoundTrip()
+                .AddStartingFromRoundTrip(source).AddGoingToRoundTrip(destination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
+    }
+
+    @Test
+    public void SearchMultiCity() throws InterruptedException {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectMultiCity()
+                .AddStartingFromMultiCity(source).AddGoingToMultiCity(destination).AddGoingToSecondDestinationMultiCity(SecondDestination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+    }
+
+    @Test
+    public void HoldMultiCity() throws Exception {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectMultiCity()
+                .AddStartingFromMultiCity(source).AddGoingToMultiCity(destination).AddGoingToSecondDestinationMultiCity(SecondDestination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+        String BookingReference = searchBookingBranch.GetBookingReference();
+        searchBookingBranch.addBookingReference(BookingReference);
+    }
+
+    @Test
+    public void PayAfterHoldMultiCity() throws Exception {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectMultiCity()
+                .AddStartingFromMultiCity(source).AddGoingToMultiCity(destination).AddGoingToSecondDestinationMultiCity(SecondDestination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
+                .passengersDropDown()
+                .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
+        List<String> SegmentData = searchBookingBranch.SegmentDetails();
+        List<String> FareData = searchBookingBranch.FareDetails();
+        searchBookingBranch.CloseTheSideMenuInfo();
+        String FlightCard = searchBookingBranch.FlightCard();
+        searchBookingBranch.BookFirstFlight().proceedIfBrandedFareExists();
+        String FareBreakDown = searchBookingBranch.FareBreakDown();
+
+        searchBookingBranch.assertContains(SegmentData, FlightCard, softAssert);
+        searchBookingBranch.assertContains(FareData, FareBreakDown, softAssert);
+
+        new PaxDetailsPage(driver).fillOnePassengerDetails(PassengerPaxTitle,
+                adultDob,
+                childDob,
+                infantDob,
+                PassengerPaxEmail,
+                PassengerPaxPhone,
+                PassengerPaxExpiryDate,
+                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+        String BookingReference = searchBookingBranch.GetBookingReference();
+        searchBookingBranch.addBookingReference(BookingReference);
+
+        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
+        new SearchBooking_Page(driver)
+                .SelectFlight()
+                .SelectBranch(BranchName)
+                .SelectCurrentStartDate()
+                .SelectCurrentEndDate()
+                .EnterBookingReference(BookingReference)
+                .ClickSearch()
+                .verifyThatTheUserCanSearchByBookinReference();
+        searchBookingBranch.PayAfterHoldFlow();
+        searchBookingBranch.SuccessPayAfterHoldAssertion();
+    }
+
+    @Test
+    public void BookMultiCity() throws InterruptedException {
+        SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
+        new Booking_Common(driver).clickBookingMidOffice();
+        searchBookingBranch.SelectBranch(BranchName)
+                .SelectMultiCity()
+                .AddStartingFromMultiCity(source).AddGoingToMultiCity(destination).AddGoingToSecondDestinationMultiCity(SecondDestination)
+                .SelectFirstDateOfTrip(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
                 .passengersDropDown()
                 .SelectNumberOfAdult(Integer.parseInt(NumberOfAdults)).SelectNumberOfChildren(Integer.parseInt(NumberOfChildren)).SelectNumberOfInfant(Integer.parseInt(NumberOfInfants)).clickOnSearchButton().OpenSideMenuInfo();
         List<String> SegmentData = searchBookingBranch.SegmentDetails();

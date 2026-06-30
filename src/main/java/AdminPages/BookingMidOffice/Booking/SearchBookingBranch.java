@@ -71,10 +71,20 @@ public class SearchBookingBranch {
     By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
     By FareBreakDown_Txt = By.xpath("//div[@class='fare-breakdown-container ng-star-inserted']");
+    By expandButton = By.xpath("(//button[@class='expand-btn'])[1]");
     private final By brandedFares = By.xpath("//p-carousel");
     private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
-    By Txt_PayableAmount = By.xpath("(//span[@class='text-900 font-semibold text-lg'])[1]");
     By Txt_SuccessMessage = By.xpath("(//p[@class='mx-2 text-base text-green-700 ng-star-inserted'])[1]");
+    By Btn_RoundTrip = By.xpath("(//button[normalize-space()='Round-trip'])[1]");
+    By Btn_MultiCity = By.xpath("(//button[normalize-space()='Multi-city'])[1]");
+    By Btn_OriginRoundTrip = By.xpath("(//div[@class='p-element p-multiselect-label-container'])[1]");
+    By Btn_DestinationRoundTrip = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
+    By Btn_FirstTripDate = By.xpath("(//span[@class='p-button-icon pi pi-calendar'])[1]");
+    By Btn_SecondTripDate  = By.xpath("(//span[@class='p-button-icon pi pi-calendar'])[2]");
+    By Btn_OriginMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='From *'])[1]");
+    By Btn_DestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
+    By Btn_SecondDestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-trigger-icon pi pi-chevron-down'])[8]");
+    By Inp_DestinationMultiCity  = By.xpath("(//input[@class='p-dropdown-filter p-inputtext p-component'])[1]");
 
     public SearchBookingBranch BookFirstFlight() throws InterruptedException {
         driver.element().click(BookFlight_BTN);
@@ -85,6 +95,17 @@ public class SearchBookingBranch {
         driver.element().click(firstFlicghtSelector);
         return new SearchBookingBranch(driver);
     }
+
+    public SearchBookingBranch SelectRoundTrip(){
+        driver.element().click(Btn_RoundTrip);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch SelectMultiCity(){
+        driver.element().click(Btn_MultiCity);
+        return new SearchBookingBranch(driver);
+    }
+
     public SearchBookingBranch SaveQuote(){
         driver.element().click(saveQuoteBtn);
         return new SearchBookingBranch(driver);
@@ -100,12 +121,7 @@ public class SearchBookingBranch {
     }
 
     public List<String> SegmentDetails() {
-        for (int i=1; i<6; i++) {
-            By expandButton = By.xpath("(//button[@class='expand-btn'])["+ i +"]");
-            if (!driver.getDriver().findElements(expandButton).isEmpty()) {
-                driver.element().click(expandButton);
-            }
-        }
+        driver.element().click(expandButton);
         List<WebElement> elements = driver.getDriver().findElements(FlightDetails_Txt);
         List<String> Segment = new ArrayList<>();
 
@@ -237,6 +253,71 @@ public class SearchBookingBranch {
         driver.element().type(selectTo, Place);
         By selectTo = By.xpath("//li[@aria-label='" + Place + "']");
         driver.element().click(selectTo);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch AddStartingFromRoundTrip(String Place) {
+        driver.element().click(Btn_OriginRoundTrip);
+        driver.element().type(selectFrom, Place);
+        driver.element().click(fromCheckBox);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch AddGoingToRoundTrip(String Place) {
+        driver.element().click(Btn_DestinationRoundTrip);
+        driver.element().type(selectTo, Place);
+        By selectTo = By.xpath("//li[@aria-label='" + Place + "']");
+        driver.element().click(selectTo);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch AddStartingFromMultiCity(String Place) {
+        driver.element().click(Btn_OriginMultiCity);
+        driver.element().type(Inp_DestinationMultiCity, Place);
+        By selectTo = By.xpath("//li[@aria-label='" + Place + "']");
+        driver.element().click(selectTo);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch AddGoingToMultiCity(String Place) {
+        driver.element().click(Btn_DestinationMultiCity);
+        driver.element().type(Inp_DestinationMultiCity, Place);
+        By selectTo = By.xpath("//li[@aria-label='" + Place + "']");
+        driver.element().click(selectTo);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch AddGoingToSecondDestinationMultiCity(String Place) {
+        driver.element().click(Btn_SecondDestinationMultiCity);
+        driver.element().type(Inp_DestinationMultiCity, Place);
+        By selectTo = By.xpath("//li[@aria-label='" + Place + "']");
+        driver.element().click(selectTo);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch SelectFirstDateOfTrip(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_FirstTripDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
+        return new SearchBookingBranch(driver);
+    }
+
+    public SearchBookingBranch SelectSecondDateOfTrip(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(Btn_SecondTripDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
         return new SearchBookingBranch(driver);
     }
 
