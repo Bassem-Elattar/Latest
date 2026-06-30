@@ -38,6 +38,15 @@ public class TotalDueToNDCReport {
     private final By tableRows = By.xpath("//tbody/tr");
     private final By agencyCurrency = By.xpath("(//span[@class='currency'])[1]");
 
+    private final By reportsMenu = By.xpath("//a[.//span[normalize-space()='Reports']]");
+    private final By totalDueToNdcButton = By.xpath("//ndc-card[.//h3[normalize-space()='Total Due to NDC']]//button");
+
+    public TotalDueToNDCReport openTotalDueToNdcReport() {
+        driver.element().click(reportsMenu);
+        driver.element().click(totalDueToNdcButton);
+        return this;
+    }
+
     public TotalDueToNDCReport searchValidFromDate(String From, String year, String month) throws InterruptedException {
 
         driver.element().click(Dpick_fromDateSend);

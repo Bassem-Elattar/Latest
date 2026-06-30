@@ -32,6 +32,20 @@ public class SalesReport {
     By Btn_nextButton = By.xpath("//div/button[@class='next']");
     By Btn_exportButton = By.xpath("//button[contains(@class,'upper-table-btn')]");
     By rows = By.xpath("//tbody/tr");
+    private static final String AGENT_OPTION_XPATH =
+            "//li[@role='option']//span[normalize-space()='%s']";
+
+    private final By reportsMenu =
+            By.xpath("//a[.//span[normalize-space()='Reports']]");
+
+    private final By salesButton =
+            By.xpath("//ndc-card[.//h3[normalize-space()='Sales']]//button");
+
+    public SalesReport openSalesReport() {
+        driver.element().click(reportsMenu);
+        driver.element().click(salesButton);
+        return this;
+    }
 
 
     public SalesReport setDate(String From, String year, String month){
@@ -82,7 +96,7 @@ public class SalesReport {
 
     public SalesReport setAgentName(String agentName) {
         driver.element().click(AgentName);
-        By option = By.xpath("//li[@role='option']//span[normalize-space()='" + agentName + "']");
+        By option = By.xpath(String.format(AGENT_OPTION_XPATH, agentName));
         driver.element().click(option);
         return this;
     }

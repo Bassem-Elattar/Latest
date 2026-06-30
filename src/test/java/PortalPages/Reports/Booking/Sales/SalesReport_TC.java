@@ -21,13 +21,9 @@ public class SalesReport_TC {
 
         driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
         new Login_Page(driver).PortalLogin();
-
-        driver.element().click(By.xpath("//a[.//span[normalize-space()='Reports']]"));
-        driver.element().click(By.xpath("//ndc-card[.//h3[normalize-space()='Sales']]//button"));
-
         testData = new SHAFT.TestData.JSON("SearchSalesReport.json");
-
         sales = new SalesReport(driver);
+        sales.openSalesReport();
     }
 
     @Test
@@ -48,7 +44,7 @@ public class SalesReport_TC {
                 .setInvoiceNumber(testData.getTestData("[0].InvoiceNumber"))
                 .setCustomerName(testData.getTestData("[0].CustomerName"))
                 .setTransactionID(testData.getTestData("[0].TransactionID"))
-                .setAgentName(testData.getTestData("[0].AgentName"))
+                .setAgentName(testData.getTestData("[0].PortalAgentName"))
                 .clickSearch()
                 .verifyThatResultsIsDisplayed();
     }

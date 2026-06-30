@@ -20,11 +20,9 @@ public class TotalDueToNDCReport_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
         new Login_Page(driver).PortalLogin();
-        driver.element().click(By.xpath("//a[.//span[normalize-space()='Reports']]"));
-        driver.element().click(By.xpath("//ndc-card[.//h3[normalize-space()='Total Due to NDC']]//button"));
         testData = new SHAFT.TestData.JSON("TotalDue.json");
-
         dueToNDC = new TotalDueToNDCReport(driver);
+        dueToNDC.openTotalDueToNdcReport();
     }
 
     @Test
