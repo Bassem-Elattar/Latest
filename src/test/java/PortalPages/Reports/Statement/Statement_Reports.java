@@ -1,26 +1,31 @@
 package PortalPages.Reports.Statement;
 
+import Drive_Factory.CommonMethod;
 import PortalPages.Login.Login_Page;
-import PortalPages.Login.PortalTestBase_TC;
 import com.shaft.driver.SHAFT;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import utilities.DataUtils;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Statement_Reports extends PortalTestBase_TC {
+public class Statement_Reports {
 
+    private SHAFT.GUI.WebDriver driver;
     private Statement statement;
     private SHAFT.TestData.JSON testData;
 
     @BeforeClass
-    public void loginToPortal() throws InterruptedException {
+    public void setup() {
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
         testData = new SHAFT.TestData.JSON("PortalStatementReport.json");
-        loginIfNeeded();
+
+        driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
+        new Login_Page(driver).PortalLogin();
     }
 
     @BeforeMethod
@@ -29,88 +34,96 @@ public class Statement_Reports extends PortalTestBase_TC {
         statement.openStatementReport();
     }
 
-    private void loginIfNeeded() throws InterruptedException {
-        for (int i = 0; i < 10; i++) {
-            if (isElementPresent(By.id("id-AgencyCode"))) {
-                new Login_Page(driver).PortalLogin();
-                waitUntilLoginCompletes();
-                return;
-            }
-
-            if (isElementPresent(By.xpath("//tilde-theme-side-menu"))) {
-                return;
-            }
-
-            Thread.sleep(500);
-        }
-    }
-
-    private void waitUntilLoginCompletes() throws InterruptedException {
-        for (int i = 0; i < 20; i++) {
-            if (!isElementPresent(By.id("id-AgencyCode"))) {
-                return;
-            }
-
-            Thread.sleep(500);
-        }
-    }
-
-    private boolean isElementPresent(By locator) {
-        return !driver.getDriver().findElements(locator).isEmpty();
-    }
-
     @Test
     public void verifyUserCanOpenStatementReport() {
-        Assert.assertTrue(statement.isPageTitleDisplayed(), "Statement report page title should be displayed.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.isPageTitleDisplayed(), "Statement report page title should be displayed.");
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyStatementReportPageControls() {
-        Assert.assertTrue(statement.isInvoiceFromDateDisplayed(), "Invoice From Date should be displayed.");
-        Assert.assertTrue(statement.isInvoiceToDateDisplayed(), "Invoice To Date should be displayed.");
-        Assert.assertTrue(statement.isPassengerNameDisplayed(), "Passenger Name should be displayed.");
-        Assert.assertTrue(statement.isAgentNameDisplayed(), "Agent Name should be displayed.");
-        Assert.assertTrue(statement.isBookingReferenceDisplayed(), "Booking Reference should be displayed.");
-        Assert.assertTrue(statement.isSearchButtonDisplayed(), "Search button should be displayed.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.isInvoiceFromDateDisplayed(), "Invoice From Date should be displayed.");
+        softAssert.assertTrue(statement.isInvoiceToDateDisplayed(), "Invoice To Date should be displayed.");
+        softAssert.assertTrue(statement.isPassengerNameDisplayed(), "Passenger Name should be displayed.");
+        softAssert.assertTrue(statement.isAgentNameDisplayed(), "Agent Name should be displayed.");
+        softAssert.assertTrue(statement.isBookingReferenceDisplayed(), "Booking Reference should be displayed.");
+        softAssert.assertTrue(statement.isSearchButtonDisplayed(), "Search button should be displayed.");
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyRequiredValidationWhenInvoiceDatesAreEmpty() {
         statement.clickSearch();
 
-        Assert.assertEquals(statement.getInvoiceFromDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
-        Assert.assertEquals(statement.getInvoiceToDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(statement.getInvoiceFromDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        softAssert.assertEquals(statement.getInvoiceToDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyRequiredValidationWhenInvoiceFromDateIsEmpty() {
         statement
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
                 .clickSearch();
 
-        Assert.assertEquals(statement.getInvoiceFromDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(statement.getInvoiceFromDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyRequiredValidationWhenInvoiceToDateIsEmpty() {
         statement
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"))
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                )
                 .clickSearch();
 
-        Assert.assertEquals(statement.getInvoiceToDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(statement.getInvoiceToDateRequiredMessage(), testData.getTestData("ValidationMessages.Required"));
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyValidationWhenInvoiceFromDateIsAfterInvoiceToDate() {
         statement
-                .enterInvoiceFromDate(testData.getTestData("InvalidFromAfterTo.InvoiceFromDate"))
-                .enterInvoiceToDate(testData.getTestData("InvalidFromAfterTo.InvoiceToDate"))
+                .searchValidFromDate(
+                        testData.getTestData("InvalidFromAfterTo.InvoiceFromDate.Day"),
+                        testData.getTestData("InvalidFromAfterTo.InvoiceFromDate.Year"),
+                        testData.getTestData("InvalidFromAfterTo.InvoiceFromDate.Month"),
+                        testData.getTestData("InvalidFromAfterTo.InvoiceFromDate.Value")
+                )
+                .searchValidToDate(
+                        testData.getTestData("InvalidFromAfterTo.InvoiceToDate.Day"),
+                        testData.getTestData("InvalidFromAfterTo.InvoiceToDate.Year"),
+                        testData.getTestData("InvalidFromAfterTo.InvoiceToDate.Month"),
+                        testData.getTestData("InvalidFromAfterTo.InvoiceToDate.Value")
+                )
                 .clickSearch();
 
-        Assert.assertEquals(
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(
                 statement.getInvalidDateRangeMessage(),
                 testData.getTestData("InvalidFromAfterTo.ExpectedError")
         );
+        softAssert.assertAll();
     }
 
     @Test
@@ -136,28 +149,50 @@ public class Statement_Reports extends PortalTestBase_TC {
         );
 
         statement
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"));
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                );
 
-        Assert.assertEquals(statement.getInvoiceFromDateValue(), testData.getTestData("ValidDateRange.InvoiceFromDate"));
-        Assert.assertEquals(statement.getInvoiceToDateValue(), testData.getTestData("ValidDateRange.InvoiceToDate"));
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(statement.getInvoiceFromDateValue(), validFromDateValue());
+        softAssert.assertEquals(statement.getInvoiceToDateValue(), validToDateValue());
 
         statement.clickSearch();
 
-        Assert.assertEquals(statement.getTableHeaders(), expectedHeaders);
+        softAssert.assertEquals(statement.getTableHeaders(), expectedHeaders);
+        softAssert.assertAll();
     }
 
     @Test
     public void verifySearchUsingValidDateRangeDisplaysResults() {
         statement.searchByInvoiceDateRange(
-                testData.getTestData("ValidDateRange.InvoiceFromDate"),
-                testData.getTestData("ValidDateRange.InvoiceToDate")
+                testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                validFromDateValue(),
+                testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                validToDateValue()
         );
 
-        Assert.assertTrue(statement.isReportTableDisplayed(), "Statement report table should be displayed.");
-        Assert.assertTrue(statement.areTableHeadersDisplayed(), "Statement report headers should be displayed.");
-        Assert.assertTrue(statement.getTableRowsCount() > 0, "Statement report should display at least one row.");
-        Assert.assertTrue(statement.isExportToExcelButtonDisplayed(), "Export To Excel button should be displayed.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.isReportTableDisplayed(), "Statement report table should be displayed.");
+        softAssert.assertTrue(statement.areTableHeadersDisplayed(), "Statement report headers should be displayed.");
+        softAssert.assertTrue(statement.getTableRowsCount() > 0, "Statement report should display at least one row.");
+        softAssert.assertTrue(statement.isExportToExcelButtonDisplayed(), "Export To Excel button should be displayed.");
+        softAssert.assertAll();
     }
 
     @Test
@@ -165,12 +200,24 @@ public class Statement_Reports extends PortalTestBase_TC {
         String passengerName = testData.getTestData("Passenger.ValidName");
 
         statement
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"))
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                )
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
                 .enterPassengerName(passengerName)
                 .clickSearch();
 
-        Assert.assertTrue(statement.getTableRowsCount() > 0, "Passenger search should return at least one row.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.getTableRowsCount() > 0, "Passenger search should return at least one row.");
 
         boolean passengerIsFound = false;
 
@@ -181,23 +228,37 @@ public class Statement_Reports extends PortalTestBase_TC {
             }
         }
 
-        Assert.assertTrue(passengerIsFound, "Passenger column should contain the passenger filter value.");
+        softAssert.assertTrue(passengerIsFound, "Passenger column should contain the passenger filter value.");
+        softAssert.assertAll();
     }
 
     @Test
     public void verifySearchUsingSameInvoiceFromAndToDateReturnsSameDateRows() {
-        String invoiceDate = testData.getTestData("SameDaySearch.InvoiceDate");
+        String invoiceDate = testData.getTestData("SameDaySearch.InvoiceDate.Value");
 
-        statement.searchByInvoiceDateRange(invoiceDate, invoiceDate);
+        statement.searchByInvoiceDateRange(
+                testData.getTestData("SameDaySearch.InvoiceDate.Day"),
+                testData.getTestData("SameDaySearch.InvoiceDate.Year"),
+                testData.getTestData("SameDaySearch.InvoiceDate.Month"),
+                invoiceDate,
+                testData.getTestData("SameDaySearch.InvoiceDate.Day"),
+                testData.getTestData("SameDaySearch.InvoiceDate.Year"),
+                testData.getTestData("SameDaySearch.InvoiceDate.Month"),
+                invoiceDate
+        );
 
-        Assert.assertTrue(statement.getTableRowsCount() > 0, "Same-day search should return at least one row.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.getTableRowsCount() > 0, "Same-day search should return at least one row.");
 
         for (String dateOfIssue : statement.getColumnValues(5)) {
-            Assert.assertTrue(
+            softAssert.assertTrue(
                     isSameDate(dateOfIssue, invoiceDate),
                     "Date of Issue should belong to the selected same-day date."
             );
         }
+
+        softAssert.assertAll();
     }
 
     private boolean isSameDate(String actualDateTime, String expectedDate) {
@@ -213,15 +274,28 @@ public class Statement_Reports extends PortalTestBase_TC {
     @Test
     public void verifyNoDataMessageWhenPassengerDoesNotExist() {
         statement
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"))
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                )
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
                 .enterPassengerName(testData.getTestData("Passenger.InvalidName"))
                 .clickSearchAndWaitForNoData();
 
-        Assert.assertTrue(
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(
                 statement.isNoRecordsMessageDisplayed() || statement.hasNoTableRows(),
                 "No data message should be displayed or no table rows should be returned."
         );
+        softAssert.assertAll();
     }
 
     @Test
@@ -229,12 +303,24 @@ public class Statement_Reports extends PortalTestBase_TC {
         String bookingReference = testData.getTestData("BookingReference.ValidReference");
 
         statement
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"))
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                )
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
                 .enterBookingReference(bookingReference)
                 .clickSearch();
 
-        Assert.assertTrue(statement.getTableRowsCount() > 0, "Booking reference search should return at least one row.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.getTableRowsCount() > 0, "Booking reference search should return at least one row.");
 
         boolean bookingReferenceIsFound = false;
 
@@ -245,21 +331,35 @@ public class Statement_Reports extends PortalTestBase_TC {
             }
         }
 
-        Assert.assertTrue(bookingReferenceIsFound, "Transaction ID should contain the booking reference filter value.");
+        softAssert.assertTrue(bookingReferenceIsFound, "Transaction ID should contain the booking reference filter value.");
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyNoDataMessageWhenBookingReferenceDoesNotExist() {
         statement
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"))
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                )
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
                 .enterBookingReference(testData.getTestData("BookingReference.InvalidReference"))
                 .clickSearchAndWaitForNoData();
 
-        Assert.assertTrue(
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(
                 statement.isNoRecordsMessageDisplayed() || statement.hasNoTableRows(),
                 "No data message should be displayed or no table rows should be returned."
         );
+        softAssert.assertAll();
     }
 
     @Test
@@ -267,28 +367,59 @@ public class Statement_Reports extends PortalTestBase_TC {
         String agentName = testData.getTestData("Agent.Name");
 
         statement
-                .enterInvoiceFromDate(testData.getTestData("ValidDateRange.InvoiceFromDate"))
-                .enterInvoiceToDate(testData.getTestData("ValidDateRange.InvoiceToDate"))
+                .searchValidFromDate(
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                        validFromDateValue()
+                )
+                .searchValidToDate(
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                        testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                        validToDateValue()
+                )
                 .selectAgentName(agentName)
                 .clickSearch();
 
-        Assert.assertTrue(statement.getTableRowsCount() > 0, "Agent search should return at least one row.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.getTableRowsCount() > 0, "Agent search should return at least one row.");
 
         for (String agencyName : statement.getColumnValues(3)) {
-            Assert.assertFalse(agencyName.isBlank(), "Agency Name should be displayed for the selected agent result.");
+            softAssert.assertFalse(agencyName.isBlank(), "Agency Name should be displayed for the selected agent result.");
         }
+
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyUserCanExportStatementReportToExcel() {
         statement.searchByInvoiceDateRange(
-                testData.getTestData("ValidDateRange.InvoiceFromDate"),
-                testData.getTestData("ValidDateRange.InvoiceToDate")
+                testData.getTestData("ValidDateRange.InvoiceFromDate.Day"),
+                testData.getTestData("ValidDateRange.InvoiceFromDate.Year"),
+                testData.getTestData("ValidDateRange.InvoiceFromDate.Month"),
+                validFromDateValue(),
+                testData.getTestData("ValidDateRange.InvoiceToDate.Day"),
+                testData.getTestData("ValidDateRange.InvoiceToDate.Year"),
+                testData.getTestData("ValidDateRange.InvoiceToDate.Month"),
+                validToDateValue()
         );
 
-        Assert.assertTrue(statement.isExportToExcelButtonDisplayed(), "Export To Excel button should be displayed.");
-        Assert.assertTrue(statement.isExportToExcelButtonClickable(), "Export To Excel button should be clickable.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(statement.isExportToExcelButtonDisplayed(), "Export To Excel button should be displayed.");
+        softAssert.assertTrue(statement.isExportToExcelButtonClickable(), "Export To Excel button should be clickable.");
+        softAssert.assertAll();
 
         statement.clickExportToExcel();
+    }
+
+    private String validFromDateValue() {
+        return testData.getTestData("ValidDateRange.InvoiceFromDate.Value");
+    }
+
+    private String validToDateValue() {
+        return testData.getTestData("ValidDateRange.InvoiceToDate.Value");
     }
 }

@@ -14,36 +14,40 @@ public class Statement {
 
     private final SHAFT.GUI.WebDriver driver;
 
-    private final By reportsMenu = By.xpath("//tilde-theme-side-menu//a[.//span[normalize-space()='Reports'] or normalize-space()='Reports']");
-    private final By statementReportMenu = By.xpath("//ndc-reports/div/div/div/div[2]/ndc-card[4]/div/div[3]/button");
-    private final By pageTitle = By.xpath("//ndc-statement//p[normalize-space()='Statement reports']");
-    private final By invoiceFromDate = By.id("id-InvoiceFromDate");
-    private final By invoiceFromDateCalendarButton = By.xpath("//input[@id='id-InvoiceFromDate']/following-sibling::button");
-    private final By invoiceFromDateRequiredMessage = By.xpath("//input[@id='id-InvoiceFromDate']/ancestor::ndc-fg-input/span[normalize-space()='Required']");
-    private final By invoiceToDate = By.id("id-InvoiceToDate");
-    private final By invoiceToDateCalendarButton = By.xpath("//input[@id='id-InvoiceToDate']/following-sibling::button");
-    private final By invoiceToDateRequiredMessage = By.xpath("//input[@id='id-InvoiceToDate']/ancestor::ndc-fg-input/span[normalize-space()='Required']");
-    private final By invalidDateRangeMessage = By.xpath("//ndc-statement//span[normalize-space()='invoiceFromDate must be smaller than invoiceToDate']");
-    private final By validationMessages = By.xpath("//ndc-statement//span[contains(@class,'fg-error') and normalize-space()!='']");
-    private final By passengerName = By.id("id-PassengerName");
-    private final By agentName = By.id("id-AgentName");
-    private final By agentNameDropdown = By.xpath("//input[@id='id-AgentName']/ancestor::p-dropdown//div[contains(@class,'p-dropdown-trigger')]");
-    private final By bookingReference = By.id("id-Bookingreference");
-    private final By searchButton = By.xpath("//ndc-statement//button[@type='submit' and .//span[normalize-space()='Search']]");
-    private final By exportToExcelButton = By.xpath("//ndc-statement//button[contains(normalize-space(),'Export To Excel') or .//*[contains(normalize-space(),'Export To Excel')]]");
-    private final By reportTable = By.xpath("//ndc-statement//tilde-data-table//p-table//table");
-    private final By tableHeaders = By.xpath("//ndc-statement//tilde-data-table//p-table//table/thead/tr/th");
-    private final By tableRows = By.xpath("//ndc-statement//tilde-data-table//p-table//table/tbody/tr");
-    private final By noRecordsMessage = By.xpath("//*[contains(normalize-space(),'No data') or contains(normalize-space(),'No Data') or contains(normalize-space(),'No records')]");
-    private final By exactNoDataMessage = By.xpath("//*[normalize-space()='No data has been found!']");
-    private final By toastMessage = By.xpath("//div[@role='alert' or contains(@class,'toast-message')]");
+    private final By Btn_ReportsMenu = By.xpath("//tilde-theme-side-menu//a[.//span[normalize-space()='Reports'] or normalize-space()='Reports']");
+    private final By Btn_StatementReportMenu = By.xpath("//ndc-reports/div/div/div/div[2]/ndc-card[4]/div/div[3]/button");
+    private final By Txt_PageTitle = By.xpath("//ndc-statement//p[normalize-space()='Statement reports']");
+    private final By Dpick_InvoiceFromDate = By.id("id-InvoiceFromDate");
+    private final By Btn_InvoiceFromDateCalendar = By.xpath("//input[@id='id-InvoiceFromDate']/ancestor::p-calendar//button");
+    private final By Txt_InvoiceFromDateRequiredMessage = By.xpath("//input[@id='id-InvoiceFromDate']/ancestor::ndc-fg-input/span[normalize-space()='Required']");
+    private final By Dpick_InvoiceToDate = By.id("id-InvoiceToDate");
+    private final By Btn_InvoiceToDateCalendar = By.xpath("//input[@id='id-InvoiceToDate']/ancestor::p-calendar//button");
+    private final By Txt_InvoiceToDateRequiredMessage = By.xpath("//input[@id='id-InvoiceToDate']/ancestor::ndc-fg-input/span[normalize-space()='Required']");
+    private final By Txt_InvalidDateRangeMessage = By.xpath("//ndc-statement//span[normalize-space()='invoiceFromDate must be smaller than invoiceToDate']");
+    private final By Txt_ValidationMessages = By.xpath("//ndc-statement//span[contains(@class,'fg-error') and normalize-space()!='']");
+    private final By Txt_PassengerName = By.id("id-PassengerName");
+    private final By Txt_AgentName = By.id("id-AgentName");
+    private final By Lst_AgentName = By.xpath("//input[@id='id-AgentName']/ancestor::p-dropdown//div[contains(@class,'p-dropdown-trigger')]");
+    private final By Txt_BookingReference = By.id("id-Bookingreference");
+    private final By Btn_Search = By.xpath("//ndc-statement//button[@type='submit' and .//span[normalize-space()='Search']]");
+    private final By Btn_ExportToExcel = By.xpath("//ndc-statement//button[contains(normalize-space(),'Export To Excel') or .//*[contains(normalize-space(),'Export To Excel')]]");
+    private final By Lst_ReportTable = By.xpath("//ndc-statement//tilde-data-table//p-table//table");
+    private final By Txt_TableHeaders = By.xpath("//ndc-statement//tilde-data-table//p-table//table/thead/tr/th");
+    private final By Lst_TableRows = By.xpath("//ndc-statement//tilde-data-table//p-table//table/tbody/tr");
+    private final By Txt_NoRecordsMessage = By.xpath("//*[contains(normalize-space(),'No data') or contains(normalize-space(),'No Data') or contains(normalize-space(),'No records')]");
+    private final By Txt_ExactNoDataMessage = By.xpath("//*[normalize-space()='No data has been found!']");
+    private final By Txt_ToastMessage = By.xpath("//div[@role='alert' or contains(@class,'toast-message')]");
 
     public Statement(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     public Statement openStatementReport() {
-        driver.browser().navigateToURL(DataUtils.get("Portal_Url").replace("/auth/login", "/reports/statement"));
+        hideChatWidget();
+        driver.element().click(Btn_ReportsMenu);
+        waitForStatementReportCard();
+        driver.element().click(Btn_StatementReportMenu);
+        waitForStatementReportForm();
         hideChatWidget();
         return this;
     }
@@ -64,27 +68,18 @@ public class Statement {
         waitForSearchRefreshToStart();
 
         for (int i = 0; i < 60; i++) {
-            if (isAnyElementDisplayed(tableRows)
-                    || isAnyElementDisplayed(noRecordsMessage)
-                    || isAnyElementDisplayed(validationMessages)) {
+            if (isAnyElementDisplayed(Lst_TableRows)
+                    || isAnyElementDisplayed(Txt_NoRecordsMessage)
+                    || isAnyElementDisplayed(Txt_ValidationMessages)) {
                 return;
             }
 
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return;
-            }
+            sleep(500);
         }
     }
 
     private void waitForSearchRefreshToStart() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        sleep(1000);
     }
 
     private boolean isAnyElementDisplayed(By locator) {
@@ -99,188 +94,106 @@ public class Statement {
         return false;
     }
 
-    private void waitForTableHeaders() {
-        for (int i = 0; i < 60; i++) {
-            if (isAnyElementDisplayed(tableHeaders)) {
+    private void waitForStatementReportForm() {
+        for (int i = 0; i < 40; i++) {
+            if (isAnyElementDisplayed(Txt_PageTitle) && isAnyElementDisplayed(Dpick_InvoiceFromDate)) {
                 return;
             }
 
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return;
-            }
+            sleep(250);
         }
     }
 
-    public Statement enterInvoiceFromDate(String fromDate) {
-        selectDateFromCalendar(invoiceFromDate, invoiceFromDateCalendarButton, fromDate);
+    private void waitForStatementReportCard() {
+        for (int i = 0; i < 40; i++) {
+            if (isAnyElementDisplayed(Btn_StatementReportMenu)) {
+                return;
+            }
+
+            sleep(250);
+        }
+    }
+
+    private void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void waitForTableHeaders() {
+        for (int i = 0; i < 60; i++) {
+            if (isAnyElementDisplayed(Txt_TableHeaders)) {
+                return;
+            }
+
+            sleep(500);
+        }
+    }
+
+    public Statement enterInvoiceFromDate(String from, String year, String month, String expectedDate) {
+        return searchValidFromDate(from, year, month, expectedDate);
+    }
+
+    public Statement searchValidFromDate(String from, String year, String month, String expectedDate) {
+        selectDateFromCalendar(Dpick_InvoiceFromDate, from, year, month, expectedDate);
         return this;
     }
 
     public Statement openInvoiceFromDateCalendar() {
-        driver.element().click(invoiceFromDateCalendarButton);
+        driver.element().click(Btn_InvoiceFromDateCalendar);
         return this;
     }
 
-    public Statement enterInvoiceToDate(String toDate) {
-        selectDateFromCalendar(invoiceToDate, invoiceToDateCalendarButton, toDate);
+    public Statement enterInvoiceToDate(String to, String year, String month, String expectedDate) {
+        return searchValidToDate(to, year, month, expectedDate);
+    }
+
+    public Statement searchValidToDate(String to, String year, String month, String expectedDate) {
+        selectDateFromCalendar(Dpick_InvoiceToDate, to, year, month, expectedDate);
         return this;
     }
 
-    private void selectDateFromCalendar(By input, By calendarButton, String date) {
+    private void selectDateFromCalendar(By input, String day, String year, String month, String expectedDate) {
         hideCalendarOverlay();
-        clickUsingJavaScript(calendarButton);
+        driver.element().click(input);
         waitForVisibleCalendar();
-        selectCalendarDate(date);
-        waitForDateValue(input, date);
+        clickCalendarYearTitle();
+        clickVisibleCalendarValue(year);
+        clickVisibleCalendarValue(month);
+        clickVisibleCalendarDay(day);
+        waitForDateValue(input, expectedDate);
 
-        if (!date.equals(getInputValue(input))) {
+        if (!expectedDate.equals(getInputValue(input))) {
             hideCalendarOverlay();
-            clickUsingJavaScript(calendarButton);
+            driver.element().click(input);
             waitForVisibleCalendar();
-            selectCalendarDate(date);
-            waitForDateValue(input, date);
+            clickCalendarYearTitle();
+            clickVisibleCalendarValue(year);
+            clickVisibleCalendarValue(month);
+            clickVisibleCalendarDay(day);
+            waitForDateValue(input, expectedDate);
         }
 
         hideCalendarOverlay();
     }
 
-    private void selectCalendarYear(String year) {
-        clickUsingJavaScript(By.xpath("//div[contains(@class,'p-datepicker') and not(contains(@style,'display: none'))]//button[contains(@class,'p-datepicker-year')]"));
-        clickUsingJavaScript(By.xpath("//div[contains(@class,'p-datepicker') and not(contains(@style,'display: none'))]//span[normalize-space()='" + year + "']"));
-    }
-
-    private void selectCalendarMonth(String monthNumber) {
-        String[] months = {
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        };
-        String month = months[Integer.parseInt(monthNumber) - 1];
-
-        clickUsingJavaScript(By.xpath("//div[contains(@class,'p-datepicker') and not(contains(@style,'display: none'))]//span[normalize-space()='" + month + "']"));
-    }
-
-    private void selectCalendarDate(String date) {
-        String[] dateParts = date.split("/");
-        String day = String.valueOf(Integer.parseInt(dateParts[0]));
-        selectCalendarDay(day);
-    }
-
-    private void selectCalendarDateLikeAdmin(String date) {
-        String[] dateParts = date.split("/");
-        String day = String.valueOf(Integer.parseInt(dateParts[0]));
-        String month = getCalendarMonthName(dateParts[1]);
-        String year = dateParts[2];
-
-        clickVisibleCalendarText(year);
-        waitForVisibleCalendar();
-        clickVisibleCalendarText(year);
-        waitForVisibleCalendar();
-        clickVisibleCalendarText(month);
-        waitForVisibleCalendar();
-        selectCalendarDay(day);
-    }
-
-    private void clickVisibleCalendarText(String value) {
-        ((JavascriptExecutor) driver.getDriver()).executeScript(
-                "const value = arguments[0];" +
-                        "const calendars = Array.from(document.querySelectorAll('.p-datepicker, [class*=\"datepicker\"]'))" +
-                        ".filter(calendar => {" +
-                        "  const style = window.getComputedStyle(calendar);" +
-                        "  const rect = calendar.getBoundingClientRect();" +
-                        "  return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;" +
-                        "});" +
-                        "const calendar = calendars[calendars.length - 1];" +
-                        "if (!calendar) { throw new Error('No visible calendar popup was found'); }" +
-                        "const matches = Array.from(calendar.querySelectorAll('*'))" +
-                        ".filter(element => {" +
-                        "  const rect = element.getBoundingClientRect();" +
-                        "  const disabled = element.disabled || element.classList.contains('p-disabled') || element.closest('.p-disabled');" +
-                        "  return rect.width > 0 && rect.height > 0 && !disabled && element.textContent.trim() === value;" +
-                        "});" +
-                        "if (!matches.length) { throw new Error('Calendar value was not found: ' + value); }" +
-                        "matches.sort((first, second) => {" +
-                        "  const firstRect = first.getBoundingClientRect();" +
-                        "  const secondRect = second.getBoundingClientRect();" +
-                        "  return (firstRect.width * firstRect.height) - (secondRect.width * secondRect.height);" +
-                        "});" +
-                        "const target = matches[0].closest('button') || matches[0];" +
-                        "target.click();",
-                value
-        );
-    }
-
-    private String getCalendarMonthName(String monthNumber) {
-        String[] months = {
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        };
-
-        return months[Integer.parseInt(monthNumber) - 1];
-    }
-
-    private void clickCalendarTitleValue(String value) {
-        clickCalendarValue(value, true);
+    private void clickCalendarYearTitle() {
+        By yearTitle = By.xpath("//div[contains(@class,'p-datepicker') and not(contains(@style,'display: none'))]//*[contains(@class,'p-datepicker-year')]");
+        driver.element().click(yearTitle);
         waitForVisibleCalendar();
     }
 
-    private void clickCalendarValue(String value) {
-        clickCalendarValue(value, false);
+    private void clickVisibleCalendarValue(String value) {
+        By calendarValue = By.xpath("//div[contains(@class,'p-datepicker') and not(contains(@style,'display: none'))]//span[normalize-space()='" + value + "']");
+        driver.element().click(calendarValue);
         waitForVisibleCalendar();
     }
 
-    private void clickCalendarValue(String value, boolean titleOnly) {
-        ((JavascriptExecutor) driver.getDriver()).executeScript(
-                "const value = arguments[0];" +
-                        "const titleOnly = arguments[1];" +
-                        "const calendars = Array.from(document.querySelectorAll('.p-datepicker, [class*=\"datepicker\"]'))" +
-                        ".filter(calendar => {" +
-                        "  const style = window.getComputedStyle(calendar);" +
-                        "  const rect = calendar.getBoundingClientRect();" +
-                        "  return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;" +
-                        "});" +
-                        "const calendar = calendars[calendars.length - 1];" +
-                        "if (!calendar) { throw new Error('No visible calendar popup was found'); }" +
-                        "const selector = titleOnly ? '.p-datepicker-title button, .p-datepicker-title span' : 'button, span';" +
-                        "const elements = Array.from(calendar.querySelectorAll(selector))" +
-                        ".filter(element => {" +
-                        "  const rect = element.getBoundingClientRect();" +
-                        "  const disabled = element.disabled || element.classList.contains('p-disabled')" +
-                        "    || element.closest('.p-disabled');" +
-                        "  return rect.width > 0 && rect.height > 0 && !disabled && element.textContent.trim() === value;" +
-                        "});" +
-                        "const target = titleOnly ? elements[0] : elements[elements.length - 1];" +
-                        "if (!target) { throw new Error('Calendar value was not found: ' + value); }" +
-                        "target.click();",
-                value,
-                titleOnly
-        );
-    }
-
-    private void selectCalendarDay(String day) {
-        ((JavascriptExecutor) driver.getDriver()).executeScript(
-                "const day = arguments[0];" +
-                        "const calendars = Array.from(document.querySelectorAll('.p-datepicker, [class*=\"datepicker\"]'))" +
-                        ".filter(calendar => {" +
-                        "  const style = window.getComputedStyle(calendar);" +
-                        "  const rect = calendar.getBoundingClientRect();" +
-                        "  return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;" +
-                        "});" +
-                        "calendars.sort((first, second) => {" +
-                        "  const firstRect = first.getBoundingClientRect();" +
-                        "  const secondRect = second.getBoundingClientRect();" +
-                        "  return (secondRect.width * secondRect.height) - (firstRect.width * firstRect.height);" +
-                        "});" +
-                        "const calendar = calendars[0];" +
-                        "if (!calendar) { throw new Error('No visible calendar popup was found'); }" +
-                        "const days = Array.from(calendar.querySelectorAll('td:not(.p-datepicker-other-month):not(.p-disabled) span'));" +
-                        "const targetDay = days.find(element => element.textContent.trim() === day);" +
-                        "if (!targetDay) { throw new Error('Calendar day was not found: ' + day); }" +
-                        "targetDay.click();",
-                day
-        );
+    private void clickVisibleCalendarDay(String day) {
+        By calendarDay = By.xpath("(//div[contains(@class,'p-datepicker') and not(contains(@style,'display: none'))]//td[not(contains(@class,'p-datepicker-other-month')) and not(contains(@class,'p-disabled'))]//span[normalize-space()='" + day + "'])[1]");
+        driver.element().click(calendarDay);
     }
 
     private void waitForVisibleCalendar() {
@@ -331,21 +244,21 @@ public class Statement {
     }
 
     public String getInvoiceFromDateValue() {
-        return driver.getDriver().findElement(invoiceFromDate).getAttribute("value");
+        return driver.getDriver().findElement(Dpick_InvoiceFromDate).getAttribute("value");
     }
 
     public String getInvoiceToDateValue() {
-        return driver.getDriver().findElement(invoiceToDate).getAttribute("value");
+        return driver.getDriver().findElement(Dpick_InvoiceToDate).getAttribute("value");
     }
 
     public Statement openInvoiceToDateCalendar() {
-        driver.element().click(invoiceToDateCalendarButton);
+        driver.element().click(Btn_InvoiceToDateCalendar);
         return this;
     }
 
     public Statement enterPassengerName(String passenger) {
-        setInputValue(passengerName, passenger);
-        waitForInputValue(passengerName, passenger);
+        setInputValue(Txt_PassengerName, passenger);
+        waitForInputValue(Txt_PassengerName, passenger);
         return this;
     }
 
@@ -382,15 +295,15 @@ public class Statement {
     }
 
     public Statement selectAgentName(String agent) {
-        driver.element().click(agentNameDropdown);
+        driver.element().click(Lst_AgentName);
         typeIntoOpenDropdownFilter(agent);
         By agentOption = By.xpath("(//p-dropdownitem//li[contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'" + agent.toLowerCase() + "')])[1]");
 
         if (isAnyElementDisplayed(agentOption)) {
             driver.element().click(agentOption);
         } else {
-            setInputValue(agentName, agent);
-            waitForInputValue(agentName, agent);
+            setInputValue(Txt_AgentName, agent);
+            waitForInputValue(Txt_AgentName, agent);
             hideCalendarOverlay();
         }
 
@@ -417,21 +330,21 @@ public class Statement {
     }
 
     public Statement enterBookingReference(String reference) {
-        setInputValue(bookingReference, reference);
-        waitForInputValue(bookingReference, reference);
+        setInputValue(Txt_BookingReference, reference);
+        waitForInputValue(Txt_BookingReference, reference);
         return this;
     }
 
     public Statement clickSearch() {
         hideChatWidget();
-        clickUsingJavaScript(searchButton);
+        clickUsingJavaScript(Btn_Search);
         waitForSearchResponse();
         return this;
     }
 
     public Statement clickSearchAndWaitForNoData() {
         hideChatWidget();
-        clickUsingJavaScript(searchButton);
+        clickUsingJavaScript(Btn_Search);
         waitForNoDataResponse();
         return this;
     }
@@ -440,7 +353,7 @@ public class Statement {
         waitForSearchRefreshToStart();
 
         for (int i = 0; i < 20; i++) {
-            if (isAnyElementDisplayed(exactNoDataMessage) || getTableRowsCount() == 0) {
+            if (isAnyElementDisplayed(Txt_ExactNoDataMessage) || getTableRowsCount() == 0) {
                 return;
             }
 
@@ -453,72 +366,73 @@ public class Statement {
         }
     }
 
-    public Statement searchByInvoiceDateRange(String fromDate, String toDate) {
-        enterInvoiceToDate(toDate);
-        enterInvoiceFromDate(fromDate);
+    public Statement searchByInvoiceDateRange(String from, String fromYear, String fromMonth, String fromDate,
+                                              String to, String toYear, String toMonth, String toDate) {
+        enterInvoiceToDate(to, toYear, toMonth, toDate);
+        enterInvoiceFromDate(from, fromYear, fromMonth, fromDate);
         clickSearch();
         return this;
     }
 
     public Statement clickExportToExcel() {
         hideChatWidget();
-        clickUsingJavaScript(exportToExcelButton);
+        clickUsingJavaScript(Btn_ExportToExcel);
         return this;
     }
 
     public boolean isReportTableDisplayed() {
-        return driver.element().isElementDisplayed(reportTable);
+        return driver.element().isElementDisplayed(Lst_ReportTable);
     }
 
     public boolean isPageTitleDisplayed() {
-        return driver.element().isElementDisplayed(pageTitle);
+        return driver.element().isElementDisplayed(Txt_PageTitle);
     }
 
     public boolean isInvoiceFromDateDisplayed() {
-        return driver.element().isElementDisplayed(invoiceFromDate);
+        return driver.element().isElementDisplayed(Dpick_InvoiceFromDate);
     }
 
     public boolean isInvoiceToDateDisplayed() {
-        return driver.element().isElementDisplayed(invoiceToDate);
+        return driver.element().isElementDisplayed(Dpick_InvoiceToDate);
     }
 
     public boolean isPassengerNameDisplayed() {
-        return driver.element().isElementDisplayed(passengerName);
+        return driver.element().isElementDisplayed(Txt_PassengerName);
     }
 
     public boolean isAgentNameDisplayed() {
-        return driver.element().isElementDisplayed(agentNameDropdown);
+        return driver.element().isElementDisplayed(Lst_AgentName);
     }
 
     public boolean isBookingReferenceDisplayed() {
-        return driver.element().isElementDisplayed(bookingReference);
+        return driver.element().isElementDisplayed(Txt_BookingReference);
     }
 
     public boolean isSearchButtonDisplayed() {
-        return driver.element().isElementDisplayed(searchButton);
+        return driver.element().isElementDisplayed(Btn_Search);
     }
 
     public String getInvoiceFromDateRequiredMessage() {
-        return driver.element().getText(invoiceFromDateRequiredMessage);
+        return driver.element().getText(Txt_InvoiceFromDateRequiredMessage);
     }
 
     public String getInvoiceToDateRequiredMessage() {
-        return driver.element().getText(invoiceToDateRequiredMessage);
+        return driver.element().getText(Txt_InvoiceToDateRequiredMessage);
     }
 
     public String getInvalidDateRangeMessage() {
-        return driver.element().getText(invalidDateRangeMessage);
+        return driver.element().getText(Txt_InvalidDateRangeMessage);
     }
 
     public boolean areTableHeadersDisplayed() {
-        return isAnyElementDisplayed(tableHeaders);
+        return isAnyElementDisplayed(Txt_TableHeaders);
     }
 
     public List<String> getTableHeaders() {
         waitForTableHeaders();
 
         List<String> headers = new ArrayList<>();
-        List<WebElement> headerElements = driver.getDriver().findElements(tableHeaders);
+        List<WebElement> headerElements = driver.getDriver().findElements(Txt_TableHeaders);
 
         for (WebElement headerElement : headerElements) {
             if (headerElement.isDisplayed()) {
@@ -530,12 +444,12 @@ public class Statement {
     }
 
     public boolean areTableRowsDisplayed() {
-        return driver.element().isElementDisplayed(tableRows);
+        return driver.element().isElementDisplayed(Lst_TableRows);
     }
 
     public int getTableRowsCount() {
         int rowsCount = 0;
-        List<WebElement> rows = driver.getDriver().findElements(tableRows);
+        List<WebElement> rows = driver.getDriver().findElements(Lst_TableRows);
 
         for (WebElement row : rows) {
             if (row.isDisplayed()) {
@@ -562,15 +476,15 @@ public class Statement {
     }
 
     public boolean isExportToExcelButtonDisplayed() {
-        return driver.element().isElementDisplayed(exportToExcelButton);
+        return driver.element().isElementDisplayed(Btn_ExportToExcel);
     }
 
     public boolean isExportToExcelButtonClickable() {
-        return driver.element().isElementClickable(exportToExcelButton);
+        return driver.element().isElementClickable(Btn_ExportToExcel);
     }
 
     public boolean isNoRecordsMessageDisplayed() {
-        return isAnyElementDisplayed(exactNoDataMessage) || isAnyElementDisplayed(noRecordsMessage);
+        return isAnyElementDisplayed(Txt_ExactNoDataMessage) || isAnyElementDisplayed(Txt_NoRecordsMessage);
     }
 
     public boolean hasNoTableRows() {
@@ -578,6 +492,6 @@ public class Statement {
     }
 
     public String getToastMessage() {
-        return driver.element().getText(toastMessage);
+        return driver.element().getText(Txt_ToastMessage);
     }
 }
