@@ -12,20 +12,20 @@ public class AccountDetailsAndSettings {
 
     private final SHAFT.GUI.WebDriver driver;
 
-    private final By settingsIcon = By.cssSelector(".icon-button--settings");
-    private final By pageTitle = By.xpath("//h1[contains(@class,'page-title') and normalize-space()='Account Details and Settings']");
-    private final By agencyName = By.id("id-AgencyName");
-    private final By websiteText = By.cssSelector(".website-text");
-    private final By changeWebsiteButton = By.cssSelector(".change-btn");
-    private final By websiteEditInput = By.cssSelector(".website-wrapper input, .website-wrapper textarea");
-    private final By uploadLogoButton = By.xpath("//app-account-details-and-settings//span[normalize-space()='Upload logo']");
-    private final By uploadLogoInput = By.cssSelector("input[name='logo']");
-    private final By unsupportedFileErrorMessage = By.cssSelector("span.fg-error.has-error");
-    private final By passCodeValue = By.cssSelector(".passcode-value");
-    private final By regenerateButton = By.cssSelector(".regenerate-btn");
-    private final By saveChangesButton = By.cssSelector(".save-main-btn");
-    private final By successToastMessage = By.xpath("//*[contains(@class,'toast') and contains(normalize-space(),'Settings updated successfully')]");
-    private final By validationMessages = By.xpath("//app-account-details-and-settings//*[contains(@class,'fg-error') and normalize-space()!='']");
+    private final By Icn_Settings = By.cssSelector(".icon-button--settings");
+    private final By Txt_PageTitle = By.xpath("//h1[contains(@class,'page-title') and normalize-space()='Account Details and Settings']");
+    private final By Txt_AgencyName = By.id("id-AgencyName");
+    private final By Txt_Website = By.cssSelector(".website-text");
+    private final By Btn_ChangeWebsite = By.cssSelector(".change-btn");
+    private final By Txt_WebsiteEdit = By.cssSelector(".website-wrapper input, .website-wrapper textarea");
+    private final By Btn_UploadLogo = By.xpath("//app-account-details-and-settings//span[normalize-space()='Upload logo']");
+    private final By Txt_UploadLogo = By.cssSelector("input[name='logo']");
+    private final By Txt_UnsupportedFileErrorMessage = By.cssSelector("span.fg-error.has-error");
+    private final By Txt_PassCode = By.cssSelector(".passcode-value");
+    private final By Btn_Regenerate = By.cssSelector(".regenerate-btn");
+    private final By Btn_SaveChanges = By.cssSelector(".save-main-btn");
+    private final By Txt_SuccessToastMessage = By.xpath("//*[contains(@class,'toast') and contains(normalize-space(),'Settings updated successfully')]");
+    private final By Txt_ValidationMessages = By.xpath("//app-account-details-and-settings//*[contains(@class,'fg-error') and normalize-space()!='']");
 
     public AccountDetailsAndSettings(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -34,6 +34,14 @@ public class AccountDetailsAndSettings {
     public AccountDetailsAndSettings openAccountDetailsPage() {
         hideChatWidget();
         driver.browser().navigateToURL(DataUtils.get("Portal_Url").replace("/auth/login", "/settings/account"));
+        waitForAccountDetailsForm();
+        hideChatWidget();
+        return this;
+    }
+
+    public AccountDetailsAndSettings openAccountDetailsPageBySettingsIcon() {
+        hideChatWidget();
+        driver.element().click(Icn_Settings);
         waitForAccountDetailsForm();
         hideChatWidget();
         return this;
@@ -48,16 +56,16 @@ public class AccountDetailsAndSettings {
 
     public boolean isPageTitleDisplayed() {
         waitForPageTitle();
-        return isAnyElementDisplayed(pageTitle);
+        return isAnyElementDisplayed(Txt_PageTitle);
     }
 
     public String getPageTitle() {
-        return driver.element().getText(pageTitle).trim();
+        return driver.element().getText(Txt_PageTitle).trim();
     }
 
     private void waitForPageTitle() {
         for (int i = 0; i < 20; i++) {
-            if (isAnyElementDisplayed(pageTitle)) {
+            if (isAnyElementDisplayed(Txt_PageTitle)) {
                 return;
             }
 
@@ -67,7 +75,7 @@ public class AccountDetailsAndSettings {
 
     private void waitForAccountDetailsForm() {
         for (int i = 0; i < 40; i++) {
-            if (isAnyElementDisplayed(pageTitle) && isAnyElementDisplayed(agencyName)) {
+            if (isAnyElementDisplayed(Txt_PageTitle) && isAnyElementDisplayed(Txt_AgencyName)) {
                 return;
             }
 
@@ -76,34 +84,43 @@ public class AccountDetailsAndSettings {
     }
 
     public boolean isAgencyNameDisplayed() {
-        return driver.element().isElementDisplayed(agencyName);
+        return driver.element().isElementDisplayed(Txt_AgencyName);
     }
 
     public boolean isAgencyNameReadOnly() {
-        WebElement element = driver.getDriver().findElement(agencyName);
+        WebElement element = driver.getDriver().findElement(Txt_AgencyName);
         return element.getAttribute("readonly") != null || element.getAttribute("disabled") != null || !element.isEnabled();
     }
 
     public String getAgencyNameValue() {
-        return driver.getDriver().findElement(agencyName).getAttribute("value");
+        return driver.getDriver().findElement(Txt_AgencyName).getAttribute("value");
     }
 
     public AccountDetailsAndSettings clickChangeWebsite() {
-        WebElement element = getFirstDisplayedElement(changeWebsiteButton);
+        waitForElement(Btn_ChangeWebsite, 20);
+        WebElement element = getFirstDisplayedElement(Btn_ChangeWebsite);
         ((JavascriptExecutor) driver.getDriver()).executeScript("arguments[0].click();", element);
         return this;
     }
 
     public AccountDetailsAndSettings enterAgencyWebsite(String website) {
-        clickChangeWebsite();
-        setInputValue(websiteEditInput, website);
+        openWebsiteEditModeIfNeeded();
+        setInputValue(Txt_WebsiteEdit, website);
         return this;
     }
 
     public AccountDetailsAndSettings clearAgencyWebsite() {
-        clickChangeWebsite();
-        setInputValue(websiteEditInput, "");
+        openWebsiteEditModeIfNeeded();
+        setInputValue(Txt_WebsiteEdit, "");
         return this;
+    }
+
+    private void openWebsiteEditModeIfNeeded() {
+        if (!isAnyElementDisplayed(Txt_WebsiteEdit)) {
+            clickChangeWebsite();
+        }
+
+        waitForElement(Txt_WebsiteEdit, 20);
     }
 
     private void setInputValue(By input, String value) {
@@ -124,51 +141,51 @@ public class AccountDetailsAndSettings {
     }
 
     public String getAgencyWebsiteText() {
-        return driver.element().getText(websiteText);
+        return driver.element().getText(Txt_Website);
     }
 
     public boolean isUploadLogoButtonDisplayed() {
-        return driver.element().isElementDisplayed(uploadLogoButton);
+        return driver.element().isElementDisplayed(Btn_UploadLogo);
     }
 
     public boolean isUploadLogoButtonClickable() {
-        return driver.element().isElementClickable(uploadLogoButton);
+        return driver.element().isElementClickable(Btn_UploadLogo);
     }
 
     public AccountDetailsAndSettings uploadLogo(String filePath) {
-        driver.getDriver().findElement(uploadLogoInput).sendKeys(filePath);
+        driver.getDriver().findElement(Txt_UploadLogo).sendKeys(filePath);
         return this;
     }
 
     public boolean isLogoFileSelected(String fileName) {
-        String selectedFilePath = driver.getDriver().findElement(uploadLogoInput).getAttribute("value");
+        String selectedFilePath = driver.getDriver().findElement(Txt_UploadLogo).getAttribute("value");
         return selectedFilePath != null && selectedFilePath.contains(fileName);
     }
 
     public boolean isUnsupportedFileErrorMessageDisplayed() {
         for (int i = 0; i < 20; i++) {
-            if (isAnyElementDisplayed(unsupportedFileErrorMessage)) {
+            if (isAnyElementDisplayed(Txt_UnsupportedFileErrorMessage)) {
                 return true;
             }
 
             sleep(250);
         }
 
-        return isAnyElementDisplayed(unsupportedFileErrorMessage);
+        return isAnyElementDisplayed(Txt_UnsupportedFileErrorMessage);
     }
 
     public String getUnsupportedFileErrorMessage() {
-        return getFirstDisplayedElement(unsupportedFileErrorMessage).getText().trim().replaceAll("\\s+", " ");
+        return getFirstDisplayedElement(Txt_UnsupportedFileErrorMessage).getText().trim().replaceAll("\\s+", " ");
     }
 
     public String getPassCodeValue() {
         waitForPassCodeValue();
-        return driver.element().getText(passCodeValue).trim();
+        return driver.element().getText(Txt_PassCode).trim();
     }
 
     private void waitForPassCodeValue() {
         for (int i = 0; i < 20; i++) {
-            if (!driver.element().getText(passCodeValue).trim().isEmpty()) {
+            if (!driver.element().getText(Txt_PassCode).trim().isEmpty()) {
                 return;
             }
 
@@ -177,21 +194,21 @@ public class AccountDetailsAndSettings {
     }
 
     public boolean isPassCodeDisplayed() {
-        return driver.element().isElementDisplayed(passCodeValue);
+        return driver.element().isElementDisplayed(Txt_PassCode);
     }
 
     public AccountDetailsAndSettings clickRegenerate() {
-        driver.element().click(regenerateButton);
+        driver.element().click(Btn_Regenerate);
         return this;
     }
 
     public boolean isRegenerateButtonClickable() {
-        return driver.element().isElementClickable(regenerateButton);
+        return driver.element().isElementClickable(Btn_Regenerate);
     }
 
     public boolean isPassCodeChangedFrom(String oldPassCode) {
         for (int i = 0; i < 20; i++) {
-            String currentPassCode = driver.element().getText(passCodeValue).trim();
+            String currentPassCode = driver.element().getText(Txt_PassCode).trim();
 
             if (!currentPassCode.isEmpty() && !currentPassCode.equals(oldPassCode)) {
                 return true;
@@ -204,23 +221,23 @@ public class AccountDetailsAndSettings {
     }
 
     public boolean isSaveChangesButtonDisplayed() {
-        return driver.element().isElementDisplayed(saveChangesButton);
+        return driver.element().isElementDisplayed(Btn_SaveChanges);
     }
 
     public boolean isSaveChangesButtonEnabled() {
-        return driver.getDriver().findElement(saveChangesButton).isEnabled();
+        return driver.getDriver().findElement(Btn_SaveChanges).isEnabled();
     }
 
     public AccountDetailsAndSettings clickSaveChanges() {
         hideChatWidget();
-        WebElement element = driver.getDriver().findElement(saveChangesButton);
+        WebElement element = driver.getDriver().findElement(Btn_SaveChanges);
         ((JavascriptExecutor) driver.getDriver()).executeScript("arguments[0].click();", element);
         return this;
     }
 
     public boolean isSuccessToastDisplayed() {
         waitForSuccessToast();
-        return isAnyElementDisplayed(successToastMessage);
+        return isAnyElementDisplayed(Txt_SuccessToastMessage);
     }
 
     public boolean isSuccessToastDisplayed(String message) {
@@ -230,11 +247,11 @@ public class AccountDetailsAndSettings {
     }
 
     private void waitForSuccessToast() {
-        waitForElement(successToastMessage, 60);
+        waitForElement(Txt_SuccessToastMessage, 60);
     }
 
     public boolean hasValidationMessages() {
-        return isAnyElementDisplayed(validationMessages);
+        return isAnyElementDisplayed(Txt_ValidationMessages);
     }
 
     private boolean isAnyElementDisplayed(By locator) {

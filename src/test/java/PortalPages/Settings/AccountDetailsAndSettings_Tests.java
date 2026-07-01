@@ -1,74 +1,62 @@
 package PortalPages.Settings;
 
+import Drive_Factory.CommonMethod;
 import PortalPages.Login.Login_Page;
-import PortalPages.Login.PortalTestBase_TC;
 import com.shaft.driver.SHAFT;
-import org.openqa.selenium.By;
-import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import utilities.DataUtils;
 
 import java.nio.file.Paths;
 
-public class AccountDetailsAndSettings_Tests extends PortalTestBase_TC {
+public class AccountDetailsAndSettings_Tests {
 
+    private SHAFT.GUI.WebDriver driver;
     private AccountDetailsAndSettings accountDetails;
     private SHAFT.TestData.JSON testData;
 
     @BeforeClass
-    public void loginToPortal() throws InterruptedException {
+    public void setup() {
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
         testData = new SHAFT.TestData.JSON("AccountDetailsSettings.json");
-        loginIfNeeded();
+
+        driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
+        new Login_Page(driver).PortalLogin();
     }
 
     @BeforeMethod
-    public void openAccountDetailsAndSettingsPage() {
+    public void openAccountDetailsAndSettingsPage(ITestResult result) {
         accountDetails = new AccountDetailsAndSettings(driver);
-        accountDetails.openAccountDetailsPage();
-    }
 
-    private void loginIfNeeded() throws InterruptedException {
-        for (int i = 0; i < 10; i++) {
-            if (isElementPresent(By.id("id-AgencyCode"))) {
-                new Login_Page(driver).PortalLogin();
-                waitUntilLoginCompletes();
-                return;
-            }
-
-            if (isElementPresent(By.xpath("//tilde-theme-side-menu"))) {
-                return;
-            }
-
-            Thread.sleep(500);
+        if (result.getMethod().getMethodName().equals("verifyUserCanOpenAccountDetailsAndSettingsPage")) {
+            driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
+            accountDetails.openAccountDetailsPageBySettingsIcon();
+        } else {
+            accountDetails.openAccountDetailsPage();
         }
-    }
-
-    private void waitUntilLoginCompletes() throws InterruptedException {
-        for (int i = 0; i < 20; i++) {
-            if (!isElementPresent(By.id("id-AgencyCode"))) {
-                return;
-            }
-
-            Thread.sleep(500);
-        }
-    }
-
-    private boolean isElementPresent(By locator) {
-        return !driver.getDriver().findElements(locator).isEmpty();
     }
 
     @Test
     public void verifyUserCanOpenAccountDetailsAndSettingsPage() {
-        Assert.assertTrue(accountDetails.isPageTitleDisplayed(), "Account Details and Settings page title should be displayed.");
-        Assert.assertEquals(accountDetails.getPageTitle(), testData.getTestData("Page.Title"));
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(accountDetails.isPageTitleDisplayed(), "Account Details and Settings page title should be displayed.");
+        softAssert.assertEquals(accountDetails.getPageTitle(), testData.getTestData("Page.Title"));
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyAgencyNameFieldIsReadOnly() {
-        Assert.assertTrue(accountDetails.isAgencyNameDisplayed(), "Agency Name field should be displayed.");
-        Assert.assertTrue(accountDetails.isAgencyNameReadOnly(), "Agency Name field should be read-only.");
-        Assert.assertFalse(accountDetails.getAgencyNameValue().isEmpty(), "Agency Name field should have a saved agency value.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(accountDetails.isAgencyNameDisplayed(), "Agency Name field should be displayed.");
+        softAssert.assertTrue(accountDetails.isAgencyNameReadOnly(), "Agency Name field should be read-only.");
+        softAssert.assertFalse(accountDetails.getAgencyNameValue().isEmpty(), "Agency Name field should have a saved agency value.");
+        softAssert.assertAll();
     }
 
     @Test
@@ -77,10 +65,13 @@ public class AccountDetailsAndSettings_Tests extends PortalTestBase_TC {
                 .enterAgencyWebsite(testData.getTestData("Website.ValidUrl"))
                 .clickSaveChanges();
 
-        Assert.assertTrue(
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(
                 accountDetails.isSuccessToastDisplayed(testData.getTestData("Messages.Success")),
                 "Success toast should be displayed after saving a valid website."
         );
+        softAssert.assertAll();
     }
 
     @Test
@@ -89,13 +80,19 @@ public class AccountDetailsAndSettings_Tests extends PortalTestBase_TC {
                 .clearAgencyWebsite()
                 .clickSaveChanges();
 
-        Assert.assertFalse(accountDetails.hasValidationMessages(), "Agency Website should not be mandatory.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertFalse(accountDetails.hasValidationMessages(), "Agency Website should not be mandatory.");
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyUploadLogoButtonIsDisplayedAndClickable() {
-        Assert.assertTrue(accountDetails.isUploadLogoButtonDisplayed(), "Upload logo button should be displayed.");
-        Assert.assertTrue(accountDetails.isUploadLogoButtonClickable(), "Upload logo button should be clickable.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(accountDetails.isUploadLogoButtonDisplayed(), "Upload logo button should be displayed.");
+        softAssert.assertTrue(accountDetails.isUploadLogoButtonClickable(), "Upload logo button should be clickable.");
+        softAssert.assertAll();
     }
 
     @Test
@@ -104,28 +101,40 @@ public class AccountDetailsAndSettings_Tests extends PortalTestBase_TC {
                 .uploadLogo(toAbsolutePath(testData.getTestData("Logo.ValidImagePath")))
                 .clickSaveChanges();
 
-        Assert.assertFalse(accountDetails.hasValidationMessages(), "Valid logo should be accepted after saving changes.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertFalse(accountDetails.hasValidationMessages(), "Valid logo should be accepted after saving changes.");
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyUnsupportedLogoFileTypeDisplaysError() {
         accountDetails.uploadLogo(toAbsolutePath(testData.getTestData("Logo.UnsupportedFilePath")));
 
-        Assert.assertTrue(
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(
                 accountDetails.isUnsupportedFileErrorMessageDisplayed(),
                 "Unsupported logo file type error message should be displayed."
         );
-        Assert.assertEquals(accountDetails.getUnsupportedFileErrorMessage(), testData.getTestData("Messages.UnsupportedFile"));
+        softAssert.assertEquals(accountDetails.getUnsupportedFileErrorMessage(), testData.getTestData("Messages.UnsupportedFile"));
+        softAssert.assertAll();
     }
 
     @Test
     public void verifyPassCodeIsDisplayedAndCanBeRegenerated() {
-        Assert.assertTrue(accountDetails.isPassCodeDisplayed(), "PassCode should be displayed.");
-        Assert.assertTrue(accountDetails.isRegenerateButtonClickable(), "Regenerate button should be clickable.");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(accountDetails.isPassCodeDisplayed(), "PassCode should be displayed.");
+        softAssert.assertTrue(accountDetails.isRegenerateButtonClickable(), "Regenerate button should be clickable.");
+        softAssert.assertAll();
 
         accountDetails.clickRegenerate();
 
-        Assert.assertTrue(accountDetails.isSaveChangesButtonEnabled(), "Save Changes button should be enabled after regenerating PassCode.");
+        SoftAssert regenerateSoftAssert = new SoftAssert();
+
+        regenerateSoftAssert.assertTrue(accountDetails.isSaveChangesButtonEnabled(), "Save Changes button should be enabled after regenerating PassCode.");
+        regenerateSoftAssert.assertAll();
     }
 
     @Test
@@ -134,10 +143,13 @@ public class AccountDetailsAndSettings_Tests extends PortalTestBase_TC {
                 .enterAgencyWebsite(testData.getTestData("Website.ValidUrl"))
                 .clickSaveChanges();
 
-        Assert.assertTrue(
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(
                 accountDetails.isSuccessToastDisplayed(testData.getTestData("Messages.Success")),
                 "Success toast should be displayed after saving account details."
         );
+        softAssert.assertAll();
     }
 
     private String toAbsolutePath(String path) {
