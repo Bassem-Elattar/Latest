@@ -3,14 +3,15 @@
     "BranchName": "Test",
     "AgencyName": "Omar Agency",
     "Date": "15",
-    "EndDate": "2",
+    "EndDate": "15",
     "InvoiceNumber": "123411",
     "CustomerName": "bassem",
-    "PaymentDate": "1",
+    "PaymentDate": "25",
     "TransactionID": "1231",
     "FromYear" : "2025",
     "FromMonth" : "Oct",
     "ToYear" : "2025",
-    "ToMonth" : "Dec"
+    "ToMonth" : "Dec",
+    "PortalAgentName" : "Essam Sherif Saady"
   }
 ]
