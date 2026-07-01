@@ -2,8 +2,50 @@
 /shelf/
 /workspace.xml
 /uiDesigner.xml
-/target/
 /extent-reports/
 /allure-results/
 /generatedReport*
-/.idea/
+
+### macOS ###
+.DS_Store
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Maven ###
+target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+### VS Code ###
+.vscode/
+
+
+### Batch files ###
+*.bat
