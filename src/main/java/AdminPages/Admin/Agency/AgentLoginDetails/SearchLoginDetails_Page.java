@@ -15,9 +15,9 @@ public class SearchLoginDetails_Page {
 
     SHAFT.GUI.WebDriver driver;
 
-    By Btn_Back = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[2]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[1]");
-    By Btn_BackDate = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[1]");
-    By Btn_ClickAgency = By.xpath("/html/body/ndc-root/ndc-layout/div/div[1]/tilde-theme-side-menu/div/ul/li[3]/tilde-theme-accordion/header/a");
+    By Btn_Back = By.xpath("(//ndc-fg-date-picker-input//p-calendar//button[1])[3]");
+    By Btn_BackDate = By.xpath("(//ndc-fg-date-picker-input//button)[2]");
+//    By Btn_ClickAgency = By.xpath("/html/body/ndc-root/ndc-layout/div/div[1]/tilde-theme-side-menu/div/ul/li[3]/tilde-theme-accordion/header/a");
     By Btn_ClickSearch = By.xpath("//a[@href=\"/admin/login-details\"]");
     By Lst_ClickAGN = By.xpath("//p-multiselect[.//input[@id=\"id-AgencyName\"]]");
     By Lst_ClickStaffAGN = By.xpath("//p-multiselect[.//input[@id=\"id-Agencystaff\"]]");
@@ -25,17 +25,17 @@ public class SearchLoginDetails_Page {
     By Cbox_ClickAll = By.xpath("//li[@class=\"p-ripple p-element p-multiselect-item\"]");
     By Dpick_DateRange = By.xpath("//label[@for=\"id-Duration-DateRange\"]");
     By Dpick_StartDate = By.id("id-StartDate");
-    By Before = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[1]/span");
+    By Year = By.xpath("//button[normalize-space()='2026']");
+//    By Before = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[1]/span");
    // By ChooseStartDate = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span");
-    By Dpick_EndDate = By.id("id-EndDate");
+    By Dpick_EndDate = By.xpath("(//ndc-fg-date-picker-input//button)[2]");
    // By ChooseEndDate = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[2]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[2]/table/tbody/tr[3]/td[4]/span");
     By Rbtn_Details = By.xpath("//label[@for=\"id-Type-Detailed\"]");
     By Btn_ClickSearch1 = By.xpath("//button[@type=\"submit\"]");
-    By StartDateError = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[1]/span");
-    By EndDateError = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-login-details/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/ndc-fg-input[3]/ndc-fg-radio-input/div/div/div[2]/ndc-fg-input[2]/span");
+    By StartDateError = By.xpath("(//ndc-fg-radio-input//ndc-fg-input[1]//span)[5]");
+    By EndDateError = By.xpath("(//ndc-fg-radio-input//ndc-fg-input[2]//span)[5]");
 
-
-    public void ValidData(String agn ,String FromDate,String ToDate) throws InterruptedException {
+    public void ValidData(String agn) throws InterruptedException {
         driver.element()
                 .click(Btn_ClickSearch)
                 .select(Lst_ClickAGN, agn)
@@ -43,15 +43,12 @@ public class SearchLoginDetails_Page {
                 .type(Txt_WriteAGN,"All")
                 .click(Cbox_ClickAll)
                 .click(Dpick_DateRange)
-                .click(Dpick_StartDate).click(Btn_BackDate);
+                .click(Rbtn_Details);
 
-        By option4 = By.xpath(String.format("//span[text()='%s']", FromDate));
-        driver.element().click(option4)
-                .click(Dpick_EndDate).click(Btn_Back);
-        By option3 = By.xpath(String.format("//span[text()='%s']", ToDate));
-        driver.element().click(option3)
-                .click(Rbtn_Details)
-                .click(Btn_ClickSearch1);
+    }
+    public void SearchValid() throws InterruptedException {
+          driver.element().click(Btn_ClickSearch1);
+
         Thread.sleep(3000);
         Actions actions = new Actions(driver.getDriver());
         actions.sendKeys(Keys.PAGE_DOWN).perform();
@@ -107,6 +104,29 @@ public class SearchLoginDetails_Page {
         }
         return actualResult;
 
+    }
+    public void searchValidFromDate(String From, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_StartDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day =  By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+    }
+
+    public void searchValidToDate(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_EndDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
     }
 
 }

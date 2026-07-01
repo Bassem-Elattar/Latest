@@ -30,7 +30,6 @@ public class SearchTravellers_TC extends TestBase_TC {
         logIn.ClickOnLoginButton();
 
     }
-
     @Test(dataProvider = "JsonProvider")
     public void SearchTraveller(Map<String, String> search){
         searchTravellers = new SearchTravellers_Page(driver);

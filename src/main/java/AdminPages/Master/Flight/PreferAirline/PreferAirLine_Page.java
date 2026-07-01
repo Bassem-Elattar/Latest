@@ -19,7 +19,6 @@ public class PreferAirLine_Page {
     public PreferAirLine_Page(SHAFT.GUI.WebDriver driver) {
 
         this.softAssert = new SoftAssert();
-
         this.driver = driver;
     }
 

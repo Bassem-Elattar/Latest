@@ -1,7 +1,9 @@
 package AdminPages.Master.Flight.PreferAirline;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import AdminPages.Master.Master_Common;
 import org.openqa.selenium.By;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utilities.JsonDataUtil;
@@ -23,39 +25,50 @@ public class SearchPreferAirLine_TC extends TestBase_TC {
         String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
         return JsonDataUtil.readJsonData(filePath);
     }
+    @BeforeTest
+    public void sign(){
+        preferAirLine = new PreferAirLine_Page(driver);
+        logIn = new LogIn_Page(driver);
+        logIn.ClickSuperAdmin();
+        logIn.ClickOnLoginButton();
+        new Master_Common(driver).clickMaster().clickFlight().clickPreferSAirline();
+    }
 
-    @Test(dataProvider = "JsonProvider", dataProviderClass = PreferAirLineDataProvider_TC.class)
-    public void testSearchForPreferAirLine1(String AirLineName ,String SupplierName) throws InterruptedException {
+    @Test(dataProvider = "SearchWith ValidDataPreferAirLine with Name and Supplier name", dataProviderClass = PreferAirLineDataProvider_TC.class)
+    public void testSearchForPreferAirLine1(String AirLineName ,String supplierName) throws InterruptedException {
+
         preferAirLine.EnterAirlineName(AirLineName);
-        preferAirLine .SelectSupplierName(SupplierName);
+        preferAirLine .SelectSupplierName(supplierName);
         preferAirLine.clickBothButton();
         preferAirLine .clickOnSearchInGrid();
         Thread.sleep(1000);
       //  assertEquals("Air Cairo",preferAirLine.TableColumnDataExtractor(0,"Air Cairo"));
-        assertEquals("Galileo",preferAirLine.TableColumnDataExtractor(1,"Galileo"));
+        assertEquals(supplierName,preferAirLine.TableColumnDataExtractor(1,supplierName));
     }
     @Test(dataProvider = "SearchWithValidDataPreferAirLine Name only and active status", dataProviderClass = PreferAirLineDataProvider_TC.class)
-    public void testSearchForPreferAirLine2(String AirLineName ) throws InterruptedException {
+    public void testSearchForPreferAirLine2(String AirLineName ,String Expected) throws InterruptedException {
 
         preferAirLine.EnterAirlineName(AirLineName);
         preferAirLine.clickInActiveButton()
                 .clickOnSearchInGrid();
         Thread.sleep(1000);
-        assertEquals( AirLineName,preferAirLine.TableColumnDataExtractor(0,AirLineName));
-       assertEquals("Inactive",preferAirLine.TableColumnDataExtractor(3,"Inactive"));
+        assertEquals(AirLineName,preferAirLine.TableColumnDataExtractor(0,AirLineName));
+       assertEquals(Expected,preferAirLine.TableColumnDataExtractor(3,Expected));
 
     }
 
 
 
     @Test(dataProvider = "SearchWithValidDataPreferAirLine Supplier only and inActive Status", dataProviderClass = PreferAirLineDataProvider_TC.class)
-    public void testSearchForPreferAirLine3(String supplierName) throws InterruptedException {
+    public void testSearchForPreferAirLine3(String supplierName,String Expected) throws InterruptedException {
+
+
         preferAirLine.SelectSupplierName(supplierName);
         preferAirLine.clickInActiveButton()
                 .clickOnSearchInGrid();
         Thread.sleep(1000);
         assertEquals( supplierName,preferAirLine.TableColumnDataExtractor(1,supplierName));
-        assertEquals("Inactive",preferAirLine.TableColumnDataExtractor(3,"Inactive"));
+        assertEquals(Expected,preferAirLine.TableColumnDataExtractor(3,Expected));
         Thread.sleep(1000);
     }
 
@@ -63,7 +76,6 @@ public class SearchPreferAirLine_TC extends TestBase_TC {
     @Test// SearchBookingTC With  InActive   Status
     public void testSearchForPreferAirLine5() throws InterruptedException {
 
-        logIn.ClickOnLoginButton();
         preferAirLine.clickInActiveButton();
         preferAirLine.clickOnSearchInGrid();
         Thread.sleep(1000);
@@ -72,11 +84,9 @@ public class SearchPreferAirLine_TC extends TestBase_TC {
     @Test // SearchBookingTC With  Active   Status
     public void testSearchForPreferAirLine6() throws InterruptedException {
 
-        logIn.ClickOnLoginButton();
         preferAirLine.clickActiveButton();
         preferAirLine.clickOnSearchInGrid();
         assertEquals("Active",preferAirLine.TableColumnDataExtractor(3,"Active"));
-
     }
     @Test // SearchBookingTC With Both Status
     public void testSearchForPreferAirLine7() throws InterruptedException {
@@ -96,12 +106,12 @@ public class SearchPreferAirLine_TC extends TestBase_TC {
 
     //Invalid Data
     @Test(dataProvider = "SearchWith ValidDataPreferAirLine with Name and Supplier name DataNotFounded", dataProviderClass = PreferAirLineDataProvider_TC.class)
-    public void testSearchForPreferAirLine11(String AirLineName ,String SupplierName) throws InterruptedException {
+    public void testSearchForPreferAirLine11(String AirLineName ,String supplierName,String Expected) throws InterruptedException {
         preferAirLine.EnterAirlineName(AirLineName);
-        preferAirLine .SelectSupplierName(SupplierName)
+        preferAirLine .SelectSupplierName(supplierName)
                 .clickOnSearchInGrid();
         String ActualResult=  driver.getDriver().findElement(By.xpath("//td[@class=\"message\"]")).getText();
-        assertEquals("No data has been found!", ActualResult);
+        assertEquals(Expected, ActualResult);
 
     }
 

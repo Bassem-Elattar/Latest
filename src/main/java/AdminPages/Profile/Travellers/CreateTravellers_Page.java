@@ -15,23 +15,22 @@ public class CreateTravellers_Page {
     By Lst_Title = By.xpath("//p-dropdown[.//input[@id=\"id-Title\"]]");
     By Txt_Firstname = By.xpath("//input[@id=\"id-FirstName\"]");
     By Txt_LastName = By.xpath("//input[@id=\"id-LastName\"]");
-    By Btn_BackDate = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-traveller/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[1]/div[2]/ndc-fg-input[6]/ndc-fg-date-picker-input/span/p-calendar/span/div/div/div/div[1]/button[1]");
-    By Dpick_Date = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-add-traveller/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[1]/div[2]/ndc-fg-input[6]/ndc-fg-date-picker-input/span/p-calendar/span/button");
+    By Btn_BackDate = By.xpath("(//p-calendar//div[contains(@class,'p-datepicker-header')]//button[1])[1]");
+    By Dpick_Date = By.xpath("(//ndc-add-traveller//p-calendar//button)[1]");
     By Txt_Email = By.xpath("//input[@id=\"id-EmailID\"]");
     By Lst_Nationality = By.xpath("//p-dropdown[.//input[@id=\"id-Nationality\"]]");
     By Lst_Gender = By.xpath("//p-dropdown[.//input[@id=\"id-Gender\"]]");
     By Txt_Phonenumber = By.xpath("//input[@id=\"phone number\"]");
     By Txt_Address = By.xpath("//input[@id=\"id-Address\"]");
     By Btn_Save = By.xpath("//button[@type=\"submit\"]");
-
+    By Year = By.xpath("//button[normalize-space()='2026']");
     ////////// Passport Details/////////////
-
     By Txt_PassportNo = By.xpath("//input[@id=\"id-PassportNumber\"]");
-    By Dpick_ExpDate = By.xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div/div/ndc-add-traveller/div/div/ndc-fg-form-container/div/ndc-fg-form-generator/form/div[2]/div[2]/ndc-fg-input[2]/ndc-fg-date-picker-input/span/p-calendar/span/button");
+    By Dpick_ExpDate = By.xpath("(//ndc-add-traveller//p-calendar//button)[2]");
     By Lst_CountryofIssue = By.xpath("(//p-dropdown[.//input[@id=\"id-CountryOfIssue\"]])[1]");
 
 
-    public void setPersonalDetail(String branch, String title , String firstname , String lastname , String date , String
+    public void setPersonalDetail(String branch, String title , String firstname , String lastname , String year,String month , String From , String
                                   email, String nationality ,String gender , String phonenumber , String address) throws InterruptedException {
         driver.element().click(Btn_Add);
         driver.element().click(Lst_BranchName);
@@ -49,9 +48,15 @@ public class CreateTravellers_Page {
 //        driver.element().click(BackDate);
 //        Thread.sleep(3000);
 
-        driver.element().click(Dpick_Date).click(Btn_BackDate);
-        By option4 = By.xpath(String.format("//span[text()='%s']", date));
-        driver.element().click(option4);
+        driver.element().click(Dpick_Date);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        driver.element().click(Day);
+
 
         driver.element().type(Txt_Email,email);
 

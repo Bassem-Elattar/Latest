@@ -68,7 +68,6 @@ public class ActionPreferAirLine_TC {
          //preferAirLine.EnterAirlineName("Aer Arann");
         preferAirLine.clickInActiveButton();
         preferAirLine.clickOnSearchInGrid();
-
         assertEquals("Rejected", preferAirLine.TableColumnDataExtractor(4, "Rejected"));
     }
     @Test (priority = 3)
@@ -87,7 +86,6 @@ public class ActionPreferAirLine_TC {
     @Test (priority = 4)
     public void Actions4() throws InterruptedException {
        // assertEquals("Active",preferAirLine.TableColumnDataExtractor(4,"Active"));
-
         preferAirLine.clickDisActiveSign();
         preferAirLine.clickInActiveButton();
         preferAirLine.clickOnSearchInGrid();

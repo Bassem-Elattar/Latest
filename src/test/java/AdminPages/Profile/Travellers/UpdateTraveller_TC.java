@@ -64,10 +64,8 @@ public class UpdateTraveller_TC extends TestBase_TC {
         // Call the static uploadFile method from utilities.FileUploadUtil to upload the file
         FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
         updateTraveller.setPassportdetails(PassportNo,ExpDate,CountryofIssue);
-
         updateTraveller.setSave();
         String Expected = "Updated Successfully";
         Assert.assertEquals(updateTraveller.Actual(),Expected);
-
     }
 }
