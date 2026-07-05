@@ -114,7 +114,7 @@ public class SearchDiscount_TC {
         String branch  = testData.getTestData("SearchSet1.Branch");
         discount.search_Discount(country, branch);
         discount.inactivestatus();
-        discount.approveAction(discountname,remark);
+        discount.approveAction(remark);
         discount.activestatus();
         String actualMessage = driver.element().getText(By.xpath("//div[contains(@class,'toast-message')]"));
 
@@ -135,7 +135,7 @@ public class SearchDiscount_TC {
         String branch  = testData.getTestData("SearchSet1.Branch");
         discount.search_Discount(country, branch);
         discount.activestatus();
-        discount.rejectAction(discountname,remark);
+        discount.rejectAction(remark);
         discount.inactivestatus();
         String actualMessage = driver.element().getText(By.xpath("//div[contains(@class,'toast-message')]"));
 

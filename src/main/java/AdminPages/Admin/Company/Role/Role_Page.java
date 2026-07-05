@@ -4,6 +4,7 @@ import AdminPages.BookingMidOffice.SearchBooking.SearchBooking_Page;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
+import utilities.FakerSingleton;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -111,8 +112,8 @@ public class Role_Page {
         driver.element().click(btn_Paginate);
         return this;
     }
-    public Role_Page EnterAddRoleName(String s) {
-        driver.element().type(txt_RoleName,s);
+    public Role_Page EnterAddRoleName() {
+        driver.element().type(txt_RoleName, FakerSingleton.PassengerFactory.firstName());
         return this;
     }
     public Role_Page ClickDashBoard_Tab() {

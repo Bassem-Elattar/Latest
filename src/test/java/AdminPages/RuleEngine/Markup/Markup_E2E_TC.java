@@ -32,7 +32,6 @@ public class Markup_E2E_TC {
     @Test(priority = 1)
     public void TC01_AddMarkup() throws InterruptedException {
         page.addMarkup(
-                testData.getTestData("Set1.MarkupName"),
                 testData.getTestData("Set1.MarkupDis"),
                 testData.getTestData("Set1.FromYear"),
                 testData.getTestData("Set1.FromMonth"),
@@ -59,7 +58,6 @@ public class Markup_E2E_TC {
                 testData.getTestData("SearchSet1.Branch")
         );
         page.inactivestatus();
-        page.goToLastPage();
         driver.verifyThat().element(page.Table_FirstRow).exists();
     }
     @Test(priority = 3)
@@ -68,7 +66,6 @@ public class Markup_E2E_TC {
         page.goToNextPage();
         String updatePath = "UpdateSet1";
         page.updateMarkup(
-                testData.getTestData(updatePath + ".name"),
                 testData.getTestData(updatePath + ".MarkupName"),
                 testData.getTestData(updatePath + ".MarkupDis"),
                 testData.getTestData("UpdateSet1.FromYear"),
@@ -92,8 +89,8 @@ public class Markup_E2E_TC {
         page.searchMarkup(country,branch);
         page.activestatus();
 //        page.goToNextPage();
-        page.findMarkupInPages(markupname);
-        Assert.assertTrue(page.findMarkupInPages(markupname), testData.getTestData("SearchSet1.ErrorMessage"));
+//        page.findMarkupInPages();
+        Assert.assertTrue(page.findMarkupInPages(), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(page.Table_FirstRow).exists();
     }
 

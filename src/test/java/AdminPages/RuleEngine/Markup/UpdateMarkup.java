@@ -44,7 +44,6 @@ public class UpdateMarkup {
             // Update data
             String updatePath = "UpdateSet1";
             updateMarkup.updateMarkup(
-                    testData.getTestData(updatePath + ".name"),
                     testData.getTestData(updatePath + ".MarkupName"),
                     testData.getTestData(updatePath + ".MarkupDis"),
                     testData.getTestData("UpdateSet1.FromYear"),

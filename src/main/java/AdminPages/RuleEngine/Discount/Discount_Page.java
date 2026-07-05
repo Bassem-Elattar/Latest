@@ -3,11 +3,13 @@ package AdminPages.RuleEngine.Discount;
 import AdminPages.RuleEngine.Markup.Markup_Page;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.FakerSingleton;
 
 import static org.openqa.selenium.By.xpath;
 
 public class Discount_Page {
     private final SHAFT.GUI.WebDriver driver;
+    public static String DiscountName;
     // Locators
     private final By Lst_CountryPos = By.xpath("//p-dropdown[.//input[@id=\"id-CountryPOS\"]]");
     private final By Lst_Branch = By.xpath("(//div[contains(@class,'p-dropdown')]//span[contains(@class,'p-dropdown-label')])[2]");
@@ -36,9 +38,9 @@ public class Discount_Page {
     private final By Btn_Cancel = By.xpath("(//button[@class=\"modal-btn\"])[2]");
     private final By Rbtn_All = By.xpath("//p-radiobutton[.//input[@id=\"-All\"]]");
     private final By Rbtn_ByPax = By.xpath("//p-radiobutton[.//input[@id=\"-By Pax\"]]");
-    private final By Lst_FareType = By.xpath("//p-dropdown[.//input[@id=\"id-FareType\"]]");
-    private final By Lst_AmountType = By.xpath("//p-dropdown[.//input[@id=\"id-AmountType\"]]");
-    private final By txt_AmountValue = By.xpath("//input[@id=\"id-Entervalue\"]");
+    private final By Lst_FareType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
+    private final By Lst_AmountType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
+    private final By txt_AmountValue = By.xpath("(//input[@placeholder='0.00'])[1]");
     private final By Btn_Sendforapproval = By.xpath("//button[@type=\"submit\"]");
     private final By Btn_CancelForMarkup = By.xpath("(//button[@type=\"button\"])[7]");
     private final By After = By.xpath("//button[contains(@class,'p-datepicker-next') or .//span[contains(@class,'pi-chevron-right')]]");
@@ -47,7 +49,7 @@ public class Discount_Page {
     private final By Btn_Checkbox = By.xpath("//div[@role='checkbox' and contains(@class,'p-checkbox-box') and @aria-checked='false']");
     private final By Btn_AllAgency = By.xpath("//li[contains(@class,'p-multiselect-item')]//span[normalize-space()='Test Egypt']");
     private final By Btn_CheckBoxSearch = By.xpath("(//p-checkbox[.//input[@value=\"All\"]])[1]");
-    By Btn_ValidityPeriodTo = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[2]");
+    By Btn_ValidityPeriodTo = By.xpath("(//input[@id='id-ValidityPeriodTo'])[1]");
     By Btn_ValidityPeriodFrom = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[1]");
     By Year = By.xpath("//button[normalize-space()='2026']");
 
@@ -57,7 +59,7 @@ public class Discount_Page {
 
     By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_SubmitAction = By.xpath("(//button[@type=\"submit\"])[2]");
-    By Btn_last = By.xpath("//span[@id=\"last\"]");
+    By Btn_last = By.xpath("(//span[@class='last text-xs selected-last-page ng-star-inserted'])[1]");
     public By Table_FirstRow = By.xpath("//table//tbody/tr[1]");
     public By StatusCellInactive = By.xpath("//td[normalize-space()='Inactive']");
     public By StatusCellActive = By.xpath("//td[normalize-space()='Active']");
@@ -95,10 +97,10 @@ public class Discount_Page {
 
     public void search_Discount(String Country, String Branch) {
         driver.element().select(Lst_CountryPos, Country);
-        driver.element().click(Lst_Branch);
-        By item = By.xpath("//li[normalize-space()='" + Branch + "']");
-        driver.element().scrollToElement(item);
-        driver.element().click(item);
+//        driver.element().click(Lst_Branch);
+//        By item = By.xpath("//li[normalize-space()='" + Branch + "']");
+//        driver.element().scrollToElement(item);
+//        driver.element().click(item);
     }
 
     public void goToNextPage() {
@@ -134,12 +136,12 @@ public class Discount_Page {
         driver.element().click(Btn_last);
     }
 
-    public boolean findDiscountInPages(String discountName) {
+    public boolean findDiscountInPages() {
         int maxPages = 20; // safety limit
 
         for (int i = 0; i < maxPages; i++) {
             // If found in current page, return true
-            if (driver.element().isElementDisplayed(rowDiscount(discountName))) {
+            if (driver.element().isElementDisplayed(rowDiscount(DiscountName))) {
                 return true;
             }
 
@@ -157,29 +159,31 @@ public class Discount_Page {
         return false; // not found anywhere
     }
 
-    public void rejectAction(String discountname, String remark) {
-        if (!findDiscountInPages(discountname)) {
-            throw new RuntimeException("Discount not found: " + discountname);
+    public void rejectAction(String remark) {
+        if (!findDiscountInPages()) {
+            throw new RuntimeException("Discount not found: " + DiscountName);
         }
-        driver.element().click(rejectButton(discountname));
+        driver.element().click(rejectButton(DiscountName));
         driver.element().type(RemarksAction, remark);
         driver.element().click(Btn_SubmitAction);
     }
 
-    public void approveAction(String discountname, String remark) {
-        if (!findDiscountInPages(discountname)) {
-            throw new RuntimeException("Discount not found: " + discountname);
+    public void approveAction(String remark) {
+        if (!findDiscountInPages()) {
+            throw new RuntimeException("Discount not found: " + DiscountName);
         }
 
-        driver.element().click(approveButton(discountname));
+        driver.element().click(approveButton(DiscountName));
         driver.element().type(RemarksAction, remark);
         driver.element().click(Btn_SubmitAction);
     }
 
-    public void adddiscount(String discountName, String discountDis, String year,String month,String From, String year2,String month2,String From1, String Country, String Branch, String Agency, String Attribute, String Operator, String Value, String Faretype, String Amounttype, String AmountValue) throws InterruptedException {
+    public void adddiscount(String discountDis, String year,String month,String From, String year2,String month2,String From1, String Country, String Branch, String Agency, String Attribute, String Operator, String Value, String Faretype, String Amounttype, String AmountValue) throws InterruptedException {
         driver.element().click(Btn_AddDiscount);
-        driver.element().type(txt_DiscountName, discountName)
+        driver.element().type(txt_DiscountName, FakerSingleton.PassengerFactory.firstName()
+                )
                 .type(txt_DiscountDisc, discountDis);
+        DiscountName = driver.element().getText(txt_DiscountName);
         driver.element().click(Btn_ValidityPeriodFrom);
         driver.element().click(Year);
         By year1 = By.xpath("//span[normalize-space()='" + year + "']");
@@ -228,18 +232,17 @@ public class Discount_Page {
                 .select(txt_SearchData, Value).click(Btn_CheckBoxSearch)
                 .click(Btn_AddForAttribute)
                 .click(Btn_Save)
-                .click(Rbtn_All)
                 .select(Lst_FareType, Faretype)
                 .select(Lst_AmountType, Amounttype)
                 .type(txt_AmountValue, AmountValue)
                 .click(Btn_Sendforapproval);
         driver.element().select(Lst_CountryPos, Country);
-        driver.element().select(Lst_Branch, Branch);
+//        driver.element().select(Lst_Branch, Branch);
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
 
     }
-    public void updatediscount(String name, String discountName, String discountDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
+    public void updatediscount(String name,String discountDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
                              String AmountValue, String Remarks) {
 
         // 1. Build dynamic row locator
@@ -247,7 +250,7 @@ public class Discount_Page {
 
         // 2. Build dynamic edit icon inside that row
         By editButton = By.xpath(String.format(
-                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", name));
+                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", DiscountName));
 
         // 3. Paginator next button
         By nextButton = By.xpath("//button[.//i[contains(@class,'pi-angle-right')]]");
@@ -258,8 +261,7 @@ public class Discount_Page {
         driver.element().click(editButton);
 
         // 6. Update fields
-        driver.element().clear(txt_DiscountName);
-        driver.element().type(txt_DiscountName, discountName);
+        driver.element().type(txt_DiscountName, FakerSingleton.PassengerFactory.firstName());
 
         driver.element().clear(txt_DiscountDisc);
         driver.element().type(txt_DiscountDisc, discountDis);
@@ -286,11 +288,11 @@ public class Discount_Page {
 
         // Dropdowns
 //        driver.element().select(Lst_FareType, Faretype);
-        driver.element().select(Lst_AmountType, Amounttype);
-
-        // Amount + Remarks
-        driver.element().clear(txt_AmountValue);
-        driver.element().type(txt_AmountValue, AmountValue);
+//        driver.element().select(Lst_AmountType, Amounttype);
+//
+//        // Amount + Remarks
+//        driver.element().clear(txt_AmountValue);
+//        driver.element().type(txt_AmountValue, AmountValue);
 
         driver.element().type(txt_Reamrks, Remarks);
 

@@ -136,7 +136,7 @@ public class SearchMarkup_TC {
         String branch  = testData.getTestData("SearchSet1.Branch");
         markup.searchMarkup(country, branch);
         markup.inactivestatus();
-        markup.approveAction(markupname,remark);
+        markup.approveAction(remark);
         markup.activestatus();
         String actualMessage = driver.element().getText(By.xpath("//div[contains(@class,'toast-message')]"));
 
@@ -157,7 +157,7 @@ public class SearchMarkup_TC {
         String branch  = testData.getTestData("SearchSet1.Branch");
         markup.searchMarkup(country, branch);
         markup.activestatus();
-        markup.rejectAction(markupname,remark);
+        markup.rejectAction(remark);
         markup.inactivestatus();
         String actualMessage = driver.element().getText(By.xpath("//div[contains(@class,'toast-message')]"));
 

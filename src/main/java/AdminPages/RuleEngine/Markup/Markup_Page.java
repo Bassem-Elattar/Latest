@@ -4,6 +4,7 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.FakerSingleton;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ import static org.openqa.selenium.By.xpath;
 
 public class Markup_Page {
     private final SHAFT.GUI.WebDriver driver;
-
+    public static String markupName;
     // Locators
     private final By Lst_CountryPos = By.xpath("//p-dropdown[.//input[@id=\"id-CountryPOS\"]]");
     private final By Lst_Branch = By.xpath("//p-dropdown[.//input[@id=\"id-Branch\"]]");
@@ -44,9 +45,9 @@ public class Markup_Page {
     private final By Btn_Cancel = By.xpath("(//button[@class=\"modal-btn\"])[2]");
     private final By Rbtn_All = By.xpath("//p-radiobutton[.//input[@id=\"-All\"]]");
     private final By Rbtn_ByPax = By.xpath("//p-radiobutton[.//input[@id=\"-By Pax\"]]");
-    private final By Lst_FareType = By.xpath("//p-dropdown[.//input[@id=\"id-FareType\"]]");
-    private final By Lst_AmountType = By.xpath("//p-dropdown[.//input[@id=\"id-AmountType\"]]");
-    private final By txt_AmountValue = By.xpath("//input[@id=\"id-Entervalue\"]");
+    private final By Lst_FareType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
+    private final By Lst_AmountType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
+    private final By txt_AmountValue = By.xpath("(//input[@placeholder='0.00'])[1]");
     private final By Btn_Sendforapproval = By.xpath("//button[@type=\"submit\"]");
     private final By Btn_CancelForMarkup = By.xpath("(//button[@type=\"button\"])[7]");
     private final By After = By.xpath("//span[contains(@class,'p-datepicker-next-icon')]");
@@ -62,7 +63,7 @@ public class Markup_Page {
     By Approve = By.xpath("//i[@class=\"pi pi-thumbs-up\"]");
     By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_SubmitAction = By.xpath("(//button[@type=\"submit\"])[2]");
-    By Btn_last = By.xpath("//span[@id=\"last\"]");
+    By Btn_last = By.xpath("(//span[@class='last text-xs selected-last-page ng-star-inserted'])[1]");
     public By Table_FirstRow = By.xpath("//table//tbody/tr[1]");
     public By StatusCellInactive = By.xpath("//td[normalize-space()='Inactive']");
     public By StatusCellActive = By.xpath("//td[normalize-space()='Active']");
@@ -96,15 +97,15 @@ public class Markup_Page {
 
     public void searchMarkup(String Country, String branch) {
         driver.element().select(Lst_CountryPos, Country);
-        driver.element().click(Lst_Branch);
-        By item = By.xpath("//li[normalize-space()='" + branch + "']");
-
-// scroll inside the dropdown container
-        driver.element().scrollToElement(item);
-
-// then click
-        driver.element().click(item);
-//        driver.element().type(txt_MarkupCode,markupcode);
+//        driver.element().click(Lst_Branch);
+//        By item = By.xpath("//li[normalize-space()='" + branch + "']");
+//
+//// scroll inside the dropdown container
+//        driver.element().scrollToElement(item);
+//
+//// then click
+//        driver.element().click(item);
+////        driver.element().type(txt_MarkupCode,markupcode);
 
 
     }
@@ -137,12 +138,12 @@ public class Markup_Page {
         driver.element().click(Btn_last);
     }
 
-    public boolean findMarkupInPages(String markupname){
+    public boolean findMarkupInPages(){
         int maxPages = 20; // safety limit
 
         for(int i = 0; i < maxPages; i++){
             // If found in current page, return true
-            if(driver.element().isElementDisplayed(rowMarkup(markupname))){
+            if(driver.element().isElementDisplayed(rowMarkup(markupName))){
                 return true;
             }
 
@@ -160,28 +161,29 @@ public class Markup_Page {
         return false; // not found anywhere
     }
 
-    public void rejectAction(String markupname,String remark){
-        if(!findMarkupInPages(markupname)){
-            throw new RuntimeException("Markup not found: " + markupname);}
+    public void rejectAction(String remark){
+        if(!findMarkupInPages()){
+            throw new RuntimeException("Markup not found: " + markupName);}
 //
-        driver.element().click(rejectButton(markupname));
+        driver.element().click(rejectButton(markupName));
         driver.element().type(RemarksAction,remark);
         driver.element().click(Btn_SubmitAction);
     }
-    public void approveAction(String markupname,String remark){
-        if(!findMarkupInPages(markupname)){
-            throw new RuntimeException("Markup not found: " + markupname);
+    public void approveAction(String remark){
+        if(!findMarkupInPages()){
+            throw new RuntimeException("Markup not found: " + markupName);
         }
 //
-        driver.element().click(approveButton(markupname));
+        driver.element().click(approveButton(markupName));
         driver.element().type(RemarksAction,remark);
         driver.element().click(Btn_SubmitAction);
     }
 
-    public void addMarkup(String MarkupName , String MarkupDis,String year,String month,String From, String year2,String month2,String From1,String Country,String Branch,String Agency,String Attribute,String Operator ,String Value,String Faretype,String Amounttype,String AmountValue) throws InterruptedException {
+    public void addMarkup(String MarkupDis,String year,String month,String From, String year2,String month2,String From1,String Country,String Branch,String Agency,String Attribute,String Operator ,String Value,String Faretype,String Amounttype,String AmountValue) throws InterruptedException {
         driver.element().click(Btn_AddMarkup);
-        driver.element().type(txt_MarkupName,MarkupName)
+        driver.element().type(txt_MarkupName, FakerSingleton.PassengerFactory.firstName())
                 .type(txt_MarkupDisc,MarkupDis);
+        markupName = driver.element().getText(txt_MarkupName);
         driver.element().click(Dpick_Validityfrom);
         driver.element().click(Year);
         By year1 = By.xpath("//span[normalize-space()='" + year + "']");
@@ -231,18 +233,17 @@ public class Markup_Page {
                 .select(txt_SearchData,Value).click(Btn_CheckBoxSearch)
                 .click(Btn_AddForAttribute)
                 .click(Btn_Save)
-                .click(Rbtn_All)
                 .select(Lst_FareType,Faretype)
                 .select(Lst_AmountType,Amounttype)
                 .type(txt_AmountValue,AmountValue)
                 .click(Btn_Sendforapproval);
         driver.element().select(Lst_CountryPos, Country);
-        driver.element().select(Lst_Branch, Branch);
+//        driver.element().select(Lst_Branch, Branch);
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
 
     }
-    public void updateMarkup(String name, String MarkupName, String MarkupDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
+    public void updateMarkup(String name,String MarkupDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
                              String AmountValue, String Remarks) {
 
         // 1. Build dynamic row locator
@@ -250,7 +251,7 @@ public class Markup_Page {
 
         // 2. Build dynamic edit icon inside that row
         By editButton = By.xpath(String.format(
-                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", name));
+                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", markupName));
 
         // 3. Paginator next button
         By nextButton = By.xpath("//button[.//i[contains(@class,'pi-angle-right')]]");
@@ -261,8 +262,7 @@ public class Markup_Page {
         driver.element().click(editButton);
 
         // 6. Update fields
-        driver.element().clear(txt_MarkupName);
-        driver.element().type(txt_MarkupName, MarkupName);
+        driver.element().type(txt_MarkupName, FakerSingleton.PassengerFactory.firstName());
 
         driver.element().clear(txt_MarkupDisc);
         driver.element().type(txt_MarkupDisc, MarkupDis);
@@ -293,11 +293,11 @@ public class Markup_Page {
 
         // Dropdowns
 //        driver.element().select(Lst_FareType, Faretype);
-        driver.element().select(Lst_AmountType, Amounttype);
-
-        // Amount + Remarks
-        driver.element().clear(txt_AmountValue);
-        driver.element().type(txt_AmountValue, AmountValue);
+//        driver.element().select(Lst_AmountType, Amounttype);
+//
+//        // Amount + Remarks
+//        driver.element().clear(txt_AmountValue);
+//        driver.element().type(txt_AmountValue, AmountValue);
 
         driver.element().type(txt_Reamrks, Remarks);
 
