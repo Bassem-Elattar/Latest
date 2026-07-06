@@ -6,10 +6,12 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
 import AdminPages.Reports.Statement.State;
+import Drive_Factory.CommonMethod;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
@@ -22,9 +24,10 @@ import java.util.List;
 import java.util.Map;
 import org.testng.asserts.SoftAssert;
 
-public class Booking_TC extends TestBase_TC {
+public class Booking_TC{
 
     private SearchBookingBranch Booking;
+    SHAFT.GUI.WebDriver driver;
     SHAFT.TestData.JSON testData;
     private LogIn_Page logIn;
     SoftAssert softAssert = new SoftAssert();
@@ -58,9 +61,11 @@ public class Booking_TC extends TestBase_TC {
 
     @BeforeTest
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         Booking = new SearchBookingBranch(driver);
         testData = new SHAFT.TestData.JSON("searchBookingBrData.json");
         NumberOfAdults = testData.getTestData("NumberOfAdults");
