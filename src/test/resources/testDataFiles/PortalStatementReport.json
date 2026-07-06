@@ -1,16 +1,41 @@
 {
   "ValidDateRange": {
-    "InvoiceFromDate": "01/06/2026",
-    "InvoiceToDate": "27/06/2026"
+    "InvoiceFromDate": {
+      "Day": "1",
+      "Year": "2026",
+      "Month": "Jun",
+      "Value": "01/06/2026"
+    },
+    "InvoiceToDate": {
+      "Day": "27",
+      "Year": "2026",
+      "Month": "Jun",
+      "Value": "27/06/2026"
+    }
   },
 
   "SameDaySearch": {
-    "InvoiceDate": "01/06/2026"
+    "InvoiceDate": {
+      "Day": "1",
+      "Year": "2026",
+      "Month": "Jun",
+      "Value": "01/06/2026"
+    }
   },
 
   "InvalidFromAfterTo": {
-    "InvoiceFromDate": "20/06/2026",
-    "InvoiceToDate": "10/06/2026",
+    "InvoiceFromDate": {
+      "Day": "20",
+      "Year": "2026",
+      "Month": "Jun",
+      "Value": "20/06/2026"
+    },
+    "InvoiceToDate": {
+      "Day": "10",
+      "Year": "2026",
+      "Month": "Jun",
+      "Value": "10/06/2026"
+    },
     "ExpectedError": "invoiceFromDate must be smaller than invoiceToDate"
   },
 
