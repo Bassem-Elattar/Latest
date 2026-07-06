@@ -1,8 +1,8 @@
 package PortalPages.Reports.Booking.TotalDueToNDC;
 
-import AdminPages.Reports.TotalDueToNDC.TotalDueToNDC_Page;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ public class TotalDueToNDCReport {
 
     private final By Dpick_fromDateSend = By.xpath("//input[@id='id-InvoiceFromDate']");
     private final By Dpick_toDateSend = By.xpath("//input[@id='id-InvoiceToDate']");
-    private final By srNo = By.xpath("//*[@id=\"pr_id_6-table\"]/tbody/tr[1]/td[1]");
+    private final By srNo = By.xpath("(//tbody/tr[1]/td[1])[1]");
     private final By Year = xpath("//button[normalize-space()='2026']");
     private final By Submit = xpath("//button[@type=\"submit\"]");
 
@@ -33,19 +33,10 @@ public class TotalDueToNDCReport {
     private final By Txt_invoiceNumber = By.xpath("//input[@id='id-InvoiceNumber']");
     private final By Txt_customerName = By.xpath("//input[@id='id-CustomerName']");
     private final By Txt_bookingReference = By.xpath("//input[@id='id-BookingReference']");
-    private final By Btn_exportButton = By.xpath("//button[@class='p-element p-ripple p-button-outlined p-button p-component upper-table-btn ng-star-inserted']");
+    private final By Btn_exportButton = By.xpath("//button[.//span[normalize-space()='Export To Excel']]");
 
     private final By tableRows = By.xpath("//tbody/tr");
     private final By agencyCurrency = By.xpath("(//span[@class='currency'])[1]");
-
-    private final By reportsMenu = By.xpath("//a[.//span[normalize-space()='Reports']]");
-    private final By totalDueToNdcButton = By.xpath("//ndc-card[.//h3[normalize-space()='Total Due to NDC']]//button");
-
-    public TotalDueToNDCReport openTotalDueToNdcReport() {
-        driver.element().click(reportsMenu);
-        driver.element().click(totalDueToNdcButton);
-        return this;
-    }
 
     public TotalDueToNDCReport searchValidFromDate(String From, String year, String month) throws InterruptedException {
 
@@ -120,6 +111,10 @@ public class TotalDueToNDCReport {
         return this;
     }
     public TotalDueToNDCReport clickOnNextButton() throws InterruptedException {
+        driver.element().scrollToElement(Btn_nextButton);
+        ((JavascriptExecutor) driver.getDriver()).executeScript(
+                "document.querySelector('.zsiq_floatmain').remove();"
+        );
         driver.element().click(Btn_nextButton);
         Thread.sleep(5000);
         return this;

@@ -2,6 +2,7 @@ package PortalPages.Reports.Booking.Sales;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 import java.time.LocalDate;
@@ -34,19 +35,6 @@ public class SalesReport {
     By rows = By.xpath("//tbody/tr");
     private static final String AGENT_OPTION_XPATH =
             "//li[@role='option']//span[normalize-space()='%s']";
-
-    private final By reportsMenu =
-            By.xpath("//a[.//span[normalize-space()='Reports']]");
-
-    private final By salesButton =
-            By.xpath("//ndc-card[.//h3[normalize-space()='Sales']]//button");
-
-    public SalesReport openSalesReport() {
-        driver.element().click(reportsMenu);
-        driver.element().click(salesButton);
-        return this;
-    }
-
 
     public SalesReport setDate(String From, String year, String month){
         driver.element().click(InvoiceFromDate);
@@ -148,6 +136,10 @@ public class SalesReport {
     }
 
     public SalesReport clickOnNextButton() throws InterruptedException {
+        driver.element().scrollToElement(Btn_nextButton);
+        ((JavascriptExecutor) driver.getDriver()).executeScript(
+                "document.querySelector('.zsiq_floatmain').remove();"
+        );
         driver.element().click(Btn_nextButton);
         Thread.sleep(5000);
         return this;
