@@ -238,7 +238,7 @@ public class SearchBooking_Page {
     public SearchBooking_Page SelectCurrentStartDate() throws InterruptedException {
         String[] date = getCurrentDate();
 
-        String day = date[0];
+        String day = date[0].replaceFirst("^0", "");
         String month = date[1];
         String year = date[2];
 
@@ -248,7 +248,7 @@ public class SearchBooking_Page {
         driver.element().click(year1);
         By month1 = By.xpath("//span[normalize-space()='" + month + "']");
         driver.element().click(month1);
-        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", day));
+        By Day = By.xpath(String.format("(//span[normalize-space()='%s'])[1]", day));
         driver.element().click(Day);
         return new SearchBooking_Page(driver);
     }
@@ -266,7 +266,7 @@ public class SearchBooking_Page {
         driver.element().click(year1);
         By month1 = By.xpath("//span[normalize-space()='" + month + "']");
         driver.element().click(month1);
-        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", day));
+        By Day = By.xpath(String.format("(//span[normalize-space()='%s'])[1]", day));
         driver.element().click(Day);
         return new SearchBooking_Page(driver);
     }
