@@ -6,10 +6,7 @@ import PortalPages.Login.Login_Page;
 import PortalPages.SideMenu;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.DataUtils;
 
 public class TotalDueToNDCReport_TC {
@@ -18,7 +15,7 @@ public class TotalDueToNDCReport_TC {
     TotalDueToNDCReport dueToNDC;
     SideMenu sideMenu;
 
-    @BeforeMethod
+    @BeforeClass
     public void setup() {
         CommonMethod.setupDriver(DataUtils.get("browser"));
         driver = CommonMethod.getDriver();
@@ -27,16 +24,16 @@ public class TotalDueToNDCReport_TC {
         testData = new SHAFT.TestData.JSON("TotalDue.json");
         sideMenu = new SideMenu(driver);
         dueToNDC = new TotalDueToNDCReport(driver);
-        sideMenu.openTotalDueToNdcReport();
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.browser().closeCurrentWindow();
+        driver.browser().navigateToURL(DataUtils.get("Portal_Url"));
     }
 
     @Test
     public void validSearchForTotalDue() throws InterruptedException {
+        sideMenu.openReports().openTotalDueToNdcReport();
         dueToNDC
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
@@ -46,6 +43,7 @@ public class TotalDueToNDCReport_TC {
 
     @Test
     public void validateThatUserCanSearchWithAllField() throws InterruptedException {
+        sideMenu.openReports().openTotalDueToNdcReport();
         dueToNDC
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
@@ -58,6 +56,7 @@ public class TotalDueToNDCReport_TC {
 
     @Test
     public void searchForTotalDueWithNoOutputAndSelectSameDayFromDate() throws InterruptedException {
+        sideMenu.openReports().openTotalDueToNdcReport();
         dueToNDC
                 .searchValidFromDate(testData.getTestData("validDataNoOutput.From_Date"), testData.getTestData("validDataNoOutput.FromYear"), testData.getTestData("validDataNoOutput.FromMonth"))
                 .searchValidToDate(testData.getTestData("validDataNoOutput.To_Date"), testData.getTestData("validDataNoOutput.ToYear"), testData.getTestData("validDataNoOutput.ToMonth"))
@@ -67,6 +66,7 @@ public class TotalDueToNDCReport_TC {
 
     @Test
     public void validateThatUserCanExportTheFile() throws InterruptedException {
+        sideMenu.openReports().openTotalDueToNdcReport();
         dueToNDC
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))
@@ -76,6 +76,7 @@ public class TotalDueToNDCReport_TC {
 
     @Test
     public void validatePagination() throws InterruptedException {
+        sideMenu.openReports().openTotalDueToNdcReport();
         dueToNDC
                 .searchValidFromDate(testData.getTestData("validData.From_Date"), testData.getTestData("validData.FromYear"), testData.getTestData("validData.FromMonth"))
                 .searchValidToDate(testData.getTestData("validData.To_Date"), testData.getTestData("validData.ToYear"), testData.getTestData("validData.ToMonth"))

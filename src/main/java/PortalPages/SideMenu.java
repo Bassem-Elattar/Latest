@@ -26,14 +26,17 @@ public class SideMenu {
     private final By totalDueToNdcButton = By.xpath("//ndc-card[.//h3[normalize-space()='Total Due to NDC']]//button");
 
 
-    public SideMenu openSalesReport() {
+    public SideMenu openReports() {
         driver.element().click(reportsMenu);
+        return this;
+    }
+
+    public SideMenu openSalesReport() {
         driver.element().click(salesButton);
         return this;
     }
 
     public SideMenu openTotalDueToNdcReport() {
-        driver.element().click(reportsMenu);
         driver.element().click(totalDueToNdcButton);
         return this;
     }
