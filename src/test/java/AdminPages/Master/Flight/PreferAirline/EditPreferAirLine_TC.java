@@ -50,7 +50,7 @@ public class EditPreferAirLine_TC extends TestBase_TC {
         String Acual =driver.element().getText(By.xpath("//div[@aria-label=\"Prefer Airline already exists.\"]"));
         Assert.assertEquals(Acual,Expected,"This Behaviour not correct ");
         Thread.sleep(2000);
-        preferAirLine.Cancel();
+//        preferAirLine.Cancel();
 
     }
 //    @Test//Prefer Airline With the restricted airlines to add prefer airline
@@ -81,7 +81,7 @@ public class EditPreferAirLine_TC extends TestBase_TC {
        String Actual =driver.element().getText(preferAirLine.ValidtionInPcc);
       Assert.assertEquals(Actual,Expected,"this issue !!! Pcc Is Not Required  ");
         Thread.sleep(2000);
-        preferAirLine.Cancel();
+//        preferAirLine.Cancel();
     }
 //    @Test  // Validation  On Required  Supplier
 //    public void testUpdateForPreferAirLine4( ) throws InterruptedException {

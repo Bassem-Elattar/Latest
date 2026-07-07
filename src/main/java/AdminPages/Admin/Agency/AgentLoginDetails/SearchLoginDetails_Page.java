@@ -105,27 +105,27 @@ public class SearchLoginDetails_Page {
         return actualResult;
 
     }
-    public void searchValidFromDate(String From, String year, String month) throws InterruptedException {
+    public void searchValidFromDate(String FromDate, String FromYear, String FromMonth) throws InterruptedException {
 
         driver.element().click(Dpick_StartDate);
         driver.element().click(Year);
-        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        By year1 = By.xpath("//span[normalize-space()='" + FromYear + "']");
         driver.element().click(year1);
-        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        By month1 = By.xpath("//span[normalize-space()='" + FromMonth + "']");
         driver.element().click(month1);
-        By Day =  By.xpath(String.format("(//span[text()='%s'])[1]", From));
+        By Day =  By.xpath(String.format("(//span[text()='%s'])[1]", FromDate));
         driver.element().click(Day);
     }
 
-    public void searchValidToDate(String to, String year, String month) throws InterruptedException {
+    public void searchValidToDate(String ToDate, String ToYear, String ToMonth) throws InterruptedException {
 
         driver.element().click(Dpick_EndDate);
         driver.element().click(Year);
-        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        By year1 = By.xpath("//span[normalize-space()='" + ToYear + "']");
         driver.element().click(year1);
-        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        By month1 = By.xpath("//span[normalize-space()='" + ToMonth + "']");
         driver.element().click(month1);
-        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", ToDate));
         driver.element().click(Day);
     }
 

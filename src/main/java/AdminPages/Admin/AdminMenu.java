@@ -39,6 +39,10 @@ public class AdminMenu {
         //driver.element().click(Btn_SubAgency);
         return this;
     }
+    public AdminMenu SubAgency(){
+        driver.element().click(Btn_SubAgency);
+        return this;
+    }
     public AdminMenu SerachLoginDetails(){
         driver.element().click(Btn_SearchLoginDetails);
         return this;

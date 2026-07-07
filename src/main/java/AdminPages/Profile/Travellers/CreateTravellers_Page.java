@@ -1,7 +1,13 @@
 package AdminPages.Profile.Travellers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.FakerSingleton;
+
+import java.io.File;
 
 public class CreateTravellers_Page {
 
@@ -9,6 +15,9 @@ public class CreateTravellers_Page {
         this.driver = driver;
     }
     SHAFT.GUI.WebDriver driver ;
+
+    public static String secondName;
+    public static String firstName;
 
     By Btn_Add = By.xpath("//button[@routerlink=\"add\"]");
     By Lst_BranchName = By.xpath("//p-dropdown[.//input[@id=\"id-BranchName\"]]");
@@ -29,9 +38,34 @@ public class CreateTravellers_Page {
     By Dpick_ExpDate = By.xpath("(//ndc-add-traveller//p-calendar//button)[2]");
     By Lst_CountryofIssue = By.xpath("(//p-dropdown[.//input[@id=\"id-CountryOfIssue\"]])[1]");
 
+    public void addFirstName(String Name) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("src/test/resources/testDataFiles/SearchTraveller.json");
 
-    public void setPersonalDetail(String branch, String title , String firstname , String lastname , String year,String month , String From , String
-                                  email, String nationality ,String gender , String phonenumber , String address) throws InterruptedException {
+        ArrayNode array = (ArrayNode) mapper.readTree(file);
+
+        ObjectNode json = (ObjectNode) array.get(0);
+        json.put("FirstName", Name);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, array);
+
+    }
+
+    public void addFirstName1(String Name) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("src/test/resources/testDataFiles/UpdateTraveller.json");
+
+        ArrayNode array = (ArrayNode) mapper.readTree(file);
+
+        ObjectNode json = (ObjectNode) array.get(0);
+        json.put("FirstName", Name);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, array);
+    }
+
+
+    public void setPersonalDetail(String branch, String title ,String year,String month , String From , String
+                                  email, String nationality ,String gender , String phonenumber , String address) throws Exception {
         driver.element().click(Btn_Add);
         driver.element().click(Lst_BranchName);
         By option = By.xpath(String.format("//span[text()='%s']", branch));
@@ -41,9 +75,11 @@ public class CreateTravellers_Page {
         By option1 = By.xpath(String.format("//span[text()='%s']", title));
         driver.element().click(option1);
 
-        driver.element().type(Txt_Firstname,firstname);
-        driver.element().type(Txt_LastName,lastname);
-
+        driver.element().type(Txt_Firstname, FakerSingleton.PassengerFactory.firstName());
+        driver.element().type(Txt_LastName,FakerSingleton.PassengerFactory.firstName());
+        firstName = driver.element().getText(Txt_Firstname);
+        addFirstName(firstName);
+        addFirstName1(firstName);
 //        driver.element().click(Date);
 //        driver.element().click(BackDate);
 //        Thread.sleep(3000);
@@ -70,6 +106,7 @@ public class CreateTravellers_Page {
 
         driver.element().type(Txt_Phonenumber,phonenumber);
         driver.element().type(Txt_Address,address);
+
 
 
     }
