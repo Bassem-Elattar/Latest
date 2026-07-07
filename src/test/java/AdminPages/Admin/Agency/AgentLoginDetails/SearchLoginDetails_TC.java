@@ -43,7 +43,7 @@ public class SearchLoginDetails_TC extends TestBase_TC {
         String agn = search.get("agn");
         String FromDate = search.get("FromDate");
         String ToDate = search.get("ToDate");
-        Search.ValidData(agn,FromDate,ToDate);
+        Search.ValidData(agn);
         Thread.sleep(3000);
         assertEquals("Test Egypt",Search.Table(0,"Test Egypt"));
     }

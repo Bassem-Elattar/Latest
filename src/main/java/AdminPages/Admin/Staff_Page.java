@@ -2,6 +2,7 @@ package AdminPages.Admin;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.FakerSingleton;
 
 public class Staff_Page {
 
@@ -59,8 +60,8 @@ public class Staff_Page {
     }
 
     public void AddStuff(String usertype ,String searchoperatingcountry,String searchbranch , String searchdepartment
-             ,String searchrole,String employeename,String employeeemail,String employeephoneno,String
-                                    employeesecno,String username,String approverlist ) throws InterruptedException {
+             ,String searchrole,String employeeemail,String employeephoneno,String
+                                    employeesecno,String approverlist ) throws InterruptedException {
         System.out.println("Start Method : Adding a new staff");
         driver.element().click(Lst_Usertype);
         By option11 = By.xpath(String.format("//span[contains(text(), '%s')]", usertype));
@@ -83,7 +84,7 @@ public class Staff_Page {
         driver.element().click(option3);
         //driver.element().click(Icn_ExitRole);
         Thread.sleep(MILLIS);
-        driver.element().type(Txt_EmployeeName,employeename);
+        driver.element().type(Txt_EmployeeName, FakerSingleton.PassengerFactory.firstName());
         Thread.sleep(MILLIS);
         driver.element().type(Txt_EmployeeEmail,employeeemail);
         Thread.sleep(MILLIS);
@@ -91,7 +92,7 @@ public class Staff_Page {
         Thread.sleep(MILLIS);
         driver.element().type(Txt_EmployeeSecondaryNo,employeesecno);
         Thread.sleep(MILLIS);
-        driver.element().type(Txt_AddUserName,username);
+        driver.element().type(Txt_AddUserName, FakerSingleton.PassengerFactory.firstName());
         Thread.sleep(MILLIS);
         driver.element().click(Lst_ApproverList);
         By option4 = By.xpath(String.format("//span[contains(text(), '%s')]", approverlist));

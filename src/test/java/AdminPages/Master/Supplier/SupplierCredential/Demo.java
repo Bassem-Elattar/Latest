@@ -96,7 +96,7 @@ public class Demo extends TestBase_TC {
         String ReadTimeOut = add.get("ReadTimeOut");
         String EndpointURL = add.get("EndpointURL");
         String DevCreate = add.get("DevCreate");
-        addSupplierCredential.setAddSupplierCredential(Supplier,CredentialName,CountryPOC,Currency,CredentialType
+        addSupplierCredential.setAddSupplierCredential(Supplier,CountryPOC,Currency,CredentialType
                 ,FlightSearchLimit,ConnectionTime,ReadTimeOut);
         addSupplierCredential.GDS(EndpointURL);
         Thread.sleep(10000);

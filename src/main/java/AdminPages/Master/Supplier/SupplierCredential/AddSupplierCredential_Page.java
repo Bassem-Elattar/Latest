@@ -2,6 +2,7 @@ package AdminPages.Master.Supplier.SupplierCredential;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.FakerSingleton;
 
 public class AddSupplierCredential_Page {
     public AddSupplierCredential_Page(SHAFT.GUI.WebDriver driver) {
@@ -24,13 +25,13 @@ public class AddSupplierCredential_Page {
     By Cbox_DevCreate = By.xpath("(//p-checkbox[.//input[@type=\"checkbox\"]])[1]");
     By Btn_Save = By.xpath("//button[@type=\"submit\"]");
 
-    public void setAddSupplierCredential(String supplier, String credentialname, String countrypoc, String currency
+    public void setAddSupplierCredential(String supplier, String countrypoc, String currency
     , String credentialtype,String flightsearchlimit,String connectiontime,String readtimeout) throws InterruptedException {
         driver.element().click(Btn_AddSupplierCredential);
         driver.element().click(Lst_Supplier);
         By option = By.xpath(String.format("//span[text()='%s']", supplier));
         driver.element().click(option);
-        driver.element().type(Lst_CredentialName,credentialname);
+        driver.element().type(Lst_CredentialName, FakerSingleton.PassengerFactory.firstName());
         driver.element().click(Lst_CountryPOC);
         By option1 = By.xpath(String.format("//span[text()='%s']", countrypoc));
         driver.element().click(option1);
@@ -50,7 +51,7 @@ public class AddSupplierCredential_Page {
         driver.element().click(option5);
         Thread.sleep(1000);
         driver.element().click(Lst_ReadTimeOut);
-        By option6 = By.xpath(String.format("//span[text()='%s']", readtimeout));
+        By option6 = By.xpath(String.format("(//li[@aria-label='%s'])[1]", readtimeout));
         driver.element().click(option6);
 
     }

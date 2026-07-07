@@ -4,6 +4,8 @@ import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
 import AdminPages.Master.Supplier.Supplier.SearchSupplier_Page;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import com.shaft.gui.element.ElementActions;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -11,6 +13,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -18,9 +21,10 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 
-public class AddSupplierCredential_TC extends TestBase_TC {
+public class AddSupplierCredential_TC {
 
     private LogIn_Page logIn;
+    public SHAFT.GUI.WebDriver driver;
     private SearchCity_Page searchCity;
     private SearchSupplierCredential_Page searchSupplierCredential;
     private SearchSupplier_Page searchSupplier;
@@ -37,10 +41,11 @@ public class AddSupplierCredential_TC extends TestBase_TC {
 
     @BeforeTest
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
+        new LogIn_Page(driver).AdminLogin();
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")
@@ -64,13 +69,13 @@ public class AddSupplierCredential_TC extends TestBase_TC {
         String Password = add.get("Password");
         String DisplayName = add.get("DisplayName");
         String DevCreate = add.get("DevCreate");
-        addSupplierCredential.setAddSupplierCredential(Supplier,CredentialName,CountryPOC,Currency,CredentialType
+        addSupplierCredential.setAddSupplierCredential(Supplier,CountryPOC,Currency,CredentialType
         ,FlightSearchLimit,ConnectionTime,ReadTimeOut);
         //addSupplierCredential.GDS(EndpointURL);
 //        addSupplierCredential.RestrictedAirline();
 
         addSupplierCredential.setSaveBtn();
-        Thread.sleep(10000);
+//        Thread.sleep(10000);
     }
 
 
