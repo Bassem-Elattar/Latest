@@ -6,6 +6,9 @@ import AdminPages.Admin.AdminMenu;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
+import utilities.DataUtils;
 import utilities.DataaUtils;
 
 import com.github.javafaker.Faker;
@@ -18,10 +21,13 @@ import utilities.JsonDataUtil;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class CreateBranch_Admin_TC extends TestBase_TC {
+public class CreateBranch_Admin_TC{
     Faker faker = new Faker();
     private Branch_Page addNewBranch;
     private Branch_Page searchBranch;
+    SHAFT.GUI.WebDriver driver;
+    public static String branchName;
+
 
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
@@ -32,8 +38,11 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
 
     @BeforeTest
     public void sign(){
-        new LogIn_Page(driver).ClickAdmin();
-        new LogIn_Page(driver).ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        // Admin login
+        new LogIn_Page(driver).AdminLogin();
         new AdminMenu(driver).openSubAdmin().openBranch();
     }
     @Test
@@ -53,7 +62,6 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
         String State = DataaUtils.getJsonData("NewBranchData","State");
         String City = DataaUtils.getJsonData("NewBranchData","City");
         String Description = DataaUtils.getJsonData("NewBranchData","Description");
-        String  branchName = DataaUtils.getJsonData("NewBranchData","EnterBranchName");
         boolean isGds = Boolean.parseBoolean(DataaUtils.getJsonData("NewBranchData", "isGds"));
         String CredentialName = DataaUtils.getJsonData("FlightDate", "CredentialName");
         String Email = faker.internet().emailAddress();
@@ -61,7 +69,7 @@ public class CreateBranch_Admin_TC extends TestBase_TC {
         int Post = faker.number().randomDigit();
         Thread.sleep(4000);
         addNewBranch.Txt_OperatingCountry(selectOperatingCountry);
-        addNewBranch.Txt_Name(branchName);
+        branchName = addNewBranch.Txt_Name();
         addNewBranch.Lst_StateCreate(State,selectOperatingCountry);
         addNewBranch.Lst_CityCreate(City);
         addNewBranch.Txt_Address1(Address);

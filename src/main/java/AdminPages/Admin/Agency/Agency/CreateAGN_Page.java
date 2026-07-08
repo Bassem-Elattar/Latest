@@ -4,6 +4,7 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import utilities.FakerSingleton;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class CreateAGN_Page {
         this.driver = driver;
     }
     SHAFT.GUI.WebDriver driver;
+    public static String AgencyName1;
 //    public By AGNBtn = xpath("/html/body/ndc-root/ndc-layout/div/div[1]/tilde-theme-side-menu/div/ul/li[3]/tilde-theme-accordion/header/a");
     public By Agency = xpath("//a[@href=\"/admin/agency\"]");
     By ADDBtn = xpath("//button[@routerlink=\"add\"]");
@@ -61,15 +63,18 @@ public class CreateAGN_Page {
 
     }
 
-    public void CreateValidAGN(String selectbranch, String AgencyName, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) {
+    public String CreateValidAGN(String selectbranch, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) {
 //        driver.element().click(AGNBtn);
 //        driver.element().click(Agency)
                 driver.element().click(ADDBtn);
         driver.element().click(SelectBranch);
         By option11 = xpath(String.format("(//span[contains(text(), '%s')])[1]", selectbranch));
         driver.element().click(option11)
-                .type(WRTAgencyName, AgencyName).type(WRTAgencyName, AgencyName)
-                .select(SelectState, state);
+                .type(WRTAgencyName, FakerSingleton.PassengerFactory.firstName());
+        driver.element().click(SelectState);
+        By option13 = xpath(String.format("(//span[contains(text(), '%s')])[1]", state));
+        driver.element().click(option13);
+        AgencyName1 = driver.element().getText(WRTAgencyName);
         driver.element().click(SelectCity);
         By option12 = xpath(String.format("//span[contains(text(), '%s')]", city));
         driver.element().click(option12)
@@ -99,6 +104,7 @@ public class CreateAGN_Page {
 
 
         driver.element().click(SendApprove);
+        return AgencyName1;
     }
 
     public void Sendapprove() {

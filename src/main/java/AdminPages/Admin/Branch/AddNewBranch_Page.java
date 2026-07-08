@@ -5,6 +5,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import utilities.FakerSingleton;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class AddNewBranch_Page {
       this.driver = driver;
    }
    SHAFT.GUI.WebDriver driver ;
-
+    public static String branchName;
    /////////////Branch Details//////////////
 
    By Branch = By.xpath("//a[@href=\"/admin/branch\"]");
@@ -53,7 +54,7 @@ public class AddNewBranch_Page {
    By SendApprove = By.xpath("//button[@type=\"submit\"]");
    Alert alert;
 
-   public void BranchDetails(String brand , String country ,String operatingcountry , String branchname , String state , String city
+   public String BranchDetails(String brand , String country ,String operatingcountry , String state , String city
            , String address, String postoffice, String phoneno, String emailid, String password, String name
            , String email, String phone, String creditlimit, String topup,String creditterm
            ,String description,String supplierdescription) throws InterruptedException {
@@ -63,7 +64,8 @@ public class AddNewBranch_Page {
       driver.element().select(SelectBrand,brand);
       driver.element().type(SelectOperatingCountry,operatingcountry);
       driver.element().select(SelectOperatingCountry,country);
-      driver.element().type(BranchName,branchname);
+      driver.element().type(BranchName, FakerSingleton.PassengerFactory.firstName());
+      branchName = driver.element().getText(BranchName);
       Thread.sleep(Long.parseLong("1000"));
       driver.element().select(State,state);
       driver.element().select(City,city);
@@ -86,7 +88,7 @@ public class AddNewBranch_Page {
       //driver.element().type(ManagerName,managername);
       driver.element().type(SupplierDescription,supplierdescription);
       driver.element().click(SendApprove);
-
+        return branchName;
 
    }
    public void Alert() throws InterruptedException {
