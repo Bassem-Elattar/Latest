@@ -123,7 +123,7 @@ public class CreateBranch_TC  {
 //        addNewBranch.Btn_Submit();
 //        String Expected = "Added Successfully";
 //        Assert.assertEquals(addNewBranch.Actual(),Expected);
-        new AddNewBranch_Page(driver).BranchDetails(Brand,Selectcountry,OperatingCountry,Branchname,state,City,Address,PostOffice,PhoneNo,EmailID,Password
+        new AddNewBranch_Page(driver).BranchDetails(Brand,Selectcountry,OperatingCountry,state,City,Address,PostOffice,PhoneNo,EmailID,Password
                 ,Name,Email,Phone,Creditlimit,Topup,Creditterm,Description,Supplierdescription);
         Thread.sleep(1000);
             new AddNewBranch_Page(driver).Alert();
