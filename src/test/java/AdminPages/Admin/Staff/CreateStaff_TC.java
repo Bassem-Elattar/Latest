@@ -4,23 +4,26 @@ import AdminPages.Admin.AdminMenu;
 import AdminPages.Admin.Staff_Page;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public class CreateStaff_TC extends TestBase_TC {
+public class CreateStaff_TC{
 
    // private Staff_Page addStaff;
     private Staff_Page staff;
     private LogIn_Page logIn;
+    public SHAFT.GUI.WebDriver driver;
     String UserName = "";
     String Branch = "";
     String Department = "";
@@ -35,9 +38,11 @@ public class CreateStaff_TC extends TestBase_TC {
 
     @BeforeTest
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         new AdminMenu(driver).openSubAdmin().openStaff();
 
     }
@@ -60,7 +65,7 @@ public class CreateStaff_TC extends TestBase_TC {
         UserName = st.get("UserName");
         String ApprovalList = st.get("ApprovalList");
         staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
-                ,StaffName,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,UserName,ApprovalList);
+                ,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,ApprovalList);
         staff.YesUndercut();
         Thread.sleep(3000);
         String Expected = "Added Successfully";

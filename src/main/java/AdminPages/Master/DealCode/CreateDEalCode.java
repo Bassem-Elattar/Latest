@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import utilities.FakerSingleton;
 
 public class CreateDEalCode  {
 
@@ -48,7 +49,7 @@ public class CreateDEalCode  {
     private final By Txt_TravelValidityTo = By.id("id-TravelValidityTo");
     private final By Btn_SendForApproval = By.cssSelector("[type=\"submit\"]");
     //
-    private final By  Btn_ApprovalAction = By.cssSelector("tbody tr:nth-child(1) td:nth-child(6) div:nth-child(1) div:nth-child(3) i:nth-child(1)");
+    private final By  Btn_ApprovalAction = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[3]");
     private final By Txt_Remarks = By.xpath("//textarea[@placeholder='remarks...']");
     private final By RBtn_Submit = By.xpath("//span[normalize-space()='Submit']");
     //
@@ -217,8 +218,8 @@ public class CreateDEalCode  {
 
 //TODO : write deal code
 
-    public CreateDEalCode writeDealCode (String dealCode){
-        driver.element().type(Txt_DEalCode,dealCode);
+    public CreateDEalCode writeDealCode (){
+        driver.element().type(Txt_DEalCode, FakerSingleton.PassengerFactory.firstName());
         return this;
     }
 

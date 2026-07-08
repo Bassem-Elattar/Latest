@@ -4,6 +4,7 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import utilities.FakerSingleton;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class BSPCommission_Page {
     By Cbox_ExcludeMultipleCarrier = By.xpath("//p-checkbox[.//input[@id=\"id--Excludemultiplecarriers\"]]");
     By Txt_FareBasisCode = By.xpath("//input[@placeholder=\"Enter values\"]");
     By Btn_ValidityPeriodFrom = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[1]");
-    By Btn_ValidityPeriodTo = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[2]");
+    By Btn_ValidityPeriodTo = By.xpath("//input[@id='id-ValidityPeriodTo']");
     By Btn_OutboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-46 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Btn_OutboundPeriodTo = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-47 p-button p-component p-button-icon-only ng-star-inserted\"]");
     By Btn_InboundPeriodFrom = By.xpath("//button[@class=\"p-element p-ripple p-datepicker-trigger ng-tns-c48-48 p-button p-component p-button-icon-only ng-star-inserted\"]");
@@ -117,8 +118,8 @@ public class BSPCommission_Page {
 
     }
 
-    public void CommissionName(String commissionname){
-        driver.element().type(Txt_CommissionName,commissionname);
+    public void CommissionName(){
+        driver.element().type(Txt_CommissionName, FakerSingleton.PassengerFactory.firstName());
 
     }
 
