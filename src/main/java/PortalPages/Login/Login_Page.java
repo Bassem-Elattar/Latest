@@ -46,6 +46,12 @@ public class Login_Page {
         this.driver = driver;
     }
 
+
+    public void waitUntilLoaded() {
+        driver.element().waitToBeReady(Txt_Email);
+        driver.element().waitToBeReady(Txt_Password);
+    }
+
     // Navigate to login page
     public Login_Page navigateToLoginPage(String loginUrl) {
         driver.browser().navigateToURL(loginUrl);
