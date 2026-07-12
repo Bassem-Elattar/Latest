@@ -3,27 +3,34 @@ package AdminPages.Admin.Agency.Agency;
 import AdminPages.Admin.AdminMenu;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.FileUploadUtil;
 import utilities.JsonDataUtil;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class CreateAGN_TC extends TestBase_TC {
+public class CreateAGN_TC{
     CreateAGN_Page CRAGN;
     private LogIn_Page logIn;
     String agencyname = "";
     String SearchAgencyN = "";
     SearchAgency_Page SRAGN;
+    SHAFT.GUI.WebDriver driver;
+    public static String agencyName1;
 
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
@@ -31,14 +38,14 @@ public class CreateAGN_TC extends TestBase_TC {
         String filePath = "./src/test/resources/testDataFiles/" + fileName + ".json";
         return JsonDataUtil.readJsonData(filePath);
     }
-
     @BeforeTest
     public void sign() {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickSuperAdmin();
-        logIn.ClickOnLoginButton();
-        new AdminMenu(driver).openSubAdmin().Agency();
-
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        // Admin login
+        new LogIn_Page(driver).AdminLogin();;
+        new AdminMenu(driver).openSubAdmin().Agency().SubAgency();
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")
@@ -46,7 +53,7 @@ public class CreateAGN_TC extends TestBase_TC {
         CRAGN = new CreateAGN_Page(driver);
         SRAGN = new SearchAgency_Page(driver);
         String selectbranch = Create.get("selectbranch");
-        agencyname = Create.get("agencyname");
+
         String selectstate = Create.get("selectstate");
         String selectcity = Create.get("selectcity");
         String PostBox = Create.get("PostBox");
@@ -67,16 +74,24 @@ public class CreateAGN_TC extends TestBase_TC {
 
 
         // Specify the file input locator and file path
-        CRAGN.CreateValidAGN(selectbranch, agencyname, selectstate, selectcity, PostBox, ADDRESS, PH, ContactPer, email, Phone, START, END, invoice, Top, Credit, pcc1);
-        CRAGN.IMG();
-        By fileInputLocator = By.xpath("(//input[@type='file'])[1]");
-        By fileInputLocator2 = By.xpath("(//input[@type='file'])[2]");
-        String filePath = "C:\\Users\\Mahmoud\\Desktop\\white-empty-canvas_1194-7555.jpg";
-        driver.element().type(fileInputLocator,"C:\\Users\\Ahmed Refat\\NDC-Uplift-Automation\\src\\test\\resources\\sample.png");
-      //  FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator2, filePath);
-        CRAGN.DOC();
-        String filePath2 = "C:\\Users\\Mahmoud\\Desktop\\New Microsoft Word Document.docx"; // Replace with your file path
-        FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath2);
+        agencyName1 = CRAGN.CreateValidAGN(selectbranch, selectstate, selectcity, PostBox, ADDRESS, PH, ContactPer, email, Phone, START, END, invoice, Top, Credit, pcc1);
+
+        String imagePath = new File("src/test/resources/image_200x200.png").getAbsolutePath();
+        WebElement imageInput = driver.getDriver()
+                .findElement(By.xpath("(//input[@type='file'])[2]"));
+
+        imageInput.sendKeys(imagePath);
+
+
+// Upload PDF
+
+        String filePath = new File("src/test/resources/sendGridUsage.pdf").getAbsolutePath();
+        WebElement pdfInput = driver.getDriver()
+                .findElement(By.xpath("(//input[@type='file'])[1]"));
+
+        pdfInput.sendKeys(filePath);
+
+
 
         // Call the static uploadFile method from utilities.FileUploadUtil to upload the file
 
@@ -89,8 +104,8 @@ public class CreateAGN_TC extends TestBase_TC {
 //            String Expected = "Added Successfully";
 //            String Actual = driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
 //            Assert.assertEquals(Actual, Expected);
-
-        SRAGN.setSearchAgency(agencyname);
+        new AdminMenu(driver).openSubAdmin().Agency().SubAgency();
+        agencyName1 = SRAGN.setSearchAgency(agencyname);
         SRAGN.setInactive();
         CRAGN.searchBtc();
         CRAGN.setThumpUp("Approved");

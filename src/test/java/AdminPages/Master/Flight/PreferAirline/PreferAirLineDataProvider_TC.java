@@ -5,7 +5,6 @@ import org.testng.annotations.DataProvider;
 public class PreferAirLineDataProvider_TC {
     // Adjust the file path here
     private static JSONFileManager testData = new JSONFileManager("src/test/java/AdminPages/Master/Flight/PreferAirline/PreferAirLineData.json");
-
     @DataProvider(name = "SearchWith ValidDataPreferAirLine with Name and Supplier name")
     public static Object[][] SearchPreferAirLineDataProvider1() {
         return new Object[][] {

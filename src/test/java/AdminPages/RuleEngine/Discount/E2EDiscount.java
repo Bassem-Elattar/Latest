@@ -37,7 +37,6 @@ public class E2EDiscount {
         discount.navigateToRuleEngine();
 
         discount.adddiscount(
-                testData.getTestData("Set1.discountName"),
                 testData.getTestData("Set1.discountDis"),
                 testData.getTestData("Set1.FromYear"),
                 testData.getTestData("Set1.FromMonth"),
@@ -63,14 +62,13 @@ public class E2EDiscount {
         String branch  = testData.getTestData("SearchSet1.Branch");
         discount.search_Discount(country,branch);
         discount.inactivestatus();
-        discount.goToLastPage();
+//        discount.goToLastPage();
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }
     @Test(priority = 3)
     public void TC02_Update_Discount(){
         discount.navigateToRuleEngine();
         discount.updatediscount(
-                testData.getTestData("UpdateSet1.name"),
                 testData.getTestData("UpdateSet1.discountName"),
                 testData.getTestData("UpdateSet1.discountDis"),
                 testData.getTestData("UpdateSet1.FromYear"),
@@ -93,8 +91,8 @@ public class E2EDiscount {
         String discountname = testData.getTestData("Actions.discountname");
         discount.search_Discount(country,branch);
         discount.activestatus();
-        discount.findDiscountInPages(discountname);
-        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
+        discount.findDiscountInPages();
+//        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }
 

@@ -3,6 +3,7 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.By;
+import utilities.FakerSingleton;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class ServiceCharge_page {
     private SHAFT.GUI.WebDriver driver;
     private SoftAssert softAssert = new SoftAssert();
     private SHAFT.TestData.JSON testData;
-
+    public static String ServiceName;
     public ServiceCharge_page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -56,11 +57,11 @@ public class ServiceCharge_page {
     private final By btn_SaveValue = By.xpath("//button[normalize-space()='Save']");
    // private final By btn_ALL = By.xpath("//div[contains(@class,'p-radiobutton-box')])[1]");
     //private final By btn_BYPAX = By.xpath("//div[contains(@class,'p-radiobutton-box')])[2]");
-    private final By btn_SelectFareType = By.xpath("//p-dropdown[.//input[@id=\"id-FareType\"]]");
+    private final By btn_SelectFareType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
     private final By btn_FareTypeOption = By.xpath("(//li[@aria-label='Total Fare'])[1]");
-    private final By btn_SelectAmountType = By.xpath("//p-dropdown[.//input[@id=\"id-AmountType\"]]");
-    private final By btn_AmountOption = By.xpath("(//li[@aria-label='Amount'])[1]");
-    private final By btn_Value = By.xpath("//input[@id=\"id-Entervalue\"]");
+    private final By btn_SelectAmountType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
+    private final By btn_AmountOption = By.xpath("(//li[@aria-label='Fixed Amount'])[1]");
+    private final By btn_Value = By.xpath("(//input[@placeholder='0.00'])[1]");
 
     private final By btn_SendForApproval = By.xpath("//button[@type='submit']");
     // private final By btn_Cancel = By.xpath("//button[@type='button' and text()='Cancel']");
@@ -93,7 +94,7 @@ public class ServiceCharge_page {
 
     By RemarksAction = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_SubmitAction = By.xpath("(//button[@type=\"submit\"])[2]");
-    By Btn_last = By.xpath("//span[@id=\"last\"]");
+    By Btn_last = By.xpath("(//span[@class='last text-xs selected-last-page ng-star-inserted'])[1]");
     public By Table_FirstRow = By.xpath("//table//tbody/tr[1]");
     public By StatusCellInactive = By.xpath("//td[normalize-space()='Inactive']");
     public By StatusCellActive = By.xpath("//td[normalize-space()='Active']");
@@ -176,8 +177,9 @@ public class ServiceCharge_page {
         return this;
     }
 
-    public ServiceCharge_page EnterServiceName(String s) {
-        driver.element().type(txt_ServiceChargeName, s);
+    public ServiceCharge_page EnterServiceName() {
+        driver.element().type(txt_ServiceChargeName, FakerSingleton.PassengerFactory.firstName());
+        ServiceName = driver.element().getText(txt_ServiceChargeName);
         return this;
     }
 
@@ -323,12 +325,13 @@ public class ServiceCharge_page {
         driver.element().type(RemarksAction, remark);
         driver.element().click(Btn_SubmitAction);
     }
-    public void Edit(String name,String ServicechargeName , String description , String remark){
+    public void Edit(String description , String remark) throws InterruptedException {
         By editButton = By.xpath(String.format(
-                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", name));
+                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", ServiceName));
         driver.element().scrollToElement(editButton);
         driver.element().click(editButton);
-        driver.element().type(txt_ServiceChargeName, ServicechargeName);
+        Thread.sleep(500);
+        driver.element().type(txt_ServiceChargeName, FakerSingleton.PassengerFactory.firstName());
         driver.element().type(txt_ServiceChargeDescription, description);
         driver.element().type(txt_Reamrks,remark).click(Btn_Approve);
 

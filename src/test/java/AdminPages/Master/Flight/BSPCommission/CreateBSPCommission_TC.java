@@ -4,20 +4,23 @@ import AdminPages.Master.Flight.BSPCommission_Page;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public class CreateBSPCommission_TC extends TestBase_TC {
+public class CreateBSPCommission_TC{
     private BSPCommission_Page createBSPCommission;
-
+    public SHAFT.GUI.WebDriver driver;
     private LogIn_Page logIn;
 
     @DataProvider(name = "JsonProvider")
@@ -30,10 +33,11 @@ public class CreateBSPCommission_TC extends TestBase_TC {
 
     @BeforeMethod
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
+        new LogIn_Page(driver).AdminLogin();
     }
 
     @Test(dataProvider = "JsonProvider")
@@ -104,7 +108,7 @@ public class CreateBSPCommission_TC extends TestBase_TC {
 
         createBSPCommission.clickAirline();
         createBSPCommission.AirlineName(AirlineName);
-        createBSPCommission.CommissionName(CommissionName);
+        createBSPCommission.CommissionName();
         createBSPCommission.GDSSupplier(GDSSupplier);
         createBSPCommission.SupplierCredential(SupplierCredential);
         createBSPCommission.JourneyType(JourneyType);
@@ -123,10 +127,6 @@ public class CreateBSPCommission_TC extends TestBase_TC {
         String Expected = "Added Successfully";
         Assert.assertEquals(createBSPCommission.Actual(),Expected);
         Thread.sleep(5000);
-
-
-
-
 
     }
 }

@@ -34,8 +34,6 @@ public class SearchTravellers_Page {
 
 
     }
-
-  
     public void setActive(){
         driver.element().click(Rbtn_Active);
     }

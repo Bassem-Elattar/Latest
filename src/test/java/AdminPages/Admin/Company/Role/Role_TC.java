@@ -40,21 +40,21 @@ public class Role_TC {
     @Test
     public void verifyThatUserCanCreateRoleWithViewOnly(){
         new Role_Page(driver).ClickAddRole()
-                .EnterAddRoleName(testData.getTestData("validData.roleName"))
+                .EnterAddRoleName()
                 .ClickIsViewAtAllFields()
                 .ClickSendForApprove();
     }
     @Test
     public void verifyThatUserCanCreateRoleWithEditOnly(){
         new Role_Page(driver).ClickAddRole()
-                .EnterAddRoleName(testData.getTestData("validData.roleName"))
+                .EnterAddRoleName()
                 .ClickIsEditAtAllFields()
                 .ClickSendForApprove();
     }
     @Test
     public void verifyThatUserCanCreateRoleWithAprrovalOnly(){
         new Role_Page(driver).ClickAddRole()
-                .EnterAddRoleName(testData.getTestData("validData.roleName"))
+                .EnterAddRoleName()
                 .ClickIsApproveAtAllFields()
                 .ClickSendForApprove();
     }
@@ -95,7 +95,7 @@ public class Role_TC {
         verifyThatUserCanCreateRoleWithViewOnly();
         verifyThatUserCanSearchWithRoleNameAndApproveTheRole();
         ActionStaff_TC actionStaff = new ActionStaff_TC();
-        actionStaff.driver = this.driver;
+//        actionStaff.driver = this.driver;
         actionStaff.AddStaff(st);
         new LogIn_Page(driver).ClickOnLogOuTButton();
     }
@@ -129,7 +129,7 @@ public class Role_TC {
         verifyThatUserCanCreateRoleWithEditOnly();
         verifyThatUserCanSearchWithRoleNameAndApproveTheRole();
         ActionStaff_TC actionStaff = new ActionStaff_TC();
-        actionStaff.driver = this.driver;
+//        actionStaff.driver = this.driver;
         actionStaff.AddStaff(st);
         new LogIn_Page(driver).ClickOnLogOuTButton();
         Thread.sleep(30000);
@@ -159,7 +159,7 @@ public class Role_TC {
         verifyThatUserCanCreateRoleWithAprrovalOnly();
         verifyThatUserCanSearchWithRoleNameAndApproveTheRole();
         ActionStaff_TC actionStaff = new ActionStaff_TC();
-        actionStaff.driver = this.driver;
+//        actionStaff.driver = this.driver;
         actionStaff.AddStaff(st);
         new LogIn_Page(driver).ClickOnLogOuTButton();
         Thread.sleep(30000);

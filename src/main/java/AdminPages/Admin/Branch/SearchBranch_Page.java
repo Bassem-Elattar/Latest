@@ -34,6 +34,7 @@ public class SearchBranch_Page {
         driver.element().click(Branch);
         // driver.element().type(BranchCode,branchcode);
         driver.element().type(BranchName,branchname);
+
 //        driver.element().click(SelectCountry);
 //        driver.element().select(SearchCountry,searchcountry);
 //        driver.element().click(ExitCountry);

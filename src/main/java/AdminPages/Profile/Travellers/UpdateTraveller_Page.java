@@ -63,8 +63,6 @@ public class UpdateTraveller_Page {
 
 
     }
-
-
     public void setPassportdetails(String passportno , String expdate , String countryissue){
 //        driver.element().type(PassportNo,passportno);
 //        driver.element().click(ExpDate);

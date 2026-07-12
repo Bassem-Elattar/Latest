@@ -49,8 +49,10 @@ public class SearchAction {
     }
 
     //TODO : chose inactive radio button
-    public SearchAction choseinactive (){
+    public SearchAction choseinactive () throws InterruptedException {
+            Thread.sleep(3500);
             driver.element().waitToBeReady(inactive).click(inactive);
+            Thread.sleep(1000);
             return this;
     }
 

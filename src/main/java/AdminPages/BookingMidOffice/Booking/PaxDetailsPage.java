@@ -2,68 +2,226 @@ package AdminPages.BookingMidOffice.Booking;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import com.github.javafaker.Faker;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
+import utilities.FakerSingleton;
+
+import java.util.List;
 
 public class PaxDetailsPage {
+
+    private SHAFT.GUI.WebDriver driver;
+    private final SHAFT.TestData.JSON testData;
+    SoftAssert softAssert = new SoftAssert();
+
     public PaxDetailsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
+        this.testData = new SHAFT.TestData.JSON("searchBookingBrData.json");
     }
-    SHAFT.GUI.WebDriver driver ;
-    private final By titleDropdown = By.xpath("//label[@for='title_0']/following-sibling::p-dropdown");
-    private final By firstName = By.id("firstName_0");
-    private final By lastName = By.id("lastName_0");
-    private final By dateOfBirth = By.id("dob_0");
-    private final By email = By.id("email_0");
-    private final By phone = By.id("phone_0");
-    private final By documentNumber = By.id("document_0");
-    private final By documentExpiry = By.id("docExpiry_0");
-    private final By nationalityDropdown = By.xpath("//label[@for='nationality_0']/following::p-dropdown[1]//div[@role='button']");
+
+    // Dynamic Locators
+    private By titleDropdown(int index) {
+        return By.xpath("//label[@for='title_" + index + "']/following-sibling::p-dropdown");
+    }
+
+    private By firstName(int index) {
+        return By.id("firstName_" + index);
+    }
+
+    private By lastName(int index) {
+        return By.id("lastName_" + index);
+    }
+
+    private By dateOfBirth(int index) {
+        return By.id("dob_" + index);
+    }
+
+    private By email(int index) {
+        return By.id("email_" + index);
+    }
+
+    private By phone(int index) {
+        return By.id("phone_" + index);
+    }
+
+    private By documentNumber(int index) {
+        return By.id("document_" + index);
+    }
+
+    private By documentExpiry(int index) {
+        return By.id("docExpiry_" + index);
+    }
+
+    private By nationalityDropdown(int index) {
+        return By.xpath("//label[@for='nationality_" + index + "']/following::p-dropdown[1]//div[@role='button']");
+    }
+
+    private By paxType(int index) {
+        return By.xpath("(//span[@class='pax-logo ng-star-inserted'])[" + index + "]");
+    }
+
+    private By seeMore(int index) {
+        return By.xpath("//a[@id='p-accordiontab-" + index + "']");
+    }
+
     private final By saveQuoteBtn = By.xpath("//button[.//span[normalize-space()='Save Quote']]");
-    private final By QuoteSavedMsg = By.xpath("//span[normalize-space()='Quote Saved']");
-    public PaxDetailsPage SaveQuote(){
-        driver.element().click(saveQuoteBtn);
-        return new PaxDetailsPage(driver);
+    private final By bookBtn = By.xpath("//p-button[@label='Book']/button");
+    private final By confirmBookBtn = By.xpath("//button[contains(@class,'p-button-raised')]");
+    private final By holdBtn = By.xpath("//p-button[@label='Hold']/button");
+    private final By quoteSavedMsg = By.xpath("//span[normalize-space()='Quote Saved']");
+    private final By infantAssignedTo = By.xpath("//input[contains(@id,'assigned-to_3')]");
+    private final By termsSelect = By.xpath("(//div[@class='p-checkbox-box'])[3]");
+    private final By GDSPNR_Confirmation = By.xpath("//th[text()='GDS PNR Number']");
+    private final By brandedFares = By.xpath("//p-carousel");
+    private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
+    private final By Btn_ExpandAll= By.xpath("(//span[normalize-space()='Expand All'])[1]");
+
+    By assignedToDropdowns =
+            By.xpath("//p-dropdown[@formcontrolname='assignedTo']");
+    private By dropdownOptionByIndex(int index) {
+        return By.xpath("(//li[@role='option'])[" + index + "]");
     }
+
     private By dropdownOption(String value) {
         return By.xpath("//li[@aria-label='" + value + "']");
     }
-    public void ElementClick(By by){
+
+    public void ElementClick(By by) {
         driver.element().click(by);
     }
-    public void ElementType(By by,String Value){
-        driver.element().type(by,Value);
+
+    public void ElementType(By by, String value) {
+        driver.element().type(by, value);
     }
-    public PaxDetailsPage fillOnePassengerDetails(String Title,
-                                     String FirstName,
-                                     String LastName,
-                                     String DOB,
-                                     String Email,
-                                     String Phone,
-                                     String DocumentNumber,
-                                     String DocumentExpiry,
-                                     String Nationality) {
 
-        ElementClick(titleDropdown);
-        ElementClick(dropdownOption(Title));
+//    public PaxDetailsPage fillOnePassengerDetails(String Title,
+//                                                 String FirstName,
+//                                                  String LastName,
+//                                                  String DOB,
+//                                                  String Email,
+//                                                  String Phone,
+//                                                  String DocumentNumber,
+//                                                  String DocumentExpiry,
+//                                                  String Nationality)
+//    {
+//        ElementClick(titleDropdown); ElementClick(dropdownOption(Title));
+//        ElementType(firstName, FirstName);
+//        ElementType(lastName, LastName);
+//        ElementType(dateOfBirth, DOB);
+//        ElementType(email, Email);
+//        ElementType(phone, Phone);
+//        ElementType(documentNumber, DocumentNumber);
+//        ElementType(documentExpiry, DocumentExpiry);
+//        ElementClick(nationalityDropdown);
+//        ElementClick(dropdownOption(Nationality));
+//        return new PaxDetailsPage(driver); }
+//    public void AssertThatQuoteSaved(){
+//        driver.verifyThat() .element(QuoteSavedMsg) .isVisible();
+//    }
 
-        ElementType(firstName, FirstName);
-        ElementType(lastName, LastName);
+    public PaxDetailsPage fillOnePassengerDetails(
+            String title,
+            String dob,
+            String chDob,
+            String infDob,
+            String emailValue,
+            String phoneValue,
+            String documentExpiryValue,
+            String nationality) {
 
-        ElementType(dateOfBirth, DOB);
+        int total =
+                Integer.parseInt(testData.getTestData("NumberOfAdults"))
+                        + Integer.parseInt(testData.getTestData("NumberOfChildren"))
+                        + Integer.parseInt(testData.getTestData("NumberOfInfants"));
+        driver.element().click(Btn_ExpandAll);
+        for (int i = 0; i < total; i++) {
 
-        ElementType(email, Email);
-        ElementType(phone, Phone);
+            // paxType XPath starts from 1
+            String paxText = driver.element().getText(paxType(i + 1));
 
-        ElementType(documentNumber, DocumentNumber);
+            ElementClick(titleDropdown(i));
+            ElementClick(dropdownOption(title));
 
-        ElementType(documentExpiry, DocumentExpiry);
+            ElementType(firstName(i),
+                    FakerSingleton.PassengerFactory.firstName());
 
-        ElementClick(nationalityDropdown);
-        ElementClick(dropdownOption(Nationality));
-        return new PaxDetailsPage(driver);
+            ElementType(lastName(i),
+                    FakerSingleton.PassengerFactory.lastName());
+
+            ElementType(documentNumber(i),
+                    FakerSingleton.PassengerFactory.documentNumber());
+
+            ElementType(email(i), emailValue);
+            ElementType(phone(i), phoneValue);
+
+           // ElementType(documentNumber(i), documentNumberValue);
+            ElementType(documentExpiry(i), documentExpiryValue);
+
+            ElementClick(nationalityDropdown(i));
+            ElementClick(dropdownOption(nationality));
+
+            if (paxText.contains("Adult")) {
+
+                ElementType(dateOfBirth(i), dob);
+                System.out.println("Adult Passenger : " + (i + 1));
+
+            } else if (paxText.contains("Child")) {
+
+                ElementType(dateOfBirth(i), chDob);
+                System.out.println("Child Passenger : " + (i + 1));
+
+            } else if (paxText.contains("Infant")) {
+
+                ElementType(dateOfBirth(i), infDob);
+                System.out.println("Infant Passenger : " + (i + 1));
+            }
+
+//            if (i<=total-2)
+//            driver.element().click(seeMore(i + 7));
+        }
+        List<WebElement> assignedToElements =
+                driver.getDriver().findElements(assignedToDropdowns);// just for size
+
+        for (int i = 0; i < assignedToElements.size(); i++) {
+
+            // open dropdown
+            assignedToElements.get(i).click();
+
+            // select option i+1 (Infant1→Option1)
+            driver.element().click(dropdownOptionByIndex(i + 1));
+        }
+
+        return this;
     }
-    public void AssertThatQuoteSaved(){
+
+    public PaxDetailsPage saveQuote() {
+        driver.element().click(saveQuoteBtn);
+        return this;
+    }
+    public PaxDetailsPage payAndBook() {
+        driver.element().click(bookBtn);
+        driver.element().click(confirmBookBtn);
+        return this;
+    }
+    public PaxDetailsPage clickOnHold() {
+        driver.element().click(holdBtn);
+        return this;
+    }
+    public PaxDetailsPage SelectTermsAndConditions() {
+        driver.element().click(termsSelect);
+        return this;
+    }
+    public PaxDetailsPage AssertThatTicketIsHoldSuccessfully() {
+        String s = driver.element().getText(GDSPNR_Confirmation);
+        softAssert.assertEquals(s,"GDS PNR Number");
+        return this;
+    }
+
+    public void assertThatQuoteSaved() {
         driver.verifyThat()
-                .element(QuoteSavedMsg)
+                .element(quoteSavedMsg)
                 .isVisible();
     }
 }

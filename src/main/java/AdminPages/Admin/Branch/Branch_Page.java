@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.FakerSingleton;
 
 import java.time.Duration;
 import java.util.List;
@@ -151,14 +152,18 @@ public class Branch_Page {
         driver.element().select(Txt_OperatingCountry,Txt);
     }
 
-    public void Txt_Name(String Txt){
-        driver.element().type(Txt_Name,Txt);
+    public String Txt_Name(){
+        driver.element().type(Txt_Name, FakerSingleton.PassengerFactory.firstName());
+        return driver.element().getText(Txt_Name);
+
+
     }
 
     public void Lst_StateCreate(String Select,String Txt) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(25));
 
         driver.element().click(typeLocator);
+
         JavascriptExecutor js = (JavascriptExecutor) driver.getDriver();
         boolean elementExists = (Boolean) js.executeScript(
                 "return document.querySelector('li[role=\"option\"]') !== null;"

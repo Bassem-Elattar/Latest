@@ -1,15 +1,16 @@
 {
-  "brName": "Test",
-  "NumberOfAdults": "1",
-  "NumberOfChildren": "0",
-  "NumberOfInfants": "0",
-  "source": "CAI",
-  "destination": "DXB",
-  "secondDestination": "CAI",
-  "JourneyDay": "1",
+  "brName" : "AutomationTest",
+  "NumberOfAdults" : "1",
+  "NumberOfChildren" : "1",
+  "NumberOfInfants" : "1",
+  "source" : "CAI",
+  "destination" : "DXB",
+  "SecondDestination" : "CAI",
+  "JourneyDay" : "23",
   "JourneyYear" : "2026",
-  "JourneyMonth" : "Sep",
-  "dayOfSecondJourney": "25",
-  "monthOfSecondJourney": "Mar",
-  "yearOfSecondJourney": "2025"
+  "JourneyMonth" : "Jul",
+  "dayOfSecondJourney" : "5",
+  "monthOfSecondJourney" : "Aug",
+  "yearOfSecondJourney" : "2026",
+  "BookingReference" : "NDCEG-BR-F260629fygEU9"
 }

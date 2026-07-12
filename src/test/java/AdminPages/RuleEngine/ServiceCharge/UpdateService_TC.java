@@ -32,8 +32,7 @@ public class UpdateService_TC extends TestBase_TC {
         service.search_ServiceCharge( Country , Branch );
         service.bothstatus();
 
-        service.Edit(testData.getTestData("Update.name"),
-                        testData.getTestData("Update.ServicechargeName"),
+        service.Edit(
                         testData.getTestData("Update.ServicechargeDescription"),
                 testData.getTestData("Update.remark"));
 

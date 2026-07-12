@@ -37,8 +37,6 @@ public class TopUpRequest_Page {
     public void setTopUpRequest(String agencyname,String fromdate,String todate,String status,String paymenttype
             ,String topupref,String recepitnum, String paymentmethod)
     {
-
-
         driver.element().click(Lst_AgencyName);
         By option3 = By.xpath(String.format("//span[text()='%s']", agencyname));
         driver.element().click(option3);

@@ -34,7 +34,7 @@ public class EndToEndService  {
         new ServiceCharge_page(driver)
 
                 .ClickAtAddServiceCharge()
-                .EnterServiceName(testData.getTestData("Set1.ServiceChargeName"))
+                .EnterServiceName()
                 .searchValidFromDate(testData.getTestData("Set1.FromDate"),testData.getTestData("Set1.FromYear"),testData.getTestData("Set1.FromMonth"))
                 .searchValidToDate(testData.getTestData("Set1.ToDate"),testData.getTestData("Set1.ToYear"),testData.getTestData("Set1.ToMonth"))
                 .EnterServiceDescription(testData.getTestData("Set1.ServiceChargeDescription"))
@@ -47,7 +47,7 @@ public class EndToEndService  {
                 .Submit();
                 service1.search_ServiceCharge(testData.getTestData("SearchSet1.Country"), testData.getTestData("SearchSet1.Branch"));
                 service1.bothstatus();
-                service1.Edit(testData.getTestData("Update.name"), testData.getTestData("Update.ServicechargeName"),
+                service1.Edit(
                         testData.getTestData("Update.ServicechargeDescription"),
                         testData.getTestData("Update.remark"));
 

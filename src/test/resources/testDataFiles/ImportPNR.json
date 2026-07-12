@@ -1,0 +1,33 @@
+{
+  "validAutoTicketingPnr": {
+    "ticketingType": "AUTO",
+    "pnrCode": "GXY8L1",
+    "pnrCodeLessThanSixChar": "ABC12",
+    "DummyPnrCode": "ABC123",
+    "branchName": "AboBakrTravel (BRN471)",
+    "branchImportPnrClosed": "AboubakrTravel_Closed_PNR (BRN617)",
+    "agencyName": "AbouBakrTravel_AGN",
+    "agentName": "bakromer",
+    "supplier": "Galileo",
+    "supplierCredential": "Galileo Live UAE",
+    "expectedSuccessMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC",
+    "expectedValidationMessageForPnrCodeLessThanSixChars": "PNR code less than 6 chars!",
+    "toastMessageWhenPNRDoesNotExist": "UNABLE TO RETRIEVE - CHECK RECORD LOCATOR -",
+    "toastMessageWhenBranchImportPnrClosed": "Selected Organization does not support import pnr functionality",
+    "expectedCancelledPNRMessage": "No Segments found for this PNR.",
+    "pnrStatus": " Ticketed ",
+    "expectedImportOnAnotherCredMessage": " BOOKING FILE DISPLAY DENIED PER SELECTIVE ACCESS AGREEMENT ",
+    "expectedImportOnTheSameEnvMessage": " This PNR is already exist kindly go to My Booking section to retrieve the details. "
+  },
+
+  "validManualTicketingPnr": {
+    "ticketingType": "MANUAL",
+    "pnrCode": "ABC123",
+    "branchName": "AboBakrTravel",
+    "agencyName": "AbouBakrTravel_AGN",
+    "agentName": "",
+    "supplier": "Galileo",
+    "supplierCredential": "Galileo Live UAE",
+    "expectedSuccessMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC"
+  }
+}

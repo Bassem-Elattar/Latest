@@ -23,7 +23,7 @@ public class ServiceChargeTCs extends TestBase_TC {
                 .navigateToRuleEngine()
                 .navigateToServiceCharge()
                 .ClickAtAddServiceCharge()
-                .EnterServiceName(testData.getTestData("Set1.ServiceChargeName"))
+                .EnterServiceName()
                 .SelectValidityDate(testData.getTestData("Set1.ValidityFrom"), testData.getTestData("Set1.ValidityTo"))
                 .EnterServiceDescription(testData.getTestData("Set1.ServiceChargeDescription"))
                 .SelectListCountryPOS(testData.getTestData("Set1.CountryPOS"))

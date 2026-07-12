@@ -1,0 +1,21 @@
+{
+  "dashboardUrl": "http://192.168.1.92:9500/dashboard",
+
+  "validAgencyCode": "AGN2",
+  "validEmail": "e.saady@ndceg.com",
+  "validPassword": "qqE6)Cxp6>B8",
+
+  "invalidAgencyCode": "invalidAgency",
+  "invalidEmail": "invalid@email.com",
+  "invalidPassword": "InvalidPassword123",
+
+  "invalidAgencyCodeField": "InvalidAgn@__",
+  "invalidEmailField": "InvalidEmail!!@",
+
+  "invalidLoginMessage": "Invalid credentials, Please try again.",
+  "invalidAgencyCodeValidationMessage": "Please enter a valid agency code",
+  "invalidEmailValidationMessage": "Please enter a valid email",
+
+  "requiredMessage": "Required"
+
+}

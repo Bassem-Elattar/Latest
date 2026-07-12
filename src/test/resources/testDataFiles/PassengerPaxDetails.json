@@ -3,6 +3,8 @@
   "FirstName": "Hossam",
   "LastName": "Hassan",
   "DateOfBirth": "01/12/1999",
+  "ChildDateOfBirth": "01/12/2020",
+  "InfantDateOfBirth": "01/6/2026",
   "DocumentNumber": "106541",
   "ExpiryDate": "31/12/2029",
   "Nationality": "Egypt",

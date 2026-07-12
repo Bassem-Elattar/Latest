@@ -22,9 +22,10 @@ public class SearchAgency_Page {
     By Btn_SearchGrid = By.xpath("//button[@type=\"submit\"]");
 
 
-    public void setSearchAgency(String agencyname) throws InterruptedException {
+    public String setSearchAgency(String agencyname) throws InterruptedException {
         //driver.element().waitToBeReady(Btn_Agency);
         Thread.sleep(Long.parseLong("1000"));
+
         // driver.element().click(Btn_Agency);
         driver.element().click(Btn_agency);
         //  driver.element().type(Txt_AgencyCode,agencycode);
@@ -39,6 +40,7 @@ public class SearchAgency_Page {
 //        driver.element().click(Lst_SelectCity);
 //        By option2 = By.xpath(String.format("//span[text()='%s']", selectcity));
 //        driver.element().click(option2);
+        return agencyname;
     }
 
 

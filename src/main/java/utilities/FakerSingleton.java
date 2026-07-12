@@ -1,18 +1,20 @@
-package utilities;// FakerSingleton.java
+package utilities;
+
 import com.github.javafaker.Faker;
 
 import java.util.UUID;
 
 public class FakerSingleton {
+
     private static FakerSingleton instance;
-    private Faker faker;
-    private String testData;
-    private String AgencyName;
+    private final Faker faker;
+    private final String testData;
+    private final String agencyName;
 
     private FakerSingleton() {
         faker = new Faker();
-        testData = faker.name().firstName()+"_" + UUID.randomUUID().toString().substring(0, 6); // Example of generating a name
-        AgencyName = faker.name().firstName()+"_" + UUID.randomUUID().toString().substring(0, 6); // Example of generating a name
+        testData = faker.name().firstName() + "_" + UUID.randomUUID().toString().substring(0, 6);
+        agencyName = faker.name().firstName() + "_" + UUID.randomUUID().toString().substring(0, 6);
     }
 
     public static FakerSingleton getInstance() {
@@ -25,10 +27,28 @@ public class FakerSingleton {
     public String getTestData() {
         return testData;
     }
+
     public String getAgencyName() {
-        return AgencyName;
+        return agencyName;
     }
 
+    public static class PassengerFactory {
+
+        private static final Faker faker = new Faker();
+
+        private PassengerFactory() {
+        }
+
+        public static String firstName() {
+            return faker.name().firstName().replaceAll("[^a-zA-Z ]", "");
+        }
+
+        public static String lastName() {
+            return faker.name().lastName().replaceAll("[^a-zA-Z ]", "");
+        }
+
+        public static String documentNumber() {
+            return faker.number().digits(9);
+        }
+    }
 }
-
-
