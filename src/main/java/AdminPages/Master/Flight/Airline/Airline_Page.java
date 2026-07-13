@@ -16,9 +16,9 @@ public class Airline_Page {
     private final By Txt_AirLineName=xpath("//input[@id=\"id-AirlineName\"]");
     private final By Lst_AirLineType=xpath("//p-dropdown[.//input[@id=\"id-AirlineType\"]]");
     private final By Lst_NetworkType=xpath("//p-dropdown[.//input[@id=\"id-NetworkType\"]]");
-    private final By Btn_SearchInGrid=xpath(" //span[@class=\"p-button-label\"]");
-    private final By Rbtn_Active=xpath("//p-radiobutton[ .//input[@ id=\"id-Status-Active\"]]");
-    private final By Rbtn_InActive=xpath("//p-radiobutton[ .//input[@ id=\"id-Status-Inactive\"]]");
+    private final By Btn_SearchInGrid=xpath("(//button[@type='submit'])[1]");
+    private final By Rbtn_Active=xpath("(//div[@class='p-radiobutton-box'])[1]");
+    private final By Rbtn_InActive=xpath("(//div[@class='p-radiobutton-box'])[1]");
     private final By Rbtn_Both=xpath("//p-radiobutton[ .//input[@ id=\"id-Status-Both\"]]");
     private final By Btn_AddAirLine=xpath(" //i[@class=\"pi pi-plus\"] ");
     private final By Txt_addAirlineCode=xpath("//input[@ id=\"id-AirlineCode\"]");
@@ -40,12 +40,12 @@ public class Airline_Page {
     public Airline_Page ClickOnClose(){By Close = By.xpath("(//button[@type=\"button\"])[5]");driver.element().click(Close);return this;}
     public Airline_Page ClickOnEdit(){By Edit = By.xpath("(//i[@class=\"pi pi-pencil\"])[1]");driver.element().click(Edit);return this;}
     public Airline_Page ClickOnActiveCircle(){By Circle = By.xpath("(//i[@class=\"pi pi-circle-fill\"])[1]");driver.element().click(Circle);return this;}
-    public Airline_Page ClickOnInactiveCircle(){By Circle = By.xpath("(//i[@class=\"pi pi-circle\"])[1]");driver.element().click(Circle);return this;}
+    public Airline_Page ClickOnInactiveCircle(){By Circle = By.xpath("(//i[@class='pi pi-circle'])[1]");driver.element().click(Circle);return this;}
     public Airline_Page ClickOnActive(){driver.element().click(Rbtn_Active);return this;}
     public Airline_Page ClickOnInactive(){driver.element().click(Rbtn_InActive);return this;}
-    public Airline_Page ClickOnThumbsUp(){By ThumbsUp = By.xpath("(//i[@class=\"pi pi-thumbs-up\"])[1]");driver.element().click(ThumbsUp);
-        By Remark = By.xpath("//textarea[@class=\"p-inputtextarea p-inputtext p-component p-element ng-untouched ng-pristine ng-invalid\"]");driver.element().type(Remark,"Ok");
-        By Approve = By.xpath("(//span[@class=\"p-button-label\"])[3]");driver.element().click(Approve);return this;}
+    public Airline_Page ClickOnThumbsUp(){By ThumbsUp = By.xpath("(//i[@class='pi pi-thumbs-up'])[1]");driver.element().click(ThumbsUp);
+        By Remark = By.xpath("(//textarea[@placeholder='remarks...'])[1]");driver.element().type(Remark,"Ok");
+        By Approve = By.xpath("(//button[@type='submit'])[2]");driver.element().click(Approve);return this;}
     public Airline_Page ClickOnThumbsDown(){By ThumbsDown = By.xpath("(//i[@class=\"pi pi-thumbs-down\"])[1]");driver.element().click(ThumbsDown);
         By Remark = By.xpath("//textarea[@class=\"p-inputtextarea p-inputtext p-component p-element ng-untouched ng-pristine ng-invalid\"]");driver.element().type(Remark,"Ok");
         By Reject = By.xpath("(//span[@class=\"p-button-label\"])[3]");driver.element().click(Reject);return this;}
