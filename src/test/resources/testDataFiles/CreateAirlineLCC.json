@@ -1,4 +1,4 @@
-[
+
   {
     "AirlineCode": "016",
     "AirlineName": "DemoDe",
@@ -9,4 +9,3 @@
     "BranchPOS": "Mansoura",
     "RestrictedAgencies":"BadrAgency"
   }
-]

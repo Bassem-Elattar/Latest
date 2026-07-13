@@ -173,6 +173,10 @@ public class ManualBookingInvoice {
     // ========================= Action Section ========================= //
     private final By btn_Pay =
             By.xpath("(//button[@type='button'])[7]");
+    private final By btn_submit =
+            By.xpath("(//button[@type='submit'])");
+
+
 
     // ================= Actions ================= //
     public ManualBookingInvoice openPage() {
@@ -391,6 +395,11 @@ public class ManualBookingInvoice {
     public ManualBookingInvoice selectADTDocumentType() {
         driver.element().click(DOCType_ADT);
         driver.element().click(dropdownOption);
+        return this;
+    }
+    public ManualBookingInvoice enterSubmit() {
+        driver.element().click(btn_submit);
+
         return this;
     }
 

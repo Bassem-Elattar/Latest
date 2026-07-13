@@ -2,22 +2,27 @@ package AdminPages.Reports.ReleasedPNR;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 
-public class ReleasedPNR_TCs extends TestBase_TC {
+public class ReleasedPNR_TCs {
     ReleasedPNR_Page releasedPNRPage;
     private LogIn_Page logIn;
-
+    SHAFT.GUI.WebDriver driver;
     @BeforeTest
     public void login() {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         releasedPNRPage = new ReleasedPNR_Page(driver);
         new Reports_Common(driver).clickReports().clickReleasedPNR();
     }
@@ -124,9 +129,8 @@ public class ReleasedPNR_TCs extends TestBase_TC {
         // Assert warning shown
         releasedPNRPage.NoDateSelected();
     }
-
     @AfterMethod
     public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

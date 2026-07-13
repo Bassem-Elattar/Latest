@@ -5,10 +5,12 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
 import AdminPages.Reports.Statement.State;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.junit.jupiter.api.AfterEach;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -17,16 +19,19 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class AGNWallTC extends TestBase_TC {
+public class AGNWallTC {
     AGnWall SearchWall;
     private LogIn_Page logIn;
     SHAFT.TestData.JSON testData;
+    SHAFT.GUI.WebDriver driver;
 
     @BeforeClass
     public void sign() {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         new Reports_Common(driver).clickReports().clickAgencyWallet();
         testData = new SHAFT.TestData.JSON("AgencyWalletReport.json");
         SearchWall = new AGnWall(driver);
@@ -56,9 +61,8 @@ public class AGNWallTC extends TestBase_TC {
         String Expected= testData.getTestData("ValidData.ExpectedMessage");
         Assert.assertEquals(Actual,Expected);
     }
-
     @AfterMethod
     public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

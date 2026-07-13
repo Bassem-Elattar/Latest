@@ -5,11 +5,13 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Flight.Airport.Airport_Page;
 import AdminPages.Reports.Reports_Common;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
@@ -17,17 +19,19 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-public class StateTC extends TestBase_TC {
+public class StateTC {
 
     private LogIn_Page logIn;
     SHAFT.TestData.JSON testData;
     State Statement;
-
+    SHAFT.GUI.WebDriver driver;
     @BeforeTest
     public void sign() {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         Statement = new State(driver);
         testData = new SHAFT.TestData.JSON("StatementReport.json");
         new Reports_Common(driver).clickReports().clickStatement();
@@ -99,6 +103,6 @@ public class StateTC extends TestBase_TC {
     }
     @AfterMethod
     public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

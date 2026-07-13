@@ -3,6 +3,7 @@ package AdminPages.RuleEngine.Markup;
 import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import org.testng.annotations.AfterMethod;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
@@ -93,6 +94,9 @@ public class Markup_E2E_TC {
         Assert.assertTrue(page.findMarkupInPages(), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(page.Table_FirstRow).exists();
     }
-
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+    }
 
 }

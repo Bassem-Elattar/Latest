@@ -3,6 +3,7 @@ package AdminPages.RuleEngine.Discount;
 import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import org.testng.annotations.AfterMethod;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
@@ -95,6 +96,9 @@ public class E2EDiscount {
 //        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }
-
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+    }
 
 }

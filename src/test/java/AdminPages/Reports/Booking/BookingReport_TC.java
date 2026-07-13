@@ -2,8 +2,11 @@ package AdminPages.Reports.Booking;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase;
 import AdminPages.Reports.Reports_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import com.shaft.validation.Validations;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,18 +15,21 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import org.openqa.selenium.interactions.Actions;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
-public class BookingReport_TC extends TestBase {
+public class BookingReport_TC {
 
     BookingReport bookingReport;
     private LogIn_Page logIn;
-
+    SHAFT.GUI.WebDriver driver;
     @BeforeTest
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         bookingReport = new BookingReport(driver);
     }
 
@@ -70,6 +76,10 @@ public class BookingReport_TC extends TestBase {
             bookingReport.performAssertions();
             Validations.verifyThat().element(bookingReport.DataReturn).isVisible();
         }
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+    }
     }
 
 

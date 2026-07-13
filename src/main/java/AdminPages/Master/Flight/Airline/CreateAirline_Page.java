@@ -1,6 +1,7 @@
 package AdminPages.Master.Flight.Airline;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import utilities.FakerSingleton;
 
 public class CreateAirline_Page {
     public CreateAirline_Page(SHAFT.GUI.WebDriver driver) {
@@ -26,7 +27,15 @@ public class CreateAirline_Page {
     By Cbox_OnlineTicketingRulesInternational = By.xpath("(//p-checkbox[.//input[@id=\"id--International\"]])[2]");
     By Cbox_OnlineTicketingRulesDomestic = By.xpath("(//p-checkbox[.//input[@id=\"id--Domestic\"]])[2]");
     By Lst_GDSTab = By.xpath("//a[@id=\"p-tabpanel-3-label\"]");
-    By Btn_SendForApproval = By.xpath("//button[@class=\"col-sm-6 col-md-3 col-lg-2 mx-0 sm:mx-3 my-3 sm:my-0 p-element justify-content-center p-ripple send p-button p-component ng-star-inserted\"]");
+    By Btn_SendForApproval = By.xpath("(//button[@class='p-element col-sm-6 col-md-3 col-lg-2 mx-0 sm:mx-3 my-3 sm:my-0 justify-content-center p-ripple send p-button p-component ng-star-inserted'])[1]");
+    By Btn_AllowOnHold = By.xpath("(//div[@class='p-checkbox-box'])[2]");
+    By Lst_HoldCountryPOS = By.xpath("(//div[contains(text(),'Country Name')])[1]");
+    By Btn_AllSelections = By.xpath("(//div[@role='checkbox'])[1]");
+    By Lst_branchPOS = By.xpath("(//div[@class='p-multiselect-label p-placeholder'][normalize-space()='Select'])[1]");
+    By Btn_OnlineTicketing = By.xpath("(//p-checkbox)[5]");
+    By Lst_ticketingCountryPOS = By.xpath("(//div[@class='p-multiselect-label p-placeholder'])[3]");
+    By Lst_ticketingBranchPOS = By.xpath("(//div[@id='p-tabpanel-13']//p-multiselect)[6]");
+
 
     public void setAddAirline(){
         driver.element().click(Btn_AddAirline);
@@ -42,15 +51,23 @@ public class CreateAirline_Page {
         driver.element().click(Lst_GDSTab);
     }
 
-    public void AirlineDetails(String airlinecode,String airlinename,String alliance,String airlinetype,String networktype){
-        driver.element().type(Txt_AirlineCode,airlinecode);
-        driver.element().type(Txt_AirlineName,airlinename);
-        driver.element().click(Lst_Alliance);
-        By option11 = By.xpath(String.format("//span[contains(text(), '%s')]", alliance));
-        driver.element().click(option11);
+    public String AirlineDetails(String airlinetype,String networktype){
+        driver.element().type(Txt_AirlineCode,FakerSingleton.PassengerFactory.firstName());
+        String Code = driver.element().getText(Txt_AirlineCode);
+        driver.element().type(Txt_AirlineName, FakerSingleton.PassengerFactory.firstName());
         driver.element().select(Lst_AirlineType,airlinetype);
         driver.element().select(Lst_NetworkType,networktype);
-        driver.element().click(Cbox_CodeSharing);
+        driver.element().click(Btn_AllowOnHold);
+        driver.element().click(Lst_HoldCountryPOS);
+        driver.element().click(Btn_AllSelections);
+        driver.element().click(Lst_branchPOS);
+        driver.element().click(Btn_AllSelections);
+        driver.element().click(Btn_OnlineTicketing);
+        driver.element().click(Lst_ticketingCountryPOS);
+        driver.element().click(Btn_AllSelections);
+        driver.element().click(Lst_ticketingBranchPOS);
+        driver.element().click(Btn_AllSelections);
+        return Code;
     }
 
     public void AllowOnlineHold(String countrypos,String branchpos,String restricted){
