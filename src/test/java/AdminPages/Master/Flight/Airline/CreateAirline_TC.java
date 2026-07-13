@@ -49,7 +49,7 @@ public class CreateAirline_TC extends TestBase_TC {
         String CountryPOS = Create.get("CountryPOS");
         String BranchPOS = Create.get("BranchPOS");
         String RestrictedAgencies = Create.get("RestrictedAgencies");
-        createAirline.AirlineDetails(AirlineCode,"utest",Alliance,AirlineType,NetworkType);
+        createAirline.AirlineDetails(AirlineType,NetworkType);
         createAirline.SendForApproval();
         String Expected = "This name already exists";
         Assert.assertEquals(createAirline.Actual(),Expected);
@@ -71,7 +71,7 @@ public class CreateAirline_TC extends TestBase_TC {
         String CountryPOS = Create.get("CountryPOS");
         String BranchPOS = Create.get("BranchPOS");
         String RestrictedAgencies = Create.get("RestrictedAgencies");
-        createAirline.AirlineDetails(AirlineCode,AirlineName,Alliance,AirlineType,NetworkType);
+        createAirline.AirlineDetails(AirlineType,NetworkType);
         createAirline.AllowOnlineHold(CountryPOS,BranchPOS,RestrictedAgencies);
         createAirline.SendForApproval();
         String Expected = "Added Successfully";
@@ -94,7 +94,7 @@ public class CreateAirline_TC extends TestBase_TC {
         String CountryPOS = Create.get("CountryPOS");
         String BranchPOS = Create.get("BranchPOS");
         String RestrictedAgencies = Create.get("RestrictedAgencies");
-        createAirline.AirlineDetails(AirlineCode,"",Alliance,AirlineType,NetworkType);
+        createAirline.AirlineDetails(AirlineType,NetworkType);
         createAirline.AllowOnlineHold(CountryPOS,BranchPOS,RestrictedAgencies);
         createAirline.SendForApproval();
         String Expected = "Required";
