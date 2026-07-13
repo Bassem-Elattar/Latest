@@ -147,7 +147,7 @@ public class CreateAGN_TC{
 //        }
     @AfterMethod
     public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }
 

@@ -7,10 +7,7 @@ import AdminPages.Master.Master_Common;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
@@ -128,5 +125,9 @@ public class CreateBSPCommission_TC{
         Assert.assertEquals(createBSPCommission.Actual(),Expected);
         Thread.sleep(5000);
 
+    }
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

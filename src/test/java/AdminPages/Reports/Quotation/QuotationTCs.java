@@ -4,19 +4,24 @@ package AdminPages.Reports.Quotation;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase;
 import AdminPages.Reports.Reports_Common;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 
-public class QuotationTCs extends TestBase {
+public class QuotationTCs {
    private SHAFT.TestData.JSON testData;
-
+    SHAFT.GUI.WebDriver driver;
    @BeforeTest
     public void login(){
        testData = new SHAFT.TestData.JSON("QuotationReport.json");
-       new LogIn_Page(driver).ClickAdmin();
-       new LogIn_Page(driver).ClickOnLoginButton();
+       CommonMethod.setupDriver(DataUtils.get("browser"));
+       driver = CommonMethod.getDriver();
+       driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+       new LogIn_Page(driver).AdminLogin();
        new Reports_Common(driver).clickReports().clickQuotation();
    }
 
@@ -139,21 +144,7 @@ public class QuotationTCs extends TestBase {
    }
     @AfterMethod
     public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
-//
-//
-//   @Test
-//   public void VerifyThatUserCanPaginateTheResult() throws InterruptedException {
-//      new Reports_Common(driver).clickReports().clickQuotation();
-//      new Quotation_Page(driver)
-//              .SelectBranch()
-//              .SelectAgency()
-//              .SelectDate_CreationDate()
-//              .SelectDuration_DateRange()
-//              .ClickSearch()
-//              .PaginateTheResults()
-//              .VerifyThatUserCanPaginateResultsCorrectly();
-//   }
 
 }

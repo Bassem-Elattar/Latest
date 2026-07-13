@@ -4,20 +4,24 @@ import AdminPages.Master.Flight.BSPCommission_Page;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public class UpdateBSPCommission_TC extends TestBase_TC {
+public class UpdateBSPCommission_TC {
     private BSPCommission_Page createBSPCommission;
     private LogIn_Page logIn;
-
+    public SHAFT.GUI.WebDriver driver;
     @DataProvider(name = "JsonProvider")
     public static Object[][] provideJsonData(Method method) throws IOException {
         String fileName = method.getName();
@@ -28,10 +32,11 @@ public class UpdateBSPCommission_TC extends TestBase_TC {
 
     @BeforeTest
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
+        new LogIn_Page(driver).AdminLogin();
     }
 
 
@@ -53,9 +58,8 @@ public class UpdateBSPCommission_TC extends TestBase_TC {
 
 
     }
-
-
-
-
-
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+    }
 }
