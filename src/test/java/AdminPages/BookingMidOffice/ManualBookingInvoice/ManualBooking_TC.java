@@ -80,6 +80,7 @@ public class ManualBooking_TC {
                 testData.getTestData("nationality"));
         manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
                 .selectADTDocumentType();
+
         Thread.sleep(10000);
         // ================= ASSERT =================
 
@@ -99,9 +100,11 @@ public class ManualBooking_TC {
                 .assertBaseFare(baseFare)
                 .assertTax(tax)
                 .assertTotalADT(total);
-        manualBooking.clickPay();
+        manualBooking.clickPay()
+                .enterSubmit();
         Thread.sleep(10000);
     }
+
 
 
 
@@ -219,7 +222,9 @@ public class ManualBooking_TC {
                 .assertBaseFare_INF(infantBase)
                 .assertTax_INF(infantTax)
                 .assertTotal(String.valueOf(total));
-          manualBooking.clickPay();
+          manualBooking.clickPay()
+                  .enterSubmit();
+
 
     }
     @Test (priority = 2)
@@ -288,8 +293,13 @@ public class ManualBooking_TC {
                 .assertDiscount(discount)
                 .assertServiceCharge(serviceCharge)
                 .assertTotalwithRule(total);
-          manualBooking.clickPay();
+          manualBooking.clickPay()
+                  .enterSubmit();
 
+    }
+    @AfterMethod
+    public void navigateBackToURL() {
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 
 }
