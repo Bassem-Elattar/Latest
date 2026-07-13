@@ -1,12 +1,15 @@
 package AdminPages.BookingMidOffice.SearchBooking;
 
 import AdminPages.BookingMidOffice.Booking.SearchBookingBranch;
+import AdminPages.DashBoard.DashBoard_Page;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
+import static org.openqa.selenium.By.xpath;
 
 public class SearchBooking_Page {
     private SHAFT.GUI.WebDriver driver;
@@ -31,7 +34,7 @@ public class SearchBooking_Page {
     private final By Btn_SelectBookingEndDate = By.xpath("(//button[@tabindex='0'])[2]");
     private final By lst_OpenBranch = By.xpath("(//div[@role='button'])[1]");
     private final By Inpt_Branch = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
-    private final By Btn_Branch = By.xpath("//p-dropdownitem[@class='p-element ng-star-inserted']");
+    private final By Btn_Branch = By.xpath(" //span[text()='Test (BRN2)']");
     private final By lst_OpenAgency = By.xpath("//div[@class='p-multiselect-trigger']");
     private final By Btn_SelectAgency = By.xpath("//li[@aria-label='Test Egypt']");
     private final By Btn_CloseAgency = By.xpath("//li[@aria-label='Test Egypt']");
@@ -60,7 +63,7 @@ public class SearchBooking_Page {
     private final By AgencyName_Column = By.xpath("//tbody/tr[1]/td[4]");
     private final By ClientName_Column = By.xpath("//tbody/tr[1]/td[5]");
 
-    private final By Results = By.xpath("//p[contains(text(),'Showing 10 results')]");
+    private final By Results = By.xpath("//p[contains(text(),'Showing')]");
     private final By PaginateResults = By.xpath("//p[contains(text(),'Showing 20 results')]");
     private final By Btn_paginate = By.xpath("//button[@class='next']");
     private final By Year = By.xpath("//button[normalize-space()='2026']");
@@ -269,5 +272,29 @@ public class SearchBooking_Page {
         By Day = By.xpath(String.format("(//span[normalize-space()='%s'])[1]", day));
         driver.element().click(Day);
         return new SearchBooking_Page(driver);
+    }
+    public SearchBooking_Page searchValidFromDate(String from, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_BookingStartDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", from));
+        driver.element().click(Day);
+        return this;
+    }
+    public SearchBooking_Page searchValidToDate(String to, String year, String month) throws InterruptedException {
+
+        driver.element().click(Dpick_BookingEndDate);
+        driver.element().click(Year);
+        By year1 = By.xpath("//span[normalize-space()='" + year + "']");
+        driver.element().click(year1);
+        By month1 = By.xpath("//span[normalize-space()='" + month + "']");
+        driver.element().click(month1);
+        By Day = xpath(String.format("(//span[text()='%s'])[1]", to));
+        driver.element().click(Day);
+        return this;
     }
 }

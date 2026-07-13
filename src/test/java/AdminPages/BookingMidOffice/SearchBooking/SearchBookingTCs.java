@@ -31,8 +31,8 @@ public class SearchBookingTCs  {
         new SearchBooking_Page(driver)
                 .SelectBooking()
                 .SelectBranch(testData.getTestData("ValidData.BranchName"))
-                .SelectValidStartDate(testData.getTestData("ValidData.BookingStartDate"))
-                .SelectValidEndDate(testData.getTestData("ValidData.BookingEndDate"))
+                .searchValidFromDate(testData.getTestData("ValidData.FromDate"),testData.getTestData("ValidData.FromYear"),testData.getTestData("ValidData.FromMonth"))
+                .searchValidToDate(testData.getTestData("ValidData.ToDate"),testData.getTestData("ValidData.ToYear"),testData.getTestData("ValidData.ToMonth"))
                 .ClickSearch()
                 .verifyThatTheResultShowsSuccessfully();
     }

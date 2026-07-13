@@ -1,8 +1,12 @@
 package AdminPages.Admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import utilities.FakerSingleton;
+
+import java.io.File;
 
 public class Staff_Page {
 
@@ -11,7 +15,8 @@ public class Staff_Page {
     public Staff_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-
+    public static String username;
+    public static String employeeName;
     SHAFT.GUI.WebDriver driver ;
 
     By Btn_AddStuff = By.xpath("//span[@style=\"margin-inline-end: 10px;\"]");
@@ -58,13 +63,36 @@ public class Staff_Page {
         driver.element().click(Btn_AddStuff);
         Thread.sleep(MILLIS);
     }
+    public void addEmployeeName(String employeeName) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/test/resources/testDataFiles/ActionStaff.json");
+
+        ObjectNode json = (ObjectNode) mapper.readTree(file);
+
+        json.put("EmployeeName", employeeName);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
+    }
+
+    public void addUserName(String username) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/test/resources/testDataFiles/ActionStaff.json");
+
+        ObjectNode json = (ObjectNode) mapper.readTree(file);
+
+        json.put("UserName", username);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
+    }
 
     public void AddStuff(String usertype ,String searchoperatingcountry,String searchbranch , String searchdepartment
              ,String searchrole,String employeeemail,String employeephoneno,String
-                                    employeesecno,String approverlist ) throws InterruptedException {
+                                    employeesecno,String approverlist ) throws Exception {
         System.out.println("Start Method : Adding a new staff");
         driver.element().click(Lst_Usertype);
-        By option11 = By.xpath(String.format("//span[contains(text(), '%s')]", usertype));
+        By option11 = By.xpath(String.format("//span[contains(text(),'%s')]", usertype));
         driver.element().click(option11);
         Thread.sleep(MILLIS);
         driver.element().click(Lst_OperatingCountry);
@@ -86,6 +114,8 @@ public class Staff_Page {
         Thread.sleep(MILLIS);
         driver.element().type(Txt_EmployeeName, FakerSingleton.PassengerFactory.firstName());
         Thread.sleep(MILLIS);
+        employeeName = driver.element().getText(Txt_EmployeeName);
+        addEmployeeName(employeeName);
         driver.element().type(Txt_EmployeeEmail,employeeemail);
         Thread.sleep(MILLIS);
         driver.element().type(Txt_EmployeePhoneNo,employeephoneno);
@@ -94,6 +124,8 @@ public class Staff_Page {
         Thread.sleep(MILLIS);
         driver.element().type(Txt_AddUserName, FakerSingleton.PassengerFactory.firstName());
         Thread.sleep(MILLIS);
+        username = driver.element().getText(Txt_AddUserName);
+        addUserName(username);
         driver.element().click(Lst_ApproverList);
         By option4 = By.xpath(String.format("//span[contains(text(), '%s')]", approverlist));
         driver.element().click(option4);
@@ -175,7 +207,7 @@ public class Staff_Page {
         System.out.println("Start Method : Editing a stuff ");
         // driver.element().click(BTN_Edit);
         driver.element().click(Lst_Usertype);
-        By option11 = By.xpath(String.format("//span[contains(text(), '%s')]", usertype));
+        By option11 = By.xpath(String.format("//span[contains(text(),'%s')]", usertype));
         driver.element().click(option11);
         Thread.sleep(MILLIS);
         driver.element().click(Lst_OperatingCountry);

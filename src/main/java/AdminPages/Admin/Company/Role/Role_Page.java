@@ -1,11 +1,14 @@
 package AdminPages.Admin.Company.Role;
 
 import AdminPages.BookingMidOffice.SearchBooking.SearchBooking_Page;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 import utilities.FakerSingleton;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,8 +115,23 @@ public class Role_Page {
         driver.element().click(btn_Paginate);
         return this;
     }
-    public Role_Page EnterAddRoleName() {
+
+    public void addRoleName(String RoleName) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/test/resources/testDataFiles/Role.json");
+
+        ObjectNode json = (ObjectNode) mapper.readTree(file);
+        ObjectNode validData = (ObjectNode) json.get("validData");
+        validData.put("roleName", RoleName);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
+    }
+
+    public Role_Page EnterAddRoleName() throws Exception {
         driver.element().type(txt_RoleName, FakerSingleton.PassengerFactory.firstName());
+        String roleName = driver.element().getText(txt_RoleName);
+        addRoleName(roleName);
         return this;
     }
     public Role_Page ClickDashBoard_Tab() {
@@ -407,6 +425,14 @@ public class Role_Page {
             driver.element().click(btn_isApprove);
         }
         return this;
+    }
+    public Role_Page createRoleForCICD(){
+            if(i==1){
+                driver.element().click(btn_DashBoard_Tab);
+            }
+        driver.element().click(btn_isView);
+            return this;
+
     }
     public Role_Page ClickSendForApprove() {
         driver.element().click(btn_SendForApprove);

@@ -25,7 +25,7 @@ public class ManualBookingInvoice {
             By.xpath("(//div[@role='button'])[1]");
 
     private final By opt_TestBranch =
-            By.xpath("//li[@aria-label='Test']");
+            By.xpath("//li[@aria-label='Test (BRN2)']");
 
     private final By lst_AgencyDropdown =
             By.xpath("//span[text()='Select Agency']");

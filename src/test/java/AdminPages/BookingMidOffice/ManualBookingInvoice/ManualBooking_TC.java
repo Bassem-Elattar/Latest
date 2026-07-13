@@ -291,6 +291,12 @@ public class ManualBooking_TC {
           manualBooking.clickPay();
 
     }
+    @AfterMethod
+    public void navigateBackToURL() {
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+//         driver.quit();
+
+    }
 
 }
 
