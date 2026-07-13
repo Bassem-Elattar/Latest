@@ -4,27 +4,31 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
 import AdminPages.Reports.Statement.State;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 import utilities.JsonDataUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class TotalDueToNDC_TC extends TestBase_TC {
+public class TotalDueToNDC_TC{
     private LogIn_Page logIn;
     SHAFT.TestData.JSON testData;
     TotalDueToNDC_Page Due;
-
+    SHAFT.GUI.WebDriver driver;
     @BeforeTest
     public void login() {
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         Due = new TotalDueToNDC_Page(driver);
         new Reports_Common(driver).clickReports().clickTotalDueToNDC();
         testData = new SHAFT.TestData.JSON("TotalDue.json");
@@ -103,7 +107,6 @@ public class TotalDueToNDC_TC extends TestBase_TC {
     }
     @AfterMethod
     public void Reload(){
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
-
 }

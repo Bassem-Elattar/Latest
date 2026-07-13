@@ -4,8 +4,11 @@ import AdminPages.Admin.Company.Department_Page;
 import AdminPages.Admin.Company.TopUpRequest_Page;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import Drive_Factory.CommonMethod;
+import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,14 +16,16 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
+
+import utilities.DataUtils;
 import utilities.FileUploadUtil;
 import utilities.JsonDataUtil;
 
-public class AddTopUpRequest_TC extends TestBase_TC {
+public class AddTopUpRequest_TC{
 
     private Department_Page createDepartment;
     private TopUpRequest_Page TopupRequest;
-
+    SHAFT.GUI.WebDriver driver;
     private LogIn_Page logIn;
 
 
@@ -32,9 +37,11 @@ public class AddTopUpRequest_TC extends TestBase_TC {
     }
     @BeforeTest
     public void sign(){
-        logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        // Admin login
+        new LogIn_Page(driver).AdminLogin();
         new AdminMenu(driver).openSubAdmin().Company().TopUp();
 
     }
@@ -58,7 +65,9 @@ public class AddTopUpRequest_TC extends TestBase_TC {
         TopupRequest.setSendApproval();
         String Expected = "Your Top up has been processed successfully and sent for approval!!";
         Assert.assertEquals(TopupRequest.Actual(),Expected);
-
     }
-
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+    }
 }

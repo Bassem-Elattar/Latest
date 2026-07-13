@@ -139,15 +139,10 @@ public class AddSupplierCredential_TC {
 //        searchSupplierCredential.setInactive();
 //        editSupplierCredential.setEditSuppliercredential("Amada");
 //    }
-
-
-
-
     @AfterMethod
-    public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70");
-
-    }
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+}
 }
 
 

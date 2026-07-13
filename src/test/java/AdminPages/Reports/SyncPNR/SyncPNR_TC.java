@@ -3,18 +3,23 @@ package AdminPages.Reports.SyncPNR;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
 import AdminPages.Reports.Reports_Common;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.*;
+import utilities.DataUtils;
 
 import java.io.FileNotFoundException;
 
-public class SyncPNR_TC extends TestBase_TC {
+public class SyncPNR_TC {
     SHAFT.TestData.JSON testData;
-
+    SHAFT.GUI.WebDriver driver;
     @BeforeTest
     public void login() {
-        new LogIn_Page(driver).ClickAdmin();
-        new LogIn_Page(driver).ClickOnLoginButton();
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
+        new LogIn_Page(driver).AdminLogin();
         testData = new SHAFT.TestData.JSON("Sync.json");
     }
 
@@ -100,10 +105,8 @@ public class SyncPNR_TC extends TestBase_TC {
                 .clickSubmit()
                 .VerifyThatSystemdShowErrorMessage();
     }
-
     @AfterMethod
-    public void Reload() {
-        driver.browser().navigateToURL("http://192.168.1.70");
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
-
 }

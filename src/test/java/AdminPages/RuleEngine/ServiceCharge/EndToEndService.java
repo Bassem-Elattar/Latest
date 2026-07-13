@@ -6,6 +6,7 @@ import AdminPages.RuleEngine.RuleEngine_Common;
 import AdminPages.RuleEngine.ServiceCharge.ServiceCharge_page;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
@@ -55,5 +56,8 @@ public class EndToEndService  {
 
     }
         //  .Search(testData.getTestData("Branch"))
-
+        @AfterMethod
+        public void Reload(){
+            new LogIn_Page(driver).ClickOnLogOuTButton();
+        }
 }

@@ -8,6 +8,7 @@ import AdminPages.Login.TestBase_TC;
 
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
+import org.testng.annotations.AfterMethod;
 import utilities.DataUtils;
 import utilities.DataaUtils;
 
@@ -105,6 +106,10 @@ public class CreateBranch_Admin_TC{
         searchBranch.Btn_Search();
         searchBranch.Btn_ThumbUp("Approved");
 
+    }
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 
 }
