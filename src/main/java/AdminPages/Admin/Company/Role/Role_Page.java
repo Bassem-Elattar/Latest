@@ -1,11 +1,14 @@
 package AdminPages.Admin.Company.Role;
 
 import AdminPages.BookingMidOffice.SearchBooking.SearchBooking_Page;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 import utilities.FakerSingleton;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +23,7 @@ public class Role_Page {
     }
     int i = 1, j= 1 , k=1;
         //////////////searchPage////////////////
-    private final By btn_AddRole = By.xpath("//button[@routerlink = 'add']");
+    private final By btn_AddRole = By.xpath("//button[@routerlink='add']");
     private final By txt_searchRoleName = By.xpath("//input[@id = 'id-Rolename']");
     private final By Rbtn_Inactive = By.xpath("(//p-radiobutton)[1]");
     private final By Rbtn_Active = By.xpath("(//p-radiobutton)[2]");
@@ -34,7 +37,7 @@ public class Role_Page {
     private final By RoleNameField = By.xpath("//tr[1]/td[1]");
         ///////////////AddPage///////////////////
     private final By txt_RoleName = By.xpath("//input[@placeholder='Role Name']");
-    private final By btn_DashBoard_Tab = By.xpath("//a[@id='p-tabpanel-13-label']");
+    private final By btn_DashBoard_Tab = By.xpath("(//span[text()='Dashboard'])[2]");
     private final By btn_Admin_Tab = By.xpath("//a[@id='p-tabpanel-14-label']");
     private final By btn_Master_Tab = By.xpath("//a[@id='p-tabpanel-15-label']");
     private final By btn_RuleEngine_Tab = By.xpath("//a[@id='p-tabpanel-16-label']");
@@ -112,8 +115,23 @@ public class Role_Page {
         driver.element().click(btn_Paginate);
         return this;
     }
-    public Role_Page EnterAddRoleName() {
+
+    public void addRoleName(String RoleName) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/test/resources/testDataFiles/Role.json");
+
+        ObjectNode json = (ObjectNode) mapper.readTree(file);
+        ObjectNode validData = (ObjectNode) json.get("validData");
+        validData.put("roleName", RoleName);
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
+    }
+
+    public Role_Page EnterAddRoleName() throws Exception {
         driver.element().type(txt_RoleName, FakerSingleton.PassengerFactory.firstName());
+        String roleName = driver.element().getText(txt_RoleName);
+        addRoleName(roleName);
         return this;
     }
     public Role_Page ClickDashBoard_Tab() {
@@ -407,6 +425,14 @@ public class Role_Page {
             driver.element().click(btn_isApprove);
         }
         return this;
+    }
+    public Role_Page createRoleForCICD(){
+            if(i==1){
+                driver.element().click(btn_DashBoard_Tab);
+            }
+        driver.element().click(btn_isView);
+            return this;
+
     }
     public Role_Page ClickSendForApprove() {
         driver.element().click(btn_SendForApprove);

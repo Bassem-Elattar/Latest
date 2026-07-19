@@ -48,7 +48,7 @@ public class CreateStaff_TC{
     }
 
     @Test(dataProvider = "JsonProvider")
-    public void CreateStaff(Map<String, String> st) throws InterruptedException {
+    public void CreateStaff(Map<String, String> st) throws Exception {
         staff = new Staff_Page(driver);
         // staff.Clickonadmin();
 //        staff.ClickonStuff();

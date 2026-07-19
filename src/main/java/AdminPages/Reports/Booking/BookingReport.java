@@ -23,6 +23,8 @@ public class BookingReport {
 
     ////////////////////// LOCATORS //////////////////////
     public By Reports=By.xpath("//a[@href=\"/reports\"]");
+    public By clickBranch=By.xpath("(//div[contains(@class,'p-multiselect-trigger')])[1]");
+    public By all=By.xpath("//div[@role='checkbox']");
     By Branch = xpath("//p-multiselect[.//input[@id=\"id-BranchName\"]]");
     By InvoiceFromDate = xpath("//input[@id='id-FromBookingDate']");
     By InvoiceToDate = xpath("//input[@id='id-ToBookingDate']");
@@ -43,6 +45,11 @@ public class BookingReport {
 
     public BookingReport SearchValidBranch(String branch){
         driver.element().select(Branch,branch);
+        return this;
+    }
+    public BookingReport Searchbyall(String branch){
+        driver.element().click(clickBranch);
+        driver.element().click(all);
         return this;
     }
 

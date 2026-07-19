@@ -1,0 +1,126 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" parallel="false" preserve-order="true" verbose="2">
+
+    <test name="Role Module">
+        <classes>
+            <class name="AdminPages.Admin.Company.Role.Role_TC">
+                <methods>
+                    <include name="CreateRoleForCICD"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Supplier Credential Module">
+        <classes>
+            <class name="AdminPages.Master.Supplier.SupplierCredential.AddSupplierCredential_TC">
+                <methods>
+                    <include name="CreateSupplierCredential"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Booking Search Module">
+        <classes>
+            <class name="AdminPages.BookingMidOffice.SearchBooking.SearchBookingTCs">
+                <methods>
+                    <include name="verifyThatUserCanSearchByBooking"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="TopUp Module">
+        <classes>
+            <class name="AdminPages.Admin.Company.TopUpRequest.AddTopUpRequest_TC">
+                <methods>
+                    <include name="AddTopUpRequest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="ROE Module">
+        <classes>
+            <class name="AdminPages.Master.Miscellaneous.RateOfExchange.CreateRateOfExchange_TC">
+                <methods>
+                    <include name="CreateRateWithValidData"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Staff Module">
+        <classes>
+            <class name="AdminPages.Admin.Staff.ActionStaff_TC">
+                <methods>
+                    <include name="AddStaffCICD"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Agency Module">
+        <classes>
+            <class name="AdminPages.Admin.Agency.Agency.CreateAGN_TC">
+                <methods>
+                    <include name="CreateAGN"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="BSP Module">
+        <classes>
+            <class name="AdminPages.Master.Flight.BSPCommission.CreateBSPCommission_TC">
+                <methods>
+                    <include name="CreateBSPCommission"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="DealCode Module">
+        <classes>
+            <class name="AdminPages.Master.DealCode.CreateDealCode">
+                <methods>
+                    <include name="Create_DEALCODE"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Markup Module">
+        <classes>
+            <class name="AdminPages.RuleEngine.Markup.Markup_E2E_TC">
+            </class>
+        </classes>
+    </test>
+    <test name="Discount Module">
+        <classes>
+            <class name="AdminPages.RuleEngine.Discount.E2EDiscount">
+            </class>
+        </classes>
+    </test>
+    <test name="ServiceCharge Module">
+        <classes>
+            <class name="AdminPages.RuleEngine.ServiceCharge.EndToEndService">
+            </class>
+        </classes>
+    </test>
+    <test name="ManualBooking Module">
+        <classes>
+            <class name="AdminPages.BookingMidOffice.ManualBookingInvoice.ManualBooking_TC">
+                <methods>
+                    <include name="verifyThatAdminCanCreateManualBookingInvoiceSuccessfully"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="MyQuote Module">
+        <classes>
+            <class name="AdminPages.BookingMidOffice.MyQuotes.QuoteSearch">
+                <methods>
+                    <include name="SearchByBranchNameOnly"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

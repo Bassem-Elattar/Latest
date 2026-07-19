@@ -6,8 +6,7 @@ import AdminPages.RuleEngine.RuleEngine_Common;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utilities.DataUtils;
 
 
@@ -19,7 +18,7 @@ public class CancellationCharge_TC  {
     SHAFT.TestData.JSON testData;
     SHAFT.GUI.WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void sign() {
 
         testData = new SHAFT.TestData.JSON("CancellationCharge.json");
@@ -92,6 +91,12 @@ public class CancellationCharge_TC  {
         String Expected = testData.getTestData("Search.errorMessage");
         String Actual = cancellationChargePage.EmptySearch();
         Assert.assertEquals(Actual, Expected);
+    }
+    @AfterMethod
+    public void navigateBackToURL() {
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+//        driver.quit();
+
     }
 
 }

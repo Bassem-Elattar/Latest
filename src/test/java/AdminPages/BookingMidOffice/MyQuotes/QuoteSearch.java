@@ -3,14 +3,18 @@ package AdminPages.BookingMidOffice.MyQuotes;
 import AdminPages.BookingMidOffice.Booking_Common;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.Login.TestBase_TC;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utilities.DataUtils;
 
-public class QuoteSearch extends TestBase_TC {
+public class QuoteSearch {
     SHAFT.TestData.JSON testData;
     private LogIn_Page logIn;
+    SHAFT.GUI.WebDriver driver;
     String QuoteID;
     String QuoteBranchName;
     String QuoteAgency;
@@ -25,9 +29,12 @@ public class QuoteSearch extends TestBase_TC {
     String QuoteIdToBeRejected;
     @BeforeClass
     public void Login(){
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
+
         logIn = new LogIn_Page(driver);
-        logIn.ClickAdmin();
-        logIn.ClickOnLoginButton();
+        logIn.AdminLogin();
 
         testData = new SHAFT.TestData.JSON("QuoteSearchData.json");
         QuoteBranchName = testData.getTestData( "Branch");
@@ -186,5 +193,9 @@ public class QuoteSearch extends TestBase_TC {
                         RejectQuote(QuoteIdToBeRejected).
                         ValidateQuoteStatus(QuoteIdToBeRejected,"Status","Reject");
         Assert.assertTrue(result);
+    }
+    @AfterMethod
+    public void navigateBackToURL() {
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

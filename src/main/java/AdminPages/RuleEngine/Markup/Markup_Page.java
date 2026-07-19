@@ -29,7 +29,7 @@ public class Markup_Page {
     /*Add markup*/
     private final By txt_MarkupName = By.xpath("//input[@id=\"id-MarkupName\"]");
     private final By txt_MarkupDisc = By.xpath("//textarea[@placeholder=\"Markup Description\"]");
-    private final By Dpick_Validityfrom = By.xpath("(//button)[4]");
+    private final By Dpick_Validityfrom = By.xpath("//input[@id='id-ValidityPeriodFrom']");
     //  private final By Select_Date = By.xpath("//span[@class=\"p-ripple p-element ng-tns-c52-7 ng-star-inserted\"]");
     private final By Dpick_ValidityTo = By.xpath("//input[@id='id-ValidityPeriodTo']");
     private final By Lst_CountryPosForAdd =By.xpath("//p-multiselect[.//input[@id=\"id-CountryPOS\"]]");
@@ -54,7 +54,7 @@ public class Markup_Page {
     private final By Search = By.xpath("//input[contains(@class,'p-multiselect-filter')]");
     private final By txt_Search = By.xpath("//input[contains(@class,'p-multiselect-filter')]");
     private final By Btn_Checkbox = By.xpath("//div[@role='checkbox' and contains(@class,'p-checkbox-box') and @aria-checked='false']");
-    private final By Btn_AllAgency = By.xpath("//li[contains(@class,'p-multiselect-item')]//span[normalize-space()='Test Egypt']");
+    private final By Btn_AllAgency = By.xpath("//li[contains(@class,'p-multiselect-item')]//span[normalize-space()='Test Egypt (AGN2)']");
     private final By Btn_CheckBoxSearch = By.xpath("(//p-checkbox[.//input[@value=\"All\"]])[1]");
     By editIcon = By.xpath("//i[contains(@class,'pi-pencil')]");
     By txt_Reamrks = By.xpath("//textarea[@name=\"remarks\"]");
@@ -244,7 +244,7 @@ public class Markup_Page {
 
     }
     public void updateMarkup(String name,String MarkupDis, String year,String month,String From, String year2,String month2,String From1, String Amounttype,
-                             String AmountValue, String Remarks) {
+                             String AmountValue, String Remarks) throws InterruptedException {
 
         // 1. Build dynamic row locator
         By dynamicRow = By.xpath(String.format("//tr[td[normalize-space()='%s']]", name));
@@ -260,6 +260,7 @@ public class Markup_Page {
         // 5. Click the correct edit button for that row
         driver.element().scrollToElement(editButton);
         driver.element().click(editButton);
+        Thread.sleep(3000);
 
         // 6. Update fields
         driver.element().type(txt_MarkupName, FakerSingleton.PassengerFactory.firstName());

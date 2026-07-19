@@ -18,6 +18,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class ActionStaff_TC {
+    SHAFT.TestData.JSON testData;
 
     private Staff_Page staff;
     private LogIn_Page logIn;
@@ -36,17 +37,19 @@ public class ActionStaff_TC {
 
     @BeforeTest
     public void sign(){
+        testData=new SHAFT.TestData.JSON("src/test/resources/testDataFiles/ActionStaff.json");
         CommonMethod.setupDriver(DataUtils.get("browser"));
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
         new LogIn_Page(driver).AdminLogin();
-        new AdminMenu(driver).openSubAdmin().openStaff();
+
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")
-    public void CreateStaff(Map<String,String> st) throws InterruptedException {
+    public void CreateStaff(Map<String,String> st) throws Exception {
         staff = new Staff_Page(driver);
+        new AdminMenu(driver).openSubAdmin().openStaff();
        // staff.Clickonadmin();
 //        staff.ClickonStuff();
         staff.addstuff();
@@ -117,7 +120,7 @@ public class ActionStaff_TC {
 //
 //
 //    }
-public void AddStaff(Map<String,String> st) throws InterruptedException {
+public void AddStaff(Map<String,String> st) throws Exception {
     staff = new Staff_Page(driver);
     // staff.Clickonadmin();
 //        staff.ClickonStuff();
@@ -143,9 +146,39 @@ public void AddStaff(Map<String,String> st) throws InterruptedException {
     staff.ThumpUp("Approved");
     Thread.sleep(3000);
 }
+    @Test
+    public void AddStaffCICD() throws Exception {
+        staff = new Staff_Page(driver);
+        // staff.Clickonadmin();
+//        staff.ClickonStuff();
+        new AdminMenu(driver).openSubAdmin().openStaff();
+        staff.addstuff();
+        String Usertype =testData.getTestData("Usertype");
+        String SearchOperatingCountry=testData.getTestData("SearchOperatingCountry");
+        Branch = testData.getTestData("SearchBranch");
+        Department =testData.getTestData("SearchDepartment");
+        String SearchRole = testData.getTestData("SearchRole");
+        StaffName = testData.getTestData("EmployeeName");
+        String EmployeeEmail = testData.getTestData("EmployeeEmail");
+        String EmployeePhoneNo = testData.getTestData("EmployeePhoneNo");
+        String EmployeeSecondaryNo = testData.getTestData("EmployeeSecondaryNo");
+        UserName = testData.getTestData("UserName");
+        String ApprovalList = testData.getTestData("ApprovalList");
+        staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
+                ,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,ApprovalList);
+        staff.YesUndercut();
+        Thread.sleep(3000);
+        staff.setInactive();
+        staff.fill(testData.getTestData("EmployeeName"),
+                testData.getTestData("UserName"),
+                testData.getTestData("SearchBranch"),
+                testData.getTestData("SearchDepartment"));
+        staff.ThumpUp("Approved");
+        Thread.sleep(3000);
+    }
 
     @AfterMethod
     public void navigateBackToURL() {
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

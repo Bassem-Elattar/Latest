@@ -80,7 +80,6 @@ public class ManualBooking_TC {
                 testData.getTestData("nationality"));
         manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
                 .selectADTDocumentType();
-
         Thread.sleep(10000);
         // ================= ASSERT =================
 

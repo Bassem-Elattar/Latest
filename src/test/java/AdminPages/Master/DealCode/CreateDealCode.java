@@ -144,6 +144,6 @@ public class CreateDealCode{
 
     @AfterMethod
     public void quit (){
-        driver.browser().navigateToURL("http://192.168.1.70");
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

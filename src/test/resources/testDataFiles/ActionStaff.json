@@ -1,16 +1,13 @@
-[
-  {
-    "Usertype": "StaffUser",
-    "SearchOperatingCountry": "EgyptLive",
-    "SearchBranch": "kiko",
-    "SearchDepartment": "AREA MANAGER",
-    "SearchRole": "Admin Role",
-    "EmployeeName": "Sadfy",
-    "EmployeeEmail": "S.khalil@tildetech.ae",
-    "EmployeePhoneNo": "1030905444",
-    "EmployeeSecondaryNo": "1030902587",
-    "UserName": "Safsyaa",
-    "ApprovalList": "No Approver"
-  }
-
-]
+{
+  "Usertype" : "StaffUser",
+  "SearchOperatingCountry" : "EgyptLive",
+  "SearchBranch" : "kiko",
+  "SearchDepartment" : "GDS",
+  "SearchRole" : "Admin Role",
+  "EmployeeName" : "Aide",
+  "EmployeeEmail" : "S.khalil@tildetech.ae",
+  "EmployeePhoneNo" : "1030905444",
+  "EmployeeSecondaryNo" : "1030902587",
+  "UserName" : "Piedad",
+  "ApprovalList" : "No Approver"
+}

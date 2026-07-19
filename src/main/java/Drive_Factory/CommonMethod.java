@@ -11,6 +11,9 @@ public class CommonMethod {
     private static SHAFT.GUI.WebDriver driver;
 
     public static void setupDriver(String browser) {
+        if (driver != null) {
+            return;
+        }
 
         DriverFactory.DriverType driverType =
                 DriverFactory.DriverType.valueOf(
