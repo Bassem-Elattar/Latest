@@ -24,9 +24,9 @@ public class SearchBooking_Page {
         /////select search booking////
     private final By Btn_SearchBooking = By.xpath("//a[@href = '/booking']");
         /////select module////
-    private final By Btn_Flight = By.xpath("(//li[@role='presentation'])[15]");
+    private final By Btn_Flight = By.xpath("//span[text()=\"Flight\"]");
     private final By ShowMoreBtn = By.xpath("(//button[@type='button'])[1]");
-    private final By Btn_Booking = By.xpath("(//li[@role='presentation'])[14]");
+    private final By Btn_Booking = By.xpath("//span[text()=\"Booking\"]");
      /////general fields//////
     private final By Dpick_BookingStartDate = By.xpath("//input[@id='id-BookingStartDate']");
     private final By Btn_SelectBookingStartDate = By.xpath("(//button[@tabindex='0'])[1]");

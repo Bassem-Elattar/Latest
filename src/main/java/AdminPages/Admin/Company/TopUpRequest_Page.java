@@ -138,7 +138,7 @@ public class TopUpRequest_Page {
         By option2 = By.xpath(String.format("//span[text()='%s']", paymenttype));
         driver.element().click(option2);
         driver.element().type(Txt_Remarks,remarks);
-        driver.element().click(Btn_Upload);
+//        driver.element().click(Btn_Upload);
 
 
     }

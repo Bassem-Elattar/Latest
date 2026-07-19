@@ -47,7 +47,7 @@ public class Discount_Page {
     private final By Search = By.xpath("//input[contains(@class,'p-multiselect-filter')]");
     private final By txt_Search = By.xpath("//input[contains(@class,'p-multiselect-filter')]");
     private final By Btn_Checkbox = By.xpath("//div[@role='checkbox' and contains(@class,'p-checkbox-box') and @aria-checked='false']");
-    private final By Btn_AllAgency = By.xpath("//li[contains(@class,'p-multiselect-item')]//span[normalize-space()='Test Egypt']");
+    private final By Btn_AllAgency = By.xpath("//li[contains(@class,'p-multiselect-item')]//span[normalize-space()='Test Egypt (AGN2)']");
     private final By Btn_CheckBoxSearch = By.xpath("(//p-checkbox[.//input[@value=\"All\"]])[1]");
     By Btn_ValidityPeriodTo = By.xpath("(//input[@id='id-ValidityPeriodTo'])[1]");
     By Btn_ValidityPeriodFrom = By.xpath("(//SPAN[@class='p-fluid']//button[@type='button'])[1]");

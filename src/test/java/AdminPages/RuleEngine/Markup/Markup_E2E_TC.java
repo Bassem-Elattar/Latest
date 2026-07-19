@@ -3,6 +3,7 @@ package AdminPages.RuleEngine.Markup;
 import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
@@ -62,7 +63,7 @@ public class Markup_E2E_TC {
         driver.verifyThat().element(page.Table_FirstRow).exists();
     }
     @Test(priority = 3)
-    public void TC03_UpdateMarkup() {
+    public void TC03_UpdateMarkup() throws InterruptedException {
 //        page.navigateToRuleEngine();
         page.goToNextPage();
         String updatePath = "UpdateSet1";
@@ -94,7 +95,7 @@ public class Markup_E2E_TC {
         Assert.assertTrue(page.findMarkupInPages(), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(page.Table_FirstRow).exists();
     }
-    @AfterMethod
+    @AfterClass
     public void Reload(){
         new LogIn_Page(driver).ClickOnLogOuTButton();
     }

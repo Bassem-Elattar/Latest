@@ -27,7 +27,7 @@ public class SearchAgency_Page {
         Thread.sleep(Long.parseLong("1000"));
 
         // driver.element().click(Btn_Agency);
-        driver.element().click(Btn_agency);
+       // driver.element().click(Btn_agency);
         //  driver.element().type(Txt_AgencyCode,agencycode);
 
         driver.element().type(Txt_AgencyName,agencyname);

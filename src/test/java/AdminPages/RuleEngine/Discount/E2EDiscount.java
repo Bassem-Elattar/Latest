@@ -29,10 +29,7 @@ public class E2EDiscount {
         RuleEngine_Common Dis = new RuleEngine_Common(driver);
         Dis.clickRuleEngine().clickDiscount();
     }
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
-    }
+
     @Test(priority = 1)
     public void TC01_Adddiscount() throws InterruptedException {
         discount.navigateToRuleEngine();
@@ -91,12 +88,12 @@ public class E2EDiscount {
         String branch  = testData.getTestData("SearchSet1.Branch");
         String discountname = testData.getTestData("Actions.discountname");
         discount.search_Discount(country,branch);
-        discount.activestatus();
+        discount.inactivestatus();
         discount.findDiscountInPages();
 //        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }
-    @AfterMethod
+    @AfterClass
     public void Reload(){
         new LogIn_Page(driver).ClickOnLogOuTButton();
     }

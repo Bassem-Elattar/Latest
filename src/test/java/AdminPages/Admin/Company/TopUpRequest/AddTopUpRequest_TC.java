@@ -59,7 +59,7 @@ public class AddTopUpRequest_TC{
         TopupRequest.AddRequest(BranchName,AgencyName,TopUpAmount,PaymentType,Remarks);
         // Specify the file input locator and file path
         By fileInputLocator = By.xpath("//input[@type='file']");
-        String filePath = "C:\\Users\\Mahmoud\\Desktop\\certificate-shaft-engine-63d44dfaaa1bfc9792080893.pdf"; // Replace with your file path
+        String filePath = "src/test/resources/sendGridUsage.pdf"; // Replace with your file path
         // Call the static uploadFile method from utilities.FileUploadUtil to upload the file
         FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
         TopupRequest.setSendApproval();

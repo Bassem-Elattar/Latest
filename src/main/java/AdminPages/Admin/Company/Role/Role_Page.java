@@ -23,7 +23,7 @@ public class Role_Page {
     }
     int i = 1, j= 1 , k=1;
         //////////////searchPage////////////////
-    private final By btn_AddRole = By.xpath("//button[@routerlink = 'add']");
+    private final By btn_AddRole = By.xpath("//button[@routerlink='add']");
     private final By txt_searchRoleName = By.xpath("//input[@id = 'id-Rolename']");
     private final By Rbtn_Inactive = By.xpath("(//p-radiobutton)[1]");
     private final By Rbtn_Active = By.xpath("(//p-radiobutton)[2]");
@@ -37,7 +37,7 @@ public class Role_Page {
     private final By RoleNameField = By.xpath("//tr[1]/td[1]");
         ///////////////AddPage///////////////////
     private final By txt_RoleName = By.xpath("//input[@placeholder='Role Name']");
-    private final By btn_DashBoard_Tab = By.xpath("//a[@id='p-tabpanel-13-label']");
+    private final By btn_DashBoard_Tab = By.xpath("(//span[text()='Dashboard'])[2]");
     private final By btn_Admin_Tab = By.xpath("//a[@id='p-tabpanel-14-label']");
     private final By btn_Master_Tab = By.xpath("//a[@id='p-tabpanel-15-label']");
     private final By btn_RuleEngine_Tab = By.xpath("//a[@id='p-tabpanel-16-label']");
