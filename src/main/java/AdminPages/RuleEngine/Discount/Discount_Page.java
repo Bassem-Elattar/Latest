@@ -127,7 +127,9 @@ public class Discount_Page {
     public void inactivestatus() {
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
-        driver.element().click(Btn_last);
+        if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+            driver.element().click(Btn_last);
+        }
     }
 
     public void bothstatus() {
@@ -261,7 +263,8 @@ public class Discount_Page {
         driver.element().click(editButton);
 
         // 6. Update fields
-        driver.element().type(txt_DiscountName, FakerSingleton.PassengerFactory.firstName());
+        driver.element().type(txt_DiscountName,FakerSingleton.PassengerFactory.firstName());
+        DiscountName = driver.element().getText(txt_DiscountName);
 
         driver.element().clear(txt_DiscountDisc);
         driver.element().type(txt_DiscountDisc, discountDis);

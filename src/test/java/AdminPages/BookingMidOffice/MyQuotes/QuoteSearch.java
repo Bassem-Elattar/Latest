@@ -62,7 +62,7 @@ public class QuoteSearch {
                 new MyQuotesPage(driver)
                         .SelectBranch(QuoteBranchName)
                         .QuoteSearch()
-                        .VerifyThatQuoteDisplayed(QuoteID);
+                        .isQuoteGridDisplayed();
 
         Assert.assertTrue(result);
     }

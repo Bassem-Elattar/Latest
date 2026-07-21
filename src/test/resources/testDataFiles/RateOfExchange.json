@@ -2,7 +2,7 @@
   "ValidData": {
     "FromCurrency": "Saudi Riyal",
     "ToCurrency": "Egyptian Pound",
-    "RateOfExchange" : "12345.05",
+    "RateOfExchange" : "13",
     "ExpectedError" : "Search Rate of Exchange",
     "RequiredError" : "Required"
   },

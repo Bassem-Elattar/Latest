@@ -111,10 +111,12 @@ public class Markup_Page {
     }
     public void goToNextPage() {
         // Scroll to button if needed
+        if (!driver.getDriver().findElements(Btn_Next).isEmpty()){
         driver.element().scrollToElement(Btn_Next);
 
         // Click Next
         driver.element().click(Btn_Next);
+        }
     }
     public void goToLastPage() {
         // Wait until Last button is visible and clickable
@@ -127,10 +129,13 @@ public class Markup_Page {
         driver.element().click(Rbtn_Active);
         driver.element().click(Btn_Submit);
     }
-    public void inactivestatus(){
+    public void inactivestatus() {
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
-        driver.element().click(Btn_last);
+
+        if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+            driver.element().click(Btn_last);
+        }
     }
     public void bothstatus(){
         driver.element().click(Rbtn_Both);
@@ -264,6 +269,7 @@ public class Markup_Page {
 
         // 6. Update fields
         driver.element().type(txt_MarkupName, FakerSingleton.PassengerFactory.firstName());
+        markupName = driver.element().getText(txt_MarkupName);
 
         driver.element().clear(txt_MarkupDisc);
         driver.element().type(txt_MarkupDisc, MarkupDis);
