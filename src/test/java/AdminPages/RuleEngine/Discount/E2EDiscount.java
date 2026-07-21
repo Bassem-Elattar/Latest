@@ -88,7 +88,7 @@ public class E2EDiscount {
         String branch  = testData.getTestData("SearchSet1.Branch");
         String discountname = testData.getTestData("Actions.discountname");
         discount.search_Discount(country,branch);
-        discount.inactivestatus();
+        discount.activestatus();
         discount.findDiscountInPages();
 //        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();

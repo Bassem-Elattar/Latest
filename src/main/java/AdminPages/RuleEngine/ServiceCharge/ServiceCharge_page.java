@@ -151,13 +151,17 @@ public class ServiceCharge_page {
     public void inactivestatus() {
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
-        driver.element().click(Btn_last);
+        if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+            driver.element().click(Btn_last);
+        }
     }
 
     public void bothstatus() {
         driver.element().click(Rbtn_Both);
         driver.element().click(Btn_Submit);
-        driver.element().click(Btn_last);
+        if (!driver.getDriver().findElements(Btn_Next).isEmpty()) {
+            driver.element().click(Btn_Next);
+        }
     }
 /// /////////////////
 

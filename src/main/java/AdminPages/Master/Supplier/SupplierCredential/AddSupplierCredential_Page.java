@@ -17,6 +17,7 @@ public class AddSupplierCredential_Page {
     By Lst_Currency = By.xpath("//p-dropdown[.//input[@id=\"id-Currency\"]]");
     By Lst_CredentialType = By.xpath("//p-dropdown[.//input[@id=\"id-CredentialType\"]]");
     By Lst_FlightSearchLimit = By.xpath("//p-dropdown[.//input[@id=\"id-FlightSearchLimit\"]]");
+    By Lst_FlightSearchLimitFirstElement = By.xpath("//p-dropdownitem/li");
     By Lst_ConnectionTime = By.xpath("//p-dropdown[.//input[@id=\"id-ConnectionTimeout\"]]");
     By Lst_ReadTimeOut = By.xpath("(//div[@role='button'])[7]");
     By Txt_EndpointURL = By.xpath("//input[@id=\"id-EndpointURL\"]");
@@ -42,8 +43,8 @@ public class AddSupplierCredential_Page {
         By option3 = By.xpath(String.format("//span[text()='%s']", credentialtype));
         driver.element().click(option3);
         driver.element().click(Lst_FlightSearchLimit);
-        By option4 = By.xpath(String.format("//span[text()='%s']", flightsearchlimit));
-        driver.element().click(option4);
+       // By option4 = By.xpath(String.format("//span[text()='%s']", flightsearchlimit));
+        driver.element().click(Lst_FlightSearchLimitFirstElement);
 //        driver.element().select(ConnectionTime,connectiontime);
 //        driver.element().select(ReadTimeOut,readtimeout);
         driver.element().click(Lst_ConnectionTime);

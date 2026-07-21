@@ -77,6 +77,11 @@ public class MyQuotesPage {
                 By.xpath("//tbody/tr/td[contains(normalize-space(),'" + displayedStringInGrid + "')]")
         ) > 0;
     }
+    public boolean isQuoteGridDisplayed() {
+        return driver.element().getElementsCount(
+                By.xpath("//tbody/tr")
+        ) > 0;
+    }
     public boolean VerifyThatOnlySelectedStatusDataAreDisplayed(String columnName, String Status){
         int columnIndex = getColumnIndex(columnName);
 
