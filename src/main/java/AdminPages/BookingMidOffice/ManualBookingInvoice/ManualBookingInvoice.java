@@ -1,9 +1,18 @@
 package AdminPages.BookingMidOffice.ManualBookingInvoice;
 import  com.shaft.driver.SHAFT;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
+
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import utilities.FileUploadUtil;
+
+
+import java.time.Duration;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -172,10 +181,32 @@ public class ManualBookingInvoice {
 
     // ========================= Action Section ========================= //
     private final By btn_Pay =
-            By.xpath("(//button[@type='button'])[7]");
+            By.xpath("//button[.//span[normalize-space()='Pay']]");
     private final By btn_submit =
             By.xpath("(//button[@type='submit'])");
 
+//private final By paymentWarningDialog =
+//        By.xpath("//span[normalize-space()='Payment Warning']");
+//
+//    private final By paymentWarningOkButton =
+//            By.xpath("//button[.//span[normalize-space()='OK']]");
+//
+//    private final By dialogMask =
+//            By.cssSelector("div.p-dialog-mask");
+//    public ManualBookingInvoice closePaymentWarningPopup() {
+//
+//        if (!driver.getDriver()
+//                .findElements(paymentWarningDialog)
+//                .isEmpty()) {
+//
+//            driver.element().click(paymentWarningOkButton);
+//
+//            new WebDriverWait(driver.getDriver(), Duration.ofSeconds(10))
+//                    .until(ExpectedConditions.invisibilityOfElementLocated(dialogMask));
+//        }
+
+//        return this;
+//    }
 
 
     // ================= Actions ================= //
@@ -325,6 +356,17 @@ public class ManualBookingInvoice {
         return this;
     }
 
+    public ManualBookingInvoice assertPayButtonDisabled() {
+
+        driver.assertThat()
+                .element(btn_Pay)
+                .attribute("class")
+                .contains("p-disabled")
+                .perform();
+
+        return this;
+    }
+
     public ManualBookingInvoice addTraveler() {
         driver.element().click(btn_AddTraveler);
         return this;
@@ -397,6 +439,7 @@ public class ManualBookingInvoice {
         driver.element().click(dropdownOption);
         return this;
     }
+
     public ManualBookingInvoice enterSubmit() {
         driver.element().click(btn_submit);
 
@@ -443,7 +486,6 @@ public class ManualBookingInvoice {
         driver.element().click(btn_Pay);
         return this;
     }
-
 
 
     private final By btnSegmentsDetails =
@@ -794,7 +836,82 @@ public class ManualBookingInvoice {
 
         return this;
     }
+
+    private final By paymentWarningDialog =
+            By.xpath("//span[@class='p-dialog-title' and normalize-space()='Payment Warning']");
+
+    private final By paymentWarningOkButton =
+            By.xpath("//div[contains(@class,'p-dialog')]//button[.//span[normalize-space()='OK']]");
+
+    private final By dialogMask =
+            By.cssSelector("div.p-dialog-mask");
+
+    public boolean isPaymentWarningPopupDisplayed() {
+
+        return !driver.getDriver()
+                .findElements(paymentWarningDialog)
+                .isEmpty();
+    }
+
+    //    public ManualBookingInvoice closePaymentWarningPopup() {
+//        boolean popup = isPaymentWarningPopupDisplayed();
+//        int x ;
+//
+//        try {
+//
+//            if (isPaymentWarningPopupDisplayed()) {
+//
+//                new WebDriverWait(driver.getDriver(), Duration.ofSeconds(10))
+//                        .until(ExpectedConditions.elementToBeClickable(paymentWarningOkButton));
+//
+//
+//                driver.element().click(paymentWarningOkButton);
+//
+//
+//                new WebDriverWait(driver.getDriver(), Duration.ofSeconds(10))
+//                        .until(ExpectedConditions.invisibilityOfElementLocated(dialogMask));
+//            }
+//
+//        } catch (Exception e) {
+//
+//            System.out.println("Payment Warning popup not displayed");
+//
+//        }
+//
+//        return this;
+//    }
+    private final By paymentWarningPopup =
+            By.xpath("//span[text()='Payment Warning']");
+
+    private final By okButton =
+            By.xpath("//span[text()='Payment Warning']/ancestor::div[@role='dialog']//button[.//span[text()='OK']]");
+
+
+    public boolean handlePaymentWarningPopup() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(10));
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(paymentWarningPopup));
+
+            driver.element().click(okButton);
+            return true;
+
+        } catch (TimeoutException e) {
+            return false;
+            // Popup didn't appear within 10 seconds, continue execution.
+        }
+    }
+
+    public void  btn_disable() {
+        driver.verifyThat()
+                .element(btn_Pay)
+                .isDisabled()
+                .perform();
+    }
+
+
 }
+
 
 
 

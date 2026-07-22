@@ -67,42 +67,46 @@ public class ManualBooking_TC {
                 .enterAirLine(testData.getTestData("airlinePnr"))
                 .enterFlightNo(testData.getTestData("flightNo"))
                 .addTraveler();
-        Thread.sleep(10000);
-        new PaxDetailsPage(driver).fillOnePassengerDetails(
-                testData.getTestData("title"),
-                testData.getTestData("firstName"),
-                testData.getTestData("lastName"),
-                testData.getTestData("dateOfBirth"),
-                testData.getTestData("email"),
-                testData.getTestData("phone"),
-                testData.getTestData("documentNumber"),
-                testData.getTestData("documentExpiry"),
-                testData.getTestData("nationality"));
-        manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
-                .selectADTDocumentType();
-        Thread.sleep(10000);
-        // ================= ASSERT =================
+        if(manualBooking.handlePaymentWarningPopup()){
+            manualBooking.btn_disable();
 
-        String baseFare = testData.getTestData("passengers.adult.baseFare");
-        String tax = testData.getTestData("passengers.adult.tax");
+        }
+        else {
 
-        String total = String.valueOf(
-                Integer.parseInt(baseFare)
-                        + Integer.parseInt(tax)
-        );
-        new ManualBookingInvoice(driver)
-//           //     .OpenSegDetails()
-//            //    .assertRouteVisible()
-//             //   .assertPassengerCountVisible()
-//              //  .assertTripTypeVisible()
-                //.openSegmentsDetails()
-                .assertBaseFare(baseFare)
-                .assertTax(tax)
-                .assertTotalADT(total);
-        manualBooking.clickPay()
-                .enterSubmit();
-        Thread.sleep(10000);
+
+            new PaxDetailsPage(driver).fillOnePassengerDetails(
+                    testData.getTestData("title"),
+                    testData.getTestData("firstName"),
+                    testData.getTestData("lastName"),
+                    testData.getTestData("dateOfBirth"),
+                    testData.getTestData("email"),
+                    testData.getTestData("phone"),
+                    testData.getTestData("documentNumber"),
+                    testData.getTestData("documentExpiry"),
+                    testData.getTestData("nationality"));
+            manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
+                    .selectADTDocumentType();
+
+            Thread.sleep(1000);
+            // ================= ASSERT =================
+
+            String baseFare = testData.getTestData("passengers.adult.baseFare");
+            String tax = testData.getTestData("passengers.adult.tax");
+
+            String total = String.valueOf(
+                    Integer.parseInt(baseFare)
+                            + Integer.parseInt(tax)
+            );
+            new ManualBookingInvoice(driver)
+                    .assertBaseFare(baseFare)
+                    .assertTax(tax)
+                    .assertTotalADT(total);
+            manualBooking.clickPay()
+                    .enterSubmit();
+            Thread.sleep(10000);
+        }
     }
+
 
 
 
@@ -153,22 +157,22 @@ public class ManualBooking_TC {
                 testData.getTestData("documentNumber"),
                 testData.getTestData("documentExpiry"),
                 testData.getTestData("nationality"));
-       manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
-              .selectADTDocumentType();
+        manualBooking.enterADTTicketNumber(testData.getTestData("ticketNumber"))
+                .selectADTDocumentType();
         new PaxDetailsPage(driver).selectCHDTraveller()
-        .fillCHDPassengerDetails1(
-                testData.getTestData("title1"),
-                testData.getTestData("firstName1"),
-                testData.getTestData("lastName1"),
-                testData.getTestData("dateOfBirth1"),
-                testData.getTestData("email1"),
-                testData.getTestData("phone1"),
-                testData.getTestData("documentNumber1"),
-                testData.getTestData("documentExpiry1"),
-                testData.getTestData("nationality1")
+                .fillCHDPassengerDetails1(
+                        testData.getTestData("title1"),
+                        testData.getTestData("firstName1"),
+                        testData.getTestData("lastName1"),
+                        testData.getTestData("dateOfBirth1"),
+                        testData.getTestData("email1"),
+                        testData.getTestData("phone1"),
+                        testData.getTestData("documentNumber1"),
+                        testData.getTestData("documentExpiry1"),
+                        testData.getTestData("nationality1")
 
 
-        );
+                );
         manualBooking.enterCHDTicketNumber(testData.getTestData("ticketNumber1"))
                 .selectCHDDocumentType();
         new PaxDetailsPage(driver).selectINFTraveller()
@@ -221,8 +225,8 @@ public class ManualBooking_TC {
                 .assertBaseFare_INF(infantBase)
                 .assertTax_INF(infantTax)
                 .assertTotal(String.valueOf(total));
-          manualBooking.clickPay()
-                  .enterSubmit();
+        manualBooking.clickPay()
+                .enterSubmit();
 
 
     }
@@ -292,8 +296,8 @@ public class ManualBooking_TC {
                 .assertDiscount(discount)
                 .assertServiceCharge(serviceCharge)
                 .assertTotalwithRule(total);
-          manualBooking.clickPay()
-                  .enterSubmit();
+        manualBooking.clickPay()
+                .enterSubmit();
 
     }
     @AfterMethod
