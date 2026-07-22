@@ -97,7 +97,7 @@ public class Demo extends TestBase_TC {
         String EndpointURL = add.get("EndpointURL");
         String DevCreate = add.get("DevCreate");
         addSupplierCredential.setAddSupplierCredential(Supplier,CountryPOC,Currency,CredentialType
-                ,FlightSearchLimit,ConnectionTime,ReadTimeOut);
+                );
         addSupplierCredential.GDS(EndpointURL);
         Thread.sleep(10000);
         addSupplierCredential.setSaveBtn();

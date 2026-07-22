@@ -69,8 +69,7 @@ public class AddSupplierCredential_TC {
         String Password = add.get("Password");
         String DisplayName = add.get("DisplayName");
         String DevCreate = add.get("DevCreate");
-        addSupplierCredential.setAddSupplierCredential(Supplier,CountryPOC,Currency,CredentialType
-        ,FlightSearchLimit,ConnectionTime,ReadTimeOut);
+        addSupplierCredential.setAddSupplierCredential(Supplier,CountryPOC,Currency,CredentialType);
         //addSupplierCredential.GDS(EndpointURL);
 //        addSupplierCredential.RestrictedAirline();
 

@@ -12,9 +12,11 @@ public class ServiceCharge_page {
     private SoftAssert softAssert = new SoftAssert();
     private SHAFT.TestData.JSON testData;
     public static String ServiceName;
+
     public ServiceCharge_page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
+
     /// /Add Service Charge////////////
     private final By btn_RuleEngine = By.xpath("//a[@id='p-tabpanel-3-label']");
     private final By btn_ServiceCharge = By.xpath("//li[@class='ng-star-inserted']//a[@href='/rule-engine/service-charge']");
@@ -37,7 +39,6 @@ public class ServiceCharge_page {
     //private final By btn_closeDropDrown = By.xpath("(//span[@class=\"dropdown-arrow\"])[2]");
 
 
-
     private final By btn_selectAgency = By.xpath("(//span[contains(@class,'dropdown-arrow')])[3]");
     private final By txt_selectAgency = By.xpath("//input[@class='p-inputtext p-component p-element search-input']");
     private final By btn_selectAgencyOption = By.xpath("//input[@class='ng-star-inserted']");
@@ -55,7 +56,7 @@ public class ServiceCharge_page {
     private final By btn_selectAll = By.xpath("(//p-checkbox[@value='All'])[1]");
     private final By btn_Add = By.xpath("//button[normalize-space()='Add']");
     private final By btn_SaveValue = By.xpath("//button[normalize-space()='Save']");
-   // private final By btn_ALL = By.xpath("//div[contains(@class,'p-radiobutton-box')])[1]");
+    // private final By btn_ALL = By.xpath("//div[contains(@class,'p-radiobutton-box')])[1]");
     //private final By btn_BYPAX = By.xpath("//div[contains(@class,'p-radiobutton-box')])[2]");
     private final By btn_SelectFareType = By.xpath("(//div[@class='w-full p-dropdown p-component p-dropdown-clearable'])[1]");
     private final By btn_FareTypeOption = By.xpath("(//li[@aria-label='Total Fare'])[1]");
@@ -75,15 +76,15 @@ public class ServiceCharge_page {
 
     private final By btn_BranchOption = By.xpath("//li[@aria-label='Test']");
 
-   // private final By btn_SearchAgency = By.xpath("//p-dropdown[.//input[@id=\"id-Agency\"]]");
-  //  private final By btn_SelectAgency = By.xpath("//p-dropdownitem[.//li[@aria-label=\"NDC1_Yara Khaled\"]]");
+    // private final By btn_SearchAgency = By.xpath("//p-dropdown[.//input[@id=\"id-Agency\"]]");
+    //  private final By btn_SelectAgency = By.xpath("//p-dropdownitem[.//li[@aria-label=\"NDC1_Yara Khaled\"]]");
     private final By Rbtn_Inactive = By.xpath("(//div[@class='p-radiobutton-box'])[1]");
     private final By Rbtn_Active = By.xpath("//div[@class='p-radiobutton-box p-highlight']");
     private final By Rbtn_Both = By.xpath("(//div[@class='p-radiobutton-box'])[2]");
     private final By Btn_SearchInGrid = By.xpath("//button[@type=\"submit\"]");
     By txt_Reamrks = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_Approve = By.xpath("(//button[@type=\"submit\"])[2]");
-   // private final By Btn_Next = By.xpath("//span[@id='last']");
+    // private final By Btn_Next = By.xpath("//span[@id='last']");
 
 
     //private final By Btn_ExportToExcel = By.xpath("//button[@class="p-element p-ripple p-button-outlined p-button p-component upper-table-btn ng-star-inserted']";
@@ -120,7 +121,7 @@ public class ServiceCharge_page {
 
     public void search_ServiceCharge(String Country, String Branch) {
         driver.element().click(btn_SearchCountry);
-        driver.element().select(txt_selectCountry,Country);
+        driver.element().select(txt_selectCountry, Country);
         driver.element().click(btn_SearchBranch);
         By item = By.xpath("//li[normalize-space()='" + Branch + "']");
         driver.element().scrollToElement(item);
@@ -153,15 +154,15 @@ public class ServiceCharge_page {
         driver.element().click(Btn_Submit);
         if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
             driver.element().click(Btn_last);
+        } else if (!driver.getDriver().findElements(Btn_Next).isEmpty()) {
+            driver.element().click(Btn_Next);
         }
     }
 
     public void bothstatus() {
         driver.element().click(Rbtn_Both);
         driver.element().click(Btn_Submit);
-        if (!driver.getDriver().findElements(Btn_Next).isEmpty()) {
-            driver.element().click(Btn_Next);
-        }
+
     }
 /// /////////////////
 
@@ -329,16 +330,33 @@ public class ServiceCharge_page {
         driver.element().type(RemarksAction, remark);
         driver.element().click(Btn_SubmitAction);
     }
-    public void Edit(String description , String remark) throws InterruptedException {
-        By editButton = By.xpath(String.format(
-                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]", ServiceName));
-        driver.element().scrollToElement(editButton);
-        driver.element().click(editButton);
-        Thread.sleep(500);
-        driver.element().type(txt_ServiceChargeName, FakerSingleton.PassengerFactory.firstName());
-        driver.element().type(txt_ServiceChargeDescription, description);
-        driver.element().type(txt_Reamrks,remark).click(Btn_Approve);
+    public void Edit(String description, String remark) throws InterruptedException {
 
+        By editButton = By.xpath(String.format(
+                "//tr[td[normalize-space()='%s']]//i[contains(@class,'pi-pencil')]",
+                ServiceName));
+
+        By serviceInTable = By.xpath(String.format(
+                "//tr[td[normalize-space()='%s']]",
+                ServiceName));
+
+        while (driver.getDriver().findElements(serviceInTable).isEmpty()
+                && !driver.getDriver().findElements(Btn_Next).isEmpty()) {
+
+            driver.element().click(Btn_Next);
+        }
+
+        if (!driver.getDriver().findElements(serviceInTable).isEmpty()) {
+            driver.element().scrollToElement(editButton);
+            driver.element().click(editButton);
+
+            Thread.sleep(500);
+
+            driver.element().type(txt_ServiceChargeName, FakerSingleton.PassengerFactory.firstName());
+            driver.element().type(txt_ServiceChargeDescription, description);
+            driver.element().type(txt_Reamrks, remark)
+                    .click(Btn_Approve);
+        }
     }
     public ServiceCharge_page searchValidFromDate(String From, String year, String month) throws InterruptedException {
 

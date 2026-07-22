@@ -11,6 +11,8 @@ import java.io.File;
 public class Staff_Page {
 
     public static final int MILLIS = 1000;
+    public static String Branch;
+    public static String Departement;
 
     public Staff_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -25,6 +27,7 @@ public class Staff_Page {
     By Lst_AddBranch = By.xpath("//p-multiselect[.//input[@id=\"id-Branch\"]]");
     By Lst_SearchBranch = By.xpath("//p-dropdown[.//input[@id=\"id-Branch\"]]");
     By Lst_Department = By.xpath("//p-multiselect[.//input[@id=\"id-Department\"]]");
+    By Lst_DepartmentFirst = By.xpath("(//p-multiselectitem/li)[1]");
     By Lst_Role = By.xpath("(//p-dropdown)[2]");
     By Icn_ExitRole = By.xpath("//span[@id=\"pr_id_6_label\"]");
     By Txt_EmployeeName = By.xpath("//input[@id=\"id-Employeename\"]");
@@ -100,12 +103,14 @@ public class Staff_Page {
         driver.element().click(option);
         Thread.sleep(MILLIS);
         driver.element().click(Lst_AddBranch);
+        Branch =  driver.element().getText(Lst_DepartmentFirst);
         By option1 = By.xpath(String.format("//span[contains(text(), '%s')]", searchbranch));
-        driver.element().click(option1);
+        driver.element().click(Lst_DepartmentFirst);
         Thread.sleep(MILLIS);
         driver.element().click(Lst_Department);
+        Departement = driver.element().getText(Lst_DepartmentFirst);
         By option2 = By.xpath(String.format("//span[contains(text(), '%s')]", searchdepartment));
-        driver.element().click(option2);
+        driver.element().click(Lst_DepartmentFirst);
         Thread.sleep(MILLIS);
         driver.element().click(Lst_Role);
         By option3 = By.xpath(String.format("//span[contains(text(), '%s')]", searchrole));

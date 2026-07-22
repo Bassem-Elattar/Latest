@@ -155,7 +155,7 @@ public void AddStaff(Map<String,String> st) throws Exception {
         staff.addstuff();
         String Usertype =testData.getTestData("Usertype");
         String SearchOperatingCountry=testData.getTestData("SearchOperatingCountry");
-        Branch = testData.getTestData("SearchBranch");
+        Branch = staff.Branch;
         Department =testData.getTestData("SearchDepartment");
         String SearchRole = testData.getTestData("SearchRole");
         StaffName = testData.getTestData("EmployeeName");
@@ -171,8 +171,8 @@ public void AddStaff(Map<String,String> st) throws Exception {
         staff.setInactive();
         staff.fill(testData.getTestData("EmployeeName"),
                 testData.getTestData("UserName"),
-                testData.getTestData("SearchBranch"),
-                testData.getTestData("SearchDepartment"));
+                staff.Branch,
+                staff.Departement);
         staff.ThumpUp("Approved");
         Thread.sleep(3000);
     }
