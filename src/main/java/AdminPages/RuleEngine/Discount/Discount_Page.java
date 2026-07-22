@@ -139,26 +139,25 @@ public class Discount_Page {
     }
 
     public boolean findDiscountInPages() {
-        int maxPages = 20; // safety limit
+        int maxPages = 20; // Safety limit
 
         for (int i = 0; i < maxPages; i++) {
-            // If found in current page, return true
-            if (driver.element().isElementDisplayed(rowDiscount(DiscountName))) {
+
+            // Check if discount exists in current page
+            if (!driver.getDriver().findElements(rowDiscount(DiscountName)).isEmpty()) {
                 return true;
             }
 
-            // If Next button disabled -> no more pages
-            if (!driver.element().isElementDisplayed(Btn_Next)) {
+            // Check if Next button exists
+            if (driver.getDriver().findElements(Btn_Next).isEmpty()) {
                 break;
             }
 
-            // Go to next page
             driver.element().scrollToElement(Btn_Next);
             driver.element().click(Btn_Next);
-
         }
 
-        return false; // not found anywhere
+        return false;
     }
 
     public void rejectAction(String remark) {

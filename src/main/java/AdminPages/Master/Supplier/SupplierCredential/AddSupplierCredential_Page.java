@@ -17,7 +17,7 @@ public class AddSupplierCredential_Page {
     By Lst_Currency = By.xpath("//p-dropdown[.//input[@id=\"id-Currency\"]]");
     By Lst_CredentialType = By.xpath("//p-dropdown[.//input[@id=\"id-CredentialType\"]]");
     By Lst_FlightSearchLimit = By.xpath("//p-dropdown[.//input[@id=\"id-FlightSearchLimit\"]]");
-    By Lst_FlightSearchLimitFirstElement = By.xpath("//p-dropdownitem/li");
+    By Lst_FlightSearchLimitFirstElement = By.xpath("(//p-dropdownitem/li)[1]");
     By Lst_ConnectionTime = By.xpath("//p-dropdown[.//input[@id=\"id-ConnectionTimeout\"]]");
     By Lst_ReadTimeOut = By.xpath("(//div[@role='button'])[7]");
     By Txt_EndpointURL = By.xpath("//input[@id=\"id-EndpointURL\"]");
@@ -27,7 +27,7 @@ public class AddSupplierCredential_Page {
     By Btn_Save = By.xpath("//button[@type=\"submit\"]");
 
     public void setAddSupplierCredential(String supplier, String countrypoc, String currency
-    , String credentialtype,String flightsearchlimit,String connectiontime,String readtimeout) throws InterruptedException {
+    , String credentialtype) throws InterruptedException {
         driver.element().click(Btn_AddSupplierCredential);
         driver.element().click(Lst_Supplier);
         By option = By.xpath(String.format("//span[text()='%s']", supplier));
@@ -48,12 +48,12 @@ public class AddSupplierCredential_Page {
 //        driver.element().select(ConnectionTime,connectiontime);
 //        driver.element().select(ReadTimeOut,readtimeout);
         driver.element().click(Lst_ConnectionTime);
-        By option5 = By.xpath(String.format("//span[text()='%s']", connectiontime));
-        driver.element().click(option5);
+        //By option5 = By.xpath(String.format("//span[text()='%s']", connectiontime));
+        driver.element().click(Lst_FlightSearchLimitFirstElement);
         Thread.sleep(1000);
         driver.element().click(Lst_ReadTimeOut);
-        By option6 = By.xpath(String.format("(//li[@aria-label='%s'])[1]", readtimeout));
-        driver.element().click(option6);
+        //By option6 = By.xpath(String.format("(//li[@aria-label='%s'])[1]", readtimeout));
+        driver.element().click(Lst_FlightSearchLimitFirstElement);
 
     }
 
