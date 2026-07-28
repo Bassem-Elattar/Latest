@@ -72,6 +72,7 @@ public class ActionStaff_TC {
         staff.fill(StaffName,UserName,Branch,Department);
         staff.ThumpUp("Approved");
         Thread.sleep(3000);
+        staff.ClickOnAlert();
     }
 //        String Expected = "Added Successfully";
 //        String Actual = driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
@@ -175,6 +176,7 @@ public void AddStaff(Map<String,String> st) throws Exception {
                 staff.Departement);
         staff.ThumpUp("Approved");
         Thread.sleep(3000);
+        staff.ClickOnAlert();
     }
 
     @AfterMethod

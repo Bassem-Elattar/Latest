@@ -1,5 +1,6 @@
 package AdminPages.RuleEngine.Markup;
 
+import AdminPages.Admin.Staff_Page;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -72,6 +73,7 @@ public class Markup_Page {
         return By.xpath("//td[normalize-space()='" + markupname + "']");
     }
     By Year = By.xpath("//button[normalize-space()='2026']");
+    By Btn_alert = By.xpath("//div[@role='alert']");
 
     private By approveButton(String markupname){
         return By.xpath("//tr[td[normalize-space()='" + markupname + "']]//i[contains(@class,'pi-thumbs-up')]");
@@ -310,6 +312,12 @@ public class Markup_Page {
 
         // Approve/Update button
         driver.element().click(Btn_Approve);
+    }
+    public Markup_Page ClickonAlert() throws InterruptedException {
+
+        driver.element().click(Btn_alert);
+        return this;
+
     }
 
 
