@@ -81,6 +81,7 @@ public class Markup_E2E_TC {
                 testData.getTestData(updatePath + ".AmountValue"),
                 testData.getTestData(updatePath + ".Remarks")
         );
+        page.ClickonAlert();
     }
     @Test(priority = 4)
     public void TC04_Search_Markup() throws InterruptedException {
@@ -94,7 +95,7 @@ public class Markup_E2E_TC {
 //        page.findMarkupInPages();
         Assert.assertTrue(page.findMarkupInPages(), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(page.Table_FirstRow).exists();
-        page.ClickonAlert();
+
     }
     @AfterClass
     public void Reload(){

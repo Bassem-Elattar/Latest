@@ -150,19 +150,17 @@ public class Markup_Page {
 
         for(int i = 0; i < maxPages; i++){
             // If found in current page, return true
-            if(driver.element().isElementDisplayed(rowMarkup(markupName))){
+            if (!driver.getDriver().findElements(rowMarkup(markupName)).isEmpty()) {
                 return true;
             }
 
-            // If Next button disabled -> no more pages
-            if(!driver.element().isElementDisplayed(Btn_Next)){
+            // Check if Next button exists
+            if (driver.getDriver().findElements(Btn_Next).isEmpty()) {
                 break;
             }
 
-            // Go to next page
             driver.element().scrollToElement(Btn_Next);
             driver.element().click(Btn_Next);
-
         }
 
         return false; // not found anywhere
