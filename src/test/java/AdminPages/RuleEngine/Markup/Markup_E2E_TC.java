@@ -83,7 +83,7 @@ public class Markup_E2E_TC {
         );
     }
     @Test(priority = 4)
-    public void TC04_Search_Markup(){
+    public void TC04_Search_Markup() throws InterruptedException {
 //        page.navigateToRuleEngine();
         String country = testData.getTestData("SearchSet1.Country");
         String branch  = testData.getTestData("SearchSet1.Branch");
@@ -94,6 +94,7 @@ public class Markup_E2E_TC {
 //        page.findMarkupInPages();
         Assert.assertTrue(page.findMarkupInPages(), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(page.Table_FirstRow).exists();
+        page.ClickonAlert();
     }
     @AfterClass
     public void Reload(){

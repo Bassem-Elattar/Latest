@@ -61,6 +61,7 @@ public class Staff_Page {
     By Btn_SubmitDown =  By.xpath("//span[contains(text(),'Submit')]");
     By Txt_Remarks = By.xpath("//textarea[@placeholder=\"remarks...\"]");
     By Btn_SendForApproval = By.xpath("//button[@type=\"submit\"]");
+    By Btn_alert = By.xpath("//div[@role='alert']");
 
     public void addstuff() throws InterruptedException {
         driver.element().click(Btn_AddStuff);
@@ -153,6 +154,12 @@ public class Staff_Page {
 
         driver.element().click(Btn_Admin);
         Thread.sleep(3000);
+
+    }
+    public Staff_Page ClickOnAlert() throws InterruptedException {
+
+        driver.element().click(Btn_alert);
+        return this;
 
     }
 
