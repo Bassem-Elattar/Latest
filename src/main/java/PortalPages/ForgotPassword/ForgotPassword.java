@@ -26,7 +26,7 @@ public class ForgotPassword {
     private final By Btn_SignOut = By.xpath("//a[normalize-space()='Sign Out']");
 
     private final By Txt_uppercaseValidation = By.id("upper");
-    private final By Lbl_AgentCode = By.xpath("//h4[contains(text(),'AGN9881')]");
+    private final By Lbl_AgentCode = By.id("agency-code-from-left-bar");
 
 
     /////Methods//////////////
