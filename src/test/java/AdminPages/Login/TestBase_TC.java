@@ -1,8 +1,10 @@
 package AdminPages.Login;
+import Drive_Factory.CommonMethod;
 import com.shaft.driver.DriverFactory;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import utilities.DataUtils;
 
 public class TestBase_TC {
 
@@ -10,9 +12,9 @@ public class TestBase_TC {
 
     @BeforeTest
     public void setupBrowse() throws InterruptedException {
-        driver = new SHAFT.GUI.WebDriver(DriverFactory.DriverType.CHROME);
-        //driver.browser().maximizeWindow();
-        driver.browser().navigateToURL("http://192.168.1.70");
+        CommonMethod.setupDriver(DataUtils.get("browser"));
+        driver = CommonMethod.getDriver();
+        driver.browser().navigateToURL(DataUtils.get("baseURL"));
     }
 
 //    @AfterTest
