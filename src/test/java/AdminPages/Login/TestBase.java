@@ -1,20 +1,32 @@
 package AdminPages.Login;
-import Drive_Factory.CommonMethod;
+
 import com.shaft.driver.DriverFactory;
 import com.shaft.driver.SHAFT;
-import org.testng.annotations.AfterTest;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeTest;
 import utilities.DataUtils;
 
 public class TestBase {
 
-    protected SHAFT.GUI.WebDriver driver ;
+    protected SHAFT.GUI.WebDriver driver;
 
     @BeforeTest
     public void setupBrowse() throws InterruptedException {
-        CommonMethod.setupDriver(DataUtils.get("browser"));
-        driver = CommonMethod.getDriver();
+
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+
+        driver = new SHAFT.GUI.WebDriver(
+                DriverFactory.DriverType.CHROME,
+                options
+        );
+
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
+        Thread.sleep(5000);
     }
 
 //    @AfterTest
