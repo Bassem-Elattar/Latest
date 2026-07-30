@@ -62,7 +62,7 @@ public class AddTopUpRequest_TC{
         String filePath = "src/test/resources/sendGridUsage.pdf"; // Replace with your file path
         // Call the static uploadFile method from utilities.FileUploadUtil to upload the file
         FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         TopupRequest.setSendApproval();
         String Expected = "Your Top up has been processed successfully and sent for approval!!";
         Assert.assertEquals(TopupRequest.Actual(),Expected);

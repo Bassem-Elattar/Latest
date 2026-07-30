@@ -294,12 +294,12 @@ public class ServiceCharge_page {
 
         for (int i = 0; i < maxPages; i++) {
             // If found in current page, return true
-            if (driver.element().isElementDisplayed(rowService(ServiceChargeName))) {
+            if (!driver.getDriver().findElements(rowService(ServiceChargeName)).isEmpty()) {
                 return true;
             }
 
-            // If Next button disabled -> no more pages
-            if (!driver.element().isElementDisplayed(Btn_Next)) {
+            // Check if Next button exists
+            if (driver.getDriver().findElements(Btn_Next).isEmpty()) {
                 break;
             }
 

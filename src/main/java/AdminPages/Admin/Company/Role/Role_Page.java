@@ -426,11 +426,12 @@ public class Role_Page {
         }
         return this;
     }
-    public Role_Page createRoleForCICD(){
+    public Role_Page createRoleForCICD() throws InterruptedException {
             if(i==1){
                 driver.element().click(btn_DashBoard_Tab);
             }
         driver.element().click(btn_isView);
+        Thread.sleep(1000);
             return this;
 
     }
