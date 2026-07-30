@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonMethod {
+
     private static SHAFT.GUI.WebDriver driver;
 
     public static void setupDriver(String browser) {
@@ -16,8 +17,7 @@ public class CommonMethod {
         }
 
         DriverFactory.DriverType driverType =
-                DriverFactory.DriverType.valueOf(
-                        browser.trim().toUpperCase());
+                DriverFactory.DriverType.valueOf(browser.trim().toUpperCase());
 
         if (driverType == DriverFactory.DriverType.EDGE) {
 
@@ -33,14 +33,28 @@ public class CommonMethod {
             prefs.put("profile.password_manager_leak_detection", false);
 
             options.setExperimentalOption("prefs", prefs);
+
+            // Common Options
             options.addArguments("--disable-features=PasswordLeakDetection");
             options.addArguments("--disable-features=PasswordCheck");
             options.addArguments("--disable-save-password-bubble");
 
+            // Linux Only (No GUI)
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("linux")) {
+                options.addArguments("--headless=new");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--disable-gpu");
+            }
+
             driver = new SHAFT.GUI.WebDriver(driverType, options);
 
         } else {
+
             driver = new SHAFT.GUI.WebDriver(driverType);
+
         }
     }
 
