@@ -331,6 +331,7 @@ public class SearchBookingBranch {
         driver.element().click(month1);
         By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
         driver.element().click(Day);
+        Thread.sleep(2000);
         return new SearchBookingBranch(driver);
     }
 
