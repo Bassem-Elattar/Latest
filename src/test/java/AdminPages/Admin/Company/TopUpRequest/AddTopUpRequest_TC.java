@@ -3,7 +3,6 @@ import AdminPages.Admin.AdminMenu;
 import AdminPages.Admin.Company.Department_Page;
 import AdminPages.Admin.Company.TopUpRequest_Page;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
@@ -41,7 +40,7 @@ public class AddTopUpRequest_TC{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
         // Admin login
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
         new AdminMenu(driver).openSubAdmin().Company().TopUp();
 
     }

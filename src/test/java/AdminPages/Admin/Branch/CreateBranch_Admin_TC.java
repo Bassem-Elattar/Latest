@@ -4,7 +4,6 @@ package AdminPages.Admin.Branch;
 //import AdminPages.Master.PaymentGateway.PaymentMethod.Add;
 import AdminPages.Admin.AdminMenu;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
@@ -43,7 +42,7 @@ public class CreateBranch_Admin_TC{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
         // Admin login
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
         new AdminMenu(driver).openSubAdmin().openBranch();
     }
     @Test

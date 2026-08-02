@@ -21,6 +21,7 @@ public class Branch_Page {
         this.driver = driver;
     }
     SHAFT.GUI.WebDriver driver ;
+    public static String branchName;
 
     ///////////  Search&Action Branch  /////////
 
@@ -152,11 +153,13 @@ public class Branch_Page {
         driver.element().select(Txt_OperatingCountry,Txt);
     }
 
-    public String Txt_Name(){
-        driver.element().type(Txt_Name, FakerSingleton.PassengerFactory.firstName());
-        return driver.element().getText(Txt_Name);
+    public String Txt_Name() {
 
+        branchName = FakerSingleton.PassengerFactory.firstName();
 
+        driver.element().type(Txt_Name, branchName);
+
+        return branchName;
     }
 
     public void Lst_StateCreate(String Select,String Txt) throws InterruptedException {

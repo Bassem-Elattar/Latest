@@ -5,8 +5,6 @@ import AdminPages.Login.LogIn_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,7 +18,7 @@ public class UpdateMarkup {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
 
         // Load JSON with multiple sets
         testData = new SHAFT.TestData.JSON("Markup.json");

@@ -1,9 +1,6 @@
 package AdminPages.RuleEngine.ServiceCharge;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase;
-import AdminPages.Login.TestBase_TC;
 import AdminPages.RuleEngine.RuleEngine_Common;
-import AdminPages.RuleEngine.ServiceCharge.ServiceCharge_page;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
@@ -23,7 +20,7 @@ public class EndToEndService  {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
 
         service1 = new ServiceCharge_page(driver);
         ser1 = new RuleEngine_Common(driver);

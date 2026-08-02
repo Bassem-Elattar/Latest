@@ -1,8 +1,8 @@
 package AdminPages.Admin.Agency.Agency;
 
 import AdminPages.Admin.AdminMenu;
+import AdminPages.Admin.Branch.Branch_Page;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
@@ -12,10 +12,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
-import utilities.FileUploadUtil;
 import utilities.JsonDataUtil;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -44,7 +42,7 @@ public class CreateAGN_TC{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
         // Admin login
-        new LogIn_Page(driver).AdminLogin();;
+        new LogIn_Page(driver).superAdminLogin();;
         new AdminMenu(driver).openSubAdmin().Agency().SubAgency();
     }
 
@@ -74,7 +72,7 @@ public class CreateAGN_TC{
 
 
         // Specify the file input locator and file path
-        agencyName1 = CRAGN.CreateValidAGN(selectbranch, selectstate, selectcity, PostBox, ADDRESS, PH, ContactPer, email, Phone, START, END, invoice, Top, Credit, pcc1);
+        agencyName1 = CRAGN.CreateValidAGN(new Branch_Page(driver).branchName, selectstate, selectcity, PostBox, ADDRESS, PH, ContactPer, email, Phone, START, END, invoice, Top, Credit, pcc1);
 
         String imagePath = new File("src/test/resources/image_200x200.png").getAbsolutePath();
         WebElement imageInput = driver.getDriver()

@@ -1,27 +1,18 @@
 package AdminPages.BookingMidOffice.Booking;
+import AdminPages.Admin.Branch.Branch_Page;
 import AdminPages.BookingMidOffice.Booking_Common;
-import AdminPages.BookingMidOffice.SearchBooking.SearchBookingTCs;
 import AdminPages.BookingMidOffice.SearchBooking.SearchBooking_Page;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
-import AdminPages.Reports.Reports_Common;
-import AdminPages.Reports.Statement.State;
 import Drive_Factory.CommonMethod;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import com.shaft.driver.SHAFT;
-import org.openqa.selenium.JavascriptExecutor;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import org.testng.asserts.SoftAssert;
 
 public class Booking_TC{
@@ -102,7 +93,7 @@ public class Booking_TC{
     public void SearchOneWay() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
-        searchBookingBranch.SelectBranch(BranchName).
+        searchBookingBranch.SelectBranch(new Branch_Page(driver).branchName).
                 AddStartingFrom(source).AddGoingTo(destination)
                 .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
                 .passengersDropDown()
@@ -476,5 +467,9 @@ public class Booking_TC{
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
+    }
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
     }
 }

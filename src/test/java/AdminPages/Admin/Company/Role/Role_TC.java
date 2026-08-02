@@ -2,23 +2,15 @@ package AdminPages.Admin.Company.Role;
 
 import AdminPages.Admin.AdminMenu;
 import AdminPages.Admin.Staff.ActionStaff_TC;
-import AdminPages.Admin.Staff.CreateStaff_TC;
 import AdminPages.Admin.Staff_Page;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.*;
 import utilities.DataUtils;
-import utilities.GmailReaderUtil;
-import utilities.JsonDataUtil;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Role_TC {
     private SHAFT.TestData.JSON testData;
@@ -32,7 +24,7 @@ public class Role_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
         new AdminMenu(driver).openSubAdmin().Company().Role();
     }
 

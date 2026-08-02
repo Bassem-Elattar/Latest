@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class Booking_Common {
     SHAFT.GUI.WebDriver driver;
-    private final By btn_BookingMidOffice = By.xpath("//a[@id='p-tabpanel-6-label']");
+    private final By btn_BookingMidOffice = By.xpath("//span[text()='Booking-Mid Office']");
     private final By btn_Sub_BookingMidOffice = By.xpath("//a[@class='ng-star-inserted']");
     private final By btn_SearchBooking = By.xpath("//a[@href='/booking/search-booking']");
     private final By btn_Booking = By.xpath("//a[@href='/booking/booking']");
