@@ -1,6 +1,7 @@
 [
   {
     "SupplierName": "AegeanKSA",
+    "SupplierNameCICD": "Amadeus",
     "ProductType": "GDS",
     "Country": "Egypt",
     "Email": "mahmd@gmail.com",

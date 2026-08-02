@@ -1,7 +1,6 @@
 package AdminPages.Master.Flight.BSPCommission;
 
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Flight.BSPCommission_Page;
 import AdminPages.Master.Master_Common;
 import Drive_Factory.CommonMethod;
@@ -31,7 +30,7 @@ public class SearchBSPCommission_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
     }
 
     @Test(priority  = 1)

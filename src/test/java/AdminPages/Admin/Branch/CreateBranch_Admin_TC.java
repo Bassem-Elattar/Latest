@@ -42,7 +42,7 @@ public class CreateBranch_Admin_TC{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
         // Admin login
-        new LogIn_Page(driver).superAdminLogin();
+        new LogIn_Page(driver).AdminLogin();
         new AdminMenu(driver).openSubAdmin().openBranch();
     }
     @Test
