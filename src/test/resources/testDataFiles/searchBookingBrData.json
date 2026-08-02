@@ -6,11 +6,11 @@
   "source" : "CAI",
   "destination" : "DXB",
   "SecondDestination" : "CAI",
-  "JourneyDay" : "23",
+  "JourneyDay" : "2",
   "JourneyYear" : "2026",
-  "JourneyMonth" : "Jul",
+  "JourneyMonth" : "Dec",
   "dayOfSecondJourney" : "5",
-  "monthOfSecondJourney" : "Aug",
+  "monthOfSecondJourney" : "Dec",
   "yearOfSecondJourney" : "2026",
   "BookingReference" : "NDCEG-BR-F260629fygEU9"
 }

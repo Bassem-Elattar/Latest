@@ -2,7 +2,6 @@ package AdminPages.Admin.Agency.AgentLoginDetails;
 
 import AdminPages.Admin.AdminMenu;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
@@ -38,7 +37,7 @@ public class SearchLoginDetails_TC {
         CommonMethod.setupDriver(DataUtils.get("browser"));
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
         new AdminMenu(driver).openSubAdmin().Agency().SerachLoginDetails();
     }
 

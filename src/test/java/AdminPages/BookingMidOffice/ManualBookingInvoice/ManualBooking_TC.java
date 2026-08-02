@@ -1,20 +1,13 @@
 package AdminPages.BookingMidOffice.ManualBookingInvoice;
 
-import AdminPages.BookingMidOffice.ManualBookingInvoice.PaxDetailsPage;
 import AdminPages.BookingMidOffice.Booking_Common;
-import AdminPages.Login.TestBase_TC;
-import AdminPages.RuleEngine.Discount.Discount_Page;
 import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.RuleEngine.RuleEngine_Common;
 
 import org.json.JSONException;
 import org.testng.annotations.*;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
-import org.testng.Assert;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class ManualBooking_TC {
     private SHAFT.TestData.JSON testData;
@@ -30,7 +23,7 @@ public class ManualBooking_TC {
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
         logIn = new LogIn_Page(driver);
-        logIn.AdminLogin();
+        logIn.superAdminLogin();
 
         new Booking_Common(driver)
                 .clickBookingMidOffice()

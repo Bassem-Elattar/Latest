@@ -3,7 +3,6 @@ package AdminPages.Admin.Staff;
 import AdminPages.Admin.AdminMenu;
 import AdminPages.Admin.Staff_Page;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
@@ -42,7 +41,7 @@ public class CreateStaff_TC{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
         new AdminMenu(driver).openSubAdmin().openStaff();
 
     }

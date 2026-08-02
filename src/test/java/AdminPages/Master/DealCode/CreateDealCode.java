@@ -1,16 +1,13 @@
 package AdminPages.Master.DealCode;
 
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import Drive_Factory.CommonMethod;
-import com.shaft.driver.DriverFactory;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utilities.DataUtils;
@@ -26,7 +23,7 @@ public class CreateDealCode{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
     }
 
     @Test(priority = 1) // TODO : End To End Scenario Create By Sector

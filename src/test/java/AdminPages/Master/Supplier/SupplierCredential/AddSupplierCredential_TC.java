@@ -1,14 +1,10 @@
 package AdminPages.Master.Supplier.SupplierCredential;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import AdminPages.Master.Miscellaneous.Region.City.SearchCity_Page;
 import AdminPages.Master.Supplier.Supplier.SearchSupplier_Page;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
-import com.shaft.gui.element.ElementActions;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -45,7 +41,7 @@ public class AddSupplierCredential_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
     }
 
     @Test(priority = 1, dataProvider = "JsonProvider")

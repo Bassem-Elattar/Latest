@@ -2,7 +2,6 @@ package AdminPages.RuleEngine.Discount;
 
 import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.RuleEngine.Markup.Markup_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
@@ -24,7 +23,7 @@ public class SearchDiscount_TC {
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
         // Admin login
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
 
         // Load JSON test data
         testData = new SHAFT.TestData.JSON("Discount.json");

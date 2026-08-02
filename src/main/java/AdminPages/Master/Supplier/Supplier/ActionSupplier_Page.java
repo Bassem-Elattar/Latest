@@ -10,7 +10,7 @@ public class ActionSupplier_Page {
     }
     SHAFT.GUI.WebDriver driver ;
 
-    By Btn_Edit = By.xpath("//i[@class=\"pi pi-pencil\"]");
+    By Btn_Edit = By.xpath("(//i[@class=\"pi pi-pencil\"])[1]");
     By Btn_Approve = By.xpath("//i[@class=\"pi pi-thumbs-up\"]");
     By Txt_RemarksApprove = By.xpath("//textarea[@placeholder=\"Type your remarks description...\"]");
     By Btn_Submit = By.xpath("//span[contains(text(),'Submit')]");
@@ -23,7 +23,7 @@ public class ActionSupplier_Page {
     By Txt_PinCode = By.xpath("//input[@id=\"id-PINcode\"]");
     By Btn_ClearCountry = By.xpath("//INPUT[@id='id-Country']");
     By Lst_WhitelistBoard = By.xpath("//input[@id=\"id-WhitelistAirports\"]");
-    By Btn_Approved = By.xpath("(//i[@class=\"pi pi-thumbs-up\"])[1]");
+    By Btn_Approved = By.xpath("//span[text()='Approve']");
 
    public void setEditBtn(String producttype , String country , String email , String city , String pincode , String whitelistboard,String whitelistboard2,String remarks) throws InterruptedException {
      driver.element().click(Btn_Edit);
@@ -57,6 +57,11 @@ public class ActionSupplier_Page {
      driver.element().click(Btn_Approved);
      Thread.sleep(6000);
    }
+    public void setEdit() throws InterruptedException {
+        driver.element().click(Btn_Edit);
+
+        driver.element().click(Btn_Approved);
+    }
 
    public void setApprove(String remarks){
        driver.element().click(Btn_Approved);

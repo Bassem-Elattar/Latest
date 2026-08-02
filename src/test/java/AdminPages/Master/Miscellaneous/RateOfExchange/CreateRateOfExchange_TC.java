@@ -2,19 +2,13 @@ package AdminPages.Master.Miscellaneous.RateOfExchange;
 
 
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
-import utilities.JsonDataUtil;
-
-import java.io.IOException;
-import java.lang.reflect.Method;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -32,7 +26,7 @@ public class CreateRateOfExchange_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
         // Admin login
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
         testData = new SHAFT.TestData.JSON("RateOfExchange.json");
     }
 

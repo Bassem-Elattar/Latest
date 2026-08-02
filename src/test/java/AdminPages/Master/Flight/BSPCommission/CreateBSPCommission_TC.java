@@ -2,7 +2,6 @@ package AdminPages.Master.Flight.BSPCommission;
 
 import AdminPages.Master.Flight.BSPCommission_Page;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import AdminPages.Master.Master_Common;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
@@ -34,7 +33,7 @@ public class CreateBSPCommission_TC{
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
     }
 
     @Test(dataProvider = "JsonProvider")

@@ -4,10 +4,8 @@ import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -24,7 +22,7 @@ public class Markup_E2E_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
 
         testData = new SHAFT.TestData.JSON("Markup.json");
         page = new Markup_Page(driver);

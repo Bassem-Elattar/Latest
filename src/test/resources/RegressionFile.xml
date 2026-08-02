@@ -58,6 +58,15 @@
             </class>
         </classes>
     </test>
+    <test name="Branch Module">
+        <classes>
+            <class name="AdminPages.Admin.Branch.CreateBranch_Admin_TC">
+                <methods>
+                    <include name="CreateBranch"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
     <test name="Agency Module">
         <classes>
             <class name="AdminPages.Admin.Agency.Agency.CreateAGN_TC">
@@ -117,6 +126,33 @@
             <class name="AdminPages.BookingMidOffice.MyQuotes.QuoteSearch">
                 <methods>
                     <include name="SearchByBranchNameOnly"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="EditSupplier Module">
+        <classes>
+            <class name="AdminPages.Master.Supplier.Supplier.EditSupplier_TC">
+                <methods>
+                    <include name="EditSupplierCICD"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="CredentialField Module">
+        <classes>
+            <class name="AdminPages.Master.Supplier.CredentialField.CreateCredential_TC">
+                <methods>
+                    <include name="CreateCredential"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="FlightSearch Module">
+        <classes>
+            <class name="AdminPages.BookingMidOffice.Booking.Booking_TC">
+                <methods>
+                    <include name="SearchOneWay"/>
                 </methods>
             </class>
         </classes>

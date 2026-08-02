@@ -3,10 +3,8 @@ package AdminPages.RuleEngine.Discount;
 import Drive_Factory.CommonMethod;
 import AdminPages.Login.LogIn_Page;
 import AdminPages.RuleEngine.RuleEngine_Common;
-import org.testng.annotations.AfterMethod;
 import utilities.DataUtils;
 import com.shaft.driver.SHAFT;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -22,7 +20,7 @@ public class E2EDiscount {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).AdminLogin();
+        new LogIn_Page(driver).superAdminLogin();
 
         testData = new SHAFT.TestData.JSON("Discount.json");
         discount = new Discount_Page(driver);

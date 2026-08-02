@@ -2,7 +2,6 @@ package AdminPages.BookingMidOffice.MyQuotes;
 
 import AdminPages.BookingMidOffice.Booking_Common;
 import AdminPages.Login.LogIn_Page;
-import AdminPages.Login.TestBase_TC;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
 import org.testng.Assert;
@@ -34,7 +33,7 @@ public class QuoteSearch {
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
         logIn = new LogIn_Page(driver);
-        logIn.AdminLogin();
+        logIn.superAdminLogin();
 
         testData = new SHAFT.TestData.JSON("QuoteSearchData.json");
         QuoteBranchName = testData.getTestData( "Branch");

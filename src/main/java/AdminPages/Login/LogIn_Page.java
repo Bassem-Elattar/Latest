@@ -129,6 +129,12 @@ public class LogIn_Page {
         driver.element().type(Txt_Password, "qqE6)Cxp6>B8");
         return this;
     }
+    public LogIn_Page superAdminLogin() {
+        driver.element().type(Txt_Username, DataUtils.get("SuperAdmin"));
+        driver.element().type(Txt_Password, DataUtils.get("Password"));
+        driver.element().click(Btn_LogINButton);
+        return this;
+    }
     public LogIn_Page AdminLogin() {
         driver.element().type(Txt_Username, DataUtils.get("Admin"));
         driver.element().type(Txt_Password, DataUtils.get("Password"));
