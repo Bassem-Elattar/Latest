@@ -77,6 +77,10 @@ public class PaxDetailsPage {
     private final By brandedFares = By.xpath("//p-carousel");
     private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
     private final By Btn_ExpandAll= By.xpath("(//span[normalize-space()='Expand All'])[1]");
+    By Btn_Next = By.xpath("(//button[@class='p-ripple p-element step-btn step-btn--primary p-button p-component'])[1]");
+    private final By FirstMeal= By.xpath("(//div[@class='meal-option ng-star-inserted'])[1]");
+    private final By FirstBaggage= By.xpath("(//p-dropdownitem[@class='p-element ng-star-inserted'])[1]");
+    private final By ExpandAll= By.xpath("(//button[@type='button'])[4]");
 
     By assignedToDropdowns =
             By.xpath("//p-dropdown[@formcontrolname='assignedTo']");
@@ -209,6 +213,46 @@ public class PaxDetailsPage {
         driver.element().click(holdBtn);
         return this;
     }
+
+
+    public PaxDetailsPage clickNextIfDisplayed() throws InterruptedException {
+        List<WebElement> elements = driver.getDriver().findElements(Btn_Next);
+        if (!elements.isEmpty() && elements.get(0).isDisplayed()) {
+            driver.element().click(Btn_Next);
+        }
+        Thread.sleep(8000);
+        return new PaxDetailsPage(driver);
+    }
+
+    public PaxDetailsPage handlePassengerAncillaries(String adults, String children) {
+        driver.element().click(ExpandAll);
+        int totalPassengers = Integer.parseInt(adults) + Integer.parseInt(children);
+
+        for (int i = 1; i <= totalPassengers; i++) {
+
+            By mealDropdown = By.xpath(
+                    "(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='Choose a meal'])[" + i + "]");
+
+            By baggageDropdown = By.xpath(
+                    "(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='Choose a baggage'])[" + i + "]");
+
+            // Meal
+            if (!driver.getDriver().findElements(mealDropdown).isEmpty()) {
+                driver.element().click(mealDropdown);
+                driver.element().click(FirstMeal);
+                // Select meal option
+            }
+
+            // Baggage
+            if (!driver.getDriver().findElements(baggageDropdown).isEmpty()) {
+                driver.element().click(baggageDropdown);
+                driver.element().click(FirstBaggage);
+                // Select baggage option
+            }
+        }
+        return new PaxDetailsPage(driver);
+    }
+
     public PaxDetailsPage SelectTermsAndConditions() {
         driver.element().click(termsSelect);
         return this;

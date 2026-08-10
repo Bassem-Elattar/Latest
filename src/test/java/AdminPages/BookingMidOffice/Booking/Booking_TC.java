@@ -136,7 +136,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).clickOnHold().AssertThatTicketIsHoldSuccessfully();
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
     }
@@ -167,7 +167,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).clickOnHold().AssertThatTicketIsHoldSuccessfully();
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
 
@@ -210,7 +210,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).payAndBook().AssertThatTicketIsHoldSuccessfully();
     }
 
     @Test
@@ -262,7 +262,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).clickOnHold().AssertThatTicketIsHoldSuccessfully();
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
     }
@@ -294,7 +294,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).clickOnHold().AssertThatTicketIsHoldSuccessfully();
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
 
@@ -338,7 +338,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).payAndBook().AssertThatTicketIsHoldSuccessfully();
     }
 
     @Test
@@ -390,7 +390,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).clickOnHold().AssertThatTicketIsHoldSuccessfully();
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
     }
@@ -422,7 +422,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().clickOnHold().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).clickOnHold().AssertThatTicketIsHoldSuccessfully();
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
 
@@ -466,7 +466,7 @@ public class Booking_TC{
                 PassengerPaxEmail,
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
-                PassengerPaxNationality).SelectTermsAndConditions().payAndBook().AssertThatTicketIsHoldSuccessfully();
+                PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).payAndBook().AssertThatTicketIsHoldSuccessfully();
     }
     @AfterMethod
     public void Reload(){
