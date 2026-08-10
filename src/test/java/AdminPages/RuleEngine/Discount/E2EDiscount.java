@@ -58,6 +58,7 @@ public class E2EDiscount {
         String branch  = testData.getTestData("SearchSet1.Branch");
         discount.search_Discount(country,branch);
         discount.inactivestatus();
+        discount.findDiscountInPages();
 //        discount.goToLastPage();
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }

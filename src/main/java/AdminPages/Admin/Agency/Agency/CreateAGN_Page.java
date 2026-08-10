@@ -63,14 +63,15 @@ public class CreateAGN_Page {
 
     }
 
-    public String CreateValidAGN(String selectbranch, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) {
+    public String CreateValidAGN(String selectbranch, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) throws InterruptedException {
 //        driver.element().click(AGNBtn);
 //        driver.element().click(Agency)
                 driver.element().click(ADDBtn);
         driver.element().click(SelectBranch);
         By option11 = xpath(String.format("(//span[contains(text(), '%s')])[1]", selectbranch));
-        driver.element().click(option11)
-                .type(WRTAgencyName, FakerSingleton.PassengerFactory.firstName());
+        driver.element().click(option11);
+        Thread.sleep(1000);
+        driver.element().type(WRTAgencyName, FakerSingleton.PassengerFactory.firstName());
         driver.element().click(SelectState);
         By option13 = xpath(String.format("(//span[contains(text(), '%s')])[1]", state));
         driver.element().click(option13);
