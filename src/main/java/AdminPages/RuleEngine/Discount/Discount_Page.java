@@ -96,7 +96,11 @@ public class Discount_Page {
     }
 
     public void search_Discount(String Country, String Branch) {
-        driver.element().select(Lst_CountryPos, Country);
+        driver.element().click(Lst_CountryPos);
+        By countryOption =
+                By.xpath("//li[@role='option' and @aria-label=\"" + Country + "\"]");
+
+        driver.element().click(countryOption);
 //        driver.element().click(Lst_Branch);
 //        By item = By.xpath("//li[normalize-space()='" + Branch + "']");
 //        driver.element().scrollToElement(item);
@@ -127,9 +131,6 @@ public class Discount_Page {
     public void inactivestatus() {
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
-        if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
-            driver.element().click(Btn_last);
-        }
     }
 
     public void bothstatus() {
@@ -139,22 +140,34 @@ public class Discount_Page {
     }
 
     public boolean findDiscountInPages() {
-        int maxPages = 20; // Safety limit
+
+        int maxPages = 100; // safety limit
 
         for (int i = 0; i < maxPages; i++) {
 
-            // Check if discount exists in current page
+            // Markup found in current page
             if (!driver.getDriver().findElements(rowDiscount(DiscountName)).isEmpty()) {
                 return true;
             }
 
-            // Check if Next button exists
-            if (driver.getDriver().findElements(Btn_Next).isEmpty()) {
+            // If Last button exists, click it
+            if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+
+                driver.element().scrollToElement(Btn_last);
+                driver.element().click(Btn_last);
+
+            }
+            // Otherwise, click Next
+            else if (!driver.getDriver().findElements(Btn_Next).isEmpty()) {
+
+                driver.element().scrollToElement(Btn_Next);
+                driver.element().click(Btn_Next);
+
+            }
+            // No pagination buttons
+            else {
                 break;
             }
-
-            driver.element().scrollToElement(Btn_Next);
-            driver.element().click(Btn_Next);
         }
 
         return false;
