@@ -23,6 +23,7 @@ public class BSPCommission_Page {
     By Txt_CommissionName = By.xpath("//input[@id=\"id-CommissionName\"]");
     By Lst_GDSSupplier = By.xpath("//p-multiselect[.//input[@id=\"id-GDSsupplier\"]]");
     By Lst_SupplierCredential = By.xpath("//p-multiselect[.//input[@id=\"id-Suppliercredential\"]]");
+    By Lst_all = By.xpath("//div[@role='checkbox']");
     By Lst_JourneyType = By.xpath("//p-multiselect[.//input[@id=\"id-Journeytype\"]]");
     By Txt_TicketDesignator = By.xpath("//input[@id=\"id-Ticketdesignator\"]");
     By Txt_TourCode = By.xpath("//input[@id=\"id-TourCode\"]");
@@ -125,6 +126,10 @@ public class BSPCommission_Page {
 
     public void GDSSupplier(String GDS){
         driver.element().select(Lst_GDSSupplier,GDS);
+    }
+    public void selectAllCredential(){
+        driver.element().click(Lst_SupplierCredential);
+        driver.element().click(Lst_all);
     }
 
     public void SupplierCredential(String suppliercredential){
