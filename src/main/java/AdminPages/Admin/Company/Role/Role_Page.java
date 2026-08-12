@@ -29,10 +29,10 @@ public class Role_Page {
     private final By Rbtn_Active = By.xpath("(//p-radiobutton)[2]");
     private final By Rbtn_Both = By.xpath("(//p-radiobutton)[3]");
     private final By btn_Search = By.xpath("//button[@type='submit']");
-    private final By btn_Edit = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[1]");
-    private final By btn_Approve = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[2]");
-    private final By btn_Reject = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[3]");
-    private final By btn_Copy = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[4]");
+    private final By btn_Edit = By.xpath("//div[@ptooltip='Edit']");
+    private final By btn_Approve = By.xpath("//div[@ptooltip='Approve']");
+    private final By btn_Reject = By.xpath("//div[@ptooltip='Reject']");
+    private final By btn_Copy = By.xpath("(//div[contains(@class,'action exception-buttons ng-star-inserted')])[4]");
     private final By btn_Paginate = By.xpath("//button[@class='next']");
     private final By RoleNameField = By.xpath("//tr[1]/td[1]");
         ///////////////AddPage///////////////////
