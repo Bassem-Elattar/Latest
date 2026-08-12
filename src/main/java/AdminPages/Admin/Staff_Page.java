@@ -175,7 +175,9 @@ public class Staff_Page {
         Thread.sleep(MILLIS);
         driver.element().type(Txt_SearchUserName,u);
         driver.element().click(Lst_SearchBranch);
-        By option1 = By.xpath(String.format("//span[contains(text(), '%s')]",s1 ));
+        By option1 = By.xpath(
+                String.format("//li[@role='option' and starts-with(@aria-label, '%s (')]", s1)
+        );
         driver.element().click(option1);
         driver.element().click(Lst_Department);
         By option2 = By.xpath(String.format("//span[contains(text(), '%s')]",s2 ));

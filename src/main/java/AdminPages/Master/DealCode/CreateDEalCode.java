@@ -49,7 +49,7 @@ public class CreateDEalCode  {
     private final By Txt_TravelValidityTo = By.id("id-TravelValidityTo");
     private final By Btn_SendForApproval = By.cssSelector("[type=\"submit\"]");
     //
-    private final By  Btn_ApprovalAction = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[3]");
+    private final By  Btn_ApprovalAction = By.xpath("(//div[contains(@class,'action exception-buttons ng-star-inserted')])[3]");
     private final By Txt_Remarks = By.xpath("//textarea[@placeholder='remarks...']");
     private final By RBtn_Submit = By.xpath("//span[normalize-space()='Submit']");
     //

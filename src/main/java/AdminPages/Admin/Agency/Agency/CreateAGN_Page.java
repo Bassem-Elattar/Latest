@@ -39,7 +39,7 @@ public class CreateAGN_Page {
     By CashPay = xpath("//p-checkbox[.//input[@id=\"id-Paymentoption-Cash\"]]");
     //By Amad = xpath("//a[@id=\"p-tabpanel-1-label\"]");
     By SendApprove = xpath("//button[@type=\"submit \"]");
-    By After = xpath("//p-calendar//button[contains(@class,'p-datepicker-next')]//span");
+    By After = xpath("//div//button[contains(@class,'p-datepicker-next')]//span");
     //  By path = By.xpath("//input[@type='file']");
 //    By Galileo = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[1]/a/span");
 //    By Sabre = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[3]/a/span");

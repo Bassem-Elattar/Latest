@@ -132,7 +132,7 @@ public class TopUpRequest_Page {
         driver.element().click(Lst_BranchName);
         By option = By.xpath(String.format("//span[text()='%s']", branchname));
         driver.element().click(option);
-        driver.element().type(Txt_AgencyName,agencyname).click(Txt_AgencyName);
+       // driver.element().type(Txt_AgencyName,agencyname).click(Txt_AgencyName);
         driver.element().type(Txt_TopUpAmount,topupamount);
         driver.element().click(Lst_PaymentType);
         By option2 = By.xpath(String.format("//span[text()='%s']", paymenttype));
