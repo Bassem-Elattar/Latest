@@ -30,7 +30,7 @@ public class SearchBookingBranch {
     By BranchList = By.xpath( "//span[normalize-space()='Branch*']");
     By StartingFrom = By.xpath("//div[contains(text(),'From *')]");
     By selectFrom = By.xpath("//input[@role='textbox']");
-    By fromCheckBox = By.xpath("(//div[@class='p-checkbox-box'])[1]");
+    By fromCheckBox = By.xpath("//li[@aria-label='CAI']//div[@class='p-checkbox-box']");
     By GoingTo = By.xpath("//span[normalize-space()='To *']");
     By selectTo = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
     By DataPicker = By.xpath("//input[@placeholder='DD/MM/YYYY *']");
@@ -88,6 +88,14 @@ public class SearchBookingBranch {
     By Btn_SecondDestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-trigger-icon pi pi-chevron-down'])[8]");
     By Inp_DestinationMultiCity  = By.xpath("(//input[@class='p-dropdown-filter p-inputtext p-component'])[1]");
     By Txt_NoFlight  = By.xpath("//h2[text()=\"No Flights Found\"]");
+    private By fromCheckBox(String place) {
+        return By.xpath(
+                String.format(
+                        "//li[@aria-label='%s']//div[@class='p-checkbox-box']",
+                        place
+                )
+        );
+    }
 
     public SearchBookingBranch BookFirstFlight() throws InterruptedException {
         driver.element().click(BookFlight_BTN);
@@ -262,9 +270,13 @@ public class SearchBookingBranch {
     }
 
     public SearchBookingBranch AddStartingFrom(String Place) {
+
         driver.element().click(StartingFrom);
+
         driver.element().type(selectFrom, Place);
-        driver.element().click(fromCheckBox);
+
+        driver.element().click(fromCheckBox(Place));
+
         return new SearchBookingBranch(driver);
     }
 
@@ -279,7 +291,7 @@ public class SearchBookingBranch {
     public SearchBookingBranch AddStartingFromRoundTrip(String Place) {
         driver.element().click(Btn_OriginRoundTrip);
         driver.element().type(selectFrom, Place);
-        driver.element().click(fromCheckBox);
+        driver.element().click(fromCheckBox(Place));
         return new SearchBookingBranch(driver);
     }
 
