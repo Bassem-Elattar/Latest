@@ -16,6 +16,7 @@ public class AddSupplierCredential_Page {
     By Lst_CountryPOC = By.xpath("//p-multiselect[.//input[@id=\"id-CountryPOC\"]]");
     By Lst_Currency = By.xpath("//p-dropdown[.//input[@id=\"id-Currency\"]]");
     By Lst_CredentialType = By.xpath("//p-dropdown[.//input[@id=\"id-CredentialType\"]]");
+    By Lst_CredentialTypeall = By.xpath("//div[@role='checkbox']");
     By Lst_FlightSearchLimit = By.xpath("//p-dropdown[.//input[@id=\"id-FlightSearchLimit\"]]");
     By Lst_FlightSearchLimitFirstElement = By.xpath("(//p-dropdownitem/li)[1]");
     By Lst_ConnectionTime = By.xpath("//p-dropdown[.//input[@id=\"id-ConnectionTimeout\"]]");
@@ -34,8 +35,9 @@ public class AddSupplierCredential_Page {
         driver.element().click(option);
         driver.element().type(Lst_CredentialName, FakerSingleton.PassengerFactory.firstName());
         driver.element().click(Lst_CountryPOC);
-        By option1 = By.xpath(String.format("//span[text()='%s']", countrypoc));
-        driver.element().click(option1);
+//        By option1 = By.xpath(String.format("//span[text()='%s']", countrypoc));
+//        driver.element().click(option1);
+        driver.element().click(Lst_CredentialTypeall);
         driver.element().click(Lst_Currency);
         By option2 = By.xpath(String.format("//span[text()='%s']", currency));
         driver.element().click(option2);

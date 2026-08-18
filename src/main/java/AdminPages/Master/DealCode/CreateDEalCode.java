@@ -20,7 +20,7 @@ public class CreateDEalCode  {
         this.driver=driver;
     }
 
-    private final By Btn_AddDealCode = By.cssSelector("[style*=\"margin-inline-end\"]");
+    private final By Btn_AddDealCode = By.xpath("//SPAN[text()='Add Deal Code']");
     private final By  Lst_Supplier = By.xpath("//p-dropdown[.//input[@id=\"id-Supplier\"]]");
     private final By  Lst_SupplierCredential = By.xpath("//p-dropdown[.//input[@id=\"id-Suppliercredential\"]]");
     private final By RBtn_SearchAirLine = By.xpath("(//span[contains(text(),'Select')])[1]");

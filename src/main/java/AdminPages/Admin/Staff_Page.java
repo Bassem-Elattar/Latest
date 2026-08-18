@@ -21,7 +21,7 @@ public class Staff_Page {
     public static String employeeName;
     SHAFT.GUI.WebDriver driver ;
 
-    By Btn_AddStuff = By.xpath("//span[@style=\"margin-inline-end: 10px;\"]");
+    By Btn_AddStuff = By.xpath("//span[text()=\"Add staff\"]");
     By Lst_Usertype = By.xpath("//p-dropdown[.//input[@id=\"id-Usertype\"]]");
     By Lst_OperatingCountry = By.xpath("//p-multiselect[.//input[@name='Operating country']]");
     By Lst_AddBranch = By.xpath("//p-multiselect[.//input[@id=\"id-Branch\"]]");
