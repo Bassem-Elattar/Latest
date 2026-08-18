@@ -51,7 +51,7 @@ public class ServiceCharge_page {
     private final By btn_selectOperator = By.xpath("//span[text()='Select Operator']");
     private final By btn_selectOperatorOption = By.xpath("//p-dropdownitem//li[@aria-label='IN']");
 
-    private final By btn_searchIcon = By.xpath("//button[@class='pi pi-search btn']");
+    private final By btn_searchIcon = By.xpath("//button[@class='pi pi-search btn' or @title='Choose values']");
     //private final By txt_SearchByName = By.xpath("//input[@class='(//input[@placeholder='Search...' and contains(@class,'p-inputtext')])[1]']");
     private final By btn_selectAll = By.xpath("(//p-checkbox[@value='All'])[1]");
     private final By btn_Add = By.xpath("//button[normalize-space()='Add']");

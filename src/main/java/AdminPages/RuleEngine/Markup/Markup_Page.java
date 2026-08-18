@@ -40,7 +40,7 @@ public class Markup_Page {
     private final By Lst_AgencyForAdd = By.xpath("//p-multiselect[.//input[@id=\"id-Agency\"]]");
     private final By Lst_Attribute = By.xpath("//p-dropdown[@placeholder='Select Attribute']//span[contains(@class,'p-dropdown-label')]");
     private final By Lst_Operator = By.xpath("//p-dropdown[.//input[@placeholder=\"Select Operator\"]]");
-    private final By Btn_Search = By.xpath("//button[@class=\"pi pi-search btn\"]");
+    private final By Btn_Search = By.xpath("//button[@class='pi pi-search btn' or @title='Choose values']");
     private final By txt_SearchData = By.xpath("(//input[@placeholder='Search...' and contains(@class,'p-inputtext')])[1]");
     private final By Btn_AddForAttribute = By.xpath("//button[normalize-space()='Add']");
     private final By Btn_Remove = By.xpath("(//button[@class=\"swap-btn\"])[2]");
