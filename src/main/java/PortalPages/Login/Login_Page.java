@@ -29,6 +29,16 @@ public class Login_Page {
     // Text / Page Validation
     private By Txt_LoginPageTitle =By.className("welcome-title");
 
+    // Post-login indicator - only renders once the session is actually established.
+    // Verified live: appears on /dashboard immediately after a successful login.
+    //
+    // The Portal renders the wallet widget TWICE - once live, once as a hidden duplicate
+    // inside a second ".wallet-sidebar-section.hidden" (confirmed live 2026-08-12: two
+    // ".balance-amount" elements, identical text, one inside a "hidden"-classed ancestor).
+    // A bare ".balance-amount" throws MultipleElementsFoundException. Scoped here to the
+    // section that is NOT hidden.
+    private By Txt_WalletBalance = By.cssSelector(".wallet-sidebar-section:not(.hidden) .balance-amount");
+
     // Toast Error Messages
     private By Txt_InvalidLoginMessage = By.xpath("//div[@role='alert' and contains(@class,'toast-message') and @aria-label='Invalid credentials, Please try again.']");
 
@@ -91,6 +101,20 @@ public class Login_Page {
     // Click login button
     public Login_Page clickLoginButton() {
         driver.element().click(Btn_Login);
+        return this;
+    }
+
+    /**
+     * Waits for a signal that the session is actually established, not just that the
+     * button was clicked. clickLoginButton() returns as soon as the click fires - it does
+     * NOT wait for the async login call to resolve. Without this, a caller that navigates
+     * elsewhere immediately after clickLoginButton() can race the login request: the app
+     * treats the session as not-yet-authenticated and bounces back to /auth/login, so the
+     * intended destination page never renders its own fields. Confirmed live 2026-08-12 -
+     * this exact race caused ImportPnr_TC.setup() to time out waiting for #id-PNRCode.
+     */
+    public Login_Page waitUntilLoggedIn() {
+        driver.element().waitToBeReady(Txt_WalletBalance);
         return this;
     }
 
