@@ -326,7 +326,7 @@ public class Branch_Page {
     public void addCredForLcc(String supplier,String Cred){
         By dropdownTrigger = By.xpath("//tr[td[contains(text(),'"+supplier+"')]]//p-dropdown//div[@role='button']");
         driver.element().click(dropdownTrigger);
-        By option = By.xpath("//tr[td[contains(text(),'"+supplier+"')]]//p-dropdownitem/li/span[contains(text(),'"+Cred+"')]");
+        By option = By.xpath("(//p-dropdownitem/li/span[contains(text(),'"+Cred+"')])[1]");
         driver.getDriver().findElement(option).click();
 
 

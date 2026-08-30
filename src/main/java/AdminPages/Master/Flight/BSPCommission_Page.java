@@ -19,7 +19,7 @@ public class BSPCommission_Page {
 
     By Btn_AddCommission = By.xpath("//button[@routerlink=\"add\"]");
     By Btn_airline = By.xpath("(//div[@role='button'])[1]");
-    By Txt_AirlineName = By.xpath("//p-dropdown//input[@class='p-dropdown-filter p-inputtext p-component']");
+    By Txt_AirlineName = By.xpath("//div//input[@class='p-dropdown-filter p-inputtext p-component']");
     By Txt_CommissionName = By.xpath("//input[@id=\"id-CommissionName\"]");
     By Lst_GDSSupplier = By.xpath("//p-multiselect[.//input[@id=\"id-GDSsupplier\"]]");
     By Lst_SupplierCredential = By.xpath("//p-multiselect[.//input[@id=\"id-Suppliercredential\"]]");
