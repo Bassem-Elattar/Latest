@@ -24,7 +24,8 @@
 
  "EnterCreditLimit": "1000000",
  "TopUpLimit": "5000000",
-  "CreditTermsDays": "100"
+  "CreditTermsDays": "100",
+ "CredentialName": "EgyptAirEgy"
 
 
 

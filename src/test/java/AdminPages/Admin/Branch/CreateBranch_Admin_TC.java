@@ -63,7 +63,7 @@ public class CreateBranch_Admin_TC{
         String City = DataaUtils.getJsonData("NewBranchData","City");
         String Description = DataaUtils.getJsonData("NewBranchData","Description");
         boolean isGds = Boolean.parseBoolean(DataaUtils.getJsonData("NewBranchData", "isGds"));
-        String CredentialName = DataaUtils.getJsonData("FlightDate", "CredentialName");
+        String CredentialName = DataaUtils.getJsonData("NewBranchData", "CredentialName");
         String Email = faker.internet().emailAddress();
         String Address = faker.address().streetAddress();
         int Post = faker.number().randomDigit();
