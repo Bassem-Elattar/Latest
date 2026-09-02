@@ -63,7 +63,7 @@ public class Markup_E2E_TC {
     @Test(priority = 3)
     public void TC03_UpdateMarkup() throws InterruptedException {
 //        page.navigateToRuleEngine();
-        page.goToNextPage();
+        page.findMarkupInPages();
         String updatePath = "UpdateSet1";
         page.updateMarkup(
                 testData.getTestData(updatePath + ".MarkupName"),
