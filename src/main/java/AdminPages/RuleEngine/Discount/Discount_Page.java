@@ -65,6 +65,7 @@ public class Discount_Page {
     public By StatusCellActive = By.xpath("//td[normalize-space()='Active']");
     public By Btn_Next = By.xpath("//button[contains(@class,'next')]//i[contains(@class,'pi-angle-right')]");
     By Btn_Discount = By.xpath("//li[contains(@class,'ng-star-inserted')]//a[span[text()='Discount']]\n");
+    By Btn_alert = By.xpath("//div[@role='alert']");
 
 
     private By rowDiscount(String discountname) {
@@ -338,6 +339,10 @@ public class Discount_Page {
         By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
         driver.element().click(Day);
 
+    }
+    public Discount_Page clickAlert(){
+        driver.element().click(Btn_alert);
+        return this;
     }
 }
 
