@@ -10,73 +10,29 @@ public class Dashboard_Page {
     public Dashboard_Page(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-
-    // =========================================================
-    // Dashboard Statistics
-    // =========================================================
-
     private final By LBL_TOTAL_FLIGHTS =
             By.cssSelector(
                     ".flights-summary__stat-value" +
                             ":not(.flights-summary__stat-value--pending)" +
                             ":not(.flights-summary__stat-value--ticketed)"
             );
-    public By getLBL_TOTAL_FLIGHTS() {
-        return LBL_TOTAL_FLIGHTS;
-    }
-
     private final By LBL_PENDING_FLIGHTS =
             By.cssSelector(".flights-summary__stat-value--pending");
-    public By getLBL_PENDING_FLIGHTS() {
-        return LBL_PENDING_FLIGHTS;
-    }
-
     private final By LBL_TICKETED_FLIGHTS =
             By.cssSelector(".flights-summary__stat-value--ticketed");
-    public By getLBL_TICKETED_FLIGHTS() {
-        return LBL_TICKETED_FLIGHTS;
-    }
-
-
-    // =========================================================
-    // Book Flight
-    // =========================================================
-
     private final By BTN_BOOK_FLIGHT =
             By.cssSelector("a.flights-summary__book-btn");
-    public By getBTN_BOOK_FLIGHT() {
-        return BTN_BOOK_FLIGHT;
-    }
-
-
-    // =========================================================
-    // Flight Period
-    // =========================================================
-
     private final By BTN_FLIGHT_PERIOD_TRIGGER =
             By.cssSelector(
                     ".flights-summary__actions .p-dropdown-trigger"
             );
-
     private final By LBL_SELECTED_FLIGHT_PERIOD =
             By.cssSelector(
                     ".flights-summary__actions .p-dropdown-label"
             );
-    public By getLBL_SELECTED_FLIGHT_PERIOD() {
-        return LBL_SELECTED_FLIGHT_PERIOD;
-    }
-
-
-    // =========================================================
-    // To Do List
-    // =========================================================
-
-    private final By LBL_TODO_LIST =
-            By.xpath("//span[normalize-space()='My To Do List']");
 
     private final By BTN_ADD_TASK =
             By.cssSelector("button[aria-label='Add task']");
-
 
     private final By TXT_TASK =
             By.xpath("//textarea[@placeholder='Add Task...']");
@@ -91,10 +47,6 @@ public class Dashboard_Page {
             );
     private final By LBL_TASK_ADDED_SUCCESS =
             By.cssSelector("div[role='alert'][aria-label='Task added successfully']");
-    public By getaddedMessageLocator() {
-        return LBL_TASK_ADDED_SUCCESS;
-    }
-
     private final By BTN_UPDATE_TASK =
             By.xpath(
                     "//button[@type='submit']" +
@@ -104,29 +56,12 @@ public class Dashboard_Page {
             By.cssSelector(
                     "div[role='alert'][aria-label='Task updated successfully']"
             );
-    public By getupdatedMessageLocator() {
-        return LBL_TASK_UPDATED_SUCCESS;
-    }
     private final By LBL_TASK_DELETED_SUCCESS =
             By.cssSelector(
                     "div[role='alert'][aria-label='Task deleted successfully']"
             );
-    public By getdeletedMessageLocator() {
-        return LBL_TASK_DELETED_SUCCESS;
-    }
-
-
-
-    // =========================================================
-    // Promotions
-    // =========================================================
-
     private final By LBL_PROMOTIONS =
             By.xpath("//span[normalize-space()='Promotions']");
-    public By getLBL_PROMOTIONS() {
-        return LBL_PROMOTIONS;
-    }
-
     private final By BTN_PREVIOUS_PROMOTION =
             By.cssSelector(
                     "button[aria-label='Previous Promotion']"
@@ -138,166 +73,12 @@ public class Dashboard_Page {
             );
 
     private final By PROMOTION_CAROUSEL =
-            By.id("promotionsCarousel");
-    public By getPROMOTION_CAROUSEL (){
-        return PROMOTION_CAROUSEL;
-    }
-
+         //   By.id("promotionsCarousel");
+            By.cssSelector(".carousel");
     private final By ACTIVE_PROMOTION =
             By.cssSelector(
                     "#promotionsCarousel .carousel-item.active"
             );
-    public By getACTIVE_PROMOTION() {
-        return ACTIVE_PROMOTION;
-    }
-
-
-
-
-
-    // =========================================================
-    // Flight Statistics
-    // =========================================================
-
-    public String getTotalFlights() {
-        return driver.element().getText(LBL_TOTAL_FLIGHTS);
-    }
-
-    public String getPendingFlights() {
-        return driver.element().getText(LBL_PENDING_FLIGHTS);
-    }
-
-    public String getTicketedFlights() {
-        return driver.element().getText(LBL_TICKETED_FLIGHTS);
-    }
-
-
-    public Dashboard_Page verifyFlightStatisticsCalculation() {
-
-        int total = Integer.parseInt(getTotalFlights());
-        int pending = Integer.parseInt(getPendingFlights());
-        int ticketed = Integer.parseInt(getTicketedFlights());
-
-        SHAFT.Validations.assertThat()
-                .object(total)
-                .isEqualTo(pending + ticketed);
-
-        return this;
-    }
-
-
-
-
-
-
-
-
-    // =========================================================
-    // Book Flight
-    // =========================================================
-
-    public Dashboard_Page clickBookFlight() {
-
-        driver.element()
-                .click(BTN_BOOK_FLIGHT);
-
-        return this;
-    }
-
-
-
-
-    // =========================================================
-    // Flight Period
-    // =========================================================
-
-    public Dashboard_Page clickFlightPeriodDropdown() {
-
-        driver.element()
-                .click(BTN_FLIGHT_PERIOD_TRIGGER);
-
-        return this;
-    }
-
-
-    public Dashboard_Page selectFlightPeriod(String period) {
-
-        clickFlightPeriodDropdown();
-
-        By option = By.xpath(
-                "//li[@role='option']" +
-                        "//span[normalize-space()='" +
-                        period +
-                        "']"
-        );
-
-        driver.element()
-                .click(option);
-
-        return this;
-    }
-
-
-
-
-
-    // =========================================================
-    // To Do List
-    // =========================================================
-
-
-    public Dashboard_Page clickAddTask() {
-
-        driver.element()
-                .click(BTN_ADD_TASK);
-
-        return this;
-    }
-
-
-
-
-    public Dashboard_Page enterTask(String task) {
-
-        driver.element()
-                .type(TXT_TASK, task);
-
-        return this;
-    }
-
-
-    public Dashboard_Page enterTaskDate(String date) {
-
-        driver.element()
-                .type(TXT_TASK_DATE, date);
-
-        return this;
-    }
-
-
-    public Dashboard_Page clickAddTaskSubmit() {
-
-        driver.element()
-                .click(BTN_ADD_TASK_SUBMIT);
-
-        return this;
-    }
-
-
-    public Dashboard_Page clickUpdateTask() {
-
-        driver.element()
-                .click(BTN_UPDATE_TASK);
-
-        return this;
-    }
-
-
-
-    // =========================================================
-    // Dynamic Locators
-    // =========================================================
-
     private By getTodoItem(String taskName) {
 
         return By.xpath(
@@ -335,9 +116,145 @@ public class Dashboard_Page {
         );
     }
 
+    public By getLBL_TOTAL_FLIGHTS() {
+        return LBL_TOTAL_FLIGHTS;
+    }
+    public By getLBL_PENDING_FLIGHTS() {
+        return LBL_PENDING_FLIGHTS;
+    }
 
-    // =========================================================
-    // =========================================================
+    public By getLBL_TICKETED_FLIGHTS() {
+        return LBL_TICKETED_FLIGHTS;
+    }
+
+    public By getBTN_BOOK_FLIGHT() {
+        return BTN_BOOK_FLIGHT;
+    }
+
+    public By getLBL_SELECTED_FLIGHT_PERIOD() {
+        return LBL_SELECTED_FLIGHT_PERIOD;
+    }
+
+    public By getaddedMessageLocator() {
+        return LBL_TASK_ADDED_SUCCESS;
+    }
+
+    public By getupdatedMessageLocator() {
+        return LBL_TASK_UPDATED_SUCCESS;
+    }
+
+    public By getdeletedMessageLocator() {
+        return LBL_TASK_DELETED_SUCCESS;
+    }
+
+    public By getLBL_PROMOTIONS() {
+        return LBL_PROMOTIONS;
+    }
+
+
+    public By getPROMOTION_CAROUSEL (){
+        return PROMOTION_CAROUSEL;
+    }
+
+    public By getACTIVE_PROMOTION() {
+        return ACTIVE_PROMOTION;
+    }
+
+    public String getTotalFlights() {
+        return driver.element().getText(LBL_TOTAL_FLIGHTS);
+    }
+
+    public String getPendingFlights() {
+        return driver.element().getText(LBL_PENDING_FLIGHTS);
+    }
+
+    public String getTicketedFlights() {
+        return driver.element().getText(LBL_TICKETED_FLIGHTS);
+    }
+
+    public Dashboard_Page verifyFlightStatisticsCalculation() {
+
+        int total = Integer.parseInt(getTotalFlights());
+        int pending = Integer.parseInt(getPendingFlights());
+        int ticketed = Integer.parseInt(getTicketedFlights());
+
+        SHAFT.Validations.assertThat()
+                .object(total)
+                .isEqualTo(pending + ticketed);
+
+        return this;
+    }
+
+    public Dashboard_Page clickBookFlight() {
+
+        driver.element()
+                .click(BTN_BOOK_FLIGHT);
+
+        return this;
+    }
+
+    public Dashboard_Page clickFlightPeriodDropdown() {
+
+        driver.element()
+                .click(BTN_FLIGHT_PERIOD_TRIGGER);
+
+        return this;
+    }
+
+
+    public Dashboard_Page selectFlightPeriod(String period) {
+
+        clickFlightPeriodDropdown();
+
+        By option = By.xpath(
+                "//li[@role='option']" +
+                        "//span[normalize-space()='" +
+                        period +
+                        "']"
+        );
+
+        driver.element()
+                .click(option);
+
+        return this;
+    }
+
+    public Dashboard_Page clickAddTask() {
+
+        driver.element()
+                .click(BTN_ADD_TASK);
+
+        return this;
+    }
+    public Dashboard_Page enterTask(String task) {
+
+        driver.element()
+                .type(TXT_TASK, task);
+
+        return this;
+    }
+    public Dashboard_Page enterTaskDate(String date) {
+
+        driver.element()
+                .type(TXT_TASK_DATE, date);
+
+        return this;
+    }
+    public Dashboard_Page clickAddTaskSubmit() {
+
+        driver.element()
+                .click(BTN_ADD_TASK_SUBMIT);
+
+        return this;
+    }
+
+    public Dashboard_Page clickUpdateTask() {
+
+        driver.element()
+                .click(BTN_UPDATE_TASK);
+
+        return this;
+    }
 
     public Dashboard_Page verifyTodoDisplayed(String taskName) {
 
@@ -349,11 +266,6 @@ public class Dashboard_Page {
         return this;
     }
 
-
-    // =========================================================
-    // Edit
-    // =========================================================
-
     public Dashboard_Page clickEditTodo(String taskName) {
 
         driver.element()
@@ -361,11 +273,6 @@ public class Dashboard_Page {
 
         return this;
     }
-
-
-    // =========================================================
-    // Delete
-    // =========================================================
 
     public Dashboard_Page clickDeleteTodo(String taskName) {
 
@@ -375,12 +282,6 @@ public class Dashboard_Page {
         return this;
     }
 
-
-    // =========================================================
-    // Promotions
-    // =========================================================
-
-
     public Dashboard_Page clickNextPromotion() {
 
         driver.element()
@@ -388,8 +289,6 @@ public class Dashboard_Page {
 
         return this;
     }
-
-
     public Dashboard_Page clickPreviousPromotion() {
 
         driver.element()
