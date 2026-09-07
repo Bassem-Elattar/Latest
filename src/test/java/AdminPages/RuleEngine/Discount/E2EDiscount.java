@@ -91,6 +91,7 @@ public class E2EDiscount {
         discount.findDiscountInPages();
 //        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();
+        discount.clickAlert();
     }
     @AfterClass
     public void Reload(){
