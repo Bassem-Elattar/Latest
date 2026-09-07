@@ -63,6 +63,7 @@ public class AddTopUpRequest_TC{
         FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
         Thread.sleep(5000);
         TopupRequest.setSendApproval();
+        Thread.sleep(3000);
         String Expected = "Your Top up has been processed successfully and sent for approval!!";
         Assert.assertEquals(TopupRequest.Actual(),Expected);
     }
