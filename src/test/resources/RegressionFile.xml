@@ -31,15 +31,7 @@
             </class>
         </classes>
     </test>
-    <test name="TopUp Module">
-        <classes>
-            <class name="AdminPages.Admin.Company.TopUpRequest.AddTopUpRequest_TC">
-                <methods>
-                    <include name="AddTopUpRequest"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+
     <test name="ROE Module">
         <classes>
             <class name="AdminPages.Master.Miscellaneous.RateOfExchange.CreateRateOfExchange_TC">
@@ -153,6 +145,15 @@
             <class name="AdminPages.BookingMidOffice.Booking.Booking_TC">
                 <methods>
                     <include name="SearchOneWay"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="TopUp Module">
+        <classes>
+            <class name="AdminPages.Admin.Company.TopUpRequest.AddTopUpRequest_TC">
+                <methods>
+                    <include name="AddTopUpRequest"/>
                 </methods>
             </class>
         </classes>
