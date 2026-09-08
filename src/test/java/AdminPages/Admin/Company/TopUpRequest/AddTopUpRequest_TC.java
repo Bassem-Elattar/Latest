@@ -67,5 +67,8 @@ public class AddTopUpRequest_TC{
         String Expected = "Your Top up has been processed successfully and sent for approval!!";
        // Assert.assertEquals(TopupRequest.Actual(),Expected);
     }
-
+    @AfterMethod
+    public void Reload(){
+        new LogIn_Page(driver).ClickOnLogOuTButton();
+    }
 }
