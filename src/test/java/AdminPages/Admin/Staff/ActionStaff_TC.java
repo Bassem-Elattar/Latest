@@ -66,7 +66,7 @@ public class ActionStaff_TC {
         staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
                 ,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,ApprovalList);
         staff.YesUndercut();
-        Thread.sleep(3000);
+        Thread.sleep(10000);
         staff.setInactive();
         staff.fill(StaffName,UserName,Branch,Department);
         staff.ThumpUp("Approved");
