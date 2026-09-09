@@ -152,7 +152,7 @@ public class Discount_Page {
             }
 
             // If Last button exists, click it
-            if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+            else if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
 
                 driver.element().scrollToElement(Btn_last);
                 driver.element().click(Btn_last);
