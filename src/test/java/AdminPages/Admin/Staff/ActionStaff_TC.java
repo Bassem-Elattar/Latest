@@ -41,7 +41,7 @@ public class ActionStaff_TC {
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
-        new LogIn_Page(driver).superAdminLogin();
+        new LogIn_Page(driver).AdminLogin();
 
     }
 
