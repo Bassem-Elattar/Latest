@@ -191,11 +191,11 @@ public void AddStaff(Map<String,String> st) throws Exception {
         staff.setInactive();
 
         staff.fill(
-                StaffName,
-                UserName,
+                testData.getTestData("EmployeeName"),
+                testData.getTestData("UserName"),
                 staff.Branch,
-                staff.Departement
-        );
+                staff.Departement)
+        ;
 
         staff.ThumpUp("Approved");
 
