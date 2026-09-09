@@ -4,9 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.FakerSingleton;
 
 import java.io.File;
+import java.time.Duration;
 
 public class Staff_Page {
 
@@ -294,6 +297,15 @@ public class Staff_Page {
     {
         String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Updated Successfully\"]"));
         return S;
+    }
+    public void waitForInactiveToAppear() {
+
+        new WebDriverWait(
+                driver.getDriver(),
+                Duration.ofSeconds(120)
+        ).until(
+                ExpectedConditions.visibilityOfElementLocated(Rbtn_Inactive)
+        );
     }
 
 

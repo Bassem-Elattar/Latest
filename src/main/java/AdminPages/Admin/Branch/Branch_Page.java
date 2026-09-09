@@ -90,6 +90,7 @@ public class Branch_Page {
 
 
     By Lst_pcc = By.xpath("//p-dropdown[.//input[@id=\"id-State\"]]");
+    private By successMessage = By.xpath("//div[@aria-label=\"Added Successfully\"]");
 
 
     //////// Search&Action Branch ///////
@@ -366,5 +367,15 @@ public class Branch_Page {
     {
         String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
         return S;
+    }
+
+
+    public void waitForBranchCreation() {
+        new WebDriverWait(
+                driver.getDriver(),
+                Duration.ofSeconds(120)
+        ).until(
+                ExpectedConditions.visibilityOfElementLocated(successMessage)
+        );
     }
 }

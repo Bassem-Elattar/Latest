@@ -46,26 +46,40 @@ public class AddTopUpRequest_TC{
     }
     @Test(dataProvider = "JsonProvider")
     public void AddTopUpRequest(Map<String, String> top) throws InterruptedException {
+
         createDepartment = new Department_Page(driver);
         TopupRequest = new TopUpRequest_Page(driver);
-//        createDepartment.setCompany();
-//        TopupRequest.Advance_Credit();
+
         String BranchName = top.get("BranchName");
         String AgencyName = top.get("AgencyName");
         String TopUpAmount = top.get("TopUpAmount");
         String PaymentType = top.get("PaymentType");
         String Remarks = top.get("Remarks");
-        TopupRequest.AddRequest(BranchName,AgencyName,TopUpAmount,PaymentType,Remarks);
-        // Specify the file input locator and file path
+
+        TopupRequest.AddRequest(
+                BranchName,
+                AgencyName,
+                TopUpAmount,
+                PaymentType,
+                Remarks
+        );
+
         By fileInputLocator = By.xpath("//input[@type='file']");
-        String filePath = "src/test/resources/sendGridUsage.pdf"; // Replace with your file path
-        // Call the static uploadFile method from utilities.FileUploadUtil to upload the file
-        FileUploadUtil.uploadFile(driver.getDriver(), fileInputLocator, filePath);
-        Thread.sleep(5000);
+        String filePath = "src/test/resources/sendGridUsage.pdf";
+
+        FileUploadUtil.uploadFile(
+                driver.getDriver(),
+                fileInputLocator,
+                filePath
+        );
+
         TopupRequest.setSendApproval();
-        Thread.sleep(3000);
-        String Expected = "Your Top up has been processed successfully and sent for approval!!";
-       // Assert.assertEquals(TopupRequest.Actual(),Expected);
+
+        TopupRequest.waitForApprovalSuccess();
+
+        String Expected =
+                "Your Top up has been processed successfully and sent for approval!!";
+         Assert.assertEquals(TopupRequest.Actual(),Expected);
     }
     @AfterMethod
     public void Reload(){
