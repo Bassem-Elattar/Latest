@@ -79,6 +79,7 @@ public class E2EDiscount {
                 testData.getTestData("UpdateSet1.AmountValue"),
                 testData.getTestData("UpdateSet1.Remarks")
         );
+        discount.clickAlert();
     }
     @Test(priority = 5)
     public void TC04_Search_Discount(){
