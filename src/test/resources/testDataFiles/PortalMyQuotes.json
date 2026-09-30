@@ -1,0 +1,79 @@
+{
+  "_comment": "Portal Save Quote / My Quotes test data. Environment: staging237, agency AGN10035 (branch BRN510, supplier RiyadhKSA Staging). Expected strings seen live 2026-09-28. Test cases: docs/testing/portal-my-quotes/test-cases.md in the QA project.",
+
+  "search": {
+    "origin": "CAI",
+    "destination": "RUH",
+    "daysFromToday": "22",
+    "adults": "1",
+    "children": "0",
+    "infants": "0",
+    "tripType": "OneWay",
+    "cabin": "Economy",
+    "cardToQuote": "1"
+  },
+
+  "quote": {
+    "newUser": {
+      "firstName": "Quote",
+      "lastName": "Automation",
+      "email": "quote.automation@example.com",
+      "phone": "1001234567"
+    },
+    "idCountryPrefix": "EG",
+    "branchCode": "BRN510",
+    "idRandomPartPattern": "[A-Za-z0-9]{6}",
+    "rejectRemark": "Changes & new quote issued"
+  },
+
+  "status": {
+    "open": "Open",
+    "reject": "Reject"
+  },
+
+  "dateFormat": {
+    "searchForm": "dd/MM/yyyy",
+    "quotationId": "yyMMdd",
+    "grid": "dd-MM-yyyy",
+    "selectFlightPopup": "yyyy-MM-dd",
+    "passengerDetails": "EEE, dd MMM, yyyy"
+  },
+
+  "gridColumn": {
+    "quotesNo": "Quotes No",
+    "clientName": "Client / Passenger Name",
+    "mobileNo": "Mobile No",
+    "emailId": "Email ID",
+    "productType": "Product Type",
+    "creationDate": "Creation Date",
+    "agentName": "Agent Name",
+    "travelDate": "Travel Date",
+    "status": "Status"
+  },
+
+  "saveQuoteField": {
+    "firstName": "id-FirstName",
+    "lastName": "id-LastName",
+    "email": "id-Email",
+    "phone": "Phone"
+  },
+
+  "expected": {
+    "selectFlightValidation": "Please select at least one Flight Option",
+    "firstNameRequired": "First Name is required",
+    "lastNameRequired": "Last Name is required",
+    "emailRequired": "Email is required",
+    "phoneRequired": "Required",
+    "quoteStatusRequired": "Required",
+    "rejectRemarkRequired": "required",
+    "rejectSuccessToast": "myQuote status successfuly updated",
+    "clientName": "Quote Automation",
+    "mobileNo": "+20-1001234567",
+    "productType": "Flight",
+    "agentName": "AbouBakr_AGN1",
+    "supplierName": "RiyadhAirKSA",
+    "passengersChip": "Passengers: 1",
+    "tripDepartureChipPrefix": "Trip Departure: ",
+    "quotationIdUrlParam": "quotation-id="
+  }
+}
