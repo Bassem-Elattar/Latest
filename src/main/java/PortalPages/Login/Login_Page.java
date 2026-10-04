@@ -29,15 +29,8 @@ public class Login_Page {
     // Text / Page Validation
     private By Txt_LoginPageTitle =By.className("welcome-title");
 
-    // Post-login indicator - only renders once the session is actually established.
-    // Verified live: appears on /dashboard immediately after a successful login.
-    //
-    // The Portal renders the wallet widget TWICE - once live, once as a hidden duplicate
-    // inside a second ".wallet-sidebar-section.hidden" (confirmed live 2026-08-12: two
-    // ".balance-amount" elements, identical text, one inside a "hidden"-classed ancestor).
-    // A bare ".balance-amount" throws MultipleElementsFoundException. Scoped here to the
-    // section that is NOT hidden.
-    private By Txt_WalletBalance = By.cssSelector(".wallet-sidebar-section:not(.hidden) .balance-amount");
+
+    private By Txt_WalletBalance = By.cssSelector("tilde-theme-wallet-summary:not(.hidden) .balance-amount");
 
     // Toast Error Messages
     private By Txt_InvalidLoginMessage = By.xpath("//div[@role='alert' and contains(@class,'toast-message') and @aria-label='Invalid credentials, Please try again.']");
