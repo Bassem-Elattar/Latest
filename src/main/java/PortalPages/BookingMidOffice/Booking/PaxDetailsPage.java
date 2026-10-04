@@ -1,4 +1,4 @@
-package AdminPages.BookingMidOffice.Booking;
+package PortalPages.BookingMidOffice.Booking;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
@@ -13,6 +13,9 @@ import utilities.FakerSingleton;
 import java.time.Duration;
 import java.util.List;
 
+// Portal clone of AdminPages.BookingMidOffice.Booking.PaxDetailsPage. The passenger form is not
+// branch-dependent, so this is kept as-is (locators are best-effort copies of Admin's, same
+// underlying component library, TODO: confirm against real Portal DOM).
 public class PaxDetailsPage {
 
     private SHAFT.GUI.WebDriver driver;
@@ -25,8 +28,11 @@ public class PaxDetailsPage {
     }
 
     // Dynamic Locators
+    // Confirmed live: Portal's Title/Nationality controls are <p-dropdown formcontrolname="...">
+    // wrapping a readonly input whose id carries the passenger index (title_0, nationality_0, ...),
+    // not the Admin-style "<label for=...>/following-sibling::p-dropdown" pattern.
     private By titleDropdown(int index) {
-        return By.xpath("//label[@for='title_" + index + "']/following-sibling::p-dropdown");
+        return By.xpath("//p-dropdown[.//input[@id='title_" + index + "']]");
     }
 
     private By firstName(int index) {
@@ -78,15 +84,20 @@ public class PaxDetailsPage {
     private final By termsSelect = By.xpath("(//div[contains(@class,'p-checkbox-box')])[last()]");
     private final By GDSPNR_Confirmation = By.xpath("//th[text()='GDS PNR Number']");
     private final By brandedFares = By.xpath("//p-carousel");
-    private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
-    private final By Btn_ExpandAll= By.xpath("(//span[normalize-space()='Expand All'])[1]");
+    private final By Btn_Proceed = By.xpath("(//button[@class='book-btn'])[1]");
+    private final By Btn_ExpandAll = By.xpath("(//span[normalize-space()='Expand All'])[1]");
     By Btn_Next = By.xpath("(//button[@class='p-ripple p-element step-btn step-btn--primary p-button p-component'])[1]");
-    private final By FirstMeal= By.xpath("(//div[@class='meal-option ng-star-inserted'])[1]");
-    private final By FirstBaggage= By.xpath("(//p-dropdownitem[@class='p-element ng-star-inserted'])[1]");
-    private final By ExpandAll= By.xpath("(//button[@type='button'])[4]");
+    private final By FirstMeal = By.xpath("(//div[@class='meal-option ng-star-inserted'])[1]");
+    private final By FirstBaggage = By.xpath("(//p-dropdownitem[@class='p-element ng-star-inserted'])[1]");
+    private final By ExpandAll = By.xpath("(//button[@type='button'])[4]");
 
     By assignedToDropdowns =
             By.xpath("//p-dropdown[@formcontrolname='assignedTo']");
+
+    private By assignedToDropdown(int index) {
+        return By.xpath("(//p-dropdown[@formcontrolname='assignedTo'])[" + index + "]");
+    }
+
     private By dropdownOptionByIndex(int index) {
         return By.xpath("(//li[@role='option'])[" + index + "]");
     }
@@ -103,31 +114,6 @@ public class PaxDetailsPage {
         driver.element().type(by, value);
     }
 
-//    public PaxDetailsPage fillOnePassengerDetails(String Title,
-//                                                 String FirstName,
-//                                                  String LastName,
-//                                                  String DOB,
-//                                                  String Email,
-//                                                  String Phone,
-//                                                  String DocumentNumber,
-//                                                  String DocumentExpiry,
-//                                                  String Nationality)
-//    {
-//        ElementClick(titleDropdown); ElementClick(dropdownOption(Title));
-//        ElementType(firstName, FirstName);
-//        ElementType(lastName, LastName);
-//        ElementType(dateOfBirth, DOB);
-//        ElementType(email, Email);
-//        ElementType(phone, Phone);
-//        ElementType(documentNumber, DocumentNumber);
-//        ElementType(documentExpiry, DocumentExpiry);
-//        ElementClick(nationalityDropdown);
-//        ElementClick(dropdownOption(Nationality));
-//        return new PaxDetailsPage(driver); }
-//    public void AssertThatQuoteSaved(){
-//        driver.verifyThat() .element(QuoteSavedMsg) .isVisible();
-//    }
-
     public PaxDetailsPage fillOnePassengerDetails(
             String title,
             String dob,
@@ -139,8 +125,8 @@ public class PaxDetailsPage {
             String nationality) {
 
         int total = parseCount("NumberOfAdults")
-            + parseCount("NumberOfChildren")
-            + parseCount("NumberOfInfants");
+                + parseCount("NumberOfChildren")
+                + parseCount("NumberOfInfants");
         driver.element().click(Btn_ExpandAll);
         for (int i = 0; i < total; i++) {
 
@@ -162,7 +148,6 @@ public class PaxDetailsPage {
             ElementType(email(i), emailValue);
             ElementType(phone(i), phoneValue);
 
-           // ElementType(documentNumber(i), documentNumberValue);
             ElementType(documentExpiry(i), documentExpiryValue);
 
             ElementClick(nationalityDropdown(i));
@@ -183,17 +168,15 @@ public class PaxDetailsPage {
                 ElementType(dateOfBirth(i), infDob);
                 System.out.println("Infant Passenger : " + (i + 1));
             }
-
-//            if (i<=total-2)
-//            driver.element().click(seeMore(i + 7));
         }
-        List<WebElement> assignedToElements =
-                driver.getDriver().findElements(assignedToDropdowns);// just for size
+        int assignedToCount = driver.getDriver().findElements(assignedToDropdowns).size();
 
-        for (int i = 0; i < assignedToElements.size(); i++) {
+        for (int i = 0; i < assignedToCount; i++) {
 
-            // open dropdown
-            assignedToElements.get(i).click();
+            // open dropdown (re-located each time via SHAFT's click, which scrolls into view
+            // and waits for clickability -- a cached WebElement.click() intercepted here since
+            // the element isn't scrolled into view first)
+            ElementClick(assignedToDropdown(i + 1));
 
             // select option i+1 (Infant1→Option1)
             driver.element().click(dropdownOptionByIndex(i + 1));
@@ -206,16 +189,17 @@ public class PaxDetailsPage {
         driver.element().click(saveQuoteBtn);
         return this;
     }
+
     public PaxDetailsPage payAndBook() {
         driver.element().click(bookBtn);
         driver.element().click(confirmBookBtn);
         return this;
     }
+
     public PaxDetailsPage clickOnHold() {
         driver.element().click(holdBtn);
         return this;
     }
-
 
     public PaxDetailsPage clickNextIfDisplayed() throws InterruptedException {
         List<WebElement> elements = driver.getDriver().findElements(Btn_Next);
@@ -226,8 +210,21 @@ public class PaxDetailsPage {
         return new PaxDetailsPage(driver);
     }
 
+    private final By anyMealOrBaggageDropdown = By.xpath(
+            "//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted']" +
+                    "[normalize-space()='Choose a meal' or normalize-space()='Choose a baggage']");
+
     public PaxDetailsPage handlePassengerAncillaries(String adults, String children) {
-        driver.element().click(ExpandAll);
+        // ExpandAll is a fragile page-global "4th button[@type='button']" locator with nothing
+        // scoping it to an ancillaries section -- it always matches *some* 4th button on the page,
+        // just not necessarily the right one, so an emptiness check on it alone doesn't help. When
+        // this fare has no meal/baggage ancillaries to expand (as with a plain one-way economy
+        // fare), it instead lands on an unrelated button elsewhere on the page (confirmed live: it
+        // matched the sidebar's "Top Up Wallet" button and navigated away from the booking flow
+        // entirely). Only attempt it when an actual meal/baggage dropdown is present on the page.
+        if (!driver.getDriver().findElements(anyMealOrBaggageDropdown).isEmpty()) {
+            driver.element().click(ExpandAll);
+        }
         int totalPassengers = Integer.parseInt(adults) + Integer.parseInt(children);
 
         for (int i = 1; i <= totalPassengers; i++) {
@@ -242,14 +239,12 @@ public class PaxDetailsPage {
             if (!driver.getDriver().findElements(mealDropdown).isEmpty()) {
                 driver.element().click(mealDropdown);
                 driver.element().click(FirstMeal);
-                // Select meal option
             }
 
             // Baggage
             if (!driver.getDriver().findElements(baggageDropdown).isEmpty()) {
                 driver.element().click(baggageDropdown);
                 driver.element().click(FirstBaggage);
-                // Select baggage option
             }
         }
         return new PaxDetailsPage(driver);
@@ -264,6 +259,7 @@ public class PaxDetailsPage {
         driver.element().click(termsSelect);
         return this;
     }
+
     public PaxDetailsPage AssertThatTicketIsHoldSuccessfully() {
         // Explicit wait for the confirmation page's GDS PNR header -- the live app occasionally
         // takes well over SHAFT's default action timeout to render this (supplier hang / BE
@@ -272,7 +268,7 @@ public class PaxDetailsPage {
         new WebDriverWait(driver.getDriver(), Duration.ofSeconds(120))
                 .until(ExpectedConditions.presenceOfElementLocated(GDSPNR_Confirmation));
         String s = driver.element().getText(GDSPNR_Confirmation);
-        softAssert.assertEquals(s,"GDS PNR Number");
+        softAssert.assertEquals(s, "GDS PNR Number");
         return this;
     }
 
