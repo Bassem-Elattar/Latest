@@ -7,7 +7,7 @@ import Drive_Factory.CommonMethod;
 import com.github.javafaker.Faker;
 import com.shaft.driver.SHAFT;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utilities.DataUtils;
 
@@ -50,13 +50,25 @@ public class Booking_TC{
     String YearOfSecondTrip;
     String SecondDestination;
 
-    @BeforeTest
+    public Booking_TC() {
+    }
+
+    public Booking_TC(SHAFT.GUI.WebDriver driver) {
+        this.driver = driver;
+        loadTestData();
+    }
+
+    @BeforeMethod
     public void sign(){
         CommonMethod.setupDriver(DataUtils.get("browser"));
         driver = CommonMethod.getDriver();
         driver.browser().navigateToURL(DataUtils.get("baseURL"));
 
         new LogIn_Page(driver).AdminLogin();
+        loadTestData();
+    }
+
+    private void loadTestData() {
         Booking = new SearchBookingBranch(driver);
         testData = new SHAFT.TestData.JSON("searchBookingBrData.json");
         NumberOfAdults = testData.getTestData("NumberOfAdults");
@@ -93,7 +105,7 @@ public class Booking_TC{
     public void SearchOneWay() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
-        searchBookingBranch.SelectBranch(new Branch_Page(driver).branchName).
+        searchBookingBranch.SelectBranch(BranchName).
                 AddStartingFrom(source).AddGoingTo(destination)
                 .SelectDateOfJourney(dayOfFirstJourney, yearOfFirstJourney, monthOfFirstJourney)
                 .passengersDropDown()
@@ -141,8 +153,7 @@ public class Booking_TC{
         searchBookingBranch.addBookingReference(BookingReference);
     }
 
-    @Test
-    public void PayAfterHoldOneWay() throws Exception {
+    public String payAfterHoldOneWay() throws Exception {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         searchBookingBranch.SelectBranch(BranchName).
@@ -171,7 +182,7 @@ public class Booking_TC{
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
 
-        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectBranch(BranchName)
@@ -182,10 +193,16 @@ public class Booking_TC{
                 .verifyThatTheUserCanSearchByBookinReference();
         searchBookingBranch.PayAfterHoldFlow();
         searchBookingBranch.SuccessPayAfterHoldAssertion();
+
+        return BookingReference;
     }
 
     @Test
-    public void BookOneWay() throws InterruptedException {
+    public void PayAfterHoldOneWay() throws Exception {
+        payAfterHoldOneWay();
+    }
+
+    public String bookOneWay() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         searchBookingBranch.SelectBranch(BranchName).
@@ -211,6 +228,13 @@ public class Booking_TC{
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).payAndBook().AssertThatTicketIsHoldSuccessfully();
+
+        return searchBookingBranch.GetBookingReference();
+    }
+
+    @Test
+    public void BookOneWay() throws Exception {
+        bookOneWay();
     }
 
     @Test
@@ -298,7 +322,7 @@ public class Booking_TC{
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
 
-        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectBranch(BranchName)
@@ -311,8 +335,7 @@ public class Booking_TC{
         searchBookingBranch.SuccessPayAfterHoldAssertion();
     }
 
-    @Test
-    public void BookRoundTrip() throws InterruptedException {
+    public String bookRoundTrip() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         searchBookingBranch.SelectBranch(BranchName)
@@ -339,6 +362,13 @@ public class Booking_TC{
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).payAndBook().AssertThatTicketIsHoldSuccessfully();
+
+        return searchBookingBranch.GetBookingReference();
+    }
+
+    @Test
+    public void BookRoundTrip() throws Exception {
+        bookRoundTrip();
     }
 
     @Test
@@ -426,7 +456,7 @@ public class Booking_TC{
         String BookingReference = searchBookingBranch.GetBookingReference();
         searchBookingBranch.addBookingReference(BookingReference);
 
-        new Booking_Common(driver).clickBookingMidOffice().ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
+        new Booking_Common(driver).ShowMoreMenu().click_Sub_BookingMidOffice().clickSearchBooking();
         new SearchBooking_Page(driver)
                 .SelectFlight()
                 .SelectBranch(BranchName)
@@ -439,8 +469,7 @@ public class Booking_TC{
         searchBookingBranch.SuccessPayAfterHoldAssertion();
     }
 
-    @Test
-    public void BookMultiCity() throws InterruptedException {
+    public String bookMultiCity() throws InterruptedException {
         SearchBookingBranch searchBookingBranch = new SearchBookingBranch(driver);
         new Booking_Common(driver).clickBookingMidOffice();
         searchBookingBranch.SelectBranch(BranchName)
@@ -467,6 +496,13 @@ public class Booking_TC{
                 PassengerPaxPhone,
                 PassengerPaxExpiryDate,
                 PassengerPaxNationality).SelectTermsAndConditions().clickNextIfDisplayed().handlePassengerAncillaries(NumberOfAdults,NumberOfChildren).payAndBook().AssertThatTicketIsHoldSuccessfully();
+
+        return searchBookingBranch.GetBookingReference();
+    }
+
+    @Test
+    public void BookMultiCity() throws Exception {
+        bookMultiCity();
     }
     @AfterMethod
     public void Reload(){

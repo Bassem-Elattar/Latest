@@ -1,0 +1,14 @@
+{
+  "agencyBranch": "ROE branch",
+  "refundType": "FULL",
+  "refundStatusPending": "Pending For Approval",
+  "refundStatusRefunded": "Refunded",
+  "requestTypeAutomatic": "Automatic",
+  "requestTypeUnderReview": "Under Review",
+  "refundStatusPendingForApprove": "Pending For Approval",
+  "autoRefundEnabledValue": "1",
+  "autoRefundDisabledValue": "0",
+  "approvalRemark": "Approved via automation",
+  "refundStatusRejected": "Rejected",
+  "rejectionRemark": "Rejected via automation"
+}

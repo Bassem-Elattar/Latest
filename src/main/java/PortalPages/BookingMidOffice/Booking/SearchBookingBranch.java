@@ -1,8 +1,9 @@
-package AdminPages.BookingMidOffice.Booking;
+package PortalPages.BookingMidOffice.Booking;
 
 import com.shaft.driver.SHAFT;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,17 +16,18 @@ import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import org.testng.asserts.SoftAssert;
 
+// Portal clone of AdminPages.BookingMidOffice.Booking.SearchBookingBranch, with every
+// branch-selection step removed: the agency has one implicit branch, unlike Admin which
+// picks from many. Locators are best-effort copies of Admin's (same underlying component
+// library) and are marked TODO where Portal's real DOM has not been confirmed.
 public class SearchBookingBranch {
     public SearchBookingBranch(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-    SHAFT.GUI.WebDriver driver ;
+    SHAFT.GUI.WebDriver driver;
     SoftAssert softAssert = new SoftAssert();
-    By BookingMidOffice = By.xpath("//a[@class='mid-office-1'and contains(text(),'Booking-Mid Office')]");
-    By Booking = By.xpath("//li[@id='Booking']");
-    By BranchList = By.xpath( "//span[normalize-space()='Branch*']");
+
     By StartingFrom = By.xpath("//div[contains(text(),'From *')]");
     By selectFrom = By.xpath("//input[@role='textbox']");
     By GoingTo = By.xpath("//span[normalize-space()='To *']");
@@ -54,73 +56,82 @@ public class SearchBookingBranch {
     By QuoteNewUserPhone = By.id("Phone");
     By ConfirmSaveQuoteBtn = By.xpath("//button[@type='submit']//span[normalize-space()='Save Quote']/ancestor::button");
     By QuoteSavedMsg = By.xpath("//span[normalize-space()='Quote Saved']");
-    By BookFlight_BTN = By.xpath("(//span[contains(text(),'Book Flight')])[1]");
+    // Confirmed live: a plain "any span containing this text" match also catches the persistent
+    // left-sidebar nav link (also labelled "Book Flight"), which exists before search results ever
+    // load and sorts first in the DOM -- scoping to a <button> ancestor keeps this to the actual
+    // per-flight-card buttons in the results grid.
+    By BookFlight_BTN = By.xpath("(//button[.//span[normalize-space()='Book Flight']])[1]");
     By inputField = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
     By FlightDetails_Btn = By.xpath("(//button[contains(text(),'Flight Details')])[1]");
     By FlightDetails_Txt = By.xpath("(//div[@class='p-tabview-panels'])[2]");
     By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
     By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
     By Txt_BookingRef = By.xpath("(//span[@class='main-text align-items-center flex gap-2 ng-star-inserted'])[1]");
-    By Btn_SelectBookingRef = By.xpath("(//td[@class='ng-star-inserted'])[2]//a");
-    By Btn_Lock = By.xpath("(//div[contains(@class,'locker') and contains(@class,'exception-buttons')])[2]");
-    By Btn_TakeControl = By.xpath("//button[normalize-space()='Take Control']");
-    By Btn_ConfirmToPay = By.xpath("//button[@label='Confirm To Pay']");
+    // Confirmed live: unlike Admin (open the booking's itinerary page, then Confirm To Pay),
+    // Portal pays a held booking straight from its "My Bookings" search-results row -- there is no
+    // "Confirm To Pay" step here at all. Clicking this row action opens a right-hand sidebar
+    // (Segment/Fare/Passenger tabs) with a Terms & Conditions checkbox and a "Pay" button.
+    By Btn_PayAndBook = By.xpath("//div[@data-tour-id='my-bookings.pay-book']");
     By Btn_CheckBox = By.xpath("//div[@class='p-checkbox-box']");
-    By Btn_Pay = By.xpath("//button[@class='p-element p-button-sm p-button-primary pay p-button p-component']");
+    // The old locator's extra "pay" class token doesn't exist on the real button (confirmed live:
+    // class is "p-element p-button-sm p-button-primary p-button p-component"), so it could never
+    // match -- matching on the stable label attribute instead.
+    By Btn_Pay = By.xpath("//button[@label='Pay']");
     By FlightCard_Txt = By.xpath("(//div[@class='journey-row'])[1]");
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
     By FareBreakDown_Txt = By.xpath("//div[@class='fare-breakdown-container ng-star-inserted']");
     By expandButton = By.xpath("(//button[@class='expand-btn'])[1]");
-    private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
+    private final By Btn_Proceed = By.xpath("(//button[@class='book-btn'])[1]");
     By Txt_SuccessMessage = By.xpath("(//p[@class='mx-2 text-base text-green-700 ng-star-inserted'])[1]");
     By Btn_RoundTrip = By.xpath("(//button[normalize-space()='Round-trip'])[1]");
     By Btn_MultiCity = By.xpath("(//button[normalize-space()='Multi-city'])[1]");
     By Btn_OriginRoundTrip = By.xpath("(//div[@class='p-element p-multiselect-label-container'])[1]");
     By Btn_DestinationRoundTrip = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
     By Btn_FirstTripDate = By.xpath("(//span[@class='p-button-icon pi pi-calendar'])[1]");
-    By Btn_SecondTripDate  = By.xpath("(//span[@class='p-button-icon pi pi-calendar'])[2]");
-    By Btn_OriginMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='From *'])[1]");
-    By Btn_DestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
-    // Confirmed live on Portal (same underlying component library): the 2nd route row's origin
-    // auto-fills from the 1st row's destination the moment it's selected -- only the 2nd row's
-    // "To *" stays an actual empty placeholder. By the time this is clicked, the 1st row's own
-    // "From *"/"To *" are already filled in (no longer carry the p-placeholder class/text), so the
-    // 2nd row's "To *" is the only remaining match -- index [1], not a "2nd occurrence". The old
-    // chevron-icon-index[8] locator only ever matched 6 chevron-down icons total on this page, so
-    // it could never resolve.
-    By Btn_SecondDestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
-    By Inp_DestinationMultiCity  = By.xpath("(//input[@class='p-dropdown-filter p-inputtext p-component'])[1]");
+    By Btn_SecondTripDate = By.xpath("(//span[@class='p-button-icon pi pi-calendar'])[2]");
+    By Btn_OriginMultiCity = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='From *'])[1]");
+    By Btn_DestinationMultiCity = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
+    // Confirmed live: the 2nd route row's origin auto-fills from the 1st row's destination the
+    // moment it's selected (no click needed/possible there) -- only the 2nd row's "To *" stays an
+    // actual empty placeholder. By the time this is clicked, the 1st row's own "From *"/"To *"
+    // are already filled in (no longer carry the p-placeholder class/text), so the 2nd row's
+    // "To *" is the only remaining match -- index [1], same as Btn_DestinationMultiCity, not a
+    // "2nd occurrence". The old chevron-icon-index[8] locator only ever matched 6 chevron-down
+    // icons total on this page, so it could never resolve.
+    By Btn_SecondDestinationMultiCity = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
+    By Inp_DestinationMultiCity = By.xpath("(//input[@class='p-dropdown-filter p-inputtext p-component'])[1]");
 
     public SearchBookingBranch BookFirstFlight() throws InterruptedException {
         driver.element().click(BookFlight_BTN);
         Thread.sleep(3000);
         return this;
     }
-    public SearchBookingBranch selectFirstFlight(){
+
+    public SearchBookingBranch selectFirstFlight() {
         driver.element().click(firstFlicghtSelector);
         return new SearchBookingBranch(driver);
     }
 
-    public SearchBookingBranch SelectRoundTrip(){
+    public SearchBookingBranch SelectRoundTrip() {
         driver.element().click(Btn_RoundTrip);
         return new SearchBookingBranch(driver);
     }
 
-    public SearchBookingBranch SelectMultiCity(){
+    public SearchBookingBranch SelectMultiCity() {
         driver.element().click(Btn_MultiCity);
         return new SearchBookingBranch(driver);
     }
 
-    public SearchBookingBranch SaveQuote(){
+    public SearchBookingBranch SaveQuote() {
         driver.element().click(saveQuoteBtn);
         return new SearchBookingBranch(driver);
     }
 
-    public String FareBreakDown(){
+    public String FareBreakDown() {
         return driver.element().getText(FareBreakDown_Txt);
     }
 
-    public SearchBookingBranch OpenSideMenuInfo(){
+    public SearchBookingBranch OpenSideMenuInfo() {
         driver.element().click(FlightDetails_Btn);
         return new SearchBookingBranch(driver);
     }
@@ -138,8 +149,8 @@ public class SearchBookingBranch {
 
     public List<String> FareDetails() {
         driver.element().click(FareDetails_Btn);
-        for (int i=2; i<6; i++) {
-            By expandButton = By.xpath("(//button[@class='toggle-icon'])["+ i +"]");
+        for (int i = 2; i < 6; i++) {
+            By expandButton = By.xpath("(//button[@class='toggle-icon'])[" + i + "]");
             if (!driver.getDriver().findElements(expandButton).isEmpty()) {
                 driver.element().click(expandButton);
             }
@@ -166,8 +177,8 @@ public class SearchBookingBranch {
 
     public List<String> BaggageInfo() {
         driver.element().click(BaggageInfo_Btn);
-        for (int i=2; i<6; i++) {
-            By expandButton = By.xpath("(//button[@class='expand-toggle'])["+ i +"]");
+        for (int i = 2; i < 6; i++) {
+            By expandButton = By.xpath("(//button[@class='expand-toggle'])[" + i + "]");
             if (!driver.getDriver().findElements(expandButton).isEmpty()) {
                 driver.element().click(expandButton);
             }
@@ -185,39 +196,28 @@ public class SearchBookingBranch {
         return driver.element().getText(FlightCard_Txt);
     }
 
-//    public List<String> PaxSegmentDetails() {
-//        driver.element().click(SegmentExpand_Btn);
-//        List<WebElement> elements = driver.getDriver().findElements(SegmentExpand_Txt);
-//        List<String> Segment = new ArrayList<>();
-//
-//        for (WebElement element : elements) {
-//            Segment.add(element.getText());
-//        }
-//        return Segment;
-//    }
-
-    public SearchBookingBranch CloseTheSideMenuInfo(){
-     driver.element().click(Close_Btn);
-     return new SearchBookingBranch(driver);
+    public SearchBookingBranch CloseTheSideMenuInfo() {
+        driver.element().click(Close_Btn);
+        return new SearchBookingBranch(driver);
     }
 
-    public SearchBookingBranch ConfirmSaveQuote(String NewUserFirstName,String NewUserLastName,String NewUserEmail,String NewUserPhone){
+    public SearchBookingBranch ConfirmSaveQuote(String NewUserFirstName, String NewUserLastName, String NewUserEmail, String NewUserPhone) {
 
         driver.element().click(NewUserCheckForQuoteTxt);
-        driver.element().type(QuoteNewUserFirstNameTxt,NewUserFirstName);
-        driver.element().type(QuoteNewUserLastNameTxt,NewUserLastName);
-        driver.element().type(QuoteNewUserEmailTxt,NewUserEmail);
+        driver.element().type(QuoteNewUserFirstNameTxt, NewUserFirstName);
+        driver.element().type(QuoteNewUserLastNameTxt, NewUserLastName);
+        driver.element().type(QuoteNewUserEmailTxt, NewUserEmail);
         driver.element().click(QuoteNewUserAddEmailBtn);
-        driver.element().type(QuoteNewUserPhone,NewUserPhone);
+        driver.element().type(QuoteNewUserPhone, NewUserPhone);
         driver.element().click(ConfirmSaveQuoteBtn);
         return new SearchBookingBranch(driver);
     }
-    public void AssertThatQuoteSaved(){
+
+    public void AssertThatQuoteSaved() {
         driver.verifyThat()
                 .element(QuoteSavedMsg)
                 .isVisible();
     }
-
 
     public void SuccessPayAfterHoldAssertion() {
         String ExpectedResult = "Your ticket has been successfully Confirmed";
@@ -230,20 +230,6 @@ public class SearchBookingBranch {
 
     public Boolean ReturnNoSearchResultsMsg() {
         return !driver.getDriver().findElements(noSearchResultsMsg).isEmpty();
-
-    }
-
-    public SearchBookingBranch ClickOnBooking() {
-        driver.element().click(Booking);
-        return new SearchBookingBranch(driver);
-    }
-
-    public SearchBookingBranch SelectBranch(String branch) throws InterruptedException {
-        driver.element().click(BranchList);
-        driver.element().type(inputField, branch);
-        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
-        driver.element().click(branchOption);
-        return new SearchBookingBranch(driver);
     }
 
     public SearchBookingBranch AddStartingFrom(String Place) {
@@ -390,12 +376,20 @@ public class SearchBookingBranch {
     }
 
     public void PayAfterHoldFlow() {
-        driver.element().click(Btn_SelectBookingRef);
-        driver.element().click(Btn_Lock);
-        driver.element().click(Btn_TakeControl);
-        driver.element().click(Btn_ConfirmToPay);
+        driver.element().click(Btn_PayAndBook);
         driver.element().click(Btn_CheckBox);
+        // The Zoho SalesIQ chat widget floats over the sidebar's Pay button at some viewport
+        // sizes and intercepts the click (confirmed live) -- same fix already used elsewhere in
+        // the codebase (see PortalPages.Reports.Statement.Statement.hideChatWidget()).
+        hideChatWidget();
         driver.element().click(Btn_Pay);
+    }
+
+    private void hideChatWidget() {
+        ((JavascriptExecutor) driver.getDriver()).executeScript(
+                "document.querySelectorAll('[data-id=\"zsalesiq\"], .zsiq_floatmain, .zsiq_cnt, .zls-sptwndw, .zsiq_flt_rel')" +
+                        ".forEach(element => element.style.display = 'none');"
+        );
     }
 
     public SearchBookingBranch clickOnWhiteMarkupButton() {
