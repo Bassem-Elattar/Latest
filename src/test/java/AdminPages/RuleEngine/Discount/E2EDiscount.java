@@ -58,6 +58,7 @@ public class E2EDiscount {
         String branch  = testData.getTestData("SearchSet1.Branch");
         discount.search_Discount(country,branch);
         discount.inactivestatus();
+        discount.findDiscountInPages();
 //        discount.goToLastPage();
         driver.verifyThat().element(discount.Table_FirstRow).exists();
     }
@@ -78,6 +79,7 @@ public class E2EDiscount {
                 testData.getTestData("UpdateSet1.AmountValue"),
                 testData.getTestData("UpdateSet1.Remarks")
         );
+        discount.clickAlert();
     }
     @Test(priority = 5)
     public void TC04_Search_Discount(){
@@ -90,6 +92,7 @@ public class E2EDiscount {
         discount.findDiscountInPages();
 //        Assert.assertTrue(discount.findDiscountInPages(discountname), testData.getTestData("SearchSet1.ErrorMessage"));
         driver.verifyThat().element(discount.Table_FirstRow).exists();
+      //  discount.clickAlert();
     }
     @AfterClass
     public void Reload(){

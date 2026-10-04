@@ -20,7 +20,7 @@ public class CreateDEalCode  {
         this.driver=driver;
     }
 
-    private final By Btn_AddDealCode = By.cssSelector("[style*=\"margin-inline-end\"]");
+    private final By Btn_AddDealCode = By.xpath("//SPAN[text()='Add Deal Code']");
     private final By  Lst_Supplier = By.xpath("//p-dropdown[.//input[@id=\"id-Supplier\"]]");
     private final By  Lst_SupplierCredential = By.xpath("//p-dropdown[.//input[@id=\"id-Suppliercredential\"]]");
     private final By RBtn_SearchAirLine = By.xpath("(//span[contains(text(),'Select')])[1]");
@@ -49,7 +49,7 @@ public class CreateDEalCode  {
     private final By Txt_TravelValidityTo = By.id("id-TravelValidityTo");
     private final By Btn_SendForApproval = By.cssSelector("[type=\"submit\"]");
     //
-    private final By  Btn_ApprovalAction = By.xpath("(//div[@class='action exception-buttons ng-star-inserted'])[3]");
+    private final By  Btn_ApprovalAction = By.xpath("(//div[contains(@class,'action exception-buttons ng-star-inserted')])[3]");
     private final By Txt_Remarks = By.xpath("//textarea[@placeholder='remarks...']");
     private final By RBtn_Submit = By.xpath("//span[normalize-space()='Submit']");
     //

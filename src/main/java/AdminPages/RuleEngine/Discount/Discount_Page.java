@@ -30,7 +30,7 @@ public class Discount_Page {
     private final By Lst_AgencyForAdd = By.xpath("//p-multiselect[.//input[@id=\"id-Agency\"]]");
     private final By Lst_Attribute = By.xpath("//p-dropdown[@placeholder='Select Attribute']//span[contains(@class,'p-dropdown-label')]");
     private final By Lst_Operator = By.xpath("//p-dropdown[.//input[@placeholder=\"Select Operator\"]]");
-    private final By Btn_Search = By.xpath("//button[@class=\"pi pi-search btn\"]");
+    private final By Btn_Search = By.xpath("//button[@class='pi pi-search btn' or @title='Choose values']");
     private final By txt_SearchData = By.xpath("(//input[@placeholder='Search...' and contains(@class,'p-inputtext')])[1]");
     private final By Btn_AddForAttribute = By.xpath("//button[normalize-space()='Add']");
     private final By Btn_Remove = By.xpath("(//button[@class=\"swap-btn\"])[2]");
@@ -65,6 +65,7 @@ public class Discount_Page {
     public By StatusCellActive = By.xpath("//td[normalize-space()='Active']");
     public By Btn_Next = By.xpath("//button[contains(@class,'next')]//i[contains(@class,'pi-angle-right')]");
     By Btn_Discount = By.xpath("//li[contains(@class,'ng-star-inserted')]//a[span[text()='Discount']]\n");
+    By Btn_alert = By.xpath("//div[@role='alert']");
 
 
     private By rowDiscount(String discountname) {
@@ -96,7 +97,11 @@ public class Discount_Page {
     }
 
     public void search_Discount(String Country, String Branch) {
-        driver.element().select(Lst_CountryPos, Country);
+        driver.element().click(Lst_CountryPos);
+        By countryOption =
+                By.xpath("//li[@role='option' and @aria-label=\"" + Country + "\"]");
+
+        driver.element().click(countryOption);
 //        driver.element().click(Lst_Branch);
 //        By item = By.xpath("//li[normalize-space()='" + Branch + "']");
 //        driver.element().scrollToElement(item);
@@ -127,9 +132,6 @@ public class Discount_Page {
     public void inactivestatus() {
         driver.element().click(Rbtn_Inactive);
         driver.element().click(Btn_Submit);
-        if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
-            driver.element().click(Btn_last);
-        }
     }
 
     public void bothstatus() {
@@ -139,22 +141,34 @@ public class Discount_Page {
     }
 
     public boolean findDiscountInPages() {
-        int maxPages = 20; // Safety limit
+
+        int maxPages = 100; // safety limit
 
         for (int i = 0; i < maxPages; i++) {
 
-            // Check if discount exists in current page
+            // Markup found in current page
             if (!driver.getDriver().findElements(rowDiscount(DiscountName)).isEmpty()) {
                 return true;
             }
 
-            // Check if Next button exists
-            if (driver.getDriver().findElements(Btn_Next).isEmpty()) {
+            // If Last button exists, click it
+            else if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+
+                driver.element().scrollToElement(Btn_last);
+                driver.element().click(Btn_last);
+
+            }
+            // Otherwise, click Next
+            else if (!driver.getDriver().findElements(Btn_Next).isEmpty()) {
+
+                driver.element().scrollToElement(Btn_Next);
+                driver.element().click(Btn_Next);
+
+            }
+            // No pagination buttons
+            else {
                 break;
             }
-
-            driver.element().scrollToElement(Btn_Next);
-            driver.element().click(Btn_Next);
         }
 
         return false;
@@ -325,6 +339,10 @@ public class Discount_Page {
         By Day = By.xpath(String.format("(//span[text()='%s'])[1]", From));
         driver.element().click(Day);
 
+    }
+    public Discount_Page clickAlert(){
+        driver.element().click(Btn_alert);
+        return this;
     }
 }
 

@@ -63,7 +63,7 @@ public class CreateDealCode{
 //TODO Assert For change status for deal code from  - Pending for approval - to approval
         String actualApproved = new Create.CreateDEalCode(driver).returnapprovedMsg();
         String expectedApproved = "Deal Code Approved";
-        softAssert.assertEquals(actualApproved,expectedApproved);
+        softAssert.assertEquals(actualApproved.trim(), expectedApproved.trim());
 
         new Master.SearchAction(driver).choseactive().clickONSearch().clickOnExportExcel();
         softAssert.assertAll();

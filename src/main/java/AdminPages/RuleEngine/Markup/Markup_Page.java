@@ -19,6 +19,8 @@ public class Markup_Page {
     public static String markupName;
     // Locators
     private final By Lst_CountryPos = By.xpath("//p-dropdown[.//input[@id=\"id-CountryPOS\"]]");
+    private final By CountryPOS = By.id("id-CountryPOS");
+
     private final By Lst_Branch = By.xpath("//p-dropdown[.//input[@id=\"id-Branch\"]]");
     private final By txt_MarkupCode = By.xpath("//input[@id=\"id-Markupcode\"]");
     By Rbtn_Inactive = By.xpath("//p-radiobutton[.//input[@id=\"id-Status-Inactive\"]]");
@@ -38,7 +40,7 @@ public class Markup_Page {
     private final By Lst_AgencyForAdd = By.xpath("//p-multiselect[.//input[@id=\"id-Agency\"]]");
     private final By Lst_Attribute = By.xpath("//p-dropdown[@placeholder='Select Attribute']//span[contains(@class,'p-dropdown-label')]");
     private final By Lst_Operator = By.xpath("//p-dropdown[.//input[@placeholder=\"Select Operator\"]]");
-    private final By Btn_Search = By.xpath("//button[@class=\"pi pi-search btn\"]");
+    private final By Btn_Search = By.xpath("//button[@class='pi pi-search btn' or @title='Choose values']");
     private final By txt_SearchData = By.xpath("(//input[@placeholder='Search...' and contains(@class,'p-inputtext')])[1]");
     private final By Btn_AddForAttribute = By.xpath("//button[normalize-space()='Add']");
     private final By Btn_Remove = By.xpath("(//button[@class=\"swap-btn\"])[2]");
@@ -98,7 +100,13 @@ public class Markup_Page {
     }
 
     public void searchMarkup(String Country, String branch) {
-        driver.element().select(Lst_CountryPos, Country);
+
+        driver.element().click(Lst_CountryPos);
+
+        By countryOption =
+                By.xpath("//li[@role='option' and @aria-label=\"" + Country + "\"]");
+
+        driver.element().click(countryOption);
 //        driver.element().click(Lst_Branch);
 //        By item = By.xpath("//li[normalize-space()='" + branch + "']");
 //
@@ -145,25 +153,37 @@ public class Markup_Page {
         driver.element().click(Btn_last);
     }
 
-    public boolean findMarkupInPages(){
-        int maxPages = 20; // safety limit
+    public boolean findMarkupInPages() {
 
-        for(int i = 0; i < maxPages; i++){
-            // If found in current page, return true
+        int maxPages = 100; // safety limit
+
+        for (int i = 0; i < maxPages; i++) {
+
+            // Markup found in current page
             if (!driver.getDriver().findElements(rowMarkup(markupName)).isEmpty()) {
                 return true;
             }
 
-            // Check if Next button exists
-            if (driver.getDriver().findElements(Btn_Next).isEmpty()) {
+            // If Last button exists, click it
+            if (!driver.getDriver().findElements(Btn_last).isEmpty()) {
+
+                driver.element().scrollToElement(Btn_last);
+                driver.element().click(Btn_last);
+
+            }
+            // Otherwise, click Next
+            else if (!driver.getDriver().findElements(Btn_Next).isEmpty()) {
+
+                driver.element().scrollToElement(Btn_Next);
+                driver.element().click(Btn_Next);
+
+            }
+            else {
                 break;
             }
-
-            driver.element().scrollToElement(Btn_Next);
-            driver.element().click(Btn_Next);
         }
 
-        return false; // not found anywhere
+        return false;
     }
 
     public void rejectAction(String remark){

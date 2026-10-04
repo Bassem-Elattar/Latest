@@ -106,7 +106,7 @@ public class CreateBSPCommission_TC{
         createBSPCommission.AirlineName(AirlineName);
         createBSPCommission.CommissionName();
         createBSPCommission.GDSSupplier(GDSSupplier);
-        createBSPCommission.SupplierCredential(SupplierCredential);
+        createBSPCommission.selectAllCredential();
         createBSPCommission.JourneyType(JourneyType);
         createBSPCommission.AirPort();
         createBSPCommission.OriginAirPort(OriginAirport);

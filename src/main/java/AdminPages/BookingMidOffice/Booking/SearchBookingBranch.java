@@ -4,9 +4,11 @@ import com.shaft.driver.SHAFT;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.SkipException;
 import org.testng.asserts.SoftAssert;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +30,7 @@ public class SearchBookingBranch {
     By BranchList = By.xpath( "//span[normalize-space()='Branch*']");
     By StartingFrom = By.xpath("//div[contains(text(),'From *')]");
     By selectFrom = By.xpath("//input[@role='textbox']");
+    By fromCheckBox = By.xpath("//li[@aria-label='CAI']//div[@class='p-checkbox-box']");
     By GoingTo = By.xpath("//span[normalize-space()='To *']");
     By selectTo = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
     By DataPicker = By.xpath("//input[@placeholder='DD/MM/YYYY *']");
@@ -90,6 +93,15 @@ public class SearchBookingBranch {
     // it could never resolve.
     By Btn_SecondDestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
     By Inp_DestinationMultiCity  = By.xpath("(//input[@class='p-dropdown-filter p-inputtext p-component'])[1]");
+    By Txt_NoFlight  = By.xpath("//h2[text()=\"No Flights Found\"]");
+    private By fromCheckBox(String place) {
+        return By.xpath(
+                String.format(
+                        "//li[@aria-label='%s']//div[@class='p-checkbox-box']",
+                        place
+                )
+        );
+    }
 
     public SearchBookingBranch BookFirstFlight() throws InterruptedException {
         driver.element().click(BookFlight_BTN);
@@ -120,9 +132,26 @@ public class SearchBookingBranch {
         return driver.element().getText(FareBreakDown_Txt);
     }
 
-    public SearchBookingBranch OpenSideMenuInfo(){
+    public boolean OpenSideMenuInfo() {
+
+        WebDriverWait wait = new WebDriverWait(
+                driver.getDriver(),
+                Duration.ofSeconds(30)
+        );
+
+        wait.until(d ->
+                !d.findElements(Txt_NoFlight).isEmpty()
+                        || !d.findElements(FlightDetails_Btn).isEmpty()
+        );
+
+        if (!driver.getDriver().findElements(Txt_NoFlight).isEmpty()) {
+            System.out.println("No flights found. Search completed successfully.");
+            return false;
+        }
+
         driver.element().click(FlightDetails_Btn);
-        return new SearchBookingBranch(driver);
+
+        return true;
     }
 
     public List<String> SegmentDetails() {
@@ -241,13 +270,15 @@ public class SearchBookingBranch {
     public SearchBookingBranch SelectBranch(String branch) throws InterruptedException {
         driver.element().click(BranchList);
         driver.element().type(inputField, branch);
-        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
+        By branchOption = By.xpath("(//li[contains(@aria-label,\"" + branch + "\")])[1]");
         driver.element().click(branchOption);
         return new SearchBookingBranch(driver);
     }
 
     public SearchBookingBranch AddStartingFrom(String Place) {
+
         driver.element().click(StartingFrom);
+
         driver.element().type(selectFrom, Place);
         driver.element().click(originOption(Place));
         return new SearchBookingBranch(driver);

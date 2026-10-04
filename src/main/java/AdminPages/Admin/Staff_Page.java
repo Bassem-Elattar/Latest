@@ -4,9 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.FakerSingleton;
 
 import java.io.File;
+import java.time.Duration;
 
 public class Staff_Page {
 
@@ -21,7 +24,7 @@ public class Staff_Page {
     public static String employeeName;
     SHAFT.GUI.WebDriver driver ;
 
-    By Btn_AddStuff = By.xpath("//span[@style=\"margin-inline-end: 10px;\"]");
+    By Btn_AddStuff = By.xpath("//span[text()=\"Add staff\"]");
     By Lst_Usertype = By.xpath("//p-dropdown[.//input[@id=\"id-Usertype\"]]");
     By Lst_OperatingCountry = By.xpath("//p-multiselect[.//input[@name='Operating country']]");
     By Lst_AddBranch = By.xpath("//p-multiselect[.//input[@id=\"id-Branch\"]]");
@@ -175,7 +178,9 @@ public class Staff_Page {
         Thread.sleep(MILLIS);
         driver.element().type(Txt_SearchUserName,u);
         driver.element().click(Lst_SearchBranch);
-        By option1 = By.xpath(String.format("//span[contains(text(), '%s')]",s1 ));
+        By option1 = By.xpath(
+                String.format("//li[@role='option' and starts-with(@aria-label, '%s (')]", s1)
+        );
         driver.element().click(option1);
         driver.element().click(Lst_Department);
         By option2 = By.xpath(String.format("//span[contains(text(), '%s')]",s2 ));
@@ -292,6 +297,15 @@ public class Staff_Page {
     {
         String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Updated Successfully\"]"));
         return S;
+    }
+    public void waitForInactiveToAppear() {
+
+        new WebDriverWait(
+                driver.getDriver(),
+                Duration.ofSeconds(120)
+        ).until(
+                ExpectedConditions.visibilityOfElementLocated(Rbtn_Inactive)
+        );
     }
 
 

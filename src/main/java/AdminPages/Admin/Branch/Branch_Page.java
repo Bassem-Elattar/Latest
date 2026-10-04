@@ -90,6 +90,7 @@ public class Branch_Page {
 
 
     By Lst_pcc = By.xpath("//p-dropdown[.//input[@id=\"id-State\"]]");
+    private By successMessage = By.xpath("//div[@aria-label=\"Added Successfully\"]");
 
 
     //////// Search&Action Branch ///////
@@ -326,7 +327,7 @@ public class Branch_Page {
     public void addCredForLcc(String supplier,String Cred){
         By dropdownTrigger = By.xpath("//tr[td[contains(text(),'"+supplier+"')]]//p-dropdown//div[@role='button']");
         driver.element().click(dropdownTrigger);
-        By option = By.xpath("//tr[td[contains(text(),'"+supplier+"')]]//p-dropdownitem/li/span[contains(text(),'"+Cred+"')]");
+        By option = By.xpath("(//p-dropdownitem/li/span[contains(text(),'"+Cred+"')])[1]");
         driver.getDriver().findElement(option).click();
 
 
@@ -366,5 +367,15 @@ public class Branch_Page {
     {
         String  S =driver.element().getText(By.xpath("//div[@aria-label=\"Added Successfully\"]"));
         return S;
+    }
+
+
+    public void waitForBranchCreation() {
+        new WebDriverWait(
+                driver.getDriver(),
+                Duration.ofSeconds(120)
+        ).until(
+                ExpectedConditions.visibilityOfElementLocated(successMessage)
+        );
     }
 }

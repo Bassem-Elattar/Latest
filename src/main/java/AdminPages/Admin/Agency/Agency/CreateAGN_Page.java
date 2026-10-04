@@ -39,7 +39,7 @@ public class CreateAGN_Page {
     By CashPay = xpath("//p-checkbox[.//input[@id=\"id-Paymentoption-Cash\"]]");
     //By Amad = xpath("//a[@id=\"p-tabpanel-1-label\"]");
     By SendApprove = xpath("//button[@type=\"submit \"]");
-    By After = xpath("//p-calendar//button[contains(@class,'p-datepicker-next')]//span");
+    By After = xpath("//div//button[contains(@class,'p-datepicker-next')]//span");
     //  By path = By.xpath("//input[@type='file']");
 //    By Galileo = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[1]/a/span");
 //    By Sabre = xpath("/html/body/ndc-root/ndc-layout/div/div[2]/div[1]/div/ndc-add-agency/div/div/div[4]/p-tabview/div/div[1]/div/ul/li[3]/a/span");
@@ -63,14 +63,15 @@ public class CreateAGN_Page {
 
     }
 
-    public String CreateValidAGN(String selectbranch, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) {
+    public String CreateValidAGN(String selectbranch, String state, String city, String PostBox, String address, String phone, String contact, String email, String ph, String START, String END, String invoice, String Credit, String Top, String pcc1) throws InterruptedException {
 //        driver.element().click(AGNBtn);
 //        driver.element().click(Agency)
                 driver.element().click(ADDBtn);
         driver.element().click(SelectBranch);
         By option11 = xpath(String.format("(//span[contains(text(), '%s')])[1]", selectbranch));
-        driver.element().click(option11)
-                .type(WRTAgencyName, FakerSingleton.PassengerFactory.firstName());
+        driver.element().click(option11);
+        Thread.sleep(1000);
+        driver.element().type(WRTAgencyName, FakerSingleton.PassengerFactory.firstName());
         driver.element().click(SelectState);
         By option13 = xpath(String.format("(//span[contains(text(), '%s')])[1]", state));
         driver.element().click(option13);

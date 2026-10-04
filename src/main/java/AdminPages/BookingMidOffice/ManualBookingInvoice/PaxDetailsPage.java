@@ -59,32 +59,38 @@ public class PaxDetailsPage {
         driver.element().type(by, Value);
     }
 
-    public PaxDetailsPage fillOnePassengerDetails(String Title,
-                                                  String FirstName,
-                                                  String LastName,
-                                                  String DOB,
-                                                  String Email,
-                                                  String Phone,
-                                                  String DocumentNumber,
-                                                  String DocumentExpiry,
-                                                  String Nationality) {
+    public PaxDetailsPage fillOnePassengerDetails(
+            String Title,
+            String FirstName,
+            String LastName,
+            String DOB,
+            String Email,
+            String Phone,
+            String DocumentNumber,
+            String DocumentExpiry,
+            String Nationality) {
+
         ElementClick(titleDropdown);
         ElementClick(dropdownOption(Title));
 
         ElementType(firstName, FirstName);
         ElementType(lastName, LastName);
-
         ElementType(dateOfBirth, DOB);
 
-        ElementType(email, Email);
+        // Email is optional/disabled
+        if (!driver.getDriver().findElements(email).isEmpty()
+                && driver.getDriver().findElement(email).isEnabled()) {
+
+            ElementType(email, Email);
+        }
+
         ElementType(phone, Phone);
-
         ElementType(documentNumber, DocumentNumber);
-
         ElementType(documentExpiry, DocumentExpiry);
 
         ElementClick(nationalityDropdown);
         ElementClick(dropdownOption(Nationality));
+
         return new PaxDetailsPage(driver);
     }
 

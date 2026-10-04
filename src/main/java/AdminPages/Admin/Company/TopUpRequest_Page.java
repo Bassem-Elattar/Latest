@@ -3,8 +3,11 @@ package AdminPages.Admin.Company;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 
 public class TopUpRequest_Page {
@@ -132,7 +135,7 @@ public class TopUpRequest_Page {
         driver.element().click(Lst_BranchName);
         By option = By.xpath(String.format("//span[text()='%s']", branchname));
         driver.element().click(option);
-        driver.element().type(Txt_AgencyName,agencyname).click(Txt_AgencyName);
+       // driver.element().type(Txt_AgencyName,agencyname).click(Txt_AgencyName);
         driver.element().type(Txt_TopUpAmount,topupamount);
         driver.element().click(Lst_PaymentType);
         By option2 = By.xpath(String.format("//span[text()='%s']", paymenttype));
@@ -150,5 +153,17 @@ public class TopUpRequest_Page {
     public void setSendApproval() throws InterruptedException {
         driver.element().click(Btn_SendApproval);
 
+    }
+    private By successMessage = By.xpath(
+            "//div[@aria-label=\"Your Top up has been processed successfully and sent for approval!!\"]"
+    );
+
+    public void waitForApprovalSuccess() {
+        new WebDriverWait(
+                driver.getDriver(),
+                Duration.ofSeconds(120)
+        ).until(
+                ExpectedConditions.visibilityOfElementLocated(successMessage)
+        );
     }
 }

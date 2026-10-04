@@ -2,7 +2,7 @@
 
 <suite name="Suite" parallel="false" preserve-order="true" verbose="2">
 
-    <test name="Role Module" time-out="300000">
+    <test name="Role Module">
         <classes>
             <class name="AdminPages.Admin.Company.Role.Role_TC">
                 <methods>
@@ -12,7 +12,7 @@
         </classes>
     </test>
 
-    <test name="Supplier Credential Module" time-out="240000">
+    <test name="Supplier Credential Module">
         <classes>
             <class name="AdminPages.Master.Supplier.SupplierCredential.AddSupplierCredential_TC">
                 <methods>
@@ -22,7 +22,7 @@
         </classes>
     </test>
 
-    <test name="Booking Search Module" time-out="240000">
+    <test name="Booking Search Module">
         <classes>
             <class name="AdminPages.BookingMidOffice.SearchBooking.SearchBookingTCs">
                 <methods>
@@ -31,16 +31,8 @@
             </class>
         </classes>
     </test>
-    <test name="TopUp Module" time-out="240000">
-        <classes>
-            <class name="AdminPages.Admin.Company.TopUpRequest.AddTopUpRequest_TC">
-                <methods>
-                    <include name="AddTopUpRequest"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="ROE Module" time-out="240000">
+
+    <test name="ROE Module">
         <classes>
             <class name="AdminPages.Master.Miscellaneous.RateOfExchange.CreateRateOfExchange_TC">
                 <methods>
@@ -49,7 +41,7 @@
             </class>
         </classes>
     </test>
-    <test name="Staff Module" time-out="240000">
+    <test name="Staff Module">
         <classes>
             <class name="AdminPages.Admin.Staff.ActionStaff_TC">
                 <methods>
@@ -58,7 +50,7 @@
             </class>
         </classes>
     </test>
-    <test name="Branch Module" time-out="240000">
+    <test name="Branch Module">
         <classes>
             <class name="AdminPages.Admin.Branch.CreateBranch_Admin_TC">
                 <methods>
@@ -67,7 +59,7 @@
             </class>
         </classes>
     </test>
-    <test name="Agency Module" time-out="240000">
+    <test name="Agency Module">
         <classes>
             <class name="AdminPages.Admin.Agency.Agency.CreateAGN_TC">
                 <methods>
@@ -76,7 +68,7 @@
             </class>
         </classes>
     </test>
-    <test name="BSP Module" time-out="240000">
+    <test name="BSP Module">
         <classes>
             <class name="AdminPages.Master.Flight.BSPCommission.CreateBSPCommission_TC">
                 <methods>
@@ -85,7 +77,7 @@
             </class>
         </classes>
     </test>
-    <test name="DealCode Module" time-out="240000">
+    <test name="DealCode Module">
         <classes>
             <class name="AdminPages.Master.DealCode.CreateDealCode">
                 <methods>
@@ -94,25 +86,25 @@
             </class>
         </classes>
     </test>
-    <test name="Markup Module" time-out="240000">
+    <test name="Markup Module">
         <classes>
             <class name="AdminPages.RuleEngine.Markup.Markup_E2E_TC">
             </class>
         </classes>
     </test>
-    <test name="Discount Module" time-out="240000">
+    <test name="Discount Module">
         <classes>
             <class name="AdminPages.RuleEngine.Discount.E2EDiscount">
             </class>
         </classes>
     </test>
-    <test name="ServiceCharge Module" time-out="240000">
+    <test name="ServiceCharge Module">
         <classes>
             <class name="AdminPages.RuleEngine.ServiceCharge.EndToEndService">
             </class>
         </classes>
     </test>
-    <test name="ManualBooking Module" time-out="300000">
+    <test name="ManualBooking Module">
         <classes>
             <class name="AdminPages.BookingMidOffice.ManualBookingInvoice.ManualBooking_TC">
                 <methods>
@@ -121,7 +113,7 @@
             </class>
         </classes>
     </test>
-    <test name="MyQuote Module" time-out="240000">
+    <test name="MyQuote Module">
         <classes>
             <class name="AdminPages.BookingMidOffice.MyQuotes.QuoteSearch">
                 <methods>
@@ -130,7 +122,7 @@
             </class>
         </classes>
     </test>
-    <test name="EditSupplier Module" time-out="240000">
+    <test name="EditSupplier Module">
         <classes>
             <class name="AdminPages.Master.Supplier.Supplier.EditSupplier_TC">
                 <methods>
@@ -139,7 +131,7 @@
             </class>
         </classes>
     </test>
-    <test name="CredentialField Module" time-out="300000">
+    <test name="CredentialField Module">
         <classes>
             <class name="AdminPages.Master.Supplier.CredentialField.CreateCredential_TC">
                 <methods>
@@ -148,7 +140,7 @@
             </class>
         </classes>
     </test>
-    <test name="FlightSearch Module" time-out="360000">
+    <test name="FlightSearch Module">
         <classes>
             <class name="AdminPages.BookingMidOffice.Booking.Booking_TC">
                 <methods>
@@ -157,6 +149,14 @@
             </class>
         </classes>
     </test>
-
+    <test name="TopUp Module">
+        <classes>
+            <class name="AdminPages.Admin.Company.TopUpRequest.AddTopUpRequest_TC">
+                <methods>
+                    <include name="AddTopUpRequest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>

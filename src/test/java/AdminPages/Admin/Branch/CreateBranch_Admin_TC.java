@@ -47,9 +47,12 @@ public class CreateBranch_Admin_TC{
     }
     @Test
     public void CreateBranch() throws InterruptedException {
+
         addNewBranch = new Branch_Page(driver);
         searchBranch = new Branch_Page(driver);
+
         addNewBranch.Btn_CreateBranch();
+
         String SupplierName = DataaUtils.getJsonData("SupplierData", "SupplierName");
         String PhoneNo = DataaUtils.getJsonData("NewBranchData", "PhoneNo");
         String EnterEmailPassword = DataaUtils.getJsonData("NewBranchData", "EnterEmailPassword");
@@ -58,19 +61,28 @@ public class CreateBranch_Admin_TC{
         String EnterCreditLimit = DataaUtils.getJsonData("NewBranchData", "EnterCreditLimit");
         String TopUpLimit = DataaUtils.getJsonData("NewBranchData", "TopUpLimit");
         String CreditTermsDays = DataaUtils.getJsonData("NewBranchData", "CreditTermsDays");
-        String selectOperatingCountry = DataaUtils.getJsonData("NewBranchData","SelectOperating Country");
-        String State = DataaUtils.getJsonData("NewBranchData","State");
-        String City = DataaUtils.getJsonData("NewBranchData","City");
-        String Description = DataaUtils.getJsonData("NewBranchData","Description");
-        boolean isGds = Boolean.parseBoolean(DataaUtils.getJsonData("NewBranchData", "isGds"));
-        String CredentialName = DataaUtils.getJsonData("FlightDate", "CredentialName");
+        String selectOperatingCountry =
+                DataaUtils.getJsonData("NewBranchData", "SelectOperating Country");
+        String State = DataaUtils.getJsonData("NewBranchData", "State");
+        String City = DataaUtils.getJsonData("NewBranchData", "City");
+        String Description = DataaUtils.getJsonData("NewBranchData", "Description");
+
+        boolean isGds = Boolean.parseBoolean(
+                DataaUtils.getJsonData("NewBranchData", "isGds")
+        );
+
+        String CredentialName =
+                DataaUtils.getJsonData("NewBranchData", "CredentialName");
+
         String Email = faker.internet().emailAddress();
         String Address = faker.address().streetAddress();
         int Post = faker.number().randomDigit();
-        Thread.sleep(4000);
+
         addNewBranch.Txt_OperatingCountry(selectOperatingCountry);
+
         branchName = addNewBranch.Txt_Name();
-        addNewBranch.Lst_StateCreate(State,selectOperatingCountry);
+
+        addNewBranch.Lst_StateCreate(State, selectOperatingCountry);
         addNewBranch.Lst_CityCreate(City);
         addNewBranch.Txt_Address1(Address);
         addNewBranch.Txt_PostOffice(String.valueOf(Post));
@@ -83,28 +95,41 @@ public class CreateBranch_Admin_TC{
         addNewBranch.Txt_CreditLimit(EnterCreditLimit);
         addNewBranch.Txt_TopUpLimit(TopUpLimit);
         addNewBranch.Txt_CreditTerms(CreditTermsDays);
+
         addNewBranch.Cbox_Cash();
         addNewBranch.Cbox_Wallet();
         addNewBranch.selectSupplier(SupplierName);
-        if(isGds == true) {
+
+        if (isGds) {
+
             addNewBranch.Lst_SupplierCredential(CredentialName);
             addNewBranch.addPccForGds();
             addNewBranch.Txt_SupplierDescription(Description);
-        }
-        else
-        {
-            addNewBranch.addCredForLcc(SupplierName,CredentialName);
+
+        } else {
+
+            addNewBranch.addCredForLcc(
+                    SupplierName,
+                    CredentialName
+            );
+
             System.out.println("GDS is False");
         }
-        addNewBranch.Txt_Description(Description,SupplierName);
+
+        addNewBranch.Txt_Description(Description, SupplierName);
+
         addNewBranch.Btn_Submit();
+
+        // Wait until branch is successfully created
+        addNewBranch.waitForBranchCreation();
+
         String Expected = "Added Successfully";
-        Assert.assertEquals(addNewBranch.Actual(),Expected);
+        Assert.assertEquals(addNewBranch.Actual(), Expected);
+
         searchBranch.Txt_BranchName(branchName);
         searchBranch.Btn_Inactive();
         searchBranch.Btn_Search();
         searchBranch.Btn_ThumbUp("Approved");
-
     }
     @AfterMethod
     public void Reload(){

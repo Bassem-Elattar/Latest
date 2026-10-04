@@ -1,0 +1,39 @@
+{
+  "_comment": "Portal Import PNR test data. Environment: staging92. Expected strings verified live 2026-08-09.",
+
+  "_supplierNote": "Which suppliers/credentials a dropdown offers depends on what is assigned to the logged-in agency (AGN2), not on fixed app behaviour - confirmed live 2026-08-12 when a third supplier (Amadeus) appeared alongside Sabre/Galileo. Tests must assert 'the configured value is present', never an exact/closed-set match against this dropdown's contents.",
+
+  "supplier": "Galileo",
+  "supplierCredential": "Live Egypt PCC",
+  "otherCredential": "Galileo Live UAE",
+  "otherSupplier": "Sabre",
+
+  "pnr": {
+    "unticketed": "",
+    "ticketed": "",
+    "cancelled": "",
+    "nonExistent": "ZZZ999",
+    "lessThanSixChars": "ABC12",
+    "exactlySixChars": "ABC123",
+    "moreThanNineChars": "ABC1234567",
+    "twelveChars": "ABCDEFGHIJKL",
+    "truncatedToTen": "ABCDEFGHIJ",
+    "specialChars": "AB@#12",
+    "lowercase": "hqkk46"
+  },
+
+  "expected": {
+    "requiredMessage": "Required",
+    "lessThanSixCharsMessage": "PNR code less than 6 chars!",
+    "moreThanNineCharsMessage": "PNR code cannot exceed 9 characters",
+    "pnrCodeMaxLength": "10",
+    "statusTicketed": "Ticketed",
+    "statusNotTicketed": "Not Ticketed",
+    "paySuccessToast": "Payed Successfully",
+    "successMessage": "Your ticket has been successfully Confirmed. Thank you for choosing NDC",
+    "confirmDialogHeader": "Pay PNR",
+    "confirmDialogBody": "Are you sure you want to pay this PNR?",
+    "confirmationUrlFragment": "/booking/booking-confirmation/",
+    "loginUrlFragment": "/auth/login"
+  }
+}

@@ -5,6 +5,9 @@ import AdminPages.Admin.Staff_Page;
 import AdminPages.Login.LogIn_Page;
 import Drive_Factory.CommonMethod;
 import com.shaft.driver.SHAFT;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -14,6 +17,7 @@ import utilities.JsonDataUtil;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.Map;
 
 public class ActionStaff_TC {
@@ -66,7 +70,7 @@ public class ActionStaff_TC {
         staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
                 ,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,ApprovalList);
         staff.YesUndercut();
-        Thread.sleep(3000);
+        Thread.sleep(10000);
         staff.setInactive();
         staff.fill(StaffName,UserName,Branch,Department);
         staff.ThumpUp("Approved");
@@ -148,33 +152,53 @@ public void AddStaff(Map<String,String> st) throws Exception {
 }
     @Test
     public void AddStaffCICD() throws Exception {
+
         staff = new Staff_Page(driver);
-        // staff.Clickonadmin();
-//        staff.ClickonStuff();
-        new AdminMenu(driver).openSubAdmin().openStaff();
+
+        new AdminMenu(driver)
+                .openSubAdmin()
+                .openStaff();
+
         staff.addstuff();
-        String Usertype =testData.getTestData("Usertype");
-        String SearchOperatingCountry=testData.getTestData("SearchOperatingCountry");
-        Branch = staff.Branch;
-        Department =testData.getTestData("SearchDepartment");
+
+        String UserType = testData.getTestData("Usertype");
+        String SearchOperatingCountry = testData.getTestData("SearchOperatingCountry");
+        String Branch = staff.Branch;
+        String Department = testData.getTestData("SearchDepartment");
         String SearchRole = testData.getTestData("SearchRole");
-        StaffName = testData.getTestData("EmployeeName");
+        String StaffName = testData.getTestData("EmployeeName");
         String EmployeeEmail = testData.getTestData("EmployeeEmail");
         String EmployeePhoneNo = testData.getTestData("EmployeePhoneNo");
         String EmployeeSecondaryNo = testData.getTestData("EmployeeSecondaryNo");
-        UserName = testData.getTestData("UserName");
+        String UserName = testData.getTestData("UserName");
         String ApprovalList = testData.getTestData("ApprovalList");
-        staff.AddStuff(Usertype,SearchOperatingCountry,Branch,Department,SearchRole
-                ,EmployeeEmail,EmployeePhoneNo,EmployeeSecondaryNo,ApprovalList);
+
+        staff.AddStuff(
+                UserType,
+                SearchOperatingCountry,
+                Branch,
+                Department,
+                SearchRole,
+                EmployeeEmail,
+                EmployeePhoneNo,
+                EmployeeSecondaryNo,
+                ApprovalList
+        );
+
         staff.YesUndercut();
-        Thread.sleep(3000);
+        staff.waitForInactiveToAppear();
+
         staff.setInactive();
-        staff.fill(testData.getTestData("EmployeeName"),
+
+        staff.fill(
+                testData.getTestData("EmployeeName"),
                 testData.getTestData("UserName"),
                 staff.Branch,
-                staff.Departement);
+                staff.Departement)
+        ;
+
         staff.ThumpUp("Approved");
-        Thread.sleep(3000);
+
         staff.ClickOnAlert();
     }
 
