@@ -45,18 +45,13 @@ public class SideMenu {
     }
 
     private final By reportsMenu = By.xpath("//a[.//span[normalize-space()='Reports']]");
-    private final By bookingButton = By.xpath("//ndc-card[.//h3[normalize-space()='Bookings']]//button");
+
     private final By salesButton = By.xpath("//ndc-card[.//h3[normalize-space()='Sales']]//button");
     private final By totalDueToNdcButton = By.xpath("//ndc-card[.//h3[normalize-space()='Total Due to NDC']]//button");
 
 
     public SideMenu openReports() {
         driver.element().click(reportsMenu);
-        return this;
-    }
-
-    public SideMenu openBookingReport() {
-        driver.element().click(bookingButton);
         return this;
     }
 
