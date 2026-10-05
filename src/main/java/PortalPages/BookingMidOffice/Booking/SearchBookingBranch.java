@@ -305,9 +305,7 @@ public class SearchBookingBranch {
         driver.element().click(year1);
         By month1 = By.xpath("//span[normalize-space()='" + month + "']");
         driver.element().click(month1);
-        // Skip the dimmed adjacent-month / disabled days -- see SelectDateOfJourney.
-        By Day = By.xpath(String.format("(//td[not(contains(@class,'p-datepicker-other-month'))]"
-                + "/span[not(contains(@class,'p-disabled')) and normalize-space()='%s'])[1]", to));
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
         driver.element().click(Day);
         return new SearchBookingBranch(driver);
     }
@@ -320,9 +318,7 @@ public class SearchBookingBranch {
         driver.element().click(year1);
         By month1 = By.xpath("//span[normalize-space()='" + month + "']");
         driver.element().click(month1);
-        // Skip the dimmed adjacent-month / disabled days -- see SelectDateOfJourney.
-        By Day = By.xpath(String.format("(//td[not(contains(@class,'p-datepicker-other-month'))]"
-                + "/span[not(contains(@class,'p-disabled')) and normalize-space()='%s'])[1]", to));
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
         driver.element().click(Day);
         return new SearchBookingBranch(driver);
     }
@@ -335,10 +331,7 @@ public class SearchBookingBranch {
         driver.element().click(year1);
         By month1 = By.xpath("//span[normalize-space()='" + month + "']");
         driver.element().click(month1);
-        // The calendar also renders the adjacent months' days (dimmed), so the same number can
-        // appear twice -- only match the enabled day that belongs to the current month.
-        By Day = By.xpath(String.format("(//td[not(contains(@class,'p-datepicker-other-month'))]"
-                + "/span[not(contains(@class,'p-disabled')) and normalize-space()='%s'])[1]", to));
+        By Day = By.xpath(String.format("(//span[text()='%s'])[1]", to));
         driver.element().click(Day);
         Thread.sleep(2000);
         return new SearchBookingBranch(driver);
