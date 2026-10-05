@@ -2,7 +2,10 @@ package AdminPages.Settings.AdminSettings;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class AdminSettings_Page {
     //constant
@@ -133,5 +136,50 @@ public class AdminSettings_Page {
         driver.element().click(LogINButton);
         adminsetting1 = new AdminSettings_Page(driver);
         return this;
+    }
+
+    // Confirmed live against /settings/admin-settings: columns are Key / Value / Data Type /
+    // Description / Actions, paginated with the same page-no/next controls PaginationHelper
+    // already handles. AGENCY_AUTO_REFUND_ENABLED was found on page 3 with value "0" ("1 to
+    // auto-approve agency refund requests without admin review - 0 to require admin approval").
+    private final By settingsTableHeaders = By.xpath("//table/thead/tr/th");
+    private final By settingsTableRows = By.xpath("//table/tbody/tr");
+
+    public String findSettingValue(String key) {
+        AdminPages.Helper.PaginationHelper paginationHelper = new AdminPages.Helper.PaginationHelper(driver);
+        int totalPages = paginationHelper.getTotalPages();
+
+        int keyColumn = findSettingsColumnIndex("Key");
+        int valueColumn = findSettingsColumnIndex("Value");
+
+        for (int page = 1; page <= totalPages; page++) {
+            List<WebElement> rows = driver.getDriver().findElements(settingsTableRows);
+            for (int i = 1; i <= rows.size(); i++) {
+                String keyCell = driver.element().getText(By.xpath("//table/tbody/tr[" + i + "]/td[" + keyColumn + "]"));
+                if (keyCell.trim().equals(key)) {
+                    return driver.element().getText(By.xpath("//table/tbody/tr[" + i + "]/td[" + valueColumn + "]")).trim();
+                }
+            }
+
+            if (page < totalPages) {
+                try {
+                    paginationHelper.navigateToNextPage();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+        throw new IllegalStateException("Setting key '" + key + "' was not found on any page of the Admin Settings grid");
+    }
+
+    private int findSettingsColumnIndex(String headerName) {
+        List<WebElement> headers = driver.getDriver().findElements(settingsTableHeaders);
+        for (int i = 0; i < headers.size(); i++) {
+            if (headers.get(i).getText().trim().equalsIgnoreCase(headerName)) {
+                return i + 1;
+            }
+        }
+        throw new IllegalStateException("Column header '" + headerName + "' was not found in the Admin Settings grid");
     }
 }
