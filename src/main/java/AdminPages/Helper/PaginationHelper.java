@@ -54,6 +54,13 @@ public class PaginationHelper {
         }
     }
 
+    public void navigateToLastPage() throws InterruptedException {
+        int totalPages = getTotalPages();
+        for (int currentPage = 1; currentPage < totalPages; currentPage++) {
+            navigateToNextPage();
+        }
+    }
+
     By Pagination = By.xpath("//span[@class=\"p-dropdown-trigger-icon pi pi-chevron-down\"]");
 
     public void setPagination(String pagination){

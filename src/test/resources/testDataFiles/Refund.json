@@ -1,0 +1,8 @@
+{
+  "popupTitle": "Refund",
+  "amountLabel": "Amount",
+  "invalidRefundAmount": "not-a-number",
+  "refundType": "FULL",
+  "requestType": "Automatic",
+  "refundStatus": "Refunded"
+}

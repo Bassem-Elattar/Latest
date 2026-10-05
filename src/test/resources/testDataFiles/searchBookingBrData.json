@@ -1,16 +1,16 @@
 {
-  "brName" : "AutomationTest",
+  "brName" : "ROE branch",
   "NumberOfAdults" : "1",
   "NumberOfChildren" : "1",
   "NumberOfInfants" : "1",
   "source" : "CAI",
   "destination" : "DXB",
   "SecondDestination" : "CAI",
-  "JourneyDay" : "2",
+  "JourneyDay" : "20",
   "JourneyYear" : "2026",
-  "JourneyMonth" : "Dec",
+  "JourneyMonth" : "Oct",
   "dayOfSecondJourney" : "5",
   "monthOfSecondJourney" : "Dec",
   "yearOfSecondJourney" : "2026",
-  "BookingReference" : "NDCEG-BR-F260629fygEU9"
+  "BookingReference" : "NDCEG-BR-F2609294ydD6r"
 }
