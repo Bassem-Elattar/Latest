@@ -223,7 +223,7 @@ public class SearchBooking_Page {
     public SearchBooking_Page SelectCurrentEndDate() throws InterruptedException {
         String[] date = getCurrentDate();
 
-        String day = date[0].replaceFirst("^0", "");
+        String day = date[0];
         String month = date[1];
         String year = date[2];
 
