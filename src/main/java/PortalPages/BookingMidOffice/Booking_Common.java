@@ -22,6 +22,7 @@ public class Booking_Common {
         return this;
     }
 
+
     public Booking_Common clickMyBookings() {
         driver.element().click(btn_MyBookings);
         return this;
