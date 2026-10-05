@@ -64,8 +64,8 @@ public class SearchBookingBranch {
     By FareDetails_Btn = By.xpath("(//a[normalize-space()='Fare Details'])[1]");
     By BaggageInfo_Btn = By.xpath("(//a[normalize-space()='Baggage Info'])[1]");
     By Txt_BookingRef = By.xpath("(//span[@class='main-text align-items-center flex gap-2 ng-star-inserted'])[1]");
-    By Btn_SelectBookingRef = By.xpath("(//td[@class='ng-star-inserted'])[2]//a");
-    By Btn_Lock = By.xpath("(//div[contains(@class,'locker') and contains(@class,'exception-buttons')])[2]");
+    By Btn_SelectBookingRef = By.xpath("(//td[@class='ng-star-inserted'])[2]");
+    By Btn_Lock = By.xpath("(//div[@class='locker exception-buttons'])[2]");
     By Btn_TakeControl = By.xpath("//button[normalize-space()='Take Control']");
     By Btn_ConfirmToPay = By.xpath("//button[@label='Confirm To Pay']");
     By Btn_CheckBox = By.xpath("//div[@class='p-checkbox-box']");
@@ -74,6 +74,7 @@ public class SearchBookingBranch {
     By Close_Btn = By.xpath("(//div[@class='p-component-overlay p-sidebar-mask p-component-overlay-enter'])[1]");
     By FareBreakDown_Txt = By.xpath("//div[@class='fare-breakdown-container ng-star-inserted']");
     By expandButton = By.xpath("(//button[@class='expand-btn'])[1]");
+    private final By brandedFares = By.xpath("//p-carousel");
     private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
     By Txt_SuccessMessage = By.xpath("(//p[@class='mx-2 text-base text-green-700 ng-star-inserted'])[1]");
     By Btn_RoundTrip = By.xpath("(//button[normalize-space()='Round-trip'])[1]");
@@ -84,14 +85,7 @@ public class SearchBookingBranch {
     By Btn_SecondTripDate  = By.xpath("(//span[@class='p-button-icon pi pi-calendar'])[2]");
     By Btn_OriginMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='From *'])[1]");
     By Btn_DestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
-    // Confirmed live on Portal (same underlying component library): the 2nd route row's origin
-    // auto-fills from the 1st row's destination the moment it's selected -- only the 2nd row's
-    // "To *" stays an actual empty placeholder. By the time this is clicked, the 1st row's own
-    // "From *"/"To *" are already filled in (no longer carry the p-placeholder class/text), so the
-    // 2nd row's "To *" is the only remaining match -- index [1], not a "2nd occurrence". The old
-    // chevron-icon-index[8] locator only ever matched 6 chevron-down icons total on this page, so
-    // it could never resolve.
-    By Btn_SecondDestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-label p-inputtext p-placeholder ng-star-inserted'][normalize-space()='To *'])[1]");
+    By Btn_SecondDestinationMultiCity  = By.xpath("(//span[@class='p-dropdown-trigger-icon pi pi-chevron-down'])[8]");
     By Inp_DestinationMultiCity  = By.xpath("(//input[@class='p-dropdown-filter p-inputtext p-component'])[1]");
     By Txt_NoFlight  = By.xpath("//h2[text()=\"No Flights Found\"]");
     private By fromCheckBox(String place) {
@@ -280,7 +274,9 @@ public class SearchBookingBranch {
         driver.element().click(StartingFrom);
 
         driver.element().type(selectFrom, Place);
-        driver.element().click(originOption(Place));
+
+        driver.element().click(fromCheckBox(Place));
+
         return new SearchBookingBranch(driver);
     }
 
@@ -295,19 +291,8 @@ public class SearchBookingBranch {
     public SearchBookingBranch AddStartingFromRoundTrip(String Place) {
         driver.element().click(Btn_OriginRoundTrip);
         driver.element().type(selectFrom, Place);
-        driver.element().click(originOption(Place));
+        driver.element().click(fromCheckBox(Place));
         return new SearchBookingBranch(driver);
-    }
-
-    private By originOption(String place) {
-        return By.xpath("//li[contains(@aria-label," + quoteXPath(place) + ")]//div[contains(@class,'p-checkbox-box')]");
-    }
-
-    private String quoteXPath(String value) {
-        if (!value.contains("'")) {
-            return "'" + value + "'";
-        }
-        return "concat('" + value.replace("'", "',\"'\",'") + "')";
     }
 
     public SearchBookingBranch AddGoingToRoundTrip(String Place) {
@@ -414,8 +399,6 @@ public class SearchBookingBranch {
     }
 
     public String GetBookingReference() {
-        WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(180));
-        wait.until(ExpectedConditions.presenceOfElementLocated(Txt_BookingRef));
         String Text = driver.element().getText(Txt_BookingRef);
         return Text.split("Booking Reference:")[1].trim();
     }
@@ -472,11 +455,20 @@ public class SearchBookingBranch {
     }
 
     public void proceedIfBrandedFareExists() {
-        WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(15));
+
+        WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(5));
+
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(Btn_Proceed)).click();
-        } catch (TimeoutException ignored) {
-            // No branded fare Proceed button appeared within the wait window; nothing to do.
+            wait.until(ExpectedConditions.presenceOfElementLocated(brandedFares));
+
+            List<WebElement> fares = driver.getDriver().findElements(brandedFares);
+
+            if (!fares.isEmpty()) {
+                wait.until(ExpectedConditions.elementToBeClickable(Btn_Proceed)).click();
+            }
+
+        } catch (TimeoutException e) {
+            System.out.println("Branded fare not found, skipping proceed...");
         }
     }
 }

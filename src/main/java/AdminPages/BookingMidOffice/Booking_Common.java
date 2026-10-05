@@ -6,13 +6,12 @@ import org.openqa.selenium.By;
 
 public class Booking_Common {
     SHAFT.GUI.WebDriver driver;
-    private final By btn_BookingMidOffice = By.xpath("(//span[text()='Booking-Mid Office'])[1]");
+    private final By btn_BookingMidOffice = By.xpath("//span[text()='Booking-Mid Office']");
     private final By btn_Sub_BookingMidOffice = By.xpath("//a[@class='ng-star-inserted']");
     private final By btn_SearchBooking = By.xpath("//a[@href='/booking/search-booking']");
     private final By btn_Booking = By.xpath("//a[@href='/booking/booking']");
     private final By btn_MyQuotes = By.xpath("//a[@href='/booking/search-my-quotes']");
     private final By btn_ManualBookingInvoice = By.xpath("//a[@href='/booking/manual-booking-invoice']");
-    private final By btn_RefundRequest = By.xpath("//a[@href='/booking/refund-request']");
     private final By ShowMoreBtn = By.xpath("(//button[@type='button'])[1]");
 
     public Booking_Common(SHAFT.GUI.WebDriver driver){
@@ -34,8 +33,8 @@ public class Booking_Common {
         driver.element().click(btn_SearchBooking);
         return this;
     }
-    public Booking_Common clickRefundRequest(){
-        driver.element().click(btn_RefundRequest);
+    public Booking_Common clickBooking(){
+        driver.element().click(btn_Booking);
         return this;
     }
     public Booking_Common clickMyQuotes(){

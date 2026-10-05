@@ -34,6 +34,7 @@ public class SearchBooking_Page {
     private final By Btn_SelectBookingEndDate = By.xpath("(//button[@tabindex='0'])[2]");
     private final By lst_OpenBranch = By.xpath("(//div[@role='button'])[1]");
     private final By Inpt_Branch = By.xpath("//input[@class='p-dropdown-filter p-inputtext p-component']");
+    private final By Btn_Branch = By.xpath(" //span[text()='Test (BRN2)']");
     private final By lst_OpenAgency = By.xpath("//div[@class='p-multiselect-trigger']");
     private final By Btn_SelectAgency = By.xpath("//li[@aria-label='Test Egypt']");
     private final By Btn_CloseAgency = By.xpath("//li[@aria-label='Test Egypt']");
@@ -116,8 +117,7 @@ public class SearchBooking_Page {
     public SearchBooking_Page SelectBranch(String branch) {
         driver.element().click(lst_OpenBranch);
         driver.element().type(Inpt_Branch, branch);
-        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
-        driver.element().click(branchOption);
+        driver.element().click(Btn_Branch);
         return this;
     }
 

@@ -5,12 +5,9 @@ import org.openqa.selenium.By;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import utilities.FakerSingleton;
 
-import java.time.Duration;
 import java.util.List;
 
 public class PaxDetailsPage {
@@ -75,7 +72,7 @@ public class PaxDetailsPage {
     private final By holdBtn = By.xpath("//p-button[@label='Hold']/button");
     private final By quoteSavedMsg = By.xpath("//span[normalize-space()='Quote Saved']");
     private final By infantAssignedTo = By.xpath("//input[contains(@id,'assigned-to_3')]");
-    private final By termsSelect = By.xpath("(//div[contains(@class,'p-checkbox-box')])[last()]");
+    private final By termsSelect = By.xpath("(//div[@class='p-checkbox-box'])[3]");
     private final By GDSPNR_Confirmation = By.xpath("//th[text()='GDS PNR Number']");
     private final By brandedFares = By.xpath("//p-carousel");
     private final By Btn_Proceed= By.xpath("(//button[@class='book-btn'])[1]");
@@ -138,9 +135,10 @@ public class PaxDetailsPage {
             String documentExpiryValue,
             String nationality) {
 
-        int total = parseCount("NumberOfAdults")
-            + parseCount("NumberOfChildren")
-            + parseCount("NumberOfInfants");
+        int total =
+                Integer.parseInt(testData.getTestData("NumberOfAdults"))
+                        + Integer.parseInt(testData.getTestData("NumberOfChildren"))
+                        + Integer.parseInt(testData.getTestData("NumberOfInfants"));
         driver.element().click(Btn_ExpandAll);
         for (int i = 0; i < total; i++) {
 
@@ -255,22 +253,11 @@ public class PaxDetailsPage {
         return new PaxDetailsPage(driver);
     }
 
-    private int parseCount(String key) {
-        String value = testData.getTestData(key);
-        return value == null || value.isBlank() ? 0 : Integer.parseInt(value);
-    }
-
     public PaxDetailsPage SelectTermsAndConditions() {
         driver.element().click(termsSelect);
         return this;
     }
     public PaxDetailsPage AssertThatTicketIsHoldSuccessfully() {
-        // Explicit wait for the confirmation page's GDS PNR header -- the live app occasionally
-        // takes well over SHAFT's default action timeout to render this (supplier hang / BE
-        // deployment quirk), so this polls with a longer, dedicated timeout instead of relying on
-        // the default wait baked into driver.element().getText().
-        new WebDriverWait(driver.getDriver(), Duration.ofSeconds(120))
-                .until(ExpectedConditions.presenceOfElementLocated(GDSPNR_Confirmation));
         String s = driver.element().getText(GDSPNR_Confirmation);
         softAssert.assertEquals(s,"GDS PNR Number");
         return this;
