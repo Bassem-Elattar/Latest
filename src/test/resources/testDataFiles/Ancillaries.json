@@ -1,0 +1,284 @@
+{
+  "_HowToUse": {
+    "Routes": "Routes, dates and supplier are set ONCE in Defaults.Routes, one entry per trip type (ONE_WAY, ROUND_TRIP, MULTI_CITY). A scenario only says \"Trip\": \"ROUND_TRIP\" and uses that route. Need another route (e.g. a 3-leg multi-city)? Add it under Defaults.Routes with its own name and a \"Trip\", then put \"Route\": \"<that name>\" in the scenario.",
+    "Journeys": "List of {From, To, Date (DD/MM/YYYY)}: 1 for one-way, 2 for round trip (the site fills the return route, only its Date is used), 2+ legs for multi-city. A route's Supplier (text on the flight card) overrides Defaults.Supplier when filled in; empty everywhere = first flight in the results.",
+    "Scenarios": "Every object in Scenarios is one test run. Add a block to add a test; set Enabled=false to park it. Run some: -Dscenario=\"OW*\" (name, * wildcard, comma-separated) or -Dtags=smoke. Change supplier for a run: -Dsupplier=\"Fly Nas NDC\". Dry run any scenario: -Dflow=NO_BOOKING.",
+    "Flow": "BOOK = book from wallet and verify passenger page, confirmation, e-ticket, itinerary. HOLD_THEN_PAY = hold, verify, pay after hold, verify. NO_BOOKING = verify the passenger page only and stop (no wallet cost).",
+    "Rules": "Bundle: {Journey, Pick}. Meals: {Passenger, Journey, Segment, Pick}. Baggage: {Passenger, Journey, Pick}. ChangeBeforeBooking: same plus Type (MEAL | BAGGAGE) - re-selects after the first picks. Clear: {Type, Passenger, Journey, Segment} - removes picks. A plain string (\"Meals\": \"FIRST\") means every passenger / journey / segment.",
+    "Values": "Passenger = ALL | ADULTS | CHILDREN | 1, 2, ... (infants never get ancillaries). Journey = ALL | LAST | 1, 2, ... (one-way 1; round trip 1 outbound, 2 return; multi-city one per leg). Segment = ALL | LAST | 1, 2, 3 (legs inside a journey; direct = 1 only). Pick = FIRST..TENTH | LAST (position in the dropdown, or 1..10) | exact option name (Value Flex, SFML, 20Kg Baggage) | CHEAPEST_PAID | MOST_EXPENSIVE | FREE (meals/baggage) | NONE.",
+    "Order": "Rules are applied top to bottom; a later rule overrides an earlier one for the same card. Missing fields mean ALL (Pick missing = NONE).",
+    "NotOffered": "A rule that matches nothing on the flight (no bundles, Segment 2 on a direct flight, THIRD when only 2 options) is logged and skipped. A BOOK/HOLD scenario is skipped before booking when nothing it asked for exists. An exact option name that isn't offered fails and lists the offered options.",
+    "Rounding": "Defaults.Rounding.BaseFare / Taxes = UP (default) | DOWN | NEAREST | NONE: how the system rounds the Base fare total and the Taxes total (summed over all passengers) before adding ancillaries, e.g. UP: 12,781.8 -> 12,782. Every expected total uses it.",
+    "Expect": "Negative checks (use with NO_BOOKING): BUNDLE_REQUIRED, INFANT_HAS_NO_TAB, CLEAR_RESTORES_PRICE (clears the Clear rules, or everything when Clear is empty, and checks the price goes back)."
+  },
+
+  "Defaults": {
+    "Branch": "Bassem's Branch",
+    "Supplier": "FlyNas",
+    "Routes": {
+      "ONE_WAY": {
+        "Supplier": "",
+        "Journeys": [
+          { "From": "CAI", "To": "DXB", "Date": "20/10/2026" }
+        ]
+      },
+      "ROUND_TRIP": {
+        "Supplier": "",
+        "Journeys": [
+          { "From": "CAI", "To": "DXB", "Date": "20/10/2026" },
+          { "From": "DXB", "To": "CAI", "Date": "20/10/2026" }
+        ]
+      },
+      "MULTI_CITY": {
+        "Supplier": "",
+        "Journeys": [
+          { "From": "CAI", "To": "DXB", "Date": "20/10/2026" },
+          { "From": "DXB", "To": "CAI", "Date": "20/10/2026" }
+        ]
+      }
+    },
+    "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+    "Passenger": {
+      "Title": "Mr",
+      "AdultDateOfBirth": "01/12/1999",
+      "ChildDateOfBirth": "01/12/2020",
+      "InfantDateOfBirth": "01/6/2026",
+      "ExpiryDate": "31/12/2029",
+      "Nationality": "Egypt",
+      "Email": "test@test.com",
+      "Phone": "01291287020"
+    },
+    "Rounding": { "BaseFare": "UP", "Taxes": "UP" },
+    "Messages": { "BundleRequired": "Bundle selection is required" }
+  },
+
+  "Scenarios": [
+    {
+      "Name": "OW dry run - per-leg rules, no booking",
+      "Enabled": true,
+      "Tags": ["oneway", "dryrun"],
+      "Trip": "ONE_WAY",
+      "Flow": "NO_BOOKING",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": [ { "Journey": "ALL", "Pick": "FIRST" } ],
+      "Meals": [
+        { "Passenger": "ALL", "Journey": 1, "Segment": 1, "Pick": "THIRD" },
+        { "Passenger": "ALL", "Journey": 1, "Segment": "LAST", "Pick": "SECOND" },
+        { "Passenger": 2, "Journey": 1, "Segment": "LAST", "Pick": "NONE" }
+      ],
+      "Baggage": [ { "Passenger": "ADULTS", "Journey": 1, "Pick": "FIRST" } ]
+    },
+    {
+      "Name": "OW 1A+1C - bundle only",
+      "Enabled": true,
+      "Tags": ["oneway", "smoke"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST"
+    },
+    {
+      "Name": "OW 2A - meal on every leg for every passenger",
+      "Enabled": true,
+      "Tags": ["oneway"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 2, "Children": 0, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST"
+    },
+    {
+      "Name": "OW 1A+1C - different baggage per passenger",
+      "Enabled": true,
+      "Tags": ["oneway"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Baggage": [
+        { "Passenger": 1, "Journey": 1, "Pick": "FIRST" },
+        { "Passenger": 2, "Journey": 1, "Pick": "SECOND" }
+      ]
+    },
+    {
+      "Name": "OW 1A+1C - free meals pax 1, paid meals pax 2, baggage pax 1",
+      "Enabled": true,
+      "Tags": ["oneway", "smoke"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "LAST",
+      "Meals": [
+        { "Passenger": 1, "Journey": 1, "Segment": "ALL", "Pick": "FREE" },
+        { "Passenger": 2, "Journey": 1, "Segment": "ALL", "Pick": "SECOND" }
+      ],
+      "Baggage": [ { "Passenger": 1, "Journey": 1, "Pick": "FIRST" } ]
+    },
+    {
+      "Name": "OW 1A+1C - per-leg control: leg 1 FIRST for all, leg 2 SECOND for pax 1 only",
+      "Enabled": true,
+      "Tags": ["oneway"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": [
+        { "Passenger": "ALL", "Journey": 1, "Segment": 1, "Pick": "FIRST" },
+        { "Passenger": "ALL", "Journey": 1, "Segment": 2, "Pick": "SECOND" },
+        { "Passenger": 2, "Journey": 1, "Segment": 2, "Pick": "NONE" }
+      ],
+      "Baggage": [ { "Passenger": 1, "Journey": 1, "Pick": "FIRST" } ]
+    },
+    {
+      "Name": "OW 1A - change meal and baggage before booking, only the final choice is charged",
+      "Enabled": true,
+      "Tags": ["oneway"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 0, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": [ { "Passenger": 1, "Journey": 1, "Segment": 1, "Pick": "FIRST" } ],
+      "Baggage": [ { "Passenger": 1, "Journey": 1, "Pick": "FIRST" } ],
+      "ChangeBeforeBooking": [
+        { "Type": "MEAL", "Passenger": 1, "Journey": 1, "Segment": 1, "Pick": "SECOND" },
+        { "Type": "BAGGAGE", "Passenger": 1, "Journey": 1, "Pick": "SECOND" }
+      ]
+    },
+    {
+      "Name": "OW 1A+1C+1I - everything, infant gets nothing",
+      "Enabled": true,
+      "Tags": ["oneway", "infant"],
+      "Trip": "ONE_WAY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 1 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST",
+      "Baggage": "FIRST"
+    },
+    {
+      "Name": "OW 1A+1C - hold then pay, everything",
+      "Enabled": true,
+      "Tags": ["oneway", "hold"],
+      "Trip": "ONE_WAY",
+      "Flow": "HOLD_THEN_PAY",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST",
+      "Baggage": "FIRST"
+    },
+    {
+      "Name": "RT 1A+1C - everything on both journeys",
+      "Enabled": true,
+      "Tags": ["roundtrip", "smoke"],
+      "Trip": "ROUND_TRIP",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST",
+      "Baggage": "FIRST"
+    },
+    {
+      "Name": "RT 1A+1C - different bundle and baggage per journey",
+      "Enabled": true,
+      "Tags": ["roundtrip"],
+      "Trip": "ROUND_TRIP",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": [
+        { "Journey": 1, "Pick": "FIRST" },
+        { "Journey": 2, "Pick": "SECOND" }
+      ],
+      "Baggage": [
+        { "Passenger": "ALL", "Journey": 1, "Pick": "FIRST" },
+        { "Passenger": "ALL", "Journey": 2, "Pick": "SECOND" }
+      ]
+    },
+    {
+      "Name": "RT 2A - meals outbound only, baggage return only",
+      "Enabled": true,
+      "Tags": ["roundtrip"],
+      "Trip": "ROUND_TRIP",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 2, "Children": 0, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": [ { "Passenger": "ALL", "Journey": 1, "Segment": "ALL", "Pick": "FIRST" } ],
+      "Baggage": [ { "Passenger": "ALL", "Journey": 2, "Pick": "FIRST" } ]
+    },
+    {
+      "Name": "RT 1A+1C - hold then pay, everything",
+      "Enabled": true,
+      "Tags": ["roundtrip", "hold"],
+      "Trip": "ROUND_TRIP",
+      "Flow": "HOLD_THEN_PAY",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST",
+      "Baggage": "FIRST"
+    },
+    {
+      "Name": "MC 1A+1C - everything on every leg",
+      "Enabled": true,
+      "Tags": ["multicity", "smoke"],
+      "Trip": "MULTI_CITY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "SECOND",
+      "Meals": "THIRD",
+      "Baggage": "FIRST"
+    },
+    {
+      "Name": "MC 2A - pax 1 meal on first leg only, pax 2 baggage on last journey only",
+      "Enabled": true,
+      "Tags": ["multicity"],
+      "Trip": "MULTI_CITY",
+      "Flow": "BOOK",
+      "Passengers": { "Adults": 2, "Children": 0, "Infants": 0 },
+      "Bundle": "LAST",
+      "Meals": [ { "Passenger": 1, "Journey": 1, "Segment": 1, "Pick": "FIRST" } ],
+      "Baggage": [ { "Passenger": 2, "Journey": "LAST", "Pick": "SECOND" } ]
+    },
+    {
+      "Name": "MC 1A+1C - hold then pay, everything",
+      "Enabled": true,
+      "Tags": ["multicity", "hold"],
+      "Trip": "MULTI_CITY",
+      "Flow": "HOLD_THEN_PAY",
+      "Passengers": { "Adults": 1, "Children": 1, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST",
+      "Baggage": "FIRST"
+    },
+    {
+      "Name": "Negative - bundle is required to continue",
+      "Enabled": true,
+      "Tags": ["negative", "dryrun"],
+      "Trip": "ONE_WAY",
+      "Flow": "NO_BOOKING",
+      "Passengers": { "Adults": 1, "Children": 0, "Infants": 0 },
+      "Expect": ["BUNDLE_REQUIRED"]
+    },
+    {
+      "Name": "Negative - infant has no ancillaries tab",
+      "Enabled": true,
+      "Tags": ["negative", "dryrun", "infant"],
+      "Trip": "ONE_WAY",
+      "Flow": "NO_BOOKING",
+      "Passengers": { "Adults": 1, "Children": 0, "Infants": 1 },
+      "Bundle": "FIRST",
+      "Expect": ["INFANT_HAS_NO_TAB"]
+    },
+    {
+      "Name": "Negative - clearing meals and baggage removes their price",
+      "Enabled": true,
+      "Tags": ["negative", "dryrun"],
+      "Trip": "ONE_WAY",
+      "Flow": "NO_BOOKING",
+      "Passengers": { "Adults": 1, "Children": 0, "Infants": 0 },
+      "Bundle": "FIRST",
+      "Meals": "FIRST",
+      "Baggage": "FIRST",
+      "Clear": [],
+      "Expect": ["CLEAR_RESTORES_PRICE"]
+    }
+  ]
+}

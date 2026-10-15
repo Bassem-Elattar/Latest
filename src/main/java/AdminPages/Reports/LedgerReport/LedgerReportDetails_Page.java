@@ -41,7 +41,11 @@ public class LedgerReportDetails_Page {
     public void Lst_BranchName(String branch){
         driver.element().click(Lst_BranchName);
         driver.element().type(By.xpath("//input[contains(@class,'p-dropdown-filter')]"), branch);
-        driver.element().click(By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]"));
+        // A name with an apostrophe ("Bassem's Branch") can't sit inside '...' -- build it with concat().
+        String quoted = branch.contains("'")
+                ? "concat('" + branch.replace("'", "',\"'\",'") + "')"
+                : "'" + branch + "'";
+        driver.element().click(By.xpath("(//li[contains(@aria-label," + quoted + ")])[1]"));
     }
 
     public void Lst_AgencyName(String Select){

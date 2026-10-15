@@ -116,7 +116,11 @@ public class SearchBooking_Page {
     public SearchBooking_Page SelectBranch(String branch) {
         driver.element().click(lst_OpenBranch);
         driver.element().type(Inpt_Branch, branch);
-        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
+        // A name with an apostrophe ("Bassem's Branch") can't sit inside '...' -- build it with concat().
+        String quoted = branch.contains("'")
+                ? "concat('" + branch.replace("'", "',\"'\",'") + "')"
+                : "'" + branch + "'";
+        By branchOption = By.xpath("(//li[contains(@aria-label," + quoted + ")])[1]");
         driver.element().click(branchOption);
         return this;
     }

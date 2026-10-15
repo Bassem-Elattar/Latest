@@ -478,12 +478,22 @@ public class SearchBookingBranch {
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
     }
 
+    // No fixed 15s wait: stops as soon as either the branded-fare "Proceed" button is clickable (clicks
+    // it) or the passenger form is already shown with no branded fares on the page.
     public void proceedIfBrandedFareExists() {
+        By passengerForm = By.id("firstName_0");
         WebDriverWait wait = new WebDriverWait(driver.getDriver(), Duration.ofSeconds(15));
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(Btn_Proceed)).click();
+            WebElement proceed = wait.until(d -> {
+                for (WebElement b : d.findElements(Btn_Proceed)) {
+                    if (b.isDisplayed() && b.isEnabled()) return b;
+                }
+                boolean formShown = d.findElements(passengerForm).stream().anyMatch(WebElement::isDisplayed);
+                return formShown && d.findElements(Btn_Proceed).isEmpty() ? d.findElement(passengerForm) : null;
+            });
+            if (proceed.getTagName().equalsIgnoreCase("button")) proceed.click();
         } catch (TimeoutException ignored) {
-            // No branded fare Proceed button appeared within the wait window; nothing to do.
+            // Neither a branded fare Proceed button nor the passenger form within the wait window; nothing to do.
         }
     }
 }

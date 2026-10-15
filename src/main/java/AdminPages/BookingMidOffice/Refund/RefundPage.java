@@ -236,8 +236,7 @@ public class RefundPage {
         this.searchedBranch = branch;
         driver.element().click(branchDropdown);
         driver.element().type(branchFilter, branch);
-        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
-        driver.element().click(branchOption);
+        driver.element().click(branchOption(branch));
         driver.element().click(automaticRadioButton);
         driver.element().click(submitButton);
         return this;
@@ -250,10 +249,17 @@ public class RefundPage {
         this.searchedBranch = branch;
         driver.element().click(branchDropdown);
         driver.element().type(branchFilter, branch);
-        By branchOption = By.xpath("(//li[contains(@aria-label,'" + branch + "')])[1]");
-        driver.element().click(branchOption);
+        driver.element().click(branchOption(branch));
         driver.element().click(submitButton);
         return this;
+    }
+
+    // A name with an apostrophe ("Bassem's Branch") can't sit inside '...' -- build it with concat().
+    private By branchOption(String branch) {
+        String quoted = branch.contains("'")
+                ? "concat('" + branch.replace("'", "',\"'\",'") + "')"
+                : "'" + branch + "'";
+        return By.xpath("(//li[contains(@aria-label," + quoted + ")])[1]");
     }
 
     // Confirmed live: clicking thumbsUpIcon opens an "Approve refund request <id>" modal with a
